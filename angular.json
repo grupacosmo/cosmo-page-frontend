@@ -72,7 +72,10 @@
               "buildTarget": "cosmo-frontend-app:build:production"
             },
             "development": {
-              "buildTarget": "cosmo-frontend-app:build:development"
+              "buildTarget": "cosmo-frontend-app:build:development",
+              "sslKey": "./server-local.key",
+              "sslCert": "./server-local.crt",
+              "ssl": true
             }
           },
           "defaultConfiguration": "development"
