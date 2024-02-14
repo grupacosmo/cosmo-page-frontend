@@ -1,0 +1,74 @@
+@import './../../../../assets/styles/theme';
+
+footer {
+    background-color: $cosmo-dark-blue;
+    color: white;
+    width: 100%;
+    font-size: $font-size-s;
+
+    padding: 3em 0 0.5em 4em;
+    
+    hr {
+        height: 1px;
+        background-color: $primary-1;
+        border: none;
+        width: 100%;
+        margin-left: -2em;
+    }
+
+    .top-panel {
+        display: flex;
+        flex-direction: row;
+        gap: 8em;
+
+        h3 {
+            margin: 0;
+            text-align: center;
+        }
+
+        .column {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100%;
+
+            ul {
+                list-style: none;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                padding: 0;
+                gap: 0.5em;
+                text-align: center;
+            }
+        }
+    }
+
+
+    a {
+        color: white;
+        text-decoration: none;
+    }
+
+    @media screen and (max-width: 768px) {
+        font-size: $font-size-xs;
+        padding: 1em 0;
+
+        hr {
+            margin-left: 0;
+        }
+
+        .top-panel {
+            flex-direction: column;
+            gap: 1em;
+        }
+
+        .bottom-panel {
+            p {
+                text-align: center;
+            }
+        }
+    }
+}
