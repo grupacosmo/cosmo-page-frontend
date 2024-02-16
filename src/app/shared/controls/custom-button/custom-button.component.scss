@@ -1,0 +1,67 @@
+@import './../../../../assets/styles/theme';
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+
+app-custom-button {
+    
+    button {
+        background: linear-gradient(to right, #79287C, #0015D3);
+        border: none;
+        outline: none;
+        position: relative;
+        color: white;
+        padding: 0.2em 0.2em 0.2em 1em;
+        border-radius: 15px;
+        font-size: $font-size-s;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 500ms;
+        z-index: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    button:hover {
+        color: $cosmo-magenta;
+        transition: 500ms;
+    }
+
+    button::before {
+        content: "";
+        position: absolute;
+        top: 2px;
+        right: 2px;
+        bottom: 2px;
+        left: 2px;
+        border-radius: 13px;
+        transition: 500ms;
+        z-index: -1;
+    }
+
+    button:hover::before {
+        background-color: white;
+    }
+
+    .secondary-button {
+        color: $cosmo-magenta;
+    }
+
+    .secondary-button:hover {
+        color: white;
+    }
+
+    .secondary-button::before {
+        background-color: white;
+    }
+
+    .secondary-button:hover::before {
+        background-color: transparent;
+    }
+}
