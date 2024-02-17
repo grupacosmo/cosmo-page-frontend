@@ -5,7 +5,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './pages/home/home.component';
 import { SharedModule } from '../../shared/shared.module';
-
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -15,7 +15,8 @@ import { SharedModule } from '../../shared/shared.module';
     CommonModule,
     HomeRoutingModule,
     MatButtonModule,
-    SharedModule
+    SharedModule,
+    MatCardModule
   ]
 })
 export class HomeModule { }

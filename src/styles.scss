@@ -1,6 +1,16 @@
+///////////// CUSTOM BUTTON STYLES
+@import './app/shared/controls/custom-button/custom-button.component.scss';
+//Angular material styles
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
+
+
 /* You can add global styles to this file, and also import other style files */
 *, *::after, *::before {
     box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
 }
 
 html { font-size: 62.5%; } 
@@ -12,5 +22,9 @@ body {
     font-size: 16px;
 }
 
-///////////// CUSTOM BUTTON STYLES
-@import './app/shared/controls/custom-button/custom-button.component.scss';
+hr.divider {
+    height: 2px;
+    background-color: $primary-1;
+    border: none;
+    width: 100%;
+}

@@ -1,12 +1,47 @@
 <section class="banner">
     <section class="content">
-        <h1>COSMO PK</h1>
+        <h1 class="logo">COSMO PK</h1>
         <p>{{ text.description }}</p>
         <div class="social-media">
             @for (media of socialMedia; track media.icon) {
                 <div>a</div>
             }
         </div>
-        <app-custom-button text="Poznaj nasz zespół"></app-custom-button>
+        <app-custom-button class="join-us" [text]="text.joinUs"></app-custom-button>
     </section>
 </section>
+
+<main>
+    <mat-card>
+        <mat-card-content>
+            <section>
+                O nas
+            </section>
+    
+            <hr class="divider"/>
+    
+            <section>
+                Aktualności
+            </section>
+    
+            <hr class="divider"/>
+    
+            <section>
+                Projekty
+            </section>
+    
+            <hr class="divider"/>
+    
+            <section>
+                Dołącz 
+            </section>
+    
+            <hr class="divider"/>
+    
+            <section>
+                Partnerzy 
+            </section>
+    
+        </mat-card-content>
+    </mat-card>
+</main>

@@ -1,14 +1,48 @@
+@import '../../../../core/components/header/header.component.scss';
+@import './../../../../../assets/styles/theme';
+
+// DO NOT CHANGE ON YOUR OWN
+// overwrites parent header styles globally
+::ng-deep {
+    app-header {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+}
+
+
+:host {
+    padding-top: $header-height;
+
+    background: url('../../../../../assets/images/home-sky.jpg');
+    flex-grow: 1;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .banner {
+    color: $text-light;
+
     .content {
         .logo {
             font-size: 6rem;
+            margin: 0;
         }
 
         .social-media {
             display: flex;
             gap: 1rem;
         }
+
+        .join-us {
+            margin-top: 1rem;
+        }
     }
 
     margin: 2em;
+}
+
+main {
+    margin: 0 6rem;
 }
