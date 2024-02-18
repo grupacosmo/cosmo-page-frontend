@@ -6,17 +6,21 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './pages/home/home.component';
 import { SharedModule } from '../../shared/shared.module';
 import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { NewsSummaryComponent } from './components/news-summary/news-summary.component';
 
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
+    NewsSummaryComponent
   ],
   imports: [
     CommonModule,
     HomeRoutingModule,
     MatButtonModule,
     SharedModule,
-    MatCardModule
+    MatCardModule,
+    MatIconModule
   ]
 })
 export class HomeModule { }

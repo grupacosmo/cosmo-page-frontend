@@ -13,15 +13,19 @@ export class HomeComponent {
 
   protected socialMedia = [
     {
-      icon: '',
+      icon: 'fa fa-facebook',
       href: '',
     },
     {
-      icon: '',
+      icon: 'fa fa-x-twitter',
       href: ''
     },
     {
-      icon: '',
+      icon: 'fa fa-github',
+      href: ''
+    },
+    {
+      icon: 'fa fa-instagram',
       href: ''
     }
   ]

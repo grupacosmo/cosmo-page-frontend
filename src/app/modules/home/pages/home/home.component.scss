@@ -14,15 +14,16 @@
 
 :host {
     padding-top: $header-height;
-
     background: url('../../../../../assets/images/home-sky.jpg');
     flex-grow: 1;
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
 }
 
 .banner {
     color: $text-light;
+    height: 20rem;
 
     .content {
         .logo {
@@ -33,6 +34,9 @@
         .social-media {
             display: flex;
             gap: 1rem;
+            a {
+                color: white;
+            }
         }
 
         .join-us {
@@ -40,9 +44,13 @@
         }
     }
 
-    margin: 2em;
+    margin: 6rem;
 }
 
 main {
     margin: 0 6rem;
+
+    .main-card {
+        padding: 2rem;
+    }
 }
