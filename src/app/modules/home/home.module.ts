@@ -10,13 +10,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { NewsSummaryComponent } from './components/news-summary/news-summary.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { PartnersComponent } from './components/partners/partners.component';
+import { ProjectsComponent } from './components/projects/projects.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     NewsSummaryComponent,
     AboutUsComponent,
-    PartnersComponent
+    PartnersComponent,
+    ProjectsComponent
   ],
   imports: [
     CommonModule,

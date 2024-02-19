@@ -52,5 +52,11 @@ main {
 
     .main-card {
         padding: 2rem;
+
+        mat-card-content {
+            section {
+                margin: 2em 0;
+            }
+        }
     }
 }
