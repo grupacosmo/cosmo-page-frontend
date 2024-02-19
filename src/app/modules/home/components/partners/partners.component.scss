@@ -1,0 +1,46 @@
+app-partners {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.5rem;
+    
+    .partners {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 2em;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    .partner {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            max-height: 120px;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .partners {
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        }
+
+        .partner {
+            img {
+                max-height: 80px;
+                width: 50%;
+            }
+        }
+    }
+}
