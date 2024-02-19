@@ -1,5 +1,9 @@
 ///////////// CUSTOM BUTTON STYLES
 @import './app/shared/controls/custom-button/custom-button.component.scss';
+
+///////////// COMPONENTS
+@import './app/modules/home/components/about-us/about-us.component.scss';
+@import './app/modules/home/components/partners/partners.component.scss';
 //Angular material styles
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
 

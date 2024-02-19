@@ -8,11 +8,15 @@ import { SharedModule } from '../../shared/shared.module';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { NewsSummaryComponent } from './components/news-summary/news-summary.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
+import { PartnersComponent } from './components/partners/partners.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
-    NewsSummaryComponent
+    NewsSummaryComponent,
+    AboutUsComponent,
+    PartnersComponent
   ],
   imports: [
     CommonModule,
