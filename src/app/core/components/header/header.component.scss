@@ -32,5 +32,35 @@ header {
                 cursor: pointer;
             }
         }
+
+        .mobile {
+            all: unset;
+            color: white;
+            display: none;
+            font-size: $font-size-l;
+        }
+    }
+}
+
+@media (max-width: 576px) {
+    header {
+        nav {
+            .mobile {
+                display: block;
+
+                mat-icon {
+                    width: 34px;
+                    height: 34px;
+
+                    &.material-icons {
+                        font-size: 34px;
+                    }
+                }
+            }
+        
+            .desktop {
+                display: none;
+            }
+        }
     }
 }

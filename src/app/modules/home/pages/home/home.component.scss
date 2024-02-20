@@ -19,13 +19,21 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+
+    .home-container {
+        max-width: 1600px;
+        margin: 0 auto;
+    }
 }
 
 .banner {
     color: $text-light;
-    height: 20rem;
+    padding: 6rem;
+    width: fit-content;
 
     .content {
+        display: inline-block;
+
         .logo {
             font-size: 6rem;
             margin: 0;
@@ -43,8 +51,6 @@
             margin-top: 1rem;
         }
     }
-
-    margin: 6rem;
 }
 
 main {
@@ -52,10 +58,32 @@ main {
 
     .main-card {
         padding: 2rem;
+        border-radius: 15px;
 
         mat-card-content {
             section {
                 margin: 2em 0;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    main {
+        margin: 4rem 0 0;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .banner {
+        padding: 6rem 0;
+        margin: 0 auto;
+
+        .content {
+            text-align: center;
+
+            .social-media {
+                justify-content: center;
             }
         }
     }

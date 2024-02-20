@@ -1,39 +1,43 @@
 
-<section class="banner">
-    <section class="content">
-        <h1 class="logo">COSMO PK</h1>
-        <p>{{ text.description }}</p>
-        <div class="social-media">
-            @for (media of socialMedia; track media.icon) {
-                <a [href]="media.href" target="_blank" rel="noreferrer">
-                    <mat-icon>facebook</mat-icon>
-                </a>
-            }
-        </div>
-        <app-custom-button class="join-us" [text]="text.joinUs"></app-custom-button>
+<section class="home-container">
+    <section class="banner">
+        <section class="content">
+            <h1 class="logo">COSMO PK</h1>
+            <p>{{ text.description }}</p>
+            <div class="social-media">
+                @for (media of socialMedia; track media.icon) {
+                    <a [href]="media.href" target="_blank" rel="noreferrer">
+                        <mat-icon>facebook</mat-icon>
+                    </a>
+                }
+            </div>
+            <app-custom-button class="join-us" [text]="text.joinUs"></app-custom-button>
+        </section>
     </section>
+    
+    <main>
+        <mat-card class="main-card">
+            <mat-card-content>
+                <section>
+                    <app-about-us></app-about-us>
+                </section>
+                <hr class="divider"/>
+                <section>
+                    <app-news-summary></app-news-summary>
+                </section>
+                <hr class="divider"/>
+                <section>
+                    <app-projects></app-projects>
+                </section>
+                <hr class="divider"/>
+                <section>
+                    Dołącz 
+                </section>
+                <hr class="divider"/>
+                <section>
+                    <app-partners></app-partners> 
+                </section>
+            </mat-card-content>
+        </mat-card>
+    </main>
 </section>
-
-<main>
-    <mat-card class="main-card">
-        <mat-card-content>
-            <section>
-                <app-about-us></app-about-us>
-            </section>
-            <hr class="divider"/>
-                <app-news-summary></app-news-summary>
-            <hr class="divider"/>
-            <section>
-                <app-projects></app-projects>
-            </section>
-            <hr class="divider"/>
-            <section>
-                Dołącz 
-            </section>
-            <hr class="divider"/>
-            <section>
-                <app-partners></app-partners> 
-            </section>
-        </mat-card-content>
-    </mat-card>
-</main>

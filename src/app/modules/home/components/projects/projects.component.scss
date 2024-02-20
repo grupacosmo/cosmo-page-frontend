@@ -1,3 +1,4 @@
+@use '@angular/material' as mat;
 @import './../../../../../assets/styles/theme';
 
 app-projects {
@@ -7,7 +8,7 @@ app-projects {
 
     header {
         display: flex;
-        justify-content: flex-start;
+        justify-content: space-between;
         gap: 4em;
         padding: 1.5rem;
     
@@ -24,7 +25,7 @@ app-projects {
 
         .project {
             flex: 1;
-            height: 300px;
+            height: 200px;
             background-size: cover;
             background-position: center;
             position: relative;
@@ -36,6 +37,12 @@ app-projects {
             font-weight: bold;
             text-shadow: 3px 4px 10px black;
             cursor: pointer;
+            transition: 0.5s;
+
+            &:hover {
+                transform: scale(1.005);
+                @include mat.elevation(3);
+            }
 
             h3 {
                 text-align: center;

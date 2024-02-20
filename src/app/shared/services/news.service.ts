@@ -26,30 +26,30 @@ export class NewsService {
 const fakeNews: NewsItem[] = [
   {
     id: '1',
-    title:'Title1',
+    title:'Konferencja SpaceWhatever 2023',
     content: '',
-    date: '12/12/12/2021',
+    date: '12.12.2021',
     imageUrl: 'https://admin.live.ilo.org/sites/default/files/2023-06/52951700532_df0e3916d9_k.jpg'
   },
   {
     id: '2',
-    title:'Title2',
+    title:'Spotkanie zapoznawcze',
     content: '',
-    date: '12/12/12/2021',
-    imageUrl: 'https://admin.live.ilo.org/sites/default/files/2023-06/52951700532_df0e3916d9_k.jpg'
+    date: '12.12.2021',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/8/8b/Libya_4608_Idehan_Ubari_Dunes_Luca_Galuzzi_2007.jpg'
   },
   {
     id: '3',
-    title:'Title3',
+    title:'Designerzy go nienawidzą',
     content: '',
-    date: '12/12/12/2021',
-    imageUrl: 'https://admin.live.ilo.org/sites/default/files/2023-06/52951700532_df0e3916d9_k.jpg'
+    date: '12.12.2021',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/9/9a/Soyuz_TMA-9_launch.jpg'
   },
   {
     id: '4',
-    title:'Title4',
+    title:'Odkrył jeden prosty sposób jak zmieścić długie tytuły w miniaturce artykułów',
     content: '',
-    date: '12/12/12/2021',
-    imageUrl: 'https://admin.live.ilo.org/sites/default/files/2023-06/52951700532_df0e3916d9_k.jpg'
+    date: '12.12.2021',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/en/6/67/DS_Brothers_in_Arms.jpg'
   },
 ]
