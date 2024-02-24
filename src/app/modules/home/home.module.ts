@@ -11,6 +11,7 @@ import { NewsSummaryComponent } from './components/news-summary/news-summary.com
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { PartnersComponent } from './components/partners/partners.component';
 import { ProjectsComponent } from './components/projects/projects.component';
+import { JoinUsComponent } from './components/join-us/join-us.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ProjectsComponent } from './components/projects/projects.component';
     NewsSummaryComponent,
     AboutUsComponent,
     PartnersComponent,
-    ProjectsComponent
+    ProjectsComponent,
+    JoinUsComponent
   ],
   imports: [
     CommonModule,

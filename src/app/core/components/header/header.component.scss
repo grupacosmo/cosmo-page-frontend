@@ -10,13 +10,17 @@ header {
     height: $header-height;
     background-color: rgba(0,0,0, 0.15);
     display: flex;
-    padding: 2rem;
+    padding: 2rem 6rem;
     align-items: center;
     justify-content: space-between;
 
     .logo {
-        font-size: 3rem;
-        color: $text-light;
+        height: 15rem;
+
+        img {
+            height: 100%;
+            cursor: pointer;
+        }
     }
 
     nav {
@@ -44,6 +48,8 @@ header {
 
 @media (max-width: 576px) {
     header {
+        padding: 2rem; 
+
         nav {
             .mobile {
                 display: block;
