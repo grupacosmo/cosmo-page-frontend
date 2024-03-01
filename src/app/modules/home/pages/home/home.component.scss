@@ -42,14 +42,20 @@
 
         .social-media {
             display: flex;
-            gap: 1rem;
+            gap: 2rem;
+
             a {
                 color: white;
+
+                img {
+                    height: 20px;
+                    width: 20px;
+                }
             }
         }
 
         .join-us {
-            margin-top: 1rem;
+            margin-top: 2rem;
         }
     }
 }

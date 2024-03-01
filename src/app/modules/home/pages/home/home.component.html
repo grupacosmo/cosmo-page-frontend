@@ -7,7 +7,7 @@
             <div class="social-media">
                 @for (media of socialMedia; track media.icon) {
                     <a [href]="media.href" target="_blank" rel="noreferrer">
-                        <mat-icon>facebook</mat-icon>
+                        <img [src]="media.src" alt="social-media" />
                     </a>
                 }
             </div>

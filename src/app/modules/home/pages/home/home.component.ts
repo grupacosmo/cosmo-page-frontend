@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
 
+// TODO
+// REPLACE TEMPORTARY SOLUTION
+const mediaPath = './../../../../../assets/images/social-media/';
+
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -13,20 +18,24 @@ export class HomeComponent {
 
   protected socialMedia = [
     {
-      icon: 'fa fa-facebook',
-      href: '',
+      icon: 'facebook',
+      href: 'https://www.facebook.com/cosmopk.kn',
+      src: mediaPath + 'fb.png',
     },
     {
-      icon: 'fa fa-x-twitter',
-      href: ''
+      icon: 'x-twitter',
+      href: 'https://twitter.com/pkcosmopk',
+      src: mediaPath + 'x.png',
     },
     {
-      icon: 'fa fa-github',
-      href: ''
+      icon: 'github',
+      href: 'https://github.com/grupacosmo',
+      src: mediaPath + 'gh.png',
     },
     {
-      icon: 'fa fa-instagram',
-      href: ''
+      icon: 'instagram',
+      href: 'https://www.instagram.com/cosmopk_kn/',
+      src: mediaPath + 'ig.png',
     }
   ]
 }
