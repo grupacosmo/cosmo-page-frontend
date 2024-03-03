@@ -1,9 +1,9 @@
 @import './../../../../assets/styles/theme';
-
-$header-height: 70px;
+@import './../../../../assets/styles/global';
 
 :host {
     width: 100%;
+    z-index: 999;
 }
 
 header {

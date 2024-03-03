@@ -1,0 +1,35 @@
+@import './../../../../../assets/styles/theme';
+
+:host {
+    padding: 2rem;
+
+    .group {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 2rem;
+        line-height: 1.5;
+        
+        .headline {
+            color: $primary-1;
+            margin: 0;
+        }
+
+        .social-media {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1rem;
+
+            img {
+                width: 20px;
+                height: 20px;
+                filter: drop-shadow(0 0 0.20rem $primary-3);
+            }
+        }
+
+        a {
+            all: unset;
+            cursor: pointer;
+            font-size: $font-size-m;
+        }
+    }
+}
