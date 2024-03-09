@@ -1,0 +1,19 @@
+<header>
+    <h2>Aktualności</h2>
+    <app-custom-button class="join-us" [text]="text.readMore" [isSecondaryButton]="true"></app-custom-button>
+</header>
+@if (news$ | async; as news) {
+    <section class="news-container">
+        @for (newsItem of news; track newsItem.id) {
+            <div
+                class="newsItem"
+                [style.backgroundImage]="'url('+ newsItem.imageUrl + ')'"
+            >
+                <div class="overlay">
+                    <span class="date">{{ newsItem.date }}</span>
+                    <h3>{{ newsItem.title }}</h3>
+                </div>
+            </div>
+        }
+    </section>    
+}

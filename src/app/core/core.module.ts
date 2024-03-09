@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { RouterLink } from '@angular/router';
-
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -16,7 +16,8 @@ import { RouterLink } from '@angular/router';
   ],
   imports: [
     CommonModule,
-    RouterLink
+    RouterLink,
+    MatIconModule
   ]
 })
 export class CoreModule { }

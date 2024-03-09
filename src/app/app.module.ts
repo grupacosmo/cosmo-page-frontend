@@ -6,6 +6,7 @@ import {AppComponent} from './app.component';
 import {CoreModule} from './core/core.module';
 import {SocialLoginModule} from "@abacritt/angularx-social-login";
 import {AccountService} from "./core/services/account/account.service";
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
     declarations: [
@@ -15,7 +16,8 @@ import {AccountService} from "./core/services/account/account.service";
         BrowserModule,
         AppRoutingModule,
         CoreModule,
-        SocialLoginModule
+        SocialLoginModule,
+        HttpClientModule
     ],
     providers: [
         { provide: APP_INITIALIZER, useFactory: appInitializer, multi: true, deps: [AccountService] },

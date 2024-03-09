@@ -1,0 +1,7 @@
+<h2>{{ text.title }}</h2>
+
+<div class="partners">
+    <div class="partner" *ngFor="let partner of partners">
+        <a [href]="partner.link" target="_blank"><img [src]="partner.src" alt="partner" /></a>
+    </div>
+</div>
