@@ -1,1 +1,42 @@
-<p>projects works!</p>
+
+<section class="home-container">
+    <!-- <section class="banner">
+        <section class="content">
+            <h1 class="logo">COSMO PK</h1>
+            <p>{{ text.description }}</p>
+            <div class="social-media">
+                @for (media of socialMedia; track media.icon) {
+                    <a [href]="media.href" target="_blank" rel="noreferrer">
+                        <img [src]="media.src" alt="social-media" />
+                    </a>
+                }
+            </div>
+            <app-custom-button class="join-us" [text]="text.joinUs"></app-custom-button>
+        </section>
+    </section> -->
+    
+    <main>
+        <mat-card class="main-card">
+            <mat-card-content>
+                    <mat-tab-group>
+                        <mat-tab label="Aktualne projekty">
+                            <section>
+                                @if (projects$ | async; as projects) {
+                                    <app-project-card *ngFor="let project of projects.currentProjects" [project]="project"></app-project-card>
+                                }
+                            </section>
+                        </mat-tab>
+                        <mat-tab label="Zakończone projekty">
+                            <section>
+                                @if (projects$ | async; as projects) {
+                                    <app-project-card *ngFor="let project of projects.finishedProjects" [project]="project"></app-project-card>
+                                }
+                            </section>
+                        </mat-tab>
+                      </mat-tab-group>
+                <section>
+                </section>
+            </mat-card-content>
+        </mat-card>
+    </main>
+</section>
