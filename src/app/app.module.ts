@@ -9,7 +9,7 @@ import {AccountService} from "./core/services/account/account.service";
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
     ],
     imports: [
         BrowserModule,

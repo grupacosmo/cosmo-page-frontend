@@ -1,0 +1,43 @@
+<div class="container">
+    <h3 class="pageName">Dodaj projekt</h3>
+    <form action="">
+        <div class="titlesContainer">
+            <div class="titleContainer">
+                <input type="text" class="title" placeholder="Tytuł projektu"/>
+            </div>
+            <div class="subtitleContainer">
+                <input type="text" class="subtitle" placeholder="Podtytuł projektu"/>
+            </div>
+        </div>
+        <div class="mainImageContainer">
+            <h3>Zdjęcie tytułowe</h3>
+            <input type="file" class="mainImage" accept="image/*"/>
+        </div>
+        <div class="teamsContainer">
+            <h3>Wybierz zespół</h3>
+            <app-team-checkbox *ngFor="let team of teams" [teamObject]="team"></app-team-checkbox>
+        </div>
+        <div class="isAsctiveContainer">
+            <h3>Czy projekt jest aktywny?</h3>
+            <input type="checkbox" id="active" name="active"/>
+            <label for="active">TAK</label>
+        </div>
+        <div class="projectDescContainer">
+            <h3>Opis projektu</h3>
+            <textarea name="projectDesc" id="projectDesc"></textarea>
+        </div>
+        <div class="projectImages">
+            <input type="file" class="imgInput" accept="image/*" multiple (change)="showPreview($event)">
+            <div class="imagesContainer">
+                <h4>Obrazy</h4>
+                    @for (preview of previews; track $index) {
+                        <div class="imagesPreviewContainer">
+                            <p>{{preview.file.name}}</p>
+                            <img [src]="preview.preview" [alt]="preview.file.name" class="imagePreview"/>
+                            <button type="button" class="delete" (click)="onDelete(preview.file.name)">&#9760;</button>
+                        </div>
+                    }
+            </div>
+        </div>
+    </form>
+</div>
