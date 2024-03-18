@@ -1,0 +1,74 @@
+@import './../../../../../assets/styles/theme';
+
+app-about-us {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem;
+    gap: 2em;
+
+    
+    .left-panel {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        
+        h2 {
+            margin: 0;
+        }
+
+        p {
+            font-size: $font-size-m;
+            text-align: justify;
+        }
+
+        .meet-our-team {
+            display: flex;
+            justify-content: right;
+        }
+    }
+
+    .right-panel {
+        width: 45%;
+        background-image: url('../../../../../assets/images/about-us-photo.jpg');
+        border-radius: 10px;
+        background-size: cover;
+        background-position: center;
+    }
+
+    @media screen and (max-width: 1280px) {
+        flex-direction: column;
+        
+        .left-panel {
+            width: 100%;
+            
+            p {
+                font-size: $font-size-s;
+            }
+        }
+    
+        .right-panel {
+            height: 50vh;
+            width: 100%;
+        }
+    }
+    
+    @media screen and (max-width: 768px) {
+        .right-panel {
+            height: 25vh;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        .left-panel {
+            width: 100%;
+            
+            p {
+                font-size: $font-size-xs;
+            }
+        }
+    
+        .right-panel {
+            height: 10vh;
+        }
+    }
+}

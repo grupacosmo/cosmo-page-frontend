@@ -1,14 +1,67 @@
-//Fonts
+///////////// CUSTOM BUTTON STYLES
+@import './app/shared/controls/custom-button/custom-button.component.scss';
+
+///////////// HOME COMPONENTS
+@import './app/modules/home/components/about-us/about-us.component.scss';
+@import './app/modules/home/components/partners/partners.component.scss';
+@import './app/modules/home/components/projects/projects.component.scss';
+//Angular material styles
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
+//FONTS
 @font-face {
     font-family: "Inter";
     src: url('/src/assets/fonts/Inter-Regular.ttf');
 }
 
-*{
+*, *::after, *::before {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 html, body {
     height: 100%;
+}
+
+html { font-size: 62.5% } 
+
+// initial zoom for screen >= 1280
+@media (min-width: 1280px) {
+    html {
+        zoom: 0.8;
+    }
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+}
+
+hr.divider {
+    height: 2px;
+    background-color: $primary-1;
+    border: none;
+    width: 100%;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #000958;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #9C27B0;
+    border-radius: 15px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #79287C;
 }

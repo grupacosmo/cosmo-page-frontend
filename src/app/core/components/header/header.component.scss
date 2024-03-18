@@ -1,0 +1,72 @@
+@import './../../../../assets/styles/theme';
+
+$header-height: 70px;
+
+:host {
+    width: 100%;
+}
+
+header {
+    height: $header-height;
+    background-color: rgba(0,0,0, 0.15);
+    display: flex;
+    padding: 2rem 6rem;
+    align-items: center;
+    justify-content: space-between;
+
+    .logo {
+        height: 15rem;
+
+        img {
+            height: 100%;
+            cursor: pointer;
+        }
+    }
+
+    nav {
+        ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            color: $text-light;
+            font-size: $font-size-m;
+
+            a {
+                all: unset;
+                cursor: pointer;
+            }
+        }
+
+        .mobile {
+            all: unset;
+            color: white;
+            display: none;
+            font-size: $font-size-l;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 2rem; 
+
+        nav {
+            .mobile {
+                display: block;
+
+                mat-icon {
+                    width: 34px;
+                    height: 34px;
+
+                    &.material-icons {
+                        font-size: 34px;
+                    }
+                }
+            }
+        
+            .desktop {
+                display: none;
+            }
+        }
+    }
+}
