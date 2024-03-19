@@ -76,6 +76,6 @@ jobs:
               docker rm cosmo-page-frontend;
             fi
             
-            docker run -d --rm -p 80:80 --name cosmo-page-frontend cosmopk/cosmo-page-frontend:latest
+            docker run -d --rm -p 4200:80 --name cosmo-page-frontend cosmopk/cosmo-page-frontend:latest
             
             exit
