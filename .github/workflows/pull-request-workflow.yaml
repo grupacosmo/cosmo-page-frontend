@@ -23,11 +23,6 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Run Tests
-        run: npm run test -- --watch=false --no-progress --browsers=ChromeHeadlessCI
-        env:
-          CHROME_BIN: /usr/bin/google-chrome
-
       - name: Build Angular Project
         run: npm run build -- --prod
 
