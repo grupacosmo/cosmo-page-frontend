@@ -24,7 +24,7 @@ jobs:
         run: npm install
 
       - name: Build Angular Project
-        run: npm run build -- --prod
+        run: npm run build
 
   docker-build:
     if: ${{ github.ref == 'refs/heads/master' }}
@@ -65,7 +65,7 @@ jobs:
           command_timeout: 30m
           script: |
             docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
-            docker pull ycosmopk/cosmo-page-frontend:latest
+            docker pull cosmopk/cosmo-page-frontend:latest
 
             if [ "$(docker ps -qa -f name=cosmo-page-frontend)" ]; then
               if [ "$(docker ps -q -f name=cosmo-page-frontend)" ]; then
