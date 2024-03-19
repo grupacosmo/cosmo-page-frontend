@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ProjectItem, ProjectsService } from 'src/app/shared/services/projects.service';
+import { ProjectItem } from 'src/app/shared/models/project-item.model';
+import { ProjectsService } from 'src/app/shared/services/projects.service';
 
 @Component({
   selector: 'app-projects',

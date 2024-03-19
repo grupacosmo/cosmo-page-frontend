@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ProjectsCardDetails, ProjectsService } from 'src/app/shared/services/projects.service';
+import { ProjectsCardDetails } from 'src/app/shared/models/projects-card-details.model';
+import { ProjectsService } from 'src/app/shared/services/projects.service';
 
 @Component({
   selector: 'app-projects',

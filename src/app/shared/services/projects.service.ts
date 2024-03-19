@@ -2,17 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { projectCardInfo } from 'src/app/modules/projects/models/project-card-info.model';
+import { ProjectItem } from '../models/project-item.model';
+import { ProjectsCardDetails } from '../models/projects-card-details.model';
 
-export interface ProjectItem {
-  id: string,
-  title: string,
-  url: string
-}
-
-export interface ProjectsCardDetails {
-  currentProjects: projectCardInfo[],
-  finishedProjects: projectCardInfo[]
-}
 
 @Injectable({
   providedIn: 'root'
