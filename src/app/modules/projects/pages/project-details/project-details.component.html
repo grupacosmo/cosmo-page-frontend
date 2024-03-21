@@ -17,9 +17,75 @@
     <main>
         <mat-card class="main-card">
             <mat-card-content>
-                <section>
-                    Strona projektu {{ projectId }}
-                </section>
+                <ng-container *ngIf="projectDetails">
+                    <section>
+                        <div class="back-to-projects">
+                            <a routerLink="/projects" routerLinkActive="active">
+                                <img src="../../../../../assets/images/icons/arrow-back.svg" alt="arrow-back">
+                                <p>Wszystkie projekty</p>
+                            </a>
+                        </div>
+                    </section>
+                    <section class="">
+                        <div class="main-container-top">
+                            <div class="main-container-left">
+                                <h1>{{ projectDetails.title }}</h1>
+                                <p>{{ projectDetails.shortDescrpiton }}</p>
+                                <p class="main-container-item"><img src="../../../../../assets/images/icons/team.svg" alt="team">{{ teams }}</p>
+                                <p class="main-container-item"><img src="../../../../../assets/images/icons/date.svg" alt="team">{{ projectDetails.date }}</p>
+                                <p class="main-container-item"><img src="../../../../../assets/images/icons/project-status.svg" alt="team">{{ projectDetails.status }}</p>
+                                <a class="main-container-item" [attr.href]="projectDetails.siteUrl" target="_blank" rel="noopener noreferrer"><img src="../../../../../assets/images/icons/site.svg" alt="team">{{ projectDetails.site }}</a>
+                            </div>
+                            <div class="main-container-right">
+                                <img class="image" [src]="projectDetails.mainPhoto" alt="project-photo" />
+                                <p class="photo-description">{{ projectDetails.mainPhotoDescription }}</p>
+                            </div>
+                        </div>
+                        <div class="main-container-bottom">
+                            <h2>{{ text.description }}</h2>
+                            <p>{{ projectDetails.description }}</p>
+                        </div>
+                    </section>
+                    <hr class="divider"/>
+                    <section>
+                        <div class="experiment-container">  
+                            <div class="experiment-container-left">
+                                <h2>{{ text.experiment }}</h2>
+                                <p>{{ projectDetails.experimentDescription }}</p>
+                            </div>
+                            <div class="experiment-container-right">
+                                <img class="image" [src]="projectDetails.photos[0]" alt="experiment-photos" />
+                                <p class="photo-description">{{ projectDetails.photosDescriptions[0] }}</p>
+                            </div>
+                        </div>
+                    </section>
+                    <hr class="divider"/>
+                    <section>
+                        <h2>{{ text.team }}</h2>
+                        <div class="teams-container">
+                            <div class="teams-container-left">
+                                <img class="image" [src]="projectDetails.teamPhoto" alt="team-photo">
+                            </div>
+                            <div class="teams-container-right">
+                                <ng-container *ngFor="let team of projectDetails?.teams">
+                                    <p>{{ team.name }}</p>
+                                    <ul>
+                                        <li *ngFor="let member of team?.members">
+                                            {{ member }}
+                                        </li>
+                                    </ul>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </section>
+                </ng-container>
+                <ng-container *ngIf="!projectDetails">
+                    <section>
+                        <div class="unexpected-error">
+                            Wystąpił niespodziewany błąd
+                        </div>
+                    </section>
+                </ng-container>
             </mat-card-content>
         </mat-card>
     </main>
