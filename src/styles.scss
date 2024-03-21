@@ -65,3 +65,30 @@ hr.divider {
 ::-webkit-scrollbar-thumb:hover {
     background: #79287C;
 }
+
+.content-container {
+    // main card
+    main.main-container {
+        margin: 0 auto;
+        max-width: 1600px;
+        padding: 0rem 6rem 4rem;
+
+        .main-card {
+            padding: 2rem;
+            border-radius: 15px;
+            background-color: white;
+
+            section {
+                margin: 2em 0;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .content-container {
+        main.main-container {
+            padding: 4rem 0 0;
+        }
+    }
+}
