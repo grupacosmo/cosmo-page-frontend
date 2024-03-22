@@ -1,43 +1,41 @@
 
-<section class="home-container">
-    <section class="banner">
-        <section class="content">
-            <h1 class="logo">COSMO PK</h1>
-            <p>{{ text.description }}</p>
-            <div class="social-media">
-                @for (media of socialMedia; track media.icon) {
-                    <a [href]="media.href" target="_blank" rel="noreferrer">
-                        <img [src]="media.src" alt="social-media" />
-                    </a>
-                }
-            </div>
-            <app-custom-button class="join-us" [text]="text.joinUs"></app-custom-button>
-        </section>
+<section class="banner">
+    <section class="content">
+        <h1 class="logo">COSMO PK</h1>
+        <p>{{ text.description }}</p>
+        <div class="social-media">
+            @for (media of socialMedia; track media.icon) {
+                <a [href]="media.href" target="_blank" rel="noreferrer">
+                    <img [src]="media.src" alt="social-media" />
+                </a>
+            }
+        </div>
+        <app-custom-button class="join-us" [text]="text.joinUs"></app-custom-button>
     </section>
-    
-    <main>
-        <mat-card class="main-card">
-            <mat-card-content>
-                <section>
-                    <app-about-us></app-about-us>
-                </section>
-                <hr class="divider"/>
-                <section>
-                    <app-news-summary></app-news-summary>
-                </section>
-                <hr class="divider"/>
-                <section>
-                    <app-projects></app-projects>
-                </section>
-                <hr class="divider"/>
-                <section>
-                    <app-join-us></app-join-us>
-                </section>
-                <hr class="divider"/>
-                <section>
-                    <app-partners></app-partners> 
-                </section>
-            </mat-card-content>
-        </mat-card>
-    </main>
 </section>
+
+<div class="content-container">
+    <main class="main-container">
+        <div class="main-card">
+            <section>
+                <app-about-us></app-about-us>
+            </section>
+            <hr class="divider"/>
+            <section>
+                <app-news-summary></app-news-summary>
+            </section>
+            <hr class="divider"/>
+            <section>
+                <app-projects></app-projects>
+            </section>
+            <hr class="divider"/>
+            <section>
+                <app-join-us></app-join-us>
+            </section>
+            <hr class="divider"/>
+            <section>
+                <app-partners></app-partners> 
+            </section>
+        </div>
+    </main>
+</div>

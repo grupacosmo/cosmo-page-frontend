@@ -7,9 +7,15 @@
 @import './app/modules/home/components/projects/projects.component.scss';
 //Angular material styles
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
-
+//FONTS
+@font-face {
+    font-family: "Inter";
+    src: url('/src/assets/fonts/Inter-Regular.ttf');
+}
 
 *, *::after, *::before {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
@@ -58,4 +64,31 @@ hr.divider {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #79287C;
+}
+
+.content-container {
+    // main card
+    main.main-container {
+        margin: 0 auto;
+        max-width: 1600px;
+        padding: 0rem 6rem 4rem;
+
+        .main-card {
+            padding: 2rem;
+            border-radius: 15px;
+            background-color: white;
+
+            section {
+                margin: 2em 0;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .content-container {
+        main.main-container {
+            padding: 4rem 0 0;
+        }
+    }
 }

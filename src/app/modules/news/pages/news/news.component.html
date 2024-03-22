@@ -1,1 +1,28 @@
-<p>news works!</p>
+
+<section class="banner">
+    <section class="content">
+        <h1 class="title">AKTUALNOŚCI</h1>
+    </section>
+</section>
+<section class="content-container">
+    <main class="main-container">
+        <div class="news-container main-card">
+            <section>
+                @for (newsItem of (news$ | async); track newsItem.id) {
+                    <mat-card class="card">
+                        <img mat-card-image [src]="newsItem.imageUrl" [alt]="newsItem.title">
+                        <mat-card-title>Shiba Inu</mat-card-title>
+                        <mat-card-content>
+                            <p>
+                              The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+                              A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+                              bred for hunting.
+                            </p>
+                          </mat-card-content>
+                    </mat-card>
+                }
+            </section>
+            <app-sidenav></app-sidenav>
+        </div>
+    </main>
+</section>

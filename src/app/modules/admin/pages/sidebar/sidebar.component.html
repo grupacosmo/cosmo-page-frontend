@@ -1,0 +1,87 @@
+<aside *ngIf=" windowWidth >= 768 else loading">
+    <div class="sidebar-items">
+        <img [src]="path + 'images/logo.png'" alt="logo" class="logo"/>
+        <div class="container">
+            <h3>POSTY</h3>
+            <ul>
+                <li><a 
+                        routerLink="addPost" 
+                        routerLinkActive="active-link"
+                        >Dodaj post</a></li>
+                <li><a 
+                        routerLink="postsMan" 
+                        routerLinkActive="active-link">Zarządzaj postami</a></li>
+            </ul>
+        </div>
+        <div class="container">
+            <h3>PROJEKTY</h3>
+            <ul>
+                <li><a 
+                    routerLink="addProject" 
+                    routerLinkActive="active-link">Dodaj projekt</a></li>
+                <li><a
+                    routerLink="projectsMan" 
+                    routerLinkActive="active-link">Zarządzaj projektami</a></li>
+            </ul>
+        </div>
+        <div class="container">
+            <h3>OSIĄGNIĘCIA</h3>
+            <ul>
+                <li><a
+                    routerLink="addAchievements" 
+                    routerLinkActive="active-link">Dodaj osiągnięcie</a></li>
+                <li><a
+                    routerLink="achievementsMan" 
+                    routerLinkActive="active-link">Zarządzaj osiągnieciami</a></li>
+            </ul>
+        </div>
+    </div>
+</aside>   
+<ng-template #loading>
+    <button type="button" class="burger-button" (click)="onClick()">{{this.display ? "&#10006;" : "&#9776;"}}</button>
+    <aside class="burger" [ngStyle]="{'display': (this.display ? 'flex' : 'none')}">
+        <div class="sidebar-items">
+            <img [src]="path + 'images/logo.png'" alt="logo" class="logo"/>
+            <div class="burger-container">
+                <h3>POSTY</h3>
+                <ul>
+                    <li class="burger-link"><a 
+                            (click)="onClick()"
+                            routerLink="addPost" 
+                            routerLinkActive="active-link"
+                            >Dodaj post</a></li>
+                    <li class="burger-link"><a
+                            (click)="onClick()"  
+                            routerLink="postsMan" 
+                            routerLinkActive="active-link">Zarządzaj postami</a></li>
+                </ul>
+            </div>
+            <div class="burger-container">
+                <h3>PROJEKTY</h3>
+                <ul>
+                    <li class="burger-link"><a 
+                        (click)="onClick()" 
+                        routerLink="addProject" 
+                        routerLinkActive="active-link">Dodaj projekt</a></li>
+                    <li class="burger-link"><a 
+                        (click)="onClick()" 
+                        routerLink="projectsMan" 
+                        routerLinkActive="active-link">Zarządzaj projektami</a></li>
+                </ul>
+            </div>
+            <div class="burger-container">
+                <h3>OSIĄGNIĘCIA</h3>
+                <ul>
+                    <li class="burger-link"><a 
+                        (click)="onClick()" 
+                        routerLink="addAchievements" 
+                        routerLinkActive="active-link">Dodaj osiągnięcie</a></li>
+                    <li class="burger-link"><a 
+                        (click)="onClick()" 
+                        routerLink="achievementsMan" 
+                        routerLinkActive="active-link">Zarządzaj osiągnieciami</a></li>
+                </ul>
+            </div>
+        </div>
+    </aside>   
+</ng-template>

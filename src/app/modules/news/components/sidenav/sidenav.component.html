@@ -1,0 +1,22 @@
+<div class="group">
+    <h2 class="headline">{{ text.news }}</h2>
+    <a>{{ text.newest }}</a>
+</div>
+
+<div class="group">
+    <h2 class="headline">{{ text.links }}</h2>
+    @for (link of links; track link.label) {
+        <a [routerLink]="link.link">{{ link.label }}</a>
+    }
+</div>
+
+<div class="group">
+    <h2 class="headline">{{ text.seeAlso }}</h2>
+    <div class="social-media">
+        @for (media of socialMedia; track media.icon) {
+            <a [href]="media.href" target="_blank" rel="noreferrer">
+                <img [src]="media.src" alt="social-media" />
+            </a>
+        }
+    </div>
+</div>
