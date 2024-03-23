@@ -1,0 +1,20 @@
+@if(newsItem && newsItem !== 'Loading') {
+    <div class="go-back" [routerLink]="['/news']">
+        <mat-icon>keyboard_arrow_left</mat-icon>    
+        {{ text.goBack }}
+    </div>
+        
+    <article>
+        <h1 class="title">{{ newsItem.title }}</h1>
+        <span>{{ newsItem.date | date }}</span>
+        <img [src]="newsItem.imageUrl" [alt]="newsItem.slug">
+        <p class="content">{{ newsItem.content.repeat(20) }}</p>
+        <footer>
+            <p>{{ text.author }}: PlacehoderAuthorwp.pl</p>
+        </footer>
+    </article>
+
+    <hr class="divider" />
+
+    <app-news-summary></app-news-summary>
+}

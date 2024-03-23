@@ -25,23 +25,23 @@ export class SidenavComponent {
   protected links = [
     {
       label: this.text.homepage,
-      link: ''
+      link: '/'
     },
     {
       label: this.text.news,
-      link: ''
+      link: '/news'
     },
     {
       label: this.text.team,
-      link: ''
+      link: '/team'
     },
     {
       label: this.text.projects,
-      link: ''
+      link: '/projects'
     },
     {
       label: this.text.achievments,
-      link: ''
+      link: '/achievments'
     }
   ]
 
