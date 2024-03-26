@@ -1,5 +1,5 @@
-@import '../../../../core/components/header/header.component.scss';
 @import './../../../../../assets/styles/theme';
+@import './../../../../../assets/styles/global';
 
 // DO NOT CHANGE ON YOUR OWN
 // overwrites parent header styles globally
@@ -17,22 +17,21 @@
     background: url('../../../../../assets/images/home-sky.jpg');
     flex-grow: 1;
     background-repeat: no-repeat;
+    background-attachment: fixed;
     background-size: cover;
     background-position: center;
-
-    .home-container {
-        max-width: 1600px;
-        margin: 0 auto;
-    }
+    display: grid;
+    grid-template-rows: 40rem 1fr;
 }
 
 .banner {
     color: $text-light;
-    padding: 6rem;
-    width: fit-content;
+    padding: 10rem 0;
 
     .content {
-        display: inline-block;
+        max-width: 1600px;
+        margin: 0 auto;
+        padding: 0 6rem;
 
         .logo {
             font-size: 6rem;
@@ -60,32 +59,8 @@
     }
 }
 
-main {
-    margin: 4rem 6rem;
-
-    .main-card {
-        padding: 2rem;
-        border-radius: 15px;
-
-        mat-card-content {
-            section {
-                margin: 2em 0;
-            }
-        }
-    }
-}
-
-@media screen and (max-width: 768px) {
-    main {
-        margin: 4rem 0 0;
-    }
-}
-
 @media screen and (max-width: 480px) {
     .banner {
-        padding: 6rem 0;
-        margin: 0 auto;
-
         .content {
             text-align: center;
 
