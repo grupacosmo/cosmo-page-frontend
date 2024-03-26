@@ -21,8 +21,8 @@ section {
         transition: 0.5s;
 
         &:hover {
-            transform: scale(1.005);
-            @include mat.elevation(2);
+            transform: scale(1.01);
+            @include mat.elevation(3);
         }
 
 

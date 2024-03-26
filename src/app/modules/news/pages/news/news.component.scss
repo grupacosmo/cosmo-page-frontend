@@ -75,14 +75,16 @@
             .main-container {
                 .news-container {
                     grid-template-columns: 1fr;
-                    grid-template-rows: 1fr auto;
+                    grid-template-rows: 1fr;
+                    border-bottom-left-radius: 0;
+                    border-bottom-right-radius: 0;
                     
                     section {
                         padding: 0;
                     }
 
                     app-sidenav {
-                        border: none;
+                        display: none;
                     }
                 }
             }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { filter, map, switchMap } from 'rxjs';
 import { NewsItem, NewsService } from 'src/app/shared/services/news.service';
 
@@ -16,7 +16,11 @@ export class NewsArticleComponent {
     goBack: "Powrót do aktualności",
     author: "Autor",
   }
-  constructor(private route: ActivatedRoute, private newsService: NewsService) {}
+  constructor(
+      private route: ActivatedRoute,
+      private newsService: NewsService,
+      private router: Router
+    ) {}
 
   ngOnInit() {
     this.route.params
@@ -25,7 +29,12 @@ export class NewsArticleComponent {
       filter((slug: string) => !!slug),
       switchMap(slug => this.newsService.getBySlug(slug)),
     ).subscribe(item => {
+      if (item) {
         this.newsItem = item;
+      }
+      else {
+        this.router.navigate(['']);
+      }
     })
 
   }

@@ -66,7 +66,7 @@ hr.divider {
         margin: 0 auto;
         max-width: 1600px;
         padding: 0rem 6rem 4rem;
-
+        
         .main-card {
             padding: 2rem;
             border-radius: 15px;
@@ -83,6 +83,13 @@ hr.divider {
     .content-container {
         main.main-container {
             padding: 4rem 0 0;
+
+            .main-card {
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
         }
     }
 }
