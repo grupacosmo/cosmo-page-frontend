@@ -53,6 +53,7 @@
         background: linear-gradient($primary-3, $primary-1);
         box-shadow: -10px -50px 62px $primary-3, 10px -50px 62px $primary-3;
         z-index: 2;
+        position: relative;
     }
 }
 
