@@ -1,8 +1,6 @@
 @import '../../../../core/components/header/header.component.scss';
 @import './../../../../../assets/styles/theme';
 
-// DO NOT CHANGE ON YOUR OWN
-// overwrites parent header styles globally
 ::ng-deep {
     app-header {
         position: absolute;
@@ -61,109 +59,84 @@
 app-project-details {
     .main-container {
         .main-card {
-                padding: 2rem 6rem !important;
+            padding: 2rem 6rem !important;
 
-                h1 {
-                    color: $primary-1;
-                    font-size: $font-size-xl;
-                    margin-bottom: 0;
-                    margin-top: 0;
+            h1 {
+                color: $primary-1;
+                font-size: $font-size-xl;
+                margin-bottom: 0;
+                margin-top: 0;
+            }
+
+            p, li {
+                text-align: justify;
+            }
+
+            .photo-description {
+                font-size: $font-size-xs;
+            }
+
+            img.image {
+                width: 100%;
+                border-radius: 10px;
+            }
+
+            .back-to-projects {
+                a {
+                    display: flex;
+                    align-items: center;
+                    color: black;
+                    text-decoration: none;
+                    gap: 1em;
+                    max-width: 20%;
                 }
+            }
 
-                h2 {
-                    font-size: $font-size-l;
-                    margin-top: 0;
-                }
+            .main-container-top, .experiment-container, .teams-container {
+                display: flex;
+                flex-direction: row;
+                gap: 3em;
+            }
 
-                p, li {
-                    text-align: justify;
-                    font-size: $font-size-m;
-                }
+            .main-container-top {
+                .main-container-left {
+                    width: 45%;
 
-                .photo-description {
-                    font-size: $font-size-s;
-                }
+                    p:first-of-type {
+                        margin: 0;
+                        font-size: $font-size-l;
+                        margin-bottom: 2em;
+                    }
 
-                img.image {
-                    width: 100%;
-                    border-radius: 10px;
-                }
-
-                section {
-                    margin: 2em 0;
-                }
-
-                section:not(:first-of-type) {
-                    margin: 2em 2em;
-                }
-
-                .back-to-projects {
-                    a {
+                    .main-container-item {
                         display: flex;
                         align-items: center;
+                        gap: 0.5em;
                         color: black;
                         text-decoration: none;
-                        gap: 1em;
-                        max-width: 20%;
                     }
                 }
 
-                .main-container-top {
-                    display: flex;
-                    flex-direction: row;
-                    gap: 3em;
+                .main-container-right {
+                    width: 50%;
+                }
+            }
 
-                    .main-container-left {
-                        width: 45%;
-
-                        p:first-of-type {
-                            margin: 0;
-                            font-size: $font-size-l;
-                            margin-bottom: 2em;
-                        }
-
-                        .main-container-item {
-                            display: flex;
-                            align-items: center;
-                            gap: 0.5em;
-                            color: black;
-                            text-decoration: none;
-                        }
-                    }
-
-                    .main-container-right {
-                        width: 50%;
-                    }
+            .experiment-container {
+                .experiment-container-left {
+                    width: 70%;
                 }
 
-                .experiment-container {
-                    display: flex;
-                    flex-direction: row;
-                    gap: 3em;
-
-                    .experiment-container-left {
-                        width: 70%;
-                    }
-
-                    .experiment-container-right {
-                        width: 30%;
-                    }
+                .experiment-container-right {
+                    width: 30%;
                 }
+            }
 
-                .teams-container {
-                    display: flex;
-                    flex-direction: row;
-                    gap: 3em;
-
-                    .teams-container-left {
-                        width: 50%;
-                    }
-
-                    .teams-container-right {
-                        width: 50%;
-                    }
+            .teams-container {
+                .teams-container-left, .teams-container-right {
+                    width: 50%;
                 }
-            
+            }
         }
     }
 
@@ -171,85 +144,43 @@ app-project-details {
 }
 
 @media screen and (max-width: 1024px) {
-    .main-container {
+    app-project-details .main-container {
         .main-card {
             padding: 2rem 2rem !important;
 
-                h1 {
-                    font-size: $font-size-l;
+            h1 {
+                font-size: $font-size-l;
+            }
+
+            .main-container-top {
+                .main-container-left {
+                    width: 35%;
                 }
 
-                h2 {
-                    font-size: $font-size-m;
+                .main-container-right {
+                    width: 65%;
                 }
+            }
 
-                p, li {
-                    font-size: $font-size-s;
+            .experiment-container, .teams-container {
+                &-left {
+                    width: 60%;
                 }
-
-                .photo-description {
-                    font-size: $font-size-xs;
+                
+                &-right {
+                    width: 40%;
                 }
-
-                .main-container-top {
-                    .main-container-left {
-                        width: 35%;
-                    }
-
-                    .main-container-right {
-                        width: 65%;
-                    }
-                }
-
-                .experiment-container {
-                    .experiment-container-left {
-                        width: 60%;
-                    }
-
-                    .experiment-container-right {
-                        width: 40%;
-                    }
-                }
-
-                .teams-container {
-                    .teams-container-left {
-                        width: 60%;
-                    }
-
-                    .teams-container-right {
-                        width: 40%;
-                    }
-                }
+            }
             
         }
     }
 }
 
 @media screen and (max-width: 768px) {
-    .main-container {
+    app-project-details .main-container {
         .main-card {
                 h1 {
                     font-size: $font-size-l;
-                }
-
-                h2 {
-                    font-size: $font-size-m;
-                }
-
-                p, li {
-                    font-size: $font-size-s;
-                }
-
-                section {
-                    margin: 1em 0;
-                }
-
-                section:not(:first-of-type) {
-                    margin: 1em 0;
-                }
-
-                .photo-description {
-                    font-size: $font-size-xs;
                 }
 
                 .main-container-top {
@@ -261,7 +192,7 @@ app-project-details {
                     }
 
                     .main-container-right {
-                        width: 80%;
+                        width: 90%;
                         margin: 0 auto;
                         display: flex;
                         flex-direction: column;
@@ -291,7 +222,7 @@ app-project-details {
                     gap: 1em;
 
                     .teams-container-left {
-                        width: 80%;
+                        width: 90%;
                         margin: 0 auto;
                     }
 
@@ -305,40 +236,7 @@ app-project-details {
 }
 
 @media screen and (max-width: 480px) {
-    .main-container {
-        .main-card {
-                p, li {
-                    font-size: $font-size-xs;
-                }
-
-                .photo-description {
-                    font-size: $font-size-xs;
-                }
-
-                .main-container-top {
-                    .main-container-left {
-                        .main-container-item {
-                            font-size: $font-size-xs;
-                        }
-                    }
-
-                    .main-container-right {
-                        width: 100%;
-                    }
-                }
-
-                .experiment-container {
-                    .experiment-container-right {
-                        width: 100%;
-                    }
-                }
-
-                .teams-container {
-                    .teams-container-left {
-                        width: 100%;
-                    }
-                }
-            
-        }
+    app-project-details .main-container-item {
+        font-size: $font-size-xs;
     }
 }
