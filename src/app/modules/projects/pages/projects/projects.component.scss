@@ -57,6 +57,13 @@
     }
 }
 
+app-projects {
+    .content-container main.main-container .main-card {
+        padding: 0 !important;
+}
+
+}
+
 @media (max-width: 1280px) {
     :host {
         .content-container {

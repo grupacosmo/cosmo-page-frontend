@@ -1,0 +1,65 @@
+@import '../../../../assets/styles/theme';
+
+app-tabs {
+    .tabs-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        .tabs {
+            display: flex;
+            background-color: $cosmo-magenta;
+            color: white;
+            width: 100%;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            overflow: hidden;
+
+            .tab {
+                flex: 1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 10px 0; 
+                height: 80px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+                font-size: $font-size-l;
+            }
+            
+            .tab:hover {
+                cursor: pointer;
+            }
+            
+            .tab.active {
+                background-color: $cosmo-magenta-light;
+            }
+        
+            .tab:first-child {
+                clip-path: polygon(0 0, 90% 0, 100% 100%, 0% 100%);
+            }
+        
+            .tab:not(:first-child):not(:last-child) {
+                clip-path: polygon(0 0, 90% 0, 100% 100%, 10% 100%);
+            }
+        
+            .tab:last-child {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 10% 100%);
+            }
+        }
+        
+    }
+    
+}
+
+@media screen and (max-width: 1024px) {
+    app-tabs {
+        .tabs-container {
+            .tabs {
+                .tab { 
+                    font-size: $font-size-m;
+                }
+            }
+        }
+    }
+}
