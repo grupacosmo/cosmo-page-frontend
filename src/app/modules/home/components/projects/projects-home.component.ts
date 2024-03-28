@@ -4,11 +4,11 @@ import { ProjectItem } from 'src/app/shared/models/project-item.model';
 import { ProjectsService } from 'src/app/shared/services/projects.service';
 
 @Component({
-  selector: 'app-projects',
-  templateUrl: './projects.component.html',
-  styleUrl: './projects.component.scss'
+  selector: 'app-projects-home',
+  templateUrl: './projects-home.component.html',
+  styleUrl: './projects-home.component.scss'
 })
-export class ProjectsComponent implements OnInit {
+export class ProjectsHomeComponent implements OnInit {
 
   private readonly projectService = inject(ProjectsService);
 

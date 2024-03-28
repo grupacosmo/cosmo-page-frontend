@@ -12,41 +12,96 @@
 }
 
 :host {
-    padding-top: $header-height;
-    background: url('../../../../../assets/images/home-sky.jpg');
     flex-grow: 1;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+    z-index: 1;
 
-    .home-container {
-        max-width: 1600px;
-        width: 90%;
-        margin: 0 auto;
+    .banner {
+        padding-top: $header-height;
+        background: url('../../../../../assets/images/night-sky.jpeg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        background-position-y: 70%;
+        z-index: 1;
+        padding: 10rem 0;
+
+        &:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left:0;
+            height: 100%;
+            width: 100%;
+            background-color: #0015D370;
+        }
+
+        .content {
+            max-width: 1600px;
+            margin: 0 auto;
+            color: white;
+            position: relative;
+            padding: 0 6rem;
+            
+            .title {
+                font-size: 6rem;
+                font-weight: normal;
+            }
+        }
+    }
+
+    .content-container {
+        background: linear-gradient($primary-3, $primary-1);
+        box-shadow: -10px -50px 62px $primary-3, 10px -50px 62px $primary-3;
+        z-index: 2;
     }
 }
 
-main {
-    margin: 4rem 6rem;
+@media (max-width: 1280px) {
+    :host {
+        .content-container {
+            .main-container {
+                .projects-container {
+                    grid-template-columns: 1fr;
+                    grid-template-rows: 1fr;
+                    border-bottom-left-radius: 0;
+                    border-bottom-right-radius: 0;
+                    
+                    section {
+                        padding: 0;
+                    }
 
-    .main-card {
-        padding: 2rem;
-        border-radius: 15px;
-
-        mat-card-content {
-            section {
-                margin: 2em 0;
+                    app-sidenav {
+                        display: none;
+                    }
+                }
             }
         }
     }
 }
 
-@media screen and (max-width: 768px) {
-    main {
-        margin: 4rem 0 0;
+@media (max-width: 768px) {
+    :host {
+        .content-container {
+            .main-container {
+                .projects-container {
+                    section {
+                        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+                        padding: 0;
+                    }
+                }
+            }
+        }
     }
 }
 
-@media screen and (max-width: 480px) {
-
+@media (max-width: 768px) {
+    :host {
+        .banner {
+            .content {
+                .title {
+                    font-size: 4rem;
+                }
+            }
+        }
+    }
 }

@@ -12,30 +12,56 @@
 }
 
 :host {
-    padding-top: $header-height;
-    background: url('../../../../../assets/images/home-sky.jpg');
     flex-grow: 1;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+    z-index: 1;
 
-    .home-container {
-        max-width: 1600px;
-        width: 90%;
-        margin: 0 auto;
+    .banner {
+        padding-top: $header-height;
+        background: url('../../../../../assets/images/night-sky.jpeg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        background-position-y: 70%;
+        z-index: 1;
+        padding: 10rem 0;
+
+        &:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left:0;
+            height: 100%;
+            width: 100%;
+            background-color: #0015D370;
+        }
+
+        .content {
+            max-width: 1600px;
+            margin: 0 auto;
+            color: white;
+            position: relative;
+            padding: 0 6rem;
+            
+            .title {
+                font-size: 6rem;
+                font-weight: normal;
+            }
+        }
+    }
+
+    .content-container {
+        background: linear-gradient($primary-3, $primary-1);
+        box-shadow: -10px -50px 62px $primary-3, 10px -50px 62px $primary-3;
+        z-index: 2;
     }
 }
 
 
 app-project-details {
-    main {
-        margin: 4rem 6rem;
-    
+    .main-container {
         .main-card {
-            padding: 2rem;
-            border-radius: 15px;
-    
-            mat-card-content {
+                // padding: 2rem 6rem !important;
+
                 h1 {
                     color: $primary-1;
                     font-size: $font-size-xl;
@@ -136,7 +162,7 @@ app-project-details {
                         width: 50%;
                     }
                 }
-            }
+            
         }
     }
 
@@ -144,11 +170,10 @@ app-project-details {
 }
 
 @media screen and (max-width: 1024px) {
-    main {
+    .main-container {
         margin: 4rem 0;
 
         .main-card {
-            mat-card-content {
                 h1 {
                     font-size: $font-size-l;
                 }
@@ -194,15 +219,14 @@ app-project-details {
                         width: 40%;
                     }
                 }
-            }
+            
         }
     }
 }
 
 @media screen and (max-width: 768px) {
-    main {
+    .main-container {
         .main-card {
-            mat-card-content {
                 h1 {
                     font-size: $font-size-l;
                 }
@@ -274,15 +298,14 @@ app-project-details {
                         width: 100%;
                     }
                 }
-            }
+            
         }
     }
 }
 
 @media screen and (max-width: 480px) {
-    main {
+    .main-container {
         .main-card {
-            mat-card-content {
                 p, li {
                     font-size: $font-size-xs;
                 }
@@ -314,7 +337,7 @@ app-project-details {
                         width: 100%;
                     }
                 }
-            }
+            
         }
     }
 }
