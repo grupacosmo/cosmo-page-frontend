@@ -27,6 +27,11 @@ const routes: Routes = [
     loadChildren: () => 
       import('./modules/achievments/achievments.module').then((m) => m.AchievmentsModule),
   },
+  {
+    path: '**',
+    pathMatch: 'full',
+    redirectTo: '/'
+  }
 ];
 
 @NgModule({
