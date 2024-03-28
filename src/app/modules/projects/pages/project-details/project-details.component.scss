@@ -61,7 +61,7 @@
 app-project-details {
     .main-container {
         .main-card {
-                // padding: 2rem 6rem !important;
+                padding: 2rem 6rem !important;
 
                 h1 {
                     color: $primary-1;
@@ -172,9 +172,9 @@ app-project-details {
 
 @media screen and (max-width: 1024px) {
     .main-container {
-        margin: 4rem 0;
-
         .main-card {
+            padding: 2rem 2rem !important;
+
                 h1 {
                     font-size: $font-size-l;
                 }

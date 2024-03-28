@@ -11,6 +11,9 @@
         </div>
     </div>
     <div class="project-card-more">
-        <a routerLink="/projects/{{project.id}}" routerLinkActive="active"><img src="../../../../../assets/images/icons/more.svg" alt="more"></a>
+        <a routerLink="/projects/{{project.id}}" routerLinkActive="active">
+            <img src="../../../../../assets/images/icons/more.svg" alt="more">
+            <app-custom-button text="Czytaj dalej" [isSecondaryButton]="true"></app-custom-button>
+        </a>
     </div>
 </div>

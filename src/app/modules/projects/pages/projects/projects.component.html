@@ -8,15 +8,15 @@
 <section class="content-container">
     <main class="main-container">
         <div class="projects-container main-card">
-            <mat-tab-group>
-                <mat-tab label="Aktualne projekty">
+            <mat-tab-group animationDuration="0ms">
+                <mat-tab label="Aktualne">
                     <section>
                         @if (projects$ | async; as projects) {
                             <app-project-card *ngFor="let project of projects.currentProjects" [project]="project"></app-project-card>
                         }
                     </section>
                 </mat-tab>
-                <mat-tab label="Zakończone projekty">
+                <mat-tab label="Zakończone">
                     <section>
                         @if (projects$ | async; as projects) {
                             <app-project-card *ngFor="let project of projects.finishedProjects" [project]="project"></app-project-card>
