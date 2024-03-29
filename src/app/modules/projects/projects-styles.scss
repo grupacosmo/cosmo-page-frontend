@@ -1,0 +1,54 @@
+::ng-deep {
+    app-header {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+}
+
+:host {
+    flex-grow: 1;
+    z-index: 1;
+
+    .banner {
+        padding-top: $header-height;
+        background: url('../../../assets/images/night-sky.jpeg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        background-position-y: 70%;
+        z-index: 1;
+        padding: 10rem 0;
+
+        &:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left:0;
+            height: 100%;
+            width: 100%;
+            background-color: #0015D370;
+        }
+
+        .content {
+            max-width: 1600px;
+            margin: 0 auto;
+            color: white;
+            position: relative;
+            padding: 0 6rem;
+            
+            .title {
+                font-size: 6rem;
+                font-weight: normal;
+            }
+        }
+    }
+
+    .content-container {
+        background: linear-gradient($primary-3, $primary-1);
+        box-shadow: -10px -50px 62px $primary-3, 10px -50px 62px $primary-3;
+        z-index: 2;
+        position: relative;
+        min-height: calc(100vh - $header-height);
+    }
+}

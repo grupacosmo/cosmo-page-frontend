@@ -1,62 +1,41 @@
 @import '../../../../core/components/header/header.component.scss';
 @import './../../../../../assets/styles/theme';
+@import '../../projects-styles.scss';
 
-::ng-deep {
-    app-header {
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
-}
-
-:host {
-    flex-grow: 1;
-    z-index: 1;
-
-    .banner {
-        padding-top: $header-height;
-        background: url('../../../../../assets/images/night-sky.jpeg');
-        background-repeat: no-repeat;
-        background-size: cover;
-        position: relative;
-        background-position-y: 70%;
-        z-index: 1;
-        padding: 10rem 0;
-
-        &:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left:0;
-            height: 100%;
-            width: 100%;
-            background-color: #0015D370;
+@mixin containers-widths($main-left, $main-right, $exp-left, $exp-right, $team-left, $team-right) {
+    .main-container-top {
+        .main-container-left {
+            width: $main-left;
         }
 
-        .content {
-            max-width: 1600px;
-            margin: 0 auto;
-            color: white;
-            position: relative;
-            padding: 0 6rem;
-            
-            .title {
-                font-size: 6rem;
-                font-weight: normal;
-            }
+        .main-container-right {
+            width: $main-right;
         }
     }
 
-    .content-container {
-        background: linear-gradient($primary-3, $primary-1);
-        box-shadow: -10px -50px 62px $primary-3, 10px -50px 62px $primary-3;
-        z-index: 2;
-        position: relative;
+    .experiment-container {
+        &-left {
+            width: $exp-left;
+        }
+
+        &-right {
+            width: $exp-right;
+        }
+    }
+
+    .teams-container {
+        &-left {
+            width: $team-left;
+        }
+        
+        &-right {
+            width: $team-right;
+        }
     }
 }
-
 
 app-project-details {
+    min-height: calc(100vh);
     .main-container {
         .main-card {
             padding: 2rem 6rem !important;
@@ -100,8 +79,6 @@ app-project-details {
 
             .main-container-top {
                 .main-container-left {
-                    width: 45%;
-
                     p:first-of-type {
                         margin: 0;
                         font-size: $font-size-l;
@@ -116,31 +93,11 @@ app-project-details {
                         text-decoration: none;
                     }
                 }
-
-                .main-container-right {
-                    width: 50%;
-                }
             }
 
-            .experiment-container {
-                .experiment-container-left {
-                    width: 70%;
-                }
-
-                .experiment-container-right {
-                    width: 30%;
-                }
-            }
-
-            .teams-container {
-                .teams-container-left, .teams-container-right {
-                    width: 50%;
-                }
-            }
+            @include containers-widths(45%, 50%, 70%, 30%, 50%, 50%);
         }
     }
-
-
 }
 
 @media screen and (max-width: 1024px) {
@@ -152,26 +109,7 @@ app-project-details {
                 font-size: $font-size-l;
             }
 
-            .main-container-top {
-                .main-container-left {
-                    width: 35%;
-                }
-
-                .main-container-right {
-                    width: 65%;
-                }
-            }
-
-            .experiment-container, .teams-container {
-                &-left {
-                    width: 60%;
-                }
-                
-                &-right {
-                    width: 40%;
-                }
-            }
-            
+            @include containers-widths(35%, 65%, 60%, 40%, 60%, 40%);
         }
     }
 }
@@ -179,58 +117,19 @@ app-project-details {
 @media screen and (max-width: 768px) {
     app-project-details .main-container {
         .main-card {
-                h1 {
-                    font-size: $font-size-l;
-                }
+            .main-container-right, .experiment-container-right, .teams-container-left {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin: 0 auto;
+            }
 
-                .main-container-top {
-                    flex-direction: column;
-                    gap: 1em;
+            .main-container-top, .experiment-container, .teams-container {
+                flex-direction: column;
+                gap: 1em;
+            }
 
-                    .main-container-left {
-                        width: 100%;
-                    }
-
-                    .main-container-right {
-                        width: 90%;
-                        margin: 0 auto;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: center;
-                    }
-                }
-
-                .experiment-container {
-                    flex-direction: column;
-                    gap: 1em;
-
-                    .experiment-container-left {
-                        width: 100%;
-                    }
-
-                    .experiment-container-right {
-                        width: 60%;
-                        margin: 0 auto;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: center;
-                    }
-                }
-
-                .teams-container {
-                    flex-direction: column;
-                    gap: 1em;
-
-                    .teams-container-left {
-                        width: 90%;
-                        margin: 0 auto;
-                    }
-
-                    .teams-container-right {
-                        width: 100%;
-                    }
-                }
-            
+            @include containers-widths(100%, 90%, 100%, 60%, 90%, 100%);
         }
     }
 }
