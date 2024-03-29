@@ -1,4 +1,3 @@
-@import '../../../../core/components/header/header.component.scss';
 @import './../../../../../assets/styles/theme';
 @import '../../projects-styles.scss';
 
@@ -35,7 +34,6 @@
 }
 
 app-project-details {
-    min-height: calc(100vh);
     .main-container {
         .main-card {
             padding: 2rem 6rem !important;
