@@ -1,11 +1,11 @@
 <header>
     <h2>{{ text.title }}</h2>
-    <app-custom-button class="join-us" [text]="text.allProjects" [isSecondaryButton]="true"></app-custom-button>
+    <app-custom-button [routerLink]="['/projects']" class="join-us" [text]="text.allProjects" [isSecondaryButton]="true"></app-custom-button>
 </header>
 @if (projects$ | async; as projects) {
     <section class="projects-container">
         @for (project of projects; track project.id) {
-            <div class="project" [style.backgroundImage]="'url('+ project.url + ')'">
+            <div [routerLink]="['/projects', project.id]" class="project" [style.backgroundImage]="'url('+ project.url + ')'">
                 <h3>{{ project.title }}</h3>
             </div>
         }

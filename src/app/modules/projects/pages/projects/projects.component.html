@@ -1,1 +1,29 @@
-<p>projects works!</p>
+
+<section class="banner">
+    <section class="content">
+        <h1 class="title">PROJEKTY</h1>
+    </section>
+</section>
+    
+<section class="content-container">
+    <main class="main-container">
+        <div class="projects-container main-card">
+            <app-tabs>
+                <app-tab title="Aktualne">
+                    <section>
+                        @if (projects$ | async; as projects) {
+                            <app-project-card *ngFor="let project of projects.currentProjects" [project]="project"></app-project-card>
+                        }
+                    </section>
+                </app-tab>
+                <app-tab title="Zakończone">
+                    <section>
+                        @if (projects$ | async; as projects) {
+                            <app-project-card *ngFor="let project of projects.finishedProjects" [project]="project"></app-project-card>
+                        }
+                    </section>
+                </app-tab>
+            </app-tabs>
+        </div>
+    </main>
+</section>

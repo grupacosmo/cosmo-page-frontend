@@ -9,7 +9,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { PartnersComponent } from './components/partners/partners.component';
-import { ProjectsComponent } from './components/projects/projects.component';
+import { ProjectsHomeComponent } from './components/projects/projects-home.component';
 import { JoinUsComponent } from './components/join-us/join-us.component';
 
 @NgModule({
@@ -17,7 +17,7 @@ import { JoinUsComponent } from './components/join-us/join-us.component';
     HomeComponent,
     AboutUsComponent,
     PartnersComponent,
-    ProjectsComponent,
+    ProjectsHomeComponent,
     JoinUsComponent
   ],
   imports: [

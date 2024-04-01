@@ -1,0 +1,77 @@
+@import './../../../../../assets/styles/theme';
+@import '../../projects-styles.scss';
+
+// DO NOT CHANGE ON YOUR OWN
+// overwrites parent header styles globally
+
+app-projects {
+    .content-container main.main-container .main-card {
+        width: 100%;
+        padding: 0 !important;
+        overflow: hidden;
+
+        app-tabs {
+            app-tab {
+                section {
+                    display: flex;
+                    width: 100%;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 3em;
+                }
+            }
+
+        } 
+    }
+}
+
+@media (max-width: 1280px) {
+    :host {
+        .content-container {
+            .main-container {
+                .projects-container {
+                    grid-template-columns: 1fr;
+                    grid-template-rows: 1fr;
+                    border-bottom-left-radius: 0;
+                    border-bottom-right-radius: 0;
+                    
+                    section {
+                        padding: 0;
+                    }
+
+                    app-sidenav {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    :host {
+        .content-container {
+            .main-container {
+                .projects-container {
+                    section {
+                        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+                        padding: 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    :host {
+        .banner {
+            .content {
+                .title {
+                    font-size: 4rem;
+                }
+            }
+        }
+    }
+}

@@ -4,6 +4,8 @@ import { CustomButtonComponent } from './controls/custom-button/custom-button.co
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { NewsSummaryComponent } from './components/news-summary/news-summary.component';
 import { RouterModule } from '@angular/router';
+import { TabsComponent } from './components/tabs/tabs.component';
+import { TabComponent } from './components/tabs/tab/tab.component';
 
 
 
@@ -11,7 +13,9 @@ import { RouterModule } from '@angular/router';
   declarations: [
     CustomButtonComponent,
     NewsSummaryComponent,
-    TruncatePipe
+    TruncatePipe,
+    TabsComponent,
+    TabComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +24,9 @@ import { RouterModule } from '@angular/router';
   exports: [
     CustomButtonComponent,
     NewsSummaryComponent,
-    TruncatePipe
+    TruncatePipe,
+    TabsComponent,
+    TabComponent
   ]
 })
 export class SharedModule { }
