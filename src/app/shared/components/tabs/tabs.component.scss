@@ -25,6 +25,7 @@ app-tabs {
                 cursor: pointer;
                 transition: background-color 0.3s;
                 font-size: $font-size-l;
+                transition: .15s;
             }
             
             .tab:hover {
