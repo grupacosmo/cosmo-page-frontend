@@ -35,6 +35,7 @@ app-tabs {
             .tab.active {
                 background-color: $cosmo-magenta-light;
                 transform: scale(1.05);
+                flex-grow: 1.15;
                 @include mat.elevation(2);
             }
         
