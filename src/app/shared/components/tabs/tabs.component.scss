@@ -1,3 +1,4 @@
+@use '@angular/material' as mat;
 @import '../../../../assets/styles/theme';
 
 app-tabs {
@@ -13,7 +14,6 @@ app-tabs {
             width: 100%;
             border-top-left-radius: 15px;
             border-top-right-radius: 15px;
-            overflow: hidden;
 
             .tab {
                 flex: 1;
@@ -21,7 +21,7 @@ app-tabs {
                 justify-content: center;
                 align-items: center;
                 padding: 10px 0; 
-                height: 80px;
+                min-height: 80px;
                 cursor: pointer;
                 transition: background-color 0.3s;
                 font-size: $font-size-l;
@@ -33,10 +33,13 @@ app-tabs {
             
             .tab.active {
                 background-color: $cosmo-magenta-light;
+                transform: scale(1.05);
+                @include mat.elevation(2);
             }
         
             .tab:first-child {
                 clip-path: polygon(0 0, 90% 0, 100% 100%, 0% 100%);
+                border-top-left-radius: 15px;
             }
         
             .tab:not(:first-child):not(:last-child) {
@@ -45,6 +48,7 @@ app-tabs {
         
             .tab:last-child {
                 clip-path: polygon(0 0, 100% 0, 100% 100%, 10% 100%);
+                border-top-right-radius: 15px;
             }
         }
         

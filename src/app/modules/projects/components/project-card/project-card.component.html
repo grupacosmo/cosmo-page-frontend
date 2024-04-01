@@ -6,13 +6,13 @@
             <p>{{ project.description }}</p>
         </div>
         <div class="project-card-bottom-content">
-            <div><img src="../../../../../assets/images/icons/team.svg" alt="team"> {{ project.team }}</div>
-            <div><img src="../../../../../assets/images/icons/date.svg" alt="date"> {{ project.date }}</div>
+            <div><img src="assets/images/icons/team.svg" alt="team"> {{ project.team }}</div>
+            <div><img src="assets/images/icons/date.svg" alt="date"> {{ project.date }}</div>
         </div>
     </div>
     <div class="project-card-more">
         <a routerLink="/projects/{{project.id}}" routerLinkActive="active">
-            <img src="../../../../../assets/images/icons/more.svg" alt="more">
+            <img src="assets/images/icons/more.svg" alt="more">
             <app-custom-button text="Czytaj dalej" [isSecondaryButton]="true"></app-custom-button>
         </a>
     </div>

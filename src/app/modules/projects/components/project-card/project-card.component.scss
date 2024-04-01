@@ -1,3 +1,4 @@
+@use '@angular/material' as mat;
 @import './../../../../../assets/styles/theme';
 
 app-project-card {
@@ -5,16 +6,16 @@ app-project-card {
     justify-content: center;
     align-items: center;
     font-size: $font-size-m;
+    width: 100%;
     
     .project-card-container {
         display: flex;
         flex-direction: row;
         width: 90%;
-        margin-bottom: 3em;
         border-bottom-right-radius: 15px;
         gap: 2em;
-        
-        box-shadow: 0px 0px 25px -10px rgba(66, 68, 90, 1);
+        @include mat.elevation(5);
+        transition: .5s;
 
         .project-card-image {
             min-height: 250px;
@@ -75,6 +76,12 @@ app-project-card {
         .project-card-more img:hover {
             cursor: pointer;
         }
+    }
+
+    .project-card-container:hover {
+        transform: scale(1.01);
+        @include mat.elevation(6);
+        transition: .5s;
     }
 }
 

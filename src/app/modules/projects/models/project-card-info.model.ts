@@ -1,4 +1,4 @@
-export interface projectCardInfo {
+export interface ProjectCardInfo {
     id: string,
     image: string,
     title: string,

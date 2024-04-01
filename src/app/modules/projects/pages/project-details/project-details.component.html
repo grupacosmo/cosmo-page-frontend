@@ -7,11 +7,11 @@
 <section class="content-container">
     <main class="main-container">
         <div class="projects-container main-card">
-            <ng-container *ngIf="projectDetails">
+            @if (projectDetails) {
                 <section>
                     <div class="back-to-projects">
                         <a routerLink="/projects" routerLinkActive="active">
-                            <img src="../../../../../assets/images/icons/arrow-back.svg" alt="arrow-back">
+                            <img src="assets/images/icons/arrow-back.svg" alt="arrow-back">
                             <p>Wszystkie projekty</p>
                         </a>
                     </div>
@@ -21,10 +21,10 @@
                         <div class="main-container-left">
                             <h1>{{ projectDetails.title }}</h1>
                             <p>{{ projectDetails.shortDescrpiton }}</p>
-                            <p class="main-container-item"><img src="../../../../../assets/images/icons/team.svg" alt="team">{{ teams }}</p>
-                            <p class="main-container-item"><img src="../../../../../assets/images/icons/date.svg" alt="team">{{ projectDetails.date }}</p>
-                            <p class="main-container-item"><img src="../../../../../assets/images/icons/project-status.svg" alt="team">{{ projectDetails.status }}</p>
-                            <a class="main-container-item" [attr.href]="projectDetails.siteUrl" target="_blank" rel="noopener noreferrer"><img src="../../../../../assets/images/icons/site.svg" alt="team">{{ projectDetails.site }}</a>
+                            <p class="main-container-item"><img src="assets/images/icons/team.svg" alt="team">{{ teams }}</p>
+                            <p class="main-container-item"><img src="assets/images/icons/date.svg" alt="team">{{ projectDetails.date }}</p>
+                            <p class="main-container-item"><img src="assets/images/icons/project-status.svg" alt="team">{{ projectDetails.status }}</p>
+                            <a class="main-container-item" [attr.href]="projectDetails.siteUrl" target="_blank" rel="noopener noreferrer"><img src="assets/images/icons/site.svg" alt="team">{{ projectDetails.site }}</a>
                         </div>
                         <div class="main-container-right">
                             <img class="image" [src]="projectDetails.mainPhoto" alt="project-photo" />
@@ -57,25 +57,24 @@
                             <img class="image" [src]="projectDetails.teamPhoto" alt="team-photo">
                         </div>
                         <div class="teams-container-right">
-                            <ng-container *ngFor="let team of projectDetails?.teams">
+                            @for (team of projectDetails.teams; track team.name) {
                                 <p>{{ team.name }}</p>
                                 <ul>
                                     <li *ngFor="let member of team?.members">
                                         {{ member }}
                                     </li>
                                 </ul>
-                            </ng-container>
+                            }
                         </div>
                     </div>
                 </section>
-            </ng-container>
-            <ng-container *ngIf="!projectDetails">
+            } @else {
                 <section>
                     <div class="unexpected-error">
                         Wystąpił niespodziewany błąd
                     </div>
                 </section>
-            </ng-container>
+            }
         </div>
     </main>
 </section>

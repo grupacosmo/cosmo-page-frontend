@@ -1,6 +1,6 @@
-import { projectCardInfo } from "src/app/modules/projects/models/project-card-info.model";
+import { ProjectCardInfo } from "src/app/modules/projects/models/project-card-info.model";
 
 export interface ProjectsCardDetails {
-    currentProjects: projectCardInfo[],
-    finishedProjects: projectCardInfo[]
+    currentProjects: ProjectCardInfo[],
+    finishedProjects: ProjectCardInfo[]
 }
