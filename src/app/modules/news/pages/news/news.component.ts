@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { NewsItem, NewsService } from 'src/app/shared/services/news.service';
-
 @Component({
   selector: 'app-news',
   templateUrl: './news.component.html',
@@ -9,8 +8,10 @@ import { NewsItem, NewsService } from 'src/app/shared/services/news.service';
 })
 export class NewsComponent implements OnInit {
   protected news$!: Observable<NewsItem[]>;
-
-  constructor(private newsService: NewsService) {}
+  protected text = {
+    readMore: 'Czytaj dalej'
+  }
+  constructor(private newsService: NewsService) { }
 
   ngOnInit() {
     this.news$ = this.newsService.getNews();

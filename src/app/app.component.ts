@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
+import { scrollTop } from './shared/helpers/navigationHelpers';
 
 @Component({
   selector: 'app-root',
@@ -7,8 +9,14 @@ import { Router } from '@angular/router';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  constructor(private router: Router){ }
-  
+  constructor(private router: Router) { }
+
+  ngOnInit() {
+    this.router.events
+      .pipe(
+        filter(e => e instanceof NavigationEnd)
+      ).subscribe(() => scrollTop());
+  }
   isAdminPanel() { 
     return this.router.url.includes("/admin");
   }

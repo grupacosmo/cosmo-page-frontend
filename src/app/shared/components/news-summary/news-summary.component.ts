@@ -11,6 +11,7 @@ export class NewsSummaryComponent implements OnInit {
   protected news$!: Observable<NewsItem[]>
 
   protected text = {
+    news: 'Aktualności',
     readMore: 'Czytaj dalej'
   }
 

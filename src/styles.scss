@@ -1,10 +1,20 @@
 ///////////// CUSTOM BUTTON STYLES
 @import './app/shared/controls/custom-button/custom-button.component.scss';
 
+//////////// CUSTOM TABS STYLES
+@import './app/shared/components/tabs/tabs.component.scss';
+@import './app/shared/components/tabs/tab/tab.component.scss';
+
 ///////////// HOME COMPONENTS
 @import './app/modules/home/components/about-us/about-us.component.scss';
 @import './app/modules/home/components/partners/partners.component.scss';
-@import './app/modules/home/components/projects/projects.component.scss';
+@import './app/modules/home/components/projects/projects-home.component.scss';
+
+///////////// PROJECTS COMPONENTS
+@import './app/modules/projects/pages/projects/projects.component.scss';
+@import './app/modules/projects/components/project-card/project-card.component.scss';
+@import './app/modules/projects/pages/project-details/project-details.component.scss';
+
 //Angular material styles
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
 //FONTS
@@ -57,7 +67,7 @@ hr.divider {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #9C27B0;
+    background: $cosmo-magenta-light;
     border-radius: 15px;
 }
 
@@ -72,7 +82,7 @@ hr.divider {
         margin: 0 auto;
         max-width: 1600px;
         padding: 0rem 6rem 4rem;
-
+        
         .main-card {
             padding: 2rem;
             border-radius: 15px;
@@ -85,10 +95,17 @@ hr.divider {
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1280px) {
     .content-container {
         main.main-container {
             padding: 4rem 0 0;
+
+            .main-card {
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
         }
     }
 }

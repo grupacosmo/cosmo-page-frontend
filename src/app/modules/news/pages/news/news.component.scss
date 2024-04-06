@@ -1,5 +1,7 @@
+@use '@angular/material' as mat;
 @import './../../../../../assets/styles/theme';
 @import './../../../../../assets/styles/global';
+
 
 ::ng-deep {
     app-header {
@@ -42,14 +44,15 @@
             padding: 0 6rem;
             
             .title {
-                font-size: 40px;
+                font-size: 6rem;
+                font-weight: normal;
             }
         }
     }
 
     .content-container {
         background: linear-gradient($primary-3, $primary-1);
-        box-shadow: -10px -10px 10px $primary-3,  10px -10px 10px $primary-3;
+        box-shadow: -10px -50px 62px $primary-3, 10px -50px 62px $primary-3;
         z-index: 2;
 
         .main-container {
@@ -58,27 +61,58 @@
                 grid-template-columns: 1fr 30rem;
 
                 app-sidenav {
-                    border-left: 1px solid gray;
+                    border-left: 1px solid lightgray;
                 }
 
-                section {
-                    display: grid;
-                    grid-template-columns: 1fr 1fr;
-                    gap: 3rem;
+            }
+        }
+    }
+}
 
-                    .card {
-                        width: 400px;
-
-                        &:nth-of-type(2n+1) {
-                            justify-self: end;
-                        }
-
-                        img {
-                            max-width: 400px;
-                            max-height: 200px;
-                            object-fit: cover;
-                        }
+@media (max-width: 1280px) {
+    :host {
+        .content-container {
+            .main-container {
+                .news-container {
+                    grid-template-columns: 1fr;
+                    grid-template-rows: 1fr;
+                    border-bottom-left-radius: 0;
+                    border-bottom-right-radius: 0;
+                    
+                    section {
+                        padding: 0;
                     }
+
+                    app-sidenav {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    :host {
+        .content-container {
+            .main-container {
+                .news-container {
+                    section {
+                        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+                        padding: 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    :host {
+        .banner {
+            .content {
+                .title {
+                    font-size: 4rem;
                 }
             }
         }
