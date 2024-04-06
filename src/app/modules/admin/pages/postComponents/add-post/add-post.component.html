@@ -1,0 +1,42 @@
+<div class="container">
+    <h3 class="page-name">Dodaj post</h3>
+    <form action="">
+        <div class="solo-input-container">
+            <input type="text" name="title" class="solo-input" placeholder="Tytuł"/>
+        </div>
+        <div class="double-input-container">
+            <div class="inputs">
+                <input type="text" name="author" class="author-input" placeholder="Autor"/>
+                <input type="file" class="img-input" accept="image/*" multiple (change)="showPreview($event)" #attachments/>
+            </div>
+            <!-- Image Preview -->
+            <div class="images-container">
+                <h4>Obrazy</h4>
+                    @for (preview of previews; track $index) {
+                        <div class="images-preview-container">
+                            <p>{{preview.file.name}}</p>
+                            <img [src]="preview.preview" [alt]="preview.file.name" class="image-preview"/>
+                            <button type="button" class="delete" (click)="onDelete(preview.file.name)">&#9760;</button>
+                        </div>
+                    }
+            </div>
+        </div>
+        <div class="text-input-container">
+            <h4>Tekst</h4>
+            <textarea class="text-input"></textarea>
+        </div>
+        <div class="platforms-input-container">
+            <div class="platform">
+                <input type="checkbox" class="checkbox">
+                <img [src]="path + 'images/logo.png'" alt="" class="platform-img">
+            </div>
+            <div class="platform">
+                <input type="checkbox" class="checkbox">
+                <img [src]="path + 'images/logo.png'" alt="" class="platform-img">
+            </div>
+        </div>
+        <div class="submit-container">
+            <input type="submit" value="Dodaj post">
+        </div>
+    </form>
+</div>

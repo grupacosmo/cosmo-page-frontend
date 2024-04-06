@@ -28,6 +28,11 @@ const routes: Routes = [
       import('./modules/achievments/achievments.module').then((m) => m.AchievmentsModule),
   },
   {
+    path: 'admin',
+    loadChildren: () => 
+      import('./modules/admin/admin.module').then((m) => m.AdminModule),
+  },
+  {
     path: '**',
     pathMatch: 'full',
     redirectTo: '/'

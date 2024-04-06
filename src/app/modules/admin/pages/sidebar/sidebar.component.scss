@@ -1,0 +1,159 @@
+@font-face {
+    font-family: "Inter";
+    src: url('../../../../../assets/fonts/Inter-Regular.ttf');
+}
+
+$font-color: #A7A7A7;
+
+aside{
+    background: linear-gradient(180deg, #1D1D31 20%, #2B203A 100%);
+    height: 100%;
+
+    .sidebar-items{
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .logo{
+        width: 20%;
+        margin: 5% 0%;
+    }
+
+    .container{
+        width: 100%;
+        font-family: Inter;
+        font-size: 2rem;
+        color: $font-color;
+        display: flex;
+        flex-direction: column;
+        align-items: left;
+        margin-left: 5%;
+
+        h3{
+            text-align: left;
+        }
+
+        li{
+            list-style: none;
+            margin: 5%;
+        }
+
+        a{
+            color: white;
+            text-decoration: none;
+        }
+
+        .active-link{
+            border-bottom: white solid 2px;
+            padding-bottom: 2px;
+        }
+    }
+}
+
+.desktop{
+    display: flex;
+}
+
+.mobile{
+    display: block;
+}
+
+.burger-button{
+    font-size: 2rem;
+    z-index: 1;
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    background-color: transparent;
+    border: none;
+    color: white;
+}
+
+.burger-button:hover{
+    color: rgb(212, 212, 212);
+}
+
+.burger-container{
+    @extend .container;
+    align-items: center;
+    .burger-link{
+        list-style: none;
+        margin: 5%;
+        text-align: center;
+    }
+    
+    h3{
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .burger-button{
+        top: 1%;
+        right: 5%;
+    }
+}
+
+@media only screen and (max-width: 456px) {
+
+    aside{
+        background: linear-gradient(180deg, #1D1D31 20%, #2B203A 100%);
+        height: 100%;
+    
+        .sidebar-items{
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    
+        .logo{
+            width: 15%;
+            margin: 5% 0%;
+        }
+    
+        .container{
+            width: 80%;
+            font-family: Inter;
+            font-size: 1.5rem;
+            color: $font-color;
+            display: flex;
+            flex-direction: column;
+            align-items: left;
+            margin-left: 5%;
+    
+            h3{
+                text-align: left;
+            }
+            
+            ul{
+                width: 80%;
+                li{
+                    list-style: none;
+                    margin: 5%;
+                }
+            }
+    
+            a{
+                color: white;
+                text-decoration: none;
+            }
+    
+            .active-link{
+                border-bottom: white solid 2px;
+                padding-bottom: 2px;
+            }
+        }
+    }
+
+    .burger-button{
+        top: 0%;
+        right: 5%;
+    }
+}

@@ -17,9 +17,15 @@
 
 //Angular material styles
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
-
+//FONTS
+@font-face {
+    font-family: "Inter";
+    src: url('/src/assets/fonts/Inter-Regular.ttf');
+}
 
 *, *::after, *::before {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 

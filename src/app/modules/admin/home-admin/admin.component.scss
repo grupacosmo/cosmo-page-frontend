@@ -1,0 +1,26 @@
+$background-main: #222222;
+
+:host{
+    flex-grow: 1;
+}
+
+.container{
+    display: grid;
+    height: 100%;
+    grid-template-columns: 20% 80%;
+    background-color: $background-main;
+    color: white;
+    font-family: Inter;
+    
+
+    .main{
+        height: auto;
+        background-color: $background-main;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .container{
+        display: block;
+    }
+}

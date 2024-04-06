@@ -9,7 +9,6 @@ import { scrollTop } from './shared/helpers/navigationHelpers';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-
   constructor(private router: Router) { }
 
   ngOnInit() {
@@ -17,5 +16,8 @@ export class AppComponent {
       .pipe(
         filter(e => e instanceof NavigationEnd)
       ).subscribe(() => scrollTop());
+  }
+  isAdminPanel() { 
+    return this.router.url.includes("/admin");
   }
 }
