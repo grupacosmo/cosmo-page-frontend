@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
+import { AdminComponent } from './home-admin/admin.component';
 import { AddPostComponent } from './pages/postComponents/add-post/add-post.component';
 import { PostsManComponent } from './pages/postComponents/posts-man/posts-man.component';
 import { AddProjectComponent } from './pages/projectComponents/add-project/add-project.component';
@@ -11,7 +11,7 @@ import { AchievementsManComponent } from './pages/achievementsComponents/achieve
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
+    component: AdminComponent,
     children: [
       {
         path: 'addPost',

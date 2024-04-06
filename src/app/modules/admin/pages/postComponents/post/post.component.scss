@@ -13,6 +13,7 @@ $textarea-background: #A7A7A7;
     margin-bottom: 5%;
     border-radius: 5px;
     background-color: $post-background;
+    overflow: hidden;
 
     p{
         width: 100%;
@@ -20,7 +21,8 @@ $textarea-background: #A7A7A7;
         font-size: 2rem;
         color: $font-color;
         justify-self: left;
-        overflow: scroll;
+        overflow-y: hidden; /* Hide vertical scrollbar */
+        overflow-x: scroll; /* Hide horizontal scrollbar */
     }
 
     button{

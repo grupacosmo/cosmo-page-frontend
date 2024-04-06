@@ -28,12 +28,14 @@ export class AddPostComponent {
 
       for (let i = 0; i < numberOfFiles; i++) {
         const reader = new FileReader();
+        const file = this.selectedFiles![i];
 
         reader.onload = (event: any) => {
-          this.previews.push({preview: event.target.result, file: this.selectedFiles![i]});
+          const preview = event.target.result;
+          this.previews.push({preview, file});
         };
         
-        reader.readAsDataURL(this.selectedFiles[i]);
+        reader.readAsDataURL(file);
       }
     }
   }

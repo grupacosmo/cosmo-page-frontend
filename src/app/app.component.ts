@@ -7,5 +7,9 @@ import { Router } from '@angular/router';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  constructor(public router: Router){}
+  constructor(private router: Router){ }
+  
+  isAdminPanel() { 
+    return this.router.url.includes("/admin");
+  }
 }

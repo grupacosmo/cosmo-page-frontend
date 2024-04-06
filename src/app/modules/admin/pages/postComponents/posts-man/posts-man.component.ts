@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { PostsService } from '../../../services/posts.service';
+import { Component, inject } from '@angular/core';
+import { PostsService } from '../../../shared/services/posts.service';
 
 @Component({
   selector: 'app-posts-man',
@@ -7,6 +7,7 @@ import { PostsService } from '../../../services/posts.service';
   styleUrl: './posts-man.component.scss',
 })
 export class PostsManComponent {
-  constructor(private service: PostsService){}
+  private service = inject(PostsService);
   posts = this.service.posts;
+  constructor(){}
 }

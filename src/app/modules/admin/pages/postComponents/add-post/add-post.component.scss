@@ -4,7 +4,7 @@ $input-background: #D9D9D9;
 $textarea-background: #A7A7A7;
 
 
-.InputContainer{
+.input-container{
     width: 80%;
     margin-bottom: 5%;
     border-radius: 0.2rem;
@@ -26,7 +26,7 @@ $textarea-background: #A7A7A7;
 
     h3{
         padding: 3% 5% 10%;
-        font-size: 1.5rem;
+        font-size: 2rem;
         font-family: Inter;
         text-decoration: underline;
         text-underline-offset: 1rem;
@@ -37,11 +37,11 @@ $textarea-background: #A7A7A7;
         display: flex;
         flex-direction: column;
         align-items: center;
-        .soloInputContainer{
-            @extend .InputContainer;
+        .solo-input-container{
+            @extend .input-container;
         }
-        .doubleInputContainer{
-            @extend .InputContainer;
+        .double-input-container{
+            @extend .input-container;
             height: auto;
             background-color: white;
             input{
@@ -58,11 +58,11 @@ $textarea-background: #A7A7A7;
                 justify-content: space-between;
             }
 
-            .imgInput{
+            .img-input{
                 font-size: 1rem;
             }
 
-            .imagesContainer{
+            .images-container{
                 width: 100%;
                 display: block;
                 h4{
@@ -73,27 +73,27 @@ $textarea-background: #A7A7A7;
                     margin-bottom: 5%; 
                 }
 
-                .imagesPreviewContainer{
+                .images-preview-container{
                     display: grid; 
                     grid-template-columns: 40% 30% 30%;
                     grid-auto-rows: 50px;
                     margin: 5%;
 
-                    .imagesPreviewContainerElement{
+                    .images-preview-container-element{
                         padding: 5%;
                         align-self: center;
                         overflow: scroll;
                     }
 
-                    .imagePreview{
+                    .image-preview{
                         height: 100%;
                         justify-self: center;
-                        @extend .imagesPreviewContainerElement;
+                        @extend .images-preview-container-element;
                     }
 
                     p{
                         text-align: center;
-                        @extend .imagesPreviewContainerElement;
+                        @extend .images-preview-container-element;
                     }
 
                     .delete{
@@ -102,8 +102,8 @@ $textarea-background: #A7A7A7;
                 }
             }
         }
-        .textInputContainer{
-            @extend .InputContainer;
+        .text-input-container{
+            @extend .input-container;
             background-color: white;
             height: 80vh;
             display: flex;
@@ -130,16 +130,16 @@ $textarea-background: #A7A7A7;
             }
         }
 
-        .platformsInputContainer{
+        .platforms-input-container{
             background-color: white;
             display: flex;
-            @extend .InputContainer;
+            @extend .input-container;
             .platform{
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 width: 50%;
-                .platformImg{
+                .platform-img{
                     width: 10%;
                     margin: 5%;
                 }
@@ -150,8 +150,8 @@ $textarea-background: #A7A7A7;
             }
         }
 
-        .submitContainer{
-            @extend .InputContainer;
+        .submit-container{
+            @extend .input-container;
             width: 30%;
             input{
                 height: 10vh;
@@ -162,7 +162,7 @@ $textarea-background: #A7A7A7;
 }
 
 @media only screen and (max-width: 768px) {
-    .InputContainer{
+    .input-container{
         input{
             font-size: 1rem;
         }
@@ -171,7 +171,7 @@ $textarea-background: #A7A7A7;
 
         h3{
             padding: 3% 5% 10%;
-            font-size: 1rem;
+            font-size: 1.5rem;
             font-family: Inter;
             text-decoration: underline;
             text-underline-offset: 1rem;
@@ -179,7 +179,7 @@ $textarea-background: #A7A7A7;
         }
 
         form{
-            .textInputContainer{
+            .text-input-container{
                 height: 100%;
                 padding: 3% 0%;
                 h4{
@@ -191,7 +191,7 @@ $textarea-background: #A7A7A7;
                 }
             }
 
-            .doubleInputContainer{
+            .double-input-container{
                 input{
                     width: 85%;
                     height: 1rem;
@@ -204,16 +204,16 @@ $textarea-background: #A7A7A7;
                     align-items: center;
                 }
     
-                .imgInput{
+                .img-input{
                     font-size: 0.8rem;
                 }
     
-                .imagesContainer{
+                .images-container{
                     h4{
                         font-size: 1rem;
                     }
     
-                    .imagesPreviewContainer{
+                    .images-preview-container{
                         grid-auto-rows: 40px;
     
                         .delete{
@@ -223,19 +223,19 @@ $textarea-background: #A7A7A7;
                 }
             }
 
-            .platformsInputContainer{
+            .platforms-input-container{
                 background-color: white;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 width: 50%;
-                @extend .InputContainer;
+                @extend .input-container;
                 .platform{
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     width: 50%;
-                    .platformImg{
+                    .platform-img{
                         width: 25%;
                         margin: 10%;
                     }
@@ -246,7 +246,7 @@ $textarea-background: #A7A7A7;
                 }
             }
 
-            .submitContainer{
+            .submit-container{
                 input{
                     font-size: 1rem;
                 }
@@ -268,7 +268,7 @@ $textarea-background: #A7A7A7;
         }
 
         form{
-            .textInputContainer{
+            .text-input-container{
                 height: 100%;
                 padding: 3% 0%;
                 h4{
@@ -280,7 +280,7 @@ $textarea-background: #A7A7A7;
                 }
             }
 
-            .doubleInputContainer{
+            .double-input-container{
                 input{
                     width: 85%;
                     height: 2rem;
@@ -293,12 +293,12 @@ $textarea-background: #A7A7A7;
                     align-items: center;
                 }
     
-                .imgInput{
+                .img-input{
                     line-height: 2rem;
                     font-size: 1rem;
                 }
 
-                .imagesContainer{
+                .images-container{
                     h4{
                         position: relative;
                         left: 6%;
@@ -307,7 +307,7 @@ $textarea-background: #A7A7A7;
                         margin-bottom: 5%; 
                     }
     
-                    .imagesPreviewContainer{
+                    .images-preview-container{
                         display: grid; 
                         grid-template-columns: 1fr;
                         grid-template-rows: 2fr;
@@ -326,19 +326,19 @@ $textarea-background: #A7A7A7;
                 }
             }
 
-            .platformsInputContainer{
+            .platforms-input-container{
                 background-color: white;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 width: 50%;
-                // @extend .InputContainer;
+                // @extend .input-container;
                 .platform{
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     width: 50%;
-                    .platformImg{
+                    .platform-img{
                         width: 25%;
                         margin: 10%;
                     }
@@ -349,7 +349,7 @@ $textarea-background: #A7A7A7;
                 }
             }
 
-            .submitContainer{
+            .submit-container{
                 input{
                     font-size: 0.8rem;
                 }

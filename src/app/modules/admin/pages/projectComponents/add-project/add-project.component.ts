@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { TeamsService } from '../../../services/teams.service';
+import { TeamsService } from '../../../shared/services/teams.service';
 import { TeamCheckbox } from './team-checkbox/TeamCheckbox.model';
 
 type UploadedFile =  {

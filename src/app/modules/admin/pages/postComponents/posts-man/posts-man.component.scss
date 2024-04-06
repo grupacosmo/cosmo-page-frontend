@@ -1,7 +1,7 @@
 $font-color: #979797;
 
 section{
-    .pageName{
+    .page-name{
         padding: 3% 5% 1%;
         font-size: 1.5rem;
         font-family: Inter;
@@ -33,7 +33,7 @@ section{
 
 @media only screen and (max-width: 768px) {
     section{
-        .pageName{
+        .page-name{
             font-size: 1rem;
             text-underline-offset: 0.7rem;
         }
@@ -52,7 +52,7 @@ section{
 
 @media only screen and (max-width: 456px) {
     section{
-        .pageName{
+        .page-name{
             text-underline-offset: 0.5rem;
         }
     
