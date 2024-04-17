@@ -9,6 +9,6 @@ export class Post{
         public author: string, 
         public imgSrc: string, 
         public text: string,
-        public platforms:  Platform
+        public platforms:  Platform,
     ){}
 }
