@@ -8,7 +8,6 @@ import { TabsComponent } from './components/tabs/tabs.component';
 import { TabComponent } from './components/tabs/tab/tab.component';
 
 
-
 @NgModule({
   declarations: [
     CustomButtonComponent,

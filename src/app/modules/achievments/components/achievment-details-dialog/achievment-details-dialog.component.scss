@@ -1,0 +1,37 @@
+@import './../../../../../assets/styles/theme';
+@import './../../../../../assets/styles/global';
+
+
+:host {
+    padding: 2rem;
+    display: block;
+    max-width: 800px;
+
+    header {
+        display: flex;
+        justify-content: end;
+    }
+    
+    section {
+        display: flex;
+        gap: 2rem;
+
+        .dialog-divider {
+            flex-basis: 5px;
+            flex-shrink: 0;
+            background: linear-gradient($primary-1, $primary-2);
+        }
+    }
+}
+
+@media (max-width: 765px) {
+    :host {
+        section {
+            flex-direction: column;
+
+            .dialog-divider {
+                background: linear-gradient(to right, $primary-1, $primary-2);
+            }
+        }
+    }
+}

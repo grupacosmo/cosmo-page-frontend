@@ -1,0 +1,115 @@
+@use '@angular/material' as mat;
+@import './../../../../../assets/styles/theme';
+@import './../../../../../assets/styles/global';
+
+
+::ng-deep {
+    app-header {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+}
+
+:host {
+    flex-grow: 1;
+    display: grid;
+    grid-template-rows: 40rem 1fr;
+
+    .banner {
+        padding-top: $header-height;
+        background: url('../../../../../assets/images/rocket.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        background-position-y: 50%;
+        z-index: 1;
+        padding: 10rem 0;
+
+        &:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left:0;
+            height: 100%;
+            width: 100%;
+            background-color: #0015D370;
+        }
+
+        .content {
+            max-width: 1600px;
+            margin: 0 auto;
+            color: white;
+            position: relative;
+            padding: 0 6rem;
+            
+            .title {
+                font-size: 6rem;
+                font-weight: normal;
+            }
+        }
+    }
+
+    .content-container {
+        background: linear-gradient($primary-3, $primary-1);
+        box-shadow: -10px -50px 62px $primary-3, 10px -50px 62px $primary-3;
+        z-index: 2;
+
+        .main-container {
+            .achievment-container {
+                display: grid;
+                gap: 10rem;
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                padding: 5rem 10rem;
+                justify-items: center;
+
+                .achievment-item {
+                    cursor: pointer;
+                    transition: 0.5s;
+
+                    &:hover {
+                        transform: scale(1.01);
+                        @include mat.elevation(3);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    :host {
+        .banner {
+            .content {
+                .title {
+                    font-size: 4rem;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1024px) {
+    :host {
+        .content-container {
+            .main-container {
+                .achievment-container {
+                    padding: 5rem 5rem;
+                    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                }
+            }
+        }
+    }
+}
+
+// @media (max-width: 1280px) {
+//     :host {
+//         .content-container {
+//             .main-container {
+//                 .achievment-container {
+//                     padding: 5rem 5rem;
+//                 }
+//             }
+//         }
+//     }
+// }

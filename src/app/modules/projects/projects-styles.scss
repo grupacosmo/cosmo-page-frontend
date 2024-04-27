@@ -12,14 +12,16 @@
 :host {
     flex-grow: 1;
     z-index: 1;
+    display: grid;
+    grid-template-rows: 40rem 1fr;
 
     .banner {
         padding-top: $header-height;
-        background: url('../../../assets/images/night-sky.jpeg');
+        background: url('../../../assets/images/satellite.jpg');
         background-repeat: no-repeat;
         background-size: cover;
         position: relative;
-        background-position-y: 70%;
+        background-position-y: 50%;
         z-index: 1;
         padding: 10rem 0;
 

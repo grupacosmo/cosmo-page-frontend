@@ -1,0 +1,19 @@
+<header>
+    <button (click)="onCloseClick()" mat-icon-button color="basic">
+        <mat-icon>close</mat-icon>
+      </button>
+</header>
+<section>
+    <div class="achievment-item">
+        <div class="inner-content">
+            {{ data.achievment.date }}
+            <mat-icon>{{ data.achievment.icon }}</mat-icon>
+        </div>
+        <img src="assets/images/Medal.svg" alt="">
+    </div>
+    <div class="dialog-divider"></div>
+    <mat-dialog-content  class="description">
+        <h2>{{ data.achievment.title }}</h2>
+        <p>{{ data.achievment.description }}</p>
+    </mat-dialog-content >
+</section>

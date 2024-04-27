@@ -1,0 +1,29 @@
+.achievment-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+
+    .description {
+        text-align: justify;
+    }
+
+    .inner-content {
+        color: #ffde69;
+        position: absolute;
+        top: 70px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        font-size: 20px;
+        transform: translateX(-4px);
+
+        mat-icon {
+            font-size: 45px;
+            width: 45px;
+            height: 45px;
+        }
+    }
+}
