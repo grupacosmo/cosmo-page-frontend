@@ -1,43 +1,47 @@
 <div class="container">
-    <h3 class="pageName">Dodaj projekt</h3>
+    <h3>Dodaj projekt</h3>
     <form action="">
-        <div class="titlesContainer">
-            <div class="titleContainer">
+        <div class="solo-input-container">
+            <div>
                 <input type="text" class="title" placeholder="Tytuł projektu"/>
             </div>
-            <div class="subtitleContainer">
+            <div>
                 <input type="text" class="subtitle" placeholder="Podtytuł projektu"/>
             </div>
         </div>
-        <div class="mainImageContainer">
+        <div class="solo-input-container">
             <h3>Zdjęcie tytułowe</h3>
-            <input type="file" class="mainImage" accept="image/*"/>
+            <input type="file" class="img-input" accept="image/*"/>
         </div>
-        <div class="teamsContainer">
+        <div class="teams-container">
             <h3>Wybierz zespół</h3>
             <app-team-checkbox *ngFor="let team of teams" [teamObject]="team"></app-team-checkbox>
         </div>
-        <div class="isAsctiveContainer">
+        <div class="solo-input-container">
             <h3>Czy projekt jest aktywny?</h3>
-            <input type="checkbox" id="active" name="active"/>
             <label for="active">TAK</label>
+            <input type="checkbox" id="active" name="active"/>
         </div>
-        <div class="projectDescContainer">
-            <h3>Opis projektu</h3>
+        <div class="text-input-container">
+            <h2>Opis projektu</h2>
             <textarea name="projectDesc" id="projectDesc"></textarea>
         </div>
-        <div class="projectImages">
-            <input type="file" class="imgInput" accept="image/*" multiple (change)="showPreview($event)">
-            <div class="imagesContainer">
+        <div class="project-images">
+            <input type="file" class="img-input" accept="image/*" multiple (change)="showPreview($event)">
+            <div class="images-container">
                 <h4>Obrazy</h4>
                     @for (preview of previews; track $index) {
-                        <div class="imagesPreviewContainer">
+                        <div class="images-preview-container">
                             <p>{{preview.file.name}}</p>
-                            <img [src]="preview.preview" [alt]="preview.file.name" class="imagePreview"/>
+                            <img [src]="preview.preview" [alt]="preview.file.name" class="image-preview"/>
                             <button type="button" class="delete" (click)="onDelete(preview.file.name)">&#9760;</button>
                         </div>
                     }
             </div>
+        </div>
+
+        <div class="submit-container">
+            <input type="submit" value="Dodaj post">
         </div>
     </form>
 </div>

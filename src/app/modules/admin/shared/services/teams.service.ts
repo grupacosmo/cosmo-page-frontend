@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { TeamCheckbox } from '../../pages/projectComponents/add-project/team-checkbox/TeamCheckbox.model';
+import { TeamCheckbox } from '../../components/projectComponents/add-project/team-checkbox/TeamCheckbox.model';
 
 @Injectable({
   providedIn: 'root'

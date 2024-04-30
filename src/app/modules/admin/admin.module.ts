@@ -2,17 +2,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {AdminRoutingModule} from "./admin-routing.module";
 import {AdminComponent} from "./home-admin/admin.component";
-import { SidebarComponent } from './pages/sidebar/sidebar.component';
-import { AddPostComponent } from './pages/postComponents/add-post/add-post.component';
-import { PostsManComponent } from './pages/postComponents/posts-man/posts-man.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { AddPostComponent } from './components/postComponents/add-post/add-post.component';
+import { PostsManComponent } from './components/postComponents/posts-man/posts-man.component';
 import { TurnBurgerDirective } from './shared/directives/turn-burger.directive';
-import { PostComponent } from './pages/postComponents/post/post.component';
+import { PostComponent } from './components/postComponents/post/post.component';
 import { PostsService } from './shared/services/posts.service';
-import { AddProjectComponent } from './pages/projectComponents/add-project/add-project.component';
-import { ProjectsManComponent } from './pages/projectComponents/projects-man/projects-man.component';
-import { AddAchievementComponent } from './pages/achievementsComponents/add-achievement/add-achievement.component';
-import { AchievementsManComponent } from './pages/achievementsComponents/achievements-man/achievements-man.component';
-import { TeamCheckboxComponent } from './pages/projectComponents/add-project/team-checkbox/team-checkbox.component';
+import { AddProjectComponent } from './components/projectComponents/add-project/add-project.component';
+import { ProjectsManComponent } from './components/projectComponents/projects-man/projects-man.component';
+import { AddAchievementComponent } from './components/achievementsComponents/add-achievement/add-achievement.component';
+import { AchievementsManComponent } from './components/achievementsComponents/achievements-man/achievements-man.component';
+import { TeamCheckboxComponent } from './components/projectComponents/add-project/team-checkbox/team-checkbox.component';
 
 @NgModule({
   declarations: [

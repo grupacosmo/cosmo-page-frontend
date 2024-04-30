@@ -26,6 +26,23 @@ export class NewsService {
   getBySlug(slug: string): Observable<NewsItem | undefined> {
     return of(fakeNews.find(news => news.slug === slug))
   }
+
+  onPost(news: any){
+    let id = String(parseInt(fakeNews[fakeNews.length - 1].id) - 1);
+    const date = new Date();
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+    let currentDate = `${day}-${month}-${year}`;
+    fakeNews.push({
+      id: id,
+      slug: id,
+      title: news.title,
+      content: news.content,
+      date: currentDate,
+      imageUrl: ''
+    });
+  }
 }
 
 const fakeNews: NewsItem[] = [

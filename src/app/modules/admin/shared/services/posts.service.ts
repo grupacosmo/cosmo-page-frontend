@@ -32,7 +32,7 @@ export class PostsService {
   }
 
   editPost(post: Post){
-    console.log('edit');
+    //edytowanko
   }
 
   delPost(post: Post){

@@ -2,7 +2,7 @@
     <h3 class="page-name">Dodaj post</h3>
     <form action="">
         <div class="solo-input-container">
-            <input type="text" name="title" class="solo-input" placeholder="Tytuł"/>
+            <input type="text" name="title" class="solo-input" placeholder="Tytuł" #title/>
         </div>
         <div class="double-input-container">
             <div class="inputs">
@@ -22,21 +22,21 @@
             </div>
         </div>
         <div class="text-input-container">
-            <h4>Tekst</h4>
-            <textarea class="text-input"></textarea>
+            <h2>Tekst</h2>
+            <textarea class="text-input" #text></textarea>
         </div>
         <div class="platforms-input-container">
             <div class="platform">
-                <input type="checkbox" class="checkbox">
+                <input type="checkbox" class="checkbox" #cb1>
                 <img [src]="path + 'images/logo.png'" alt="" class="platform-img">
             </div>
             <div class="platform">
-                <input type="checkbox" class="checkbox">
+                <input type="checkbox" class="checkbox" #cb2>
                 <img [src]="path + 'images/logo.png'" alt="" class="platform-img">
             </div>
         </div>
         <div class="submit-container">
-            <input type="submit" value="Dodaj post">
+            <input type="submit" value="Dodaj post" (click)="onPost(title.value, text.value,[cb1.value, cb2.value])">
         </div>
     </form>
 </div>
