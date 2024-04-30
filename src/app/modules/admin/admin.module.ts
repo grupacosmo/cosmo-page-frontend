@@ -13,6 +13,7 @@ import { ProjectsManComponent } from './components/projectComponents/projects-ma
 import { AddAchievementComponent } from './components/achievementsComponents/add-achievement/add-achievement.component';
 import { AchievementsManComponent } from './components/achievementsComponents/achievements-man/achievements-man.component';
 import { TeamCheckboxComponent } from './components/projectComponents/add-project/team-checkbox/team-checkbox.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { TeamCheckboxComponent } from './components/projectComponents/add-projec
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    FormsModule,
   ],
   providers: [
     PostsService
