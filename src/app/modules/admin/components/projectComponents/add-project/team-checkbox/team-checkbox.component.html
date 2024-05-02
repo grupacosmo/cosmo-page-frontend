@@ -1,2 +1,4 @@
-<input type="checkbox" [id]="teamObject?.id" [name]="teamObject?.name" [value]="teamObject?.value">
-<label [for]="teamObject?.name">{{teamObject?.label}}</label><br>
+<div class="checkbox-container">
+    <label [for]="teamObject?.name">{{teamObject?.label}}</label><br>
+    <input type="checkbox" [id]="teamObject?.id" [name]="teamObject?.name" [value]="teamObject?.value">
+</div>

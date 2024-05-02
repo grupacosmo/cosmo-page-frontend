@@ -9,5 +9,6 @@ export class TeamsService {
   constructor() { }
   teams: TeamCheckbox[] = [
     new TeamCheckbox("malinki", "malinki", "ml", "Malinki"),
+    new TeamCheckbox("truskawki", "truskawki", "ts", "Truskawki"),
   ];
 }

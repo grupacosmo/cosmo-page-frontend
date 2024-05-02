@@ -1,13 +1,11 @@
 <div class="container">
-    <h3 class="page-name">Dodaj post</h3>
+    <h1 class="page-name">Dodaj post</h1>
     <form action="">
-        <div class="solo-input-container">
-            <input type="text" name="title" class="solo-input" placeholder="Tytuł" #title/>
-        </div>
-        <div class="double-input-container">
-            <div class="inputs">
-                <input type="text" name="author" class="author-input" placeholder="Autor"/>
-                <input type="file" class="img-input" accept="image/*" multiple (change)="showPreview($event)" #attachments/>
+        <input type="text" name="title" placeholder="Tytuł" #title/>
+        <div class="group-container">
+            <div class="double-input-container">
+                <input type="text" name="author" placeholder="Autor"/>
+                <input type="file" class="file-input" accept="image/*" multiple (change)="showPreview($event)" #attachments/>
             </div>
             <!-- Image Preview -->
             <div class="images-container">
@@ -21,18 +19,19 @@
                     }
             </div>
         </div>
-        <div class="text-input-container">
-            <h2>Tekst</h2>
+        <div class="row-container">
+            <h3>Tekst</h3>
             <textarea class="text-input" #text></textarea>
         </div>
-        <div class="platforms-input-container">
-            <div class="platform">
+        <div class="row-container">
+            <h3>Platformy</h3>
+            <div class="checkbox-container">
                 <input type="checkbox" class="checkbox" #cb1>
-                <img [src]="path + 'images/logo.png'" alt="" class="platform-img">
+                <img [src]="path + 'images/logo.png'" alt="" class="checkbox-img">
             </div>
-            <div class="platform">
+            <div class="checkbox-container">
                 <input type="checkbox" class="checkbox" #cb2>
-                <img [src]="path + 'images/logo.png'" alt="" class="platform-img">
+                <img [src]="path + 'images/logo.png'" alt="" class="checkbox-img">
             </div>
         </div>
         <div class="submit-container">

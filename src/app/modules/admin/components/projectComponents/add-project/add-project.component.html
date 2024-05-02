@@ -1,33 +1,31 @@
 <div class="container">
-    <h3>Dodaj projekt</h3>
+    <h1 class="page-name">Dodaj projekt</h1>
     <form action="">
-        <div class="solo-input-container">
-            <div>
-                <input type="text" class="title" placeholder="Tytuł projektu"/>
-            </div>
-            <div>
-                <input type="text" class="subtitle" placeholder="Podtytuł projektu"/>
-            </div>
+        <div class="double-input-container">
+            <input type="text" class="title" placeholder="Tytuł projektu"/>
+            <input type="text" class="subtitle" placeholder="Podtytuł projektu"/>
         </div>
-        <div class="solo-input-container">
+        <div class="row-container">
             <h3>Zdjęcie tytułowe</h3>
-            <input type="file" class="img-input" accept="image/*"/>
+            <input type="file" class="file-input" accept="image/*"/>
         </div>
-        <div class="teams-container">
+        <div class="row-container">
             <h3>Wybierz zespół</h3>
             <app-team-checkbox *ngFor="let team of teams" [teamObject]="team"></app-team-checkbox>
         </div>
-        <div class="solo-input-container">
+        <div class="row-container">
             <h3>Czy projekt jest aktywny?</h3>
-            <label for="active">TAK</label>
-            <input type="checkbox" id="active" name="active"/>
+            <div class="checkbox-container">
+                <label for="active">TAK</label>
+                <input type="checkbox" id="active" name="active"/>
+            </div>
         </div>
         <div class="text-input-container">
-            <h2>Opis projektu</h2>
-            <textarea name="projectDesc" id="projectDesc"></textarea>
+            <h3>Opis projektu</h3>
+            <textarea></textarea>
         </div>
-        <div class="project-images">
-            <input type="file" class="img-input" accept="image/*" multiple (change)="showPreview($event)">
+        <div class="group-container">
+            <input type="file" class="file-input" accept="image/*" multiple (change)="showPreview($event)">
             <div class="images-container">
                 <h4>Obrazy</h4>
                     @for (preview of previews; track $index) {
