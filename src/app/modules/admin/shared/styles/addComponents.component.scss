@@ -3,67 +3,6 @@ $font-color-darker: #585858;
 $input-background: #D9D9D9;
 $textarea-background: #A7A7A7;
 
-
-
-// .solo-input-container{
-//     @extend .input-container;
-// }
-
-// .double-input-container{
-//     @extend .input-container;
-//     height: auto;
-//     background-color: white;
-//     input{
-//         width: 40%;
-//         height: 1rem;
-//         font-size: 1.5rem;
-//         border: none;
-//         border-radius: 0.2rem;
-//         margin: 5%;
-//     }
-
-//     .inputs{
-//         display: flex;
-//         justify-content: space-between;
-//     }
-// }
-
-// .text-input-container{
-//     @extend .input-container;
-//     background-color: white;
-//     height: 80vh;
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//     align-items: center;
-//     h2{
-//         width: 86%;
-//         height: 5vh;
-//         padding: 2%;
-//         background-color: $textarea-background;
-//         color: $font-color-darker;
-//     }
-// }
-
-// @media only screen and (max-width: 768px) {
-//     .input-container{
-//         input{
-//             font-size: 1rem;
-//         }
-//     }
-
-//     h3{
-//         font-size: 1.5rem;
-//     }
-// }
-
-// @media only screen and (max-width: 456px) {
-//     h3{
-//         font-size: 1rem;
-//         text-underline-offset: 0.5rem;
-//     }
-// }
-
 form{
     display: flex;
     flex-direction: column;
@@ -181,14 +120,14 @@ p{
                 }
         
                 .image-preview{
-                    height: 10em;
-                    justify-self: center;
                     @extend .images-preview-container-element;
+                    height: 6em;
+                    justify-self: center;
                 }
         
                 p{
-                    text-align: center;
                     @extend .images-preview-container-element;
+                    text-align: center;
                 }
         
                 .delete{
@@ -198,38 +137,152 @@ p{
         }
     }
 
-    ::ng-deep { 
-        .checkbox-container{
-        width: 30%;
+    .checkbox-text-container{
         display: flex;
         flex-direction: row;
-        justify-content: center;
+        justify-content: left;
         align-items: center;
 
         input{
-            width: 5%;
             margin: 5%;
             padding: 0;
+            width: 10%;
         }
 
         label{
-            width: 40%;
+            width: 5%;
+            justify-content: center;
+        }
+    }
+
+    .checkbox-img-container{
+        @extend .checkbox-text-container;
+        
+        input{
+            width: 5%;
         }
 
         .checkbox-img{
-            width: 10%;
+            width: 100%;
         }
-    }}
+    }
 
     .submit-container{
         width: 80%;
         margin-top: 5%;
         display: flex;
         justify-content: center;
+
         input{
             width: 30%;
             height: 10vh;
             color: $font-color-darker;
         }
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    input{
+        font-size: 1.5rem;
+    }
+
+    .checkbox-text-container{
+        display: flex;
+        flex-direction: row;
+        justify-content: left;
+        align-items: center;
+
+        input{
+            margin: 5%;
+            padding: 0;
+            width: 10%;
+        }
+
+        label{
+            width: 10%;
+            justify-content: center;
+        }
+    }
+
+    .container{
+        .group-container{
+            .images-container{  
+                .images-preview-container{
+                    .image-preview{
+                        height: 4em;
+                    }
+                }
+            }
+        }
+    }
+
+    h1{
+        font-size: 2rem;
+    }
+
+    h3{
+        font-size: 1.5rem;
+    }
+
+    h4{
+        font-size: 1.25rem;
+    }
+}
+
+@media only screen and (max-width: 456px) {
+    input{
+        font-size: 1rem;
+    }
+
+    .checkbox-text-container{
+        display: flex;
+        flex-direction: row;
+        justify-content: left;
+        align-items: center;
+
+        input{
+            margin: 5%;
+            padding: 0;
+            width: 10%;
+        }
+
+        label{
+            margin-right: 5%;
+            width: 15%;
+            justify-content: center;
+        }
+    }
+
+    .checkbox-img-container{
+        width: 50%;
+    }
+
+    .container{
+        .group-container{
+            .images-container{  
+                .images-preview-container{
+                    .image-preview{
+                        height: 2em;
+                    }
+
+                    p{
+                        font-size: 0.5em;
+                    }
+            
+                    .delete{
+                        font-size: 20px;
+                    }
+                }
+            }
+        }
+    }
+
+    h1{
+        font-size: 1.5rem;
+    }
+
+    h3{
+        font-size: 1rem;
+        text-underline-offset: 0.5rem;
     }
 }

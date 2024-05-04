@@ -3,26 +3,36 @@
     <form action="">
         <div class="double-input-container">
             <input type="text" class="title" placeholder="Tytuł projektu"/>
-            <input type="text" class="subtitle" placeholder="Podtytuł projektu"/>
+            <textarea type="text" class="shortDesc" placeholder="Krótki opis" maxlength="350"></textarea>
         </div>
         <div class="row-container">
             <h3>Zdjęcie tytułowe</h3>
             <input type="file" class="file-input" accept="image/*"/>
+            <input type="text" class="photoDesc" placeholder="podpis zdjęcia tytułowego"/>
         </div>
         <div class="row-container">
             <h3>Wybierz zespół</h3>
             <app-team-checkbox *ngFor="let team of teams" [teamObject]="team"></app-team-checkbox>
         </div>
         <div class="row-container">
+            <h3>Zdjęcie zespołu</h3>
+            <input type="file" class="file-input" accept="image/*"/>
+            <input type="text" class="photoDesc" placeholder="podpis zdjęcia zespołu"/>
+        </div>
+        <div class="row-container">
             <h3>Czy projekt jest aktywny?</h3>
-            <div class="checkbox-container">
+            <div class="checkbox-text-container">
                 <label for="active">TAK</label>
                 <input type="checkbox" id="active" name="active"/>
             </div>
         </div>
         <div class="text-input-container">
             <h3>Opis projektu</h3>
-            <textarea></textarea>
+            <textarea placeholder="opis projektu"></textarea>
+        </div>
+        <div class="text-input-container">
+            <h3>Opis eksperymentu</h3>
+            <textarea class="experimentDesc" placeholder="opis eksperymentu"></textarea>
         </div>
         <div class="group-container">
             <input type="file" class="file-input" accept="image/*" multiple (change)="showPreview($event)">
@@ -34,6 +44,7 @@
                             <img [src]="preview.preview" [alt]="preview.file.name" class="image-preview"/>
                             <button type="button" class="delete" (click)="onDelete(preview.file.name)">&#9760;</button>
                         </div>
+                        <input type="text" placeholder="popdis zdjęcia" />
                     }
             </div>
         </div>
