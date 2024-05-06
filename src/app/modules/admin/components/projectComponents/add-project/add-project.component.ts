@@ -40,6 +40,10 @@ export class AddProjectComponent {
     }
   }
 
+  onPost(arg0: any,arg1: any,arg2: any[]) {
+
+  }
+
   onDelete(fileName: string) {
     const index: number = this.previews.findIndex((preview) => preview.file.name === fileName);
     this.previews.splice(index, 1);

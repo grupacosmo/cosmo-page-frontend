@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './home-admin/admin.component';
-import { AddPostComponent } from './pages/postComponents/add-post/add-post.component';
-import { PostsManComponent } from './pages/postComponents/posts-man/posts-man.component';
-import { AddProjectComponent } from './pages/projectComponents/add-project/add-project.component';
-import { ProjectsManComponent } from './pages/projectComponents/projects-man/projects-man.component';
-import { AddAchievementComponent } from './pages/achievementsComponents/add-achievement/add-achievement.component';
-import { AchievementsManComponent } from './pages/achievementsComponents/achievements-man/achievements-man.component';
+import { AddPostComponent } from './components/postComponents/add-post/add-post.component';
+import { PostsManComponent } from './components/postComponents/posts-man/posts-man.component';
+import { AddProjectComponent } from './components/projectComponents/add-project/add-project.component';
+import { ProjectsManComponent } from './components/projectComponents/projects-man/projects-man.component';
+import { AddAchievementComponent } from './components/achievementsComponents/add-achievement/add-achievement.component';
+import { AchievementsManComponent } from './components/achievementsComponents/achievements-man/achievements-man.component';
 
 const routes: Routes = [
   {

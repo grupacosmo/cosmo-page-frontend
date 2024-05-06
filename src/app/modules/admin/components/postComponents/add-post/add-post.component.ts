@@ -1,6 +1,7 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, inject } from '@angular/core';
 import {FormGroup } from "@angular/forms";
 import { Observable } from 'rxjs';
+import { NewsService } from 'src/app/shared/services/news.service';
 
 type UploadedFile =  {
   preview: string,
@@ -13,11 +14,13 @@ type UploadedFile =  {
   styleUrl: './add-post.component.scss'
 })
 export class AddPostComponent {
-  constructor(){}
+  @ViewChild('attachments') attachment: any;
+  private service = inject(NewsService);
   public path: string = "../../../../../assets/";
   selectedFiles?: FileList;
   previews: UploadedFile[] = [];
-  @ViewChild('attachments') attachment: any;
+
+  constructor(){}
 
   showPreview(event: any){
     this.previews = [];
@@ -38,6 +41,10 @@ export class AddPostComponent {
         reader.readAsDataURL(file);
       }
     }
+  }
+
+  onPost(title: string, text: string,checkboxes: string[]) {
+    this.service.onPost({title: title, content: text, platforms: checkboxes});
   }
 
   onDelete(fileName: string) {

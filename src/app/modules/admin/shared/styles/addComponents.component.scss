@@ -1,0 +1,288 @@
+$font-color: #979797;
+$font-color-darker: #585858;
+$input-background: #D9D9D9;
+$textarea-background: #A7A7A7;
+
+form{
+    display: flex;
+    flex-direction: column;
+}
+
+input{
+    width: 80%;
+    height: 2em;
+    padding: 2%;
+    margin: 2%;
+    margin-left: 0;
+    font-size: 2rem;
+    color: $font-color;
+    background-color: $input-background;
+    border: none;
+    border-radius: 0.2rem;
+}
+
+textarea{
+    width: 80%;
+    height: 60vh;
+    padding: 2%;
+    font-size: 1.5rem;
+    color: $font-color;
+    background-color: $input-background;
+    border: none;
+    border-radius: 0.2rem;
+}
+
+h1{
+    padding: 3% 0%;
+    font-size: 3rem;
+    font-family: Inter;
+    text-decoration: underline;
+    text-underline-offset: 1rem;
+    color: white;
+}
+
+h2{
+    padding: 2%;
+    font-size: 2.5rem;
+    color: $font-color-darker;
+}
+
+h3{
+    padding: 5% 0%;
+    font-size: 2rem;
+    font-family: Inter;
+    text-decoration: underline;
+    text-underline-offset: 1rem;
+    color: white;
+}
+
+h4{
+    padding: 3% 5%;
+    font-size: 2.5rem;
+    font-family: Inter;
+    text-decoration: underline;
+    text-underline-offset: 0.75rem;
+    color: $font-color;
+}
+
+p{
+    color: $font-color;
+}
+
+.container{
+    width: 95%;
+    margin-left: 5%;
+
+    .file-input{
+        align-content: center;
+        padding: 0% 1%;
+    }
+
+    .group-container{
+        width: 80%;
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+
+        input{
+            width: 76%;
+            height: 2em;
+            margin: 2%;
+            margin-left: 5%;
+            padding: 2%;
+            align-content: center;
+            color: $font-color;
+            background-color: $input-background;
+            border: none;
+            border-radius: 0.2rem;
+        }
+
+        .file-input{
+            align-content: center;
+            padding: 0% 1%;
+        }
+
+        .images-container{
+            width: 100%;
+            display: block;
+        
+            .images-preview-container{
+                display: grid; 
+                grid-template-columns: 40% 30% 30%;
+                grid-auto-rows: 50px;
+                margin: 5%;
+        
+                .images-preview-container-element{
+                    padding: 5%;
+                    align-self: center;
+                    overflow: scroll;
+                }
+        
+                .image-preview{
+                    @extend .images-preview-container-element;
+                    height: 6em;
+                    justify-self: center;
+                }
+        
+                p{
+                    @extend .images-preview-container-element;
+                    text-align: center;
+                }
+        
+                .delete{
+                    font-size: 40px;
+                }
+            }
+        }
+    }
+
+    .checkbox-text-container{
+        display: flex;
+        flex-direction: row;
+        justify-content: left;
+        align-items: center;
+
+        input{
+            margin: 5%;
+            padding: 0;
+            width: 10%;
+        }
+
+        label{
+            width: 5%;
+            justify-content: center;
+        }
+    }
+
+    .checkbox-img-container{
+        @extend .checkbox-text-container;
+        
+        input{
+            width: 5%;
+        }
+
+        .checkbox-img{
+            width: 100%;
+        }
+    }
+
+    .submit-container{
+        width: 80%;
+        margin-top: 5%;
+        display: flex;
+        justify-content: center;
+
+        input{
+            width: 30%;
+            height: 10vh;
+            color: $font-color-darker;
+        }
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    input{
+        font-size: 1.5rem;
+    }
+
+    .checkbox-text-container{
+        display: flex;
+        flex-direction: row;
+        justify-content: left;
+        align-items: center;
+
+        input{
+            margin: 5%;
+            padding: 0;
+            width: 10%;
+        }
+
+        label{
+            width: 10%;
+            justify-content: center;
+        }
+    }
+
+    .container{
+        .group-container{
+            .images-container{  
+                .images-preview-container{
+                    .image-preview{
+                        height: 4em;
+                    }
+                }
+            }
+        }
+    }
+
+    h1{
+        font-size: 2rem;
+    }
+
+    h3{
+        font-size: 1.5rem;
+    }
+
+    h4{
+        font-size: 1.25rem;
+    }
+}
+
+@media only screen and (max-width: 456px) {
+    input{
+        font-size: 1rem;
+    }
+
+    .checkbox-text-container{
+        display: flex;
+        flex-direction: row;
+        justify-content: left;
+        align-items: center;
+
+        input{
+            margin: 5%;
+            padding: 0;
+            width: 10%;
+        }
+
+        label{
+            margin-right: 5%;
+            width: 15%;
+            justify-content: center;
+        }
+    }
+
+    .checkbox-img-container{
+        width: 50%;
+    }
+
+    .container{
+        .group-container{
+            .images-container{  
+                .images-preview-container{
+                    .image-preview{
+                        height: 2em;
+                    }
+
+                    p{
+                        font-size: 0.5em;
+                    }
+            
+                    .delete{
+                        font-size: 20px;
+                    }
+                }
+            }
+        }
+    }
+
+    h1{
+        font-size: 1.5rem;
+    }
+
+    h3{
+        font-size: 1rem;
+        text-underline-offset: 0.5rem;
+    }
+}
