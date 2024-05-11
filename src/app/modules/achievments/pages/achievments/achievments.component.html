@@ -1,1 +1,27 @@
-<p>achievments works!</p>
+
+<section class="banner">
+    <section class="content">
+        <h1 class="title">Osiągnięcia</h1>
+    </section>
+</section>
+<section class="content-container">
+    <main class="main-container">
+        <div class="achievment-container main-card">
+            @if (achievments$! | async) {
+                @for (achievment of achievments$! | async; track achievment.id) {
+                    <div class="achievment-item" (click)="openDetails(achievment)">
+                        <div class="inner-content">
+                            {{ achievment.date }}
+                            <mat-icon>{{ achievment.icon }}</mat-icon>
+                        </div>
+                        <img src="assets/images/Medal.svg" alt="">
+                        <div class="description">
+                            <h2>{{ achievment.title }}</h2>
+                            <p>{{ achievment.description | truncate: [250] }}</p>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </main>
+</section>
