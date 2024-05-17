@@ -21,11 +21,11 @@ export class FooterComponent {
           link: '/news',
           external: false
         },
-        {
-          name: 'Zespół',
-          link: '/team',
-          external: false
-        },
+        // {
+        //   name: 'Zespół',
+        //   link: '/team',
+        //   external: false
+        // },
         {
           name: 'Projekty',
           link: '/projects',

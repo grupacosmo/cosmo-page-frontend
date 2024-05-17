@@ -31,10 +31,10 @@ export class SidenavComponent {
       label: this.text.news,
       link: '/news'
     },
-    {
-      label: this.text.team,
-      link: '/team'
-    },
+    // {
+    //   label: this.text.team,
+    //   link: '/team'
+    // },
     {
       label: this.text.projects,
       link: '/projects'
