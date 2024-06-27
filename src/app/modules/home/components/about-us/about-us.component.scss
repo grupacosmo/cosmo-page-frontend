@@ -10,10 +10,12 @@ app-about-us {
     .left-panel {
         display: flex;
         flex-direction: column;
+        gap: 1em;
         width: 50%;
         
         h2 {
             margin: 0;
+            user-select: none;
         }
 
         p {
@@ -29,10 +31,16 @@ app-about-us {
 
     .right-panel {
         width: 45%;
-        background-image: url('../../../../../assets/images/about-us-photo.jpg');
         border-radius: 10px;
-        background-size: cover;
-        background-position: center;
+        position: relative;
+        user-select: none;
+        
+        img {
+            width: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+            aspect-ratio: 16/9;
+        }
     }
 
     @media screen and (max-width: 1280px) {
@@ -47,14 +55,16 @@ app-about-us {
         }
     
         .right-panel {
-            height: 50vh;
             width: 100%;
         }
     }
     
     @media screen and (max-width: 768px) {
         .right-panel {
-            height: 25vh;
+
+            img {
+                height: 100%;
+            }
         }
     }
     
@@ -65,10 +75,6 @@ app-about-us {
             p {
                 font-size: $font-size-xs;
             }
-        }
-    
-        .right-panel {
-            height: 10vh;
         }
     }
 }
