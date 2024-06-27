@@ -9,14 +9,14 @@
     <main class="main-container">
         <div class="projects-container main-card">
             <app-tabs>
-                <app-tab headerTitle="Aktualne">
+                <app-tab title="Aktualne">
                     <section>
                         @if (projects$ | async; as projects) {
                             <app-project-card *ngFor="let project of projects.currentProjects" [project]="project"></app-project-card>
                         }
                     </section>
                 </app-tab>
-                <app-tab headerTitle="Zakończone">
+                <app-tab title="Zakończone">
                     <section>
                         @if (projects$ | async; as projects) {
                             <app-project-card *ngFor="let project of projects.finishedProjects" [project]="project"></app-project-card>
