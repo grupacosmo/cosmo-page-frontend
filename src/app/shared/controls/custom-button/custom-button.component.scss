@@ -2,67 +2,97 @@
 
 .material-symbols-outlined {
   font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 24
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+}
+
+@keyframes fillLeftToRight {
+  0% {
+    width: 0;
+  }
+  100% {
+      width: 100%;
+    }
 }
 
 app-custom-button {
-    display: inline-block;
-    
+  display: inline-block;
+  user-select: none;
+
+  button {
+    background: linear-gradient(to right, $cosmo-magenta, $cosmo-blue);
+    border: 2px solid transparent;
+    outline: none;
+    position: relative;
+    color: white;
+    padding: 0.2em 0.2em 0.2em 1em;
+    font-size: $font-size-m;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 500ms;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.3em;
+    overflow: hidden;
+    border-radius: 15px;
+    background-origin: border-box;
+  }
+
+  button::before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 0;
+    background-color: white;
+    transition: width 0.5s;
+    z-index: -1;
+    border-radius: 10px;
+  }
+
+  button:hover::before {
+    width: 100%;
+  }
+
+  button:hover {
+    color: $cosmo-magenta;
+  }
+
+  .secondary-button {
+    background: none;
+    color: $cosmo-magenta;
+    transition: 500ms;
+    border-radius: 15px;
+  }
+
+  .secondary-button::before {
+    background: linear-gradient(to right, $cosmo-magenta, $cosmo-blue);
+    border-radius: 15px;
+  }
+
+  .secondary-button:hover {
+    color: white;
+  }
+
+  .secondary-button:hover::before {
+    width: 100%;
+  }
+
+  .blue-font {
+    color: $cosmo-dark-blue;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  app-custom-button {
     button {
-        background: linear-gradient(to right, #79287C, #0015D3);
-        border: none;
-        outline: none;
-        position: relative;
-        color: white;
-        padding: 0.2em 0.2em 0.2em 1em;
-        border-radius: 15px;
-        font-size: $font-size-m;
-        font-weight: bold;
-        cursor: pointer;
-        transition: 500ms;
-        z-index: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+      padding: 0.5em 1em;
+      border: 3px solid transparent;
     }
-    
-    button:hover {
-        color: $cosmo-magenta;
-        transition: 500ms;
-    }
-
-    button::before {
-        content: "";
-        position: absolute;
-        top: 2px;
-        right: 2px;
-        bottom: 2px;
-        left: 2px;
-        border-radius: 13px;
-        transition: 500ms;
-        z-index: -1;
-    }
-
-    button:hover::before {
-        background-color: white;
-    }
-
-    .secondary-button {
-        color: $cosmo-magenta;
-    }
-
-    .secondary-button:hover {
-        color: white;
-    }
-
-    .secondary-button::before {
-        background-color: white;
-    }
-
-    .secondary-button:hover::before {
-        background-color: transparent;
-    }
+  }
 }
