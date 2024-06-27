@@ -25,6 +25,7 @@
         background-position-y: 70%;
         z-index: 1;
         padding: 10rem 0;
+        user-select: none;
 
         &:before {
             content: '';
@@ -54,56 +55,6 @@
         background: linear-gradient($primary-3, $primary-1);
         box-shadow: -10px -50px 62px $primary-3, 10px -50px 62px $primary-3;
         z-index: 2;
-
-        .main-container {
-            .news-container {
-                display: grid;
-                grid-template-columns: 1fr 30rem;
-
-                app-sidenav {
-                    border-left: 1px solid lightgray;
-                }
-
-            }
-        }
-    }
-}
-
-@media (max-width: 1280px) {
-    :host {
-        .content-container {
-            .main-container {
-                .news-container {
-                    grid-template-columns: 1fr;
-                    grid-template-rows: 1fr;
-                    border-bottom-left-radius: 0;
-                    border-bottom-right-radius: 0;
-                    
-                    section {
-                        padding: 0;
-                    }
-
-                    app-sidenav {
-                        display: none;
-                    }
-                }
-            }
-        }
-    }
-}
-
-@media (max-width: 768px) {
-    :host {
-        .content-container {
-            .main-container {
-                .news-container {
-                    section {
-                        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-                        padding: 0;
-                    }
-                }
-            }
-        }
     }
 }
 

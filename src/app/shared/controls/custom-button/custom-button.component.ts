@@ -11,5 +11,8 @@ export class CustomButtonComponent {
   text!: string;
 
   @Input()
+  backButton = false;
+
+  @Input()
   isSecondaryButton = false;
 }

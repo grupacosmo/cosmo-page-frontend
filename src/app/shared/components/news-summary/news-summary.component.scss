@@ -8,11 +8,12 @@ header {
 
     h2 {
         margin: 0;
+        user-select: none;
     }
 }
 
 .news-container {
-    gap: 1rem;
+    gap: 1.5rem;
     // aspect-ratio: 6 / 1;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -31,10 +32,12 @@ header {
         cursor: pointer;
         transition: 0.5s;
         min-height: 12rem;
+        user-select: none;
 
         &:hover {
-            transform: scale(1.005);
+            transform: scale(1.05);
             @include mat.elevation(3);
+            z-index: 2;
         }
 
         h3 {
