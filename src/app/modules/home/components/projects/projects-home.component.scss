@@ -14,7 +14,6 @@ app-projects-home {
     
         h2 {
             margin: 0;
-            user-select: none;
         }
     }
 
@@ -34,15 +33,14 @@ app-projects-home {
             display: flex;
             justify-content: center;
             align-items: flex-end;
-            font-size: $font-size-xl;
+            font-size: $font-size-l;
             font-weight: bold;
             text-shadow: 3px 4px 10px black;
             cursor: pointer;
             transition: 0.5s;
-            user-select: none;
 
             &:hover {
-                transform: scale(1.05);
+                transform: scale(1.005);
                 @include mat.elevation(3);
             }
 

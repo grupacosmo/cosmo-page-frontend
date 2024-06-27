@@ -9,7 +9,12 @@
         <div class="projects-container main-card">
             @if (projectDetails) {
                 <section>
-                    <app-custom-button [routerLink]="['/projects']" [text]="'Wszystkie projekty'" [isSecondaryButton]="true" [backButton]="true"></app-custom-button>
+                    <div class="back-to-projects">
+                        <a routerLink="/projects" routerLinkActive="active">
+                            <img src="assets/images/icons/arrow-back.svg" alt="arrow-back">
+                            <p>Wszystkie projekty</p>
+                        </a>
+                    </div>
                 </section>
                 <section class="">
                     <div class="main-container-top">

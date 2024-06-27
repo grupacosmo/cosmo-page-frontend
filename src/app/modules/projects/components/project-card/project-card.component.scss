@@ -7,7 +7,6 @@ app-project-card {
     align-items: center;
     font-size: $font-size-m;
     width: 100%;
-    user-select: none;
     
     .project-card-container {
         display: flex;
@@ -31,10 +30,8 @@ app-project-card {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            gap: 1em;
             margin: 1em 0;
             width: 55%;
-            font-size: $font-size-l;
 
             .project-card-top-content {
                 h3 {
@@ -74,17 +71,11 @@ app-project-card {
                     display: none;
                 }
             }
-
-            img {
-                transition: 0.3s;
-
-                &:hover {
-                    transform: scale(1.5) rotate(180deg);
-                    cursor: pointer;
-                }
-            }
         }
 
+        .project-card-more img:hover {
+            cursor: pointer;
+        }
     }
 
     .project-card-container:hover {
@@ -105,7 +96,6 @@ app-project-card {
 
             .project-card-content {
                 width: 40%;
-                font-size: $font-size-m;
 
                 .project-card-top-content {
                     h3 {
@@ -136,7 +126,7 @@ app-project-card {
 
             .project-card-content {
                 margin: 0;
-                padding: 1em;
+                padding: 2em;
                 width: 100%;
             }
 

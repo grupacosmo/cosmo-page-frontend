@@ -15,7 +15,6 @@
     flex-grow: 1;
     display: grid;
     grid-template-rows: 40rem 1fr;
-    user-select: none;
 
     .banner {
         padding-top: $header-height;
@@ -59,7 +58,7 @@
         .main-container {
             .achievment-container {
                 display: grid;
-                gap: 3rem;
+                gap: 10rem;
                 grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
                 padding: 5rem 10rem;
                 justify-items: center;
@@ -67,16 +66,10 @@
                 .achievment-item {
                     cursor: pointer;
                     transition: 0.5s;
-                    border-radius: 15px;
-                    padding: 1em;
 
                     &:hover {
-                        transform: scale(1.05);
+                        transform: scale(1.01);
                         @include mat.elevation(3);
-                    }
-
-                    .inner-content {
-                        font-size: $font-size-m;
                     }
                 }
             }
@@ -109,33 +102,14 @@
     }
 }
 
-@media (max-width: 1280px) {
-    :host {
-        .content-container {
-            .main-container {
-                .achievment-container {
-                    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-                    padding: 5rem 5rem;
-
-                    .achievment-item {
-                        gap: 0;
-
-                        mat-icon {
-                            height: 35px;
-                            width: 35px;
-                            font-size: 35px;
-                        }
-
-                        img {
-                            width: 75%;
-                        }
-
-                        .inner-content {
-                            font-size: $font-size-s;
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
+// @media (max-width: 1280px) {
+//     :host {
+//         .content-container {
+//             .main-container {
+//                 .achievment-container {
+//                     padding: 5rem 5rem;
+//                 }
+//             }
+//         }
+//     }
+// }
