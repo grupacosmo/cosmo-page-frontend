@@ -10,7 +10,7 @@ article {
     flex-direction: column;
     justify-content: center;
     gap: 1em;
-    padding: 2rem 6rem;
+    padding: 2rem 4rem;
 
     .title {
         font-size: $font-size-xl;
@@ -60,6 +60,11 @@ article {
     font-size: $font-size-l;
 }
 
+@media screen and (max-width: 1024px) {
+    article {
+        padding: 2rem 0;
+    }
+}
 
 @media (max-width: 1280px) {
     :host {

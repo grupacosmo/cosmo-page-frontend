@@ -65,15 +65,3 @@ app-projects {
         }
     }
 }
-
-@media (max-width: 768px) {
-    :host {
-        .banner {
-            .content {
-                .title {
-                    font-size: 4rem;
-                }
-            }
-        }
-    }
-}

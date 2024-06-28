@@ -57,3 +57,21 @@
         min-height: calc(100vh - $header-height);
     }
 }
+
+@media (max-width: 768px) {
+    :host {
+        .banner {
+            .content {
+                .title {
+                    font-size: 4rem;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1280px) {
+    :host {
+        display: block;
+    }
+}

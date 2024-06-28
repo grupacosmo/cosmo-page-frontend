@@ -163,6 +163,12 @@ app-project-card {
                     flex-direction: column;
                     font-size: $font-size-s;
                 }
+
+                .project-card-top-content {
+                    h3, p {
+                        text-align: center;
+                    }
+                }
             }
         }
     }
