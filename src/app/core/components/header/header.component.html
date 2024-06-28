@@ -7,11 +7,16 @@
             <li><a routerLink="/" routerLinkActive="active" class="item">Home</a></li>
             <li><a routerLink="/projects" routerLinkActive="active" class="item">Projekty</a></li>
             <li><a routerLink="/news" routerLinkActive="active" class="item">Aktualności</a></li>
-<!--            <li><a routerLink="/team" routerLinkActive="active" class="item">Zespół</a></li>-->
             <li><a routerLink="/achievments" routerLinkActive="active" class="item">Osiągnięcia</a></li>
         </ul>
-        <button class="mobile">
-            <mat-icon>menu</mat-icon>
+        <button class="mobile" (click)="toggleMenu()">
+            <mat-icon>{{ menuOpen ? 'close' : 'menu' }}</mat-icon>
         </button>
+        <ul class="mobile-menu" [@slideInOut]="menuState">
+            <li><a routerLink="/" routerLinkActive="active" (click)="toggleMenu()" class="item">Home</a></li>
+            <li><a routerLink="/projects" routerLinkActive="active" (click)="toggleMenu()" class="item">Projekty</a></li>
+            <li><a routerLink="/news" routerLinkActive="active" (click)="toggleMenu()" class="item">Aktualności</a></li>
+            <li><a routerLink="/achievments" routerLinkActive="active" (click)="toggleMenu()" class="item">Osiągnięcia</a></li>
+        </ul>
     </nav>
 </header>
