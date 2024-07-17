@@ -14,6 +14,7 @@ export interface NewsItem {
 @Injectable({
   providedIn: 'root'
 })
+
 export class NewsService {
 
   constructor(private http: HttpClient) { }
@@ -42,6 +43,7 @@ export class NewsService {
       date: currentDate,
       imageUrl: ''
     });
+    console.log(fakeNews);
   }
 }
 

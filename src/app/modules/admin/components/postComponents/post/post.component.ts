@@ -7,6 +7,7 @@ import { PostsService } from '../../../shared/services/posts.service';
   templateUrl: './post.component.html',
   styleUrl: './post.component.scss'
 })
+
 export class PostComponent {
   @Input() post: Post = new Post("", "", "", "", {cosmo: false, fb: false});
   managerService = inject(PostsService);

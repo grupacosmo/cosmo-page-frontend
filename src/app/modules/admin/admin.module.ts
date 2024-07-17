@@ -7,13 +7,12 @@ import { AddPostComponent } from './components/postComponents/add-post/add-post.
 import { PostsManComponent } from './components/postComponents/posts-man/posts-man.component';
 import { TurnBurgerDirective } from './shared/directives/turn-burger.directive';
 import { PostComponent } from './components/postComponents/post/post.component';
-import { PostsService } from './shared/services/posts.service';
 import { AddProjectComponent } from './components/projectComponents/add-project/add-project.component';
 import { ProjectsManComponent } from './components/projectComponents/projects-man/projects-man.component';
 import { AddAchievementComponent } from './components/achievementsComponents/add-achievement/add-achievement.component';
 import { AchievementsManComponent } from './components/achievementsComponents/achievements-man/achievements-man.component';
 import { TeamCheckboxComponent } from './components/projectComponents/add-project/team-checkbox/team-checkbox.component';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -32,10 +31,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     AdminRoutingModule,
-    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [
-    PostsService
-  ]
+  providers: []
 })
 export class AdminModule { }

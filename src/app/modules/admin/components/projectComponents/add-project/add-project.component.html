@@ -1,54 +1,57 @@
 <div class="container">
     <h1 class="page-name">Dodaj projekt</h1>
-    <form action="">
-        <div class="double-input-container">
-            <input type="text" class="title" placeholder="Tytuł projektu"/>
-            <textarea type="text" class="shortDesc" placeholder="Krótki opis" maxlength="350"></textarea>
+    <form [formGroup]="projectForm" (ngSubmit)="onPost()">
+        <div class="double-input-container form-group">
+            <input type="text" class="title" placeholder="Tytuł projektu" formControlName="title"/>
+            <textarea type="text" class="shortDesc" placeholder="Krótki opis" maxlength="350" formControlName="shortDesc"></textarea>
         </div>
-        <div class="row-container">
+        <div class="row-container form-group">
             <h3>Zdjęcie tytułowe</h3>
-            <input type="file" class="file-input" accept="image/*"/>
-            <input type="text" class="photoDesc" placeholder="podpis zdjęcia tytułowego"/>
+            <input type="file" class="file-input" accept="image/*" formControlName="titlePhoto"/>
+            <input type="text" class="photoDesc" placeholder="podpis zdjęcia tytułowego" formControlName="titlePhotoDesc"/>
         </div>
-        <div class="row-container">
+        <div class="row-container form-group" formArrayName="teams">
             <h3>Wybierz zespół</h3>
-            <app-team-checkbox *ngFor="let team of teams" [teamObject]="team"></app-team-checkbox>
+            <!-- <app-team-checkbox *ngFor="let team of teams; let i = index" [teamObject]="team" [formArr]="getTeamsFormArray()"></app-team-checkbox> -->
+            <div *ngFor="let control of getTeamsFormArray().controls; let i = index" class="checkbox-text-container">
+                <label [for]="teams[i].name">{{teams[i].label}}</label><br>
+                <input type="checkbox" [id]="teams[i].id" [name]="teams[i].name" [value]="teams[i].value" [formControlName]="i">
+            </div>
         </div>
-        <div class="row-container">
+        <div class="row-container form-group">
             <h3>Zdjęcie zespołu</h3>
-            <input type="file" class="file-input" accept="image/*"/>
-            <input type="text" class="photoDesc" placeholder="podpis zdjęcia zespołu"/>
+            <input type="file" class="file-input" accept="image/*" formControlName="teamPhoto"/>
+            <input type="text" class="photoDesc" placeholder="podpis zdjęcia zespołu" formControlName="teamPhotoDesc"/>
         </div>
-        <div class="row-container">
+        <div class="row-container form-group">
             <h3>Czy projekt jest aktywny?</h3>
             <div class="checkbox-text-container">
                 <label for="active">TAK</label>
-                <input type="checkbox" id="active" name="active"/>
+                <input type="checkbox" id="active" formControlName="isActive"/>
             </div>
         </div>
-        <div class="text-input-container">
+        <div class="text-input-container form-group">
             <h3>Opis projektu</h3>
-            <textarea placeholder="opis projektu"></textarea>
+            <textarea placeholder="opis projektu" formControlName="projectDesc"></textarea>
         </div>
-        <div class="text-input-container">
+        <div class="text-input-container form-group">
             <h3>Opis eksperymentu</h3>
-            <textarea class="experimentDesc" placeholder="opis eksperymentu"></textarea>
+            <textarea class="experimentDesc" placeholder="opis eksperymentu" formControlName="experimentDesc"></textarea>
         </div>
-        <div class="group-container">
-            <input type="file" class="file-input" accept="image/*" multiple (change)="showPreview($event)">
+        <div class="group-container form-group">
+            <input type="file" class="file-input"  accept="image/*" multiple (change)="showPreview($event)">
             <div class="images-container">
                 <h4>Obrazy</h4>
-                    @for (preview of previews; track $index) {
-                        <div class="images-preview-container">
-                            <p>{{preview.file.name}}</p>
-                            <img [src]="preview.preview" [alt]="preview.file.name" class="image-preview"/>
-                            <button type="button" class="delete" (click)="onDelete(preview.file.name)">&#9760;</button>
-                        </div>
-                        <input type="text" placeholder="popdis zdjęcia" />
-                    }
+                <div formArrayName="photosDesc">
+                    <div *ngFor="let preview of previews; let i = index" class="images-preview-container">
+                        <p>{{preview.file.name}}</p>
+                        <img [src]="preview.preview" [alt]="preview.file.name" class="image-preview"/>
+                        <button type="button" class="delete" (click)="onDelete(preview.file.name)">&#9760;</button>
+                        <input type="text" placeholder="podpis zdjęcia" [formControlName]="i"/>
+                    </div>
+                </div>
             </div>
         </div>
-
         <div class="submit-container">
             <input type="submit" value="Dodaj post">
         </div>
