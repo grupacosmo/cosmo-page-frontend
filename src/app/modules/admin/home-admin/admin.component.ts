@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-admin',
@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrl: './admin.component.scss'
 })
 export class AdminComponent {
+  isScrollBlocked: boolean = false;
 
+  checkDisplay($event: any){
+    console.log($event)
+    this.isScrollBlocked = $event;
+  }
 }

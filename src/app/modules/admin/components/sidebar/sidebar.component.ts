@@ -1,18 +1,20 @@
-import { Component, ElementRef, HostBinding, HostListener} from '@angular/core';
+import { Component, EventEmitter, HostListener, inject, Output } from '@angular/core';
+import { SidebarService } from '../../shared/services/sidebar.service';
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrl: './sidebar.component.scss'
+  styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent {
-  constructor(){}
-
   public path: string = "../../../../../assets/";
   windowWidth: number = window.innerWidth;
   display: boolean = false;
 
+  @Output() isScrollBlocked = new EventEmitter<Boolean>();
+
   @HostListener('window:resize', ['$event'])
+  
   onResize() {
     this.windowWidth = window.innerWidth;
   }
@@ -20,8 +22,9 @@ export class SidebarComponent {
   onRouterLinkActive($event: boolean) {
     console.log($event);
   }
-  
-  onClick(){
+
+  onClick() {
     this.display = !this.display;
+    this.isScrollBlocked.emit(this.display);
   }
 }

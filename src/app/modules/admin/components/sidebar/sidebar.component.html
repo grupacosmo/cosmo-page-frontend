@@ -1,87 +1,84 @@
-<aside *ngIf=" windowWidth >= 768 else loading">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+<aside *ngIf=" windowWidth > 768 else loading">
     <div class="sidebar-items">
-        <img [src]="path + 'images/logo.png'" alt="logo" class="logo"/>
-        <div class="container">
-            <h3>POSTY</h3>
-            <ul>
-                <li><a 
-                        routerLink="addPost" 
-                        routerLinkActive="active-link"
-                        >Dodaj post</a></li>
-                <li><a 
-                        routerLink="postsMan" 
-                        routerLinkActive="active-link">Zarządzaj postami</a></li>
-            </ul>
-        </div>
-        <div class="container">
-            <h3>PROJEKTY</h3>
-            <ul>
-                <li><a 
-                    routerLink="addProject" 
-                    routerLinkActive="active-link">Dodaj projekt</a></li>
-                <li><a
-                    routerLink="projectsMan" 
-                    routerLinkActive="active-link">Zarządzaj projektami</a></li>
-            </ul>
-        </div>
-        <div class="container">
-            <h3>OSIĄGNIĘCIA</h3>
-            <ul>
-                <li><a
-                    routerLink="addAchievements" 
-                    routerLinkActive="active-link">Dodaj osiągnięcie</a></li>
-                <li><a
-                    routerLink="achievementsMan" 
-                    routerLinkActive="active-link">Zarządzaj osiągnieciami</a></li>
-            </ul>
-        </div>
+        <a routerLink="/"><img [src]="path + 'images/logo.png'"  alt="logo" class="logo"/></a>
+        
+        <app-sidebar-item 
+            [icon]="'newspaper'"
+            [title]="'Posty'"
+            [links]="[
+                { label: 'Dodaj post', link: 'addPost' },
+                { label: 'Zarządzaj postami', link: 'postsMan' }
+            ]">
+        </app-sidebar-item>
+        
+        <app-sidebar-item 
+            [icon]="'lightbulb'"
+            [title]="'Projekty'"
+            [links]="[
+                { label: 'Dodaj projekt', link: 'addProject' },
+                { label: 'Zarządzaj projektami', link: 'projectsMan' }
+            ]">
+        </app-sidebar-item>
+        
+        <app-sidebar-item 
+            [icon]="'trophy'"
+            [title]="'Osiągnięcia'"
+            [links]="[
+                { label: 'Dodaj osiągnięcie', link: 'addAchievements' },
+                { label: 'Zarządzaj osiągnięciami', link: 'achievementsMan' }
+            ]">
+        </app-sidebar-item>
+        
+        <app-sidebar-item 
+            [icon]="'logout'"
+            [title]="'Wyloguj się'"
+            [links]="[]">
+        </app-sidebar-item>
+
+        <!-- <div class="logout-container">
+            <span class="material-symbols-outlined">logout</span>
+            <h3 *ngIf="isSidebarOpened">Wyloguj się</h3>
+        </div> -->
     </div>
-</aside>   
+</aside>
+
 <ng-template #loading>
     <button type="button" class="burger-button" (click)="onClick()">{{this.display ? "&#10006;" : "&#9776;"}}</button>
-    <aside class="burger" [ngStyle]="{'display': (this.display ? 'flex' : 'none')}">
+    <aside class="burger" [ngStyle]="this.display ? {display: 'flex', overflow: 'hidden'} : {display: 'none', overflow: 'scroll'}">
         <div class="sidebar-items">
-            <img [src]="path + 'images/logo.png'" alt="logo" class="logo"/>
-            <div class="burger-container">
-                <h3>POSTY</h3>
-                <ul>
-                    <li class="burger-link"><a 
-                            (click)="onClick()"
-                            routerLink="addPost" 
-                            routerLinkActive="active-link"
-                            >Dodaj post</a></li>
-                    <li class="burger-link"><a
-                            (click)="onClick()"  
-                            routerLink="postsMan" 
-                            routerLinkActive="active-link">Zarządzaj postami</a></li>
-                </ul>
-            </div>
-            <div class="burger-container">
-                <h3>PROJEKTY</h3>
-                <ul>
-                    <li class="burger-link"><a 
-                        (click)="onClick()" 
-                        routerLink="addProject" 
-                        routerLinkActive="active-link">Dodaj projekt</a></li>
-                    <li class="burger-link"><a 
-                        (click)="onClick()" 
-                        routerLink="projectsMan" 
-                        routerLinkActive="active-link">Zarządzaj projektami</a></li>
-                </ul>
-            </div>
-            <div class="burger-container">
-                <h3>OSIĄGNIĘCIA</h3>
-                <ul>
-                    <li class="burger-link"><a 
-                        (click)="onClick()" 
-                        routerLink="addAchievements" 
-                        routerLinkActive="active-link">Dodaj osiągnięcie</a></li>
-                    <li class="burger-link"><a 
-                        (click)="onClick()" 
-                        routerLink="achievementsMan" 
-                        routerLinkActive="active-link">Zarządzaj osiągnieciami</a></li>
-                </ul>
-            </div>
+            <a routerLink="/"><img [src]="path + 'images/logo.png'"  alt="logo" class="logo"/></a>
+            
+            <app-sidebar-burger-item
+                [icon]="'news'" 
+                [title]="'POSTY'"
+                [links]="[
+                    { label: 'Dodaj post', link: 'addPost' },
+                    { label: 'Zarządzaj postami', link: 'postsMan' }
+                ]"
+                (clickEvent)="onClick()">
+            </app-sidebar-burger-item>
+            
+            <app-sidebar-burger-item
+                [icon]="'lightbulb'" 
+                [title]="'PROJEKTY'"
+                [links]="[
+                    { label: 'Dodaj projekt', link: 'addProject' },
+                    { label: 'Zarządzaj projektami', link: 'projectsMan' }
+                ]"
+                (clickEvent)="onClick()">
+            </app-sidebar-burger-item>
+            
+            <app-sidebar-burger-item
+                [icon]="'trophy'" 
+                [title]="'OSIĄGNIĘCIA'"
+                [links]="[
+                    { label: 'Dodaj osiągnięcie', link: 'addAchievements' },
+                    { label: 'Zarządzaj osiągnięciami', link: 'achievementsMan' }
+                ]"
+                (clickEvent)="onClick()">
+            </app-sidebar-burger-item>
         </div>
-    </aside>   
+    </aside>
 </ng-template>

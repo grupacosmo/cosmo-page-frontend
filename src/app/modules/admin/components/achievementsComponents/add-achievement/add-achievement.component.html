@@ -1,1 +1,10 @@
-<p>add-achievement works!</p>
+<div class="container">
+    <h1 class="page-name">Dodaj osiągnięcie</h1>
+    <form [formGroup]="achievementForm" (ngSubmit)="onPost()">
+      <input type="text" formControlName="title" placeholder="Tytuł"/>
+      <div class="submit-container">
+        <input type="submit" value="Dodaj osiagniecie" [disabled]="achievementForm.invalid">
+      </div>
+    </form>
+  </div>
+  

@@ -1,6 +1,8 @@
 $font-color: #979797;
 $font-color-darker: #585858;
 $post-background: #D9D9D9;
+$button-hover-bg: #b6b6b6;
+$button-hover-color: #4f4f4f;
 $textarea-background: #A7A7A7;
 
 .post-container{
@@ -21,17 +23,30 @@ $textarea-background: #A7A7A7;
         font-size: 2rem;
         color: $font-color;
         justify-self: left;
-        overflow-y: hidden; /* Hide vertical scrollbar */
-        overflow-x: scroll; /* Hide horizontal scrollbar */
+        overflow-y: hidden;
     }
 
     button{
+        background-color: white;
         width: 10rem;
         border: none;
         border-radius: 5px;
         padding: 5%;
         font-size: 25px;
+        color: $font-color-darker;
+        transition: 300ms width;
     }
+
+    button:hover{
+        width: 12rem;
+        color: $button-hover-color;
+        background-color: $button-hover-bg;
+    }
+}
+
+
+.post-container:hover p{
+    color: $font-color-darker;
 }
 
 @media only screen and (max-width: 768px) {

@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { TeamsService } from '../../../shared/services/teams.service';
 import { TeamCheckbox } from './team-checkbox/TeamCheckbox.model';
 import { FormArray, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { ProjectsAdminService } from '../../../shared/services/projectsAdmin.service';
+import { ProjectsAdminService } from '../../../shared/services/projects.service';
 
 type UploadedFile =  {
   preview: string,

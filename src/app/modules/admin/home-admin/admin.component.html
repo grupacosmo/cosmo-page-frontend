@@ -1,4 +1,4 @@
 <div class="container">
-    <app-sidebar></app-sidebar>
-    <div class="main"><router-outlet></router-outlet></div>
+    <app-sidebar (isScrollBlocked)="checkDisplay($event)"></app-sidebar>
+    <div class="main" [ngStyle]="{'display': (isScrollBlocked ? 'none' : 'block')}"><router-outlet></router-outlet></div>
 </div>
