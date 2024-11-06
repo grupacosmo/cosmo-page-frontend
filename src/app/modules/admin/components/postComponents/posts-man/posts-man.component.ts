@@ -5,8 +5,9 @@ import { Post } from '../../../shared/models/post.model';
 @Component({
   selector: 'app-posts-man',
   templateUrl: './posts-man.component.html',
-  styleUrl: './posts-man.component.scss',
+  styleUrl: './posts-man.component.scss'
 })
+
 export class PostsManComponent {
   private service = inject(PostsService);
   public posts: Post[] = [];

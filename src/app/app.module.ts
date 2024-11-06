@@ -8,6 +8,7 @@ import {SocialLoginModule} from "@abacritt/angularx-social-login";
 import {AccountService} from "./core/services/account/account.service";
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
     declarations: [
@@ -19,10 +20,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         CoreModule,
         SocialLoginModule,
         HttpClientModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        MatDialogModule,
     ],
     providers: [
         { provide: APP_INITIALIZER, useFactory: appInitializer, multi: true, deps: [AccountService] },
+        {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}},
     ],
     bootstrap: [AppComponent]
 })

@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { PostData } from 'src/app/modules/admin/components/postComponents/add-post/add-post.component';
+import { HttpService } from './http.service';
 
 export interface NewsItem {
   id: string;
@@ -14,9 +16,12 @@ export interface NewsItem {
 @Injectable({
   providedIn: 'root'
 })
-export class NewsService {
 
-  constructor(private http: HttpClient) { }
+export class NewsService {
+  private http: HttpService = inject(HttpService);
+  private readonly apiController: string = 'api';
+
+  constructor() { }
 
   getNews(): Observable<NewsItem[]> {
     // return this.http.get<NewsItem[]>('');
@@ -27,25 +32,64 @@ export class NewsService {
     return of(fakeNews.find(news => news.slug === slug))
   }
 
-  onPost(news: any){
+  onPost(news: PostData){
     let id = String(parseInt(fakeNews[fakeNews.length - 1].id) - 1);
+
     const date = new Date();
     let day = date.getDate();
     let month = date.getMonth() + 1;
     let year = date.getFullYear();
     let currentDate = `${day}-${month}-${year}`;
+
+    console.log({     
+      id: id,
+      slug: id,
+      title: news.title,
+      content: news.text,
+      date: currentDate,
+      imageUrl: news.attachments[0].file,
+    })
+
     fakeNews.push({
       id: id,
       slug: id,
       title: news.title,
-      content: news.content,
+      content: news.text,
       date: currentDate,
-      imageUrl: ''
+      imageUrl: news.attachments[0].file,
     });
+
+    console.log(fakeNews);
+
+    // let updatedNews: NewsItem = {
+    //   ...news,
+    //   title: news.title,
+    //   content: news.text,
+    //   imageUrl: news.attachments[0].file,
+    // };
+
+    // this.http.post(`${this.apiController}/post`, news);
+  }
+
+  onEdit(news: PostData){
+    
+
+    // let updatedNews: NewsItem = {
+    //   ...news,
+    //   title: news.title,
+    //   content: news.text,
+    //   imageUrl: news.attachments[0].file,
+    // };
+
+    // this.http.post(`${this.apiController}/editNewsById`, news);
+  }
+  
+  onDelete(news_id: Number){
+    
   }
 }
 
-const fakeNews: NewsItem[] = [
+let fakeNews: NewsItem[] = [
   {
     id: '1',
     slug: '1',

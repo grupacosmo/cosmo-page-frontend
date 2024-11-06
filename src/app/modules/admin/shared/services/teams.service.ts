@@ -8,7 +8,8 @@ export class TeamsService {
 
   constructor() { }
   teams: TeamCheckbox[] = [
-    new TeamCheckbox("malinki", "malinki", "ml", "Malinki"),
-    new TeamCheckbox("truskawki", "truskawki", "ts", "Truskawki"),
+    { id: 'team1', name: 'team1', label: 'Team 1', value: 'team1' },
+    { id: 'team2', name: 'team2', label: 'Team 2', value: 'team2' },
+    { id: 'team3', name: 'team3', label: 'Team 3', value: 'team3' }
   ];
 }

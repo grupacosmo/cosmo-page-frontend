@@ -6,9 +6,10 @@ import { Observable, map } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
 export class PostsService {
   private service = inject(NewsService);
-  public posts: Post[] = [];
+  private posts: Post[] = [];
   constructor() { }
 
   getPostsFromServer(): Observable<Post[]> {
@@ -22,6 +23,7 @@ export class PostsService {
           { cosmo: false, fb: false }
         ));
         this.posts = newPosts;
+        console.log(newPosts);
         return newPosts;
       })
     );
@@ -38,5 +40,9 @@ export class PostsService {
   delPost(post: Post){
     const index: number = this.posts.findIndex((e) => e.title == post.title);
     this.posts.splice(index, 1);
+  }
+
+  getNewsService(){
+    return this.service;
   }
 }

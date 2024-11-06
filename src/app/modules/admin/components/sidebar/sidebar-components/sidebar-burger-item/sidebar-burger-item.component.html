@@ -1,0 +1,11 @@
+<div class="container">
+    <div class="container-header">
+        <span class="material-symbols-outlined">{{icon}}</span>
+        <h3>{{ title }}</h3>
+    </div>
+    <ul>
+        <li *ngFor="let link of links">
+            <a [routerLink]="link.link" routerLinkActive="active-link">{{ link.label }}</a>
+        </li>
+    </ul>
+</div>

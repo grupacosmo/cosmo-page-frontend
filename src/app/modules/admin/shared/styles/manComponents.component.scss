@@ -1,0 +1,69 @@
+$font-color: #979797;
+
+section{
+    .page-name{
+        padding: 3% 5% 1%;
+        font-size: 3rem;
+        font-family: Inter;
+        text-decoration: underline;
+        text-underline-offset: 1rem;
+        color: white;
+    }
+
+    .container{
+        width: 90%;
+        padding: 5%;
+
+        .col-names{
+            display: grid;
+            justify-items: center;
+            grid-template-columns: 2fr 2fr;
+            grid-template-rows: 3fr;
+            gap: 2fr;
+            padding: 5%;
+        
+            h4{
+                font-family: Inter;
+                font-size: 3rem;
+                color: $font-color;
+            }
+        }
+    }   
+}
+
+@media only screen and (max-width: 768px) {
+    section{
+        .page-name{
+            font-size: 1rem;
+            text-underline-offset: 0.7rem;
+        }
+    
+        .container{
+            .col-names{
+                h4{
+                    font-family: Inter;
+                    font-size: 2rem;
+                    color: $font-color;
+                }
+            }
+        }   
+    }
+}
+
+@media only screen and (max-width: 456px) {
+    section{
+        .page-name{
+            text-underline-offset: 0.5rem;
+        }
+    
+        .container{
+            .col-names{
+                h4{
+                    font-family: Inter;
+                    font-size: 1.5rem;
+                    color: $font-color;
+                }
+            }
+        }
+    }
+}

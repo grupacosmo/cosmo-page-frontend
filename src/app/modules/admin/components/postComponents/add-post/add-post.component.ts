@@ -1,11 +1,22 @@
 import { Component, ViewChild, inject } from '@angular/core';
-import {FormGroup } from "@angular/forms";
+import {Form, FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Observable } from 'rxjs';
-import { NewsService } from 'src/app/shared/services/news.service';
+import { PostsService } from '../../../shared/services/posts.service';
 
-type UploadedFile =  {
+interface UploadedFile {
   preview: string,
   file: any,
+}
+
+export interface PostData {
+  id: string,
+  slug: string,
+  date: string,
+  title: string,
+  author: string,
+  attachments: UploadedFile[],
+  text: string,
+  platforms: any,
 }
 
 @Component({
@@ -13,14 +24,27 @@ type UploadedFile =  {
   templateUrl: './add-post.component.html',
   styleUrl: './add-post.component.scss'
 })
+
 export class AddPostComponent {
   @ViewChild('attachments') attachment: any;
-  private service = inject(NewsService);
+  private service = inject(PostsService);
+  protected postForm: FormGroup;
   public path: string = "../../../../../assets/";
   selectedFiles?: FileList;
   previews: UploadedFile[] = [];
 
-  constructor(){}
+  constructor(private fb: FormBuilder) {
+    this.postForm = this.fb.group({
+      title: ['', Validators.required],
+      author: ['', Validators.required],
+      attachments: [''],
+      text: ['', Validators.required],
+      platforms: this.fb.array([
+        this.fb.control(false),
+        this.fb.control(false)
+      ])
+    });
+  }
 
   showPreview(event: any){
     this.previews = [];
@@ -43,8 +67,21 @@ export class AddPostComponent {
     }
   }
 
-  onPost(title: string, text: string,checkboxes: string[]) {
-    this.service.onPost({title: title, content: text, platforms: checkboxes});
+  onPost(): void {
+    const formValue = this.postForm.value;
+    const postData = {
+      id: '',
+      slug: '',
+      date: '',
+      title: formValue.title,
+      author: formValue.author,
+      text: formValue.text,
+      platforms: formValue.platforms,
+      attachments: this.previews.map(p => p.file)
+    };
+
+    console.log('Post Data:', postData);
+    this.service.getNewsService().onPost(postData);
   }
 
   onDelete(fileName: string) {
@@ -63,4 +100,23 @@ export class AddPostComponent {
     this.attachment.nativeElement.files = newFileList;
     this.selectedFiles = newFileList;
   }
+
+  getPlatforms(): FormArray {
+    return this.postForm.get('platforms') as FormArray;
+  }
+
+  onCheckboxChange(index: number, event: any) {
+    const platforms = this.getPlatforms();
+    if (event.target.checked) {
+      platforms.at(index).setValue(true);
+    } else {
+      platforms.at(index).setValue(false);
+    }
+    platforms.updateValueAndValidity();
+  }
+
+  trackByFn(index: number, item: any): number {
+    return index;
+  }
 }
+

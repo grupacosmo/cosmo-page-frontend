@@ -1,6 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { TeamsService } from '../../../shared/services/teams.service';
 import { TeamCheckbox } from './team-checkbox/TeamCheckbox.model';
+import { FormArray, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { ProjectsAdminService } from '../../../shared/services/projects.service';
 
 type UploadedFile =  {
   preview: string,
@@ -13,13 +15,52 @@ type UploadedFile =  {
   styleUrl: './add-project.component.scss'
 })
 export class AddProjectComponent {
-  constructor(private service: TeamsService){}
+  @ViewChild('attachments') attachment: any;
 
+  projectForm: any;
   teams: TeamCheckbox[] = this.service.teams;
-
   selectedFiles?: FileList;
   previews: UploadedFile[] = [];
-  @ViewChild('attachments') attachment: any;
+
+  constructor(private service: TeamsService, private formBuilder: FormBuilder, private projectService: ProjectsAdminService){}
+
+  ngOnInit(): void {
+    this.projectForm = this.formBuilder.group({
+      title: [''],
+      shortDesc: [''],
+      titlePhoto: [''],
+      titlePhotoDesc: [''],
+      teams: this.formBuilder.array([]),
+      teamPhoto: [''],
+      teamPhotoDesc: [''],
+      isActive: [false],
+      projectDesc: [''],
+      experimentDesc: [''],
+      photos: this.formBuilder.array([]),
+      photosDesc: this.formBuilder.array([]),
+    });
+
+    this.addTeamsCheckboxes();
+    this.addPhotosDesc();
+  }
+
+  addTeamsCheckboxes() {
+    this.teams.forEach(()=>{
+      this.getTeamsFormArray().push(this.formBuilder.control(false))
+    })
+  }
+
+  getTeamsFormArray(): FormArray{
+    return this.projectForm.get("teams") as FormArray;
+  }
+
+  addPhotosDesc(){
+    this.getPhotosFormArray().push(this.formBuilder.control(false))
+  }
+
+  getPhotosFormArray(): FormArray{
+    return this.projectForm.get("photosDesc") as FormArray;
+  }
 
   showPreview(event: any){
     this.previews = [];
@@ -40,10 +81,6 @@ export class AddProjectComponent {
     }
   }
 
-  onPost(arg0: any,arg1: any,arg2: any[]) {
-
-  }
-
   onDelete(fileName: string) {
     const index: number = this.previews.findIndex((preview) => preview.file.name === fileName);
     this.previews.splice(index, 1);
@@ -59,5 +96,12 @@ export class AddProjectComponent {
     const newFileList = dataTransfer.files;
     this.attachment.nativeElement.files = newFileList;
     this.selectedFiles = newFileList;
+  }
+
+  onPost() {
+    if (this.projectForm) {
+      console.log(this.projectForm)
+      this.projectService.addProject(this.projectForm.value);
+    }
   }
 }

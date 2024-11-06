@@ -1,0 +1,91 @@
+@import '../../../shared/styles/addComponents.component.scss';
+$background-main: #222222;
+$header-footer-bg: #3f3f3f;
+$header-footer-border: #7b7b7b;
+$text-color: #ffffff;
+$font-color-darker: #616161;
+$button-footer-hover-bg: #9f9f9f;
+
+.container {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+::ng-deep .custom-dialog-panel {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #ddd;
+    padding: 10%;
+}
+
+::ng-deep .custom-backdrop {
+    background-color: $background-main;
+}
+
+.header {
+    background-color: $header-footer-bg;
+    border-bottom: 2px solid $header-footer-border;
+    color: $text-color;
+    margin: 0;
+    padding: 15px;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.footer {
+    background-color: $header-footer-bg;
+    border-top: 2px solid $header-footer-border;
+    color: $text-color;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+
+    button{
+        @extend input;
+        color: $font-color-darker;
+        width: 20%;
+        margin: 2%;
+        padding: 0;
+        vertical-align: middle;
+    }
+
+    button:hover{
+        background-color: $button-footer-hover-bg;
+        color: $text-color;
+    }
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    background-color: $background-main;
+    margin: 0;
+    padding: 0;
+}
+
+form{
+    align-items: center;
+}
+
+input{
+    margin: 2%;
+}
+
+.row-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h3{
+        width: 80%;
+        text-align: left;
+    }
+}
+
+.platforms{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+}

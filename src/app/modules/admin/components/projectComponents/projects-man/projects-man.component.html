@@ -1,1 +1,11 @@
-tbd
+<section>
+    <h3 class="page-name">Zarządzanie Projektami</h3>
+    <div class="container">
+      <div class="col-names">
+        <h4>Tytuł</h4>
+        <h4>Opcje</h4>
+      </div>
+      <app-project *ngFor="let project of getProjects()" [project]="project"></app-project>
+    </div>
+  </section>
+  
