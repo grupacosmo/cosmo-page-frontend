@@ -9,6 +9,10 @@ export class JoinUsComponent {
     protected text = {
         joinCosmo: 'DOŁĄCZ DO COSMO PK',
         summary: 'Jeśli chcesz się przyłączyć do jednego z naszych projektów lub masz własny pomysł, wyślij nam swoje zgłoszenie – odezwiemy się do Ciebie',
-        learnMore: 'Dowiedz się więcej'
+        learnMore: 'Wypełnij formularz',
+    }
+
+    protected openForm() {
+        window.open('https://forms.gle/FdwcQGdhW1aKxfYZ7', '_blank');
     }
 }

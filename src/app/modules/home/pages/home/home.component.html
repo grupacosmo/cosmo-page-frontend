@@ -10,7 +10,7 @@
                 </a>
             }
         </div>
-        <app-custom-button class="join-us" [text]="text.joinUs"></app-custom-button>
+        <app-custom-button class="join-us" [text]="text.joinUs" (click)="scrollToJoinUs()"></app-custom-button>
     </section>
 </section>
 
@@ -29,7 +29,7 @@
                 <app-projects-home></app-projects-home>
             </section>
             <hr class="divider"/>
-            <section>
+            <section #joinUsSection>
                 <app-join-us></app-join-us>
             </section>
             <hr class="divider"/>
