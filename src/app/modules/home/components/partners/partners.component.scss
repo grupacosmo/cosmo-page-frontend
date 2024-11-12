@@ -34,14 +34,13 @@ app-partners {
 
     @media screen and (max-width: 768px) {
         .partners {
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
         }
+    }
 
-        .partner {
-            img {
-                max-height: 80px;
-                width: 50%;
-            }
+    @media screen and (max-width: 480px) {
+        .partners {
+            grid-template-columns: 1fr;
         }
     }
 }
