@@ -1,4 +1,4 @@
-<div class="project-card-container">
+<div class="project-card-container" (click)="navigateToProject()" [class.clickable]="!isMobile">
     <div class="project-card-image" [style.backgroundImage]="'url('+ project.image + ')'"></div>
     <div class="project-card-content">
         <div class="project-card-top-content">
