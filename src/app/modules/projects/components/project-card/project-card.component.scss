@@ -18,6 +18,10 @@ app-project-card {
         @include mat.elevation(5);
         transition: .5s;
 
+        &.clickable {
+            cursor: pointer;
+        }
+
         .project-card-image {
             min-height: 250px;
             width: 35%;
