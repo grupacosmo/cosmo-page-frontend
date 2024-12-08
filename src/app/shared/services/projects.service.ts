@@ -81,7 +81,7 @@ const dummyCardProjects: ProjectsCardDetails = {
     {
       id: '2',
       image: '/assets/images/projects/rakieta/rakieta-main.jpg',
-      title: 'RAKIETA',
+      title: 'Rakieta',
       description: 'Projekt "Rakieta" polega na stworzeniu rakiety z własnym silnikiem i komputerem pokładowym, umożliwiającym pełną kontrolę lotu i analizę parametrów w czasie rzeczywistym, co zwiększa bezpieczeństwo i precyzję misji.',
       team: 'Zespół Rakieta',
       date: '01.01.2023'
@@ -97,7 +97,7 @@ const dummyCardProjects: ProjectsCardDetails = {
     {
       id: '4',
       image: '/assets/images/projects/dron/dron-main.png',
-      title: 'DRON',
+      title: 'Dron',
       description: 'Projekt drona polega na budowie statku szybowcowego, który będzie służył do obserwacji terenu i transportu ładunków, z wykorzystaniem zaawansowanych technologii i symulacji aerodynamicznych.',
       team: 'Zespół Dron',
       date: '01.04.2023'
@@ -115,7 +115,7 @@ const dummyProjectDetails: ProjectDetailsItem[] = [
     teams: [
       {
         name: 'OBC',
-        members: ['Maciej Rybiński', 'Darek Surdel', 'Jakub Kubica', 'Kamil Dziedzic', 'inż. Julia Słowikowska', 'Piotr Skała', 'inż. Wiktor Więcław']
+        members: ['mgr. inż. Filip Zyga', 'inż. Julia Słowikowska', 'inż. Wiktor Więcław', 'Damian Kluczyński', 'Dariusz Surdel', 'Jakub Kubica', 'Kamil Dziedzic', 'Maciej Rybiński', 'Piotr Skała']
       }
     ],
     date: '01.10.2021',
@@ -139,13 +139,13 @@ const dummyProjectDetails: ProjectDetailsItem[] = [
         name: 'Zespół Rakieta',
         members: [
           'Bartosz Słowik', 'Patryk Paluch', 'Michał Mruk', 'Michał Brzeziński', 'Aleksy Biela', 'Anna Derela',
-          'Paweł Niedziela', 'Filip Szwedziński', 'Aleksander Roman', 'Karol Wypasek', 'Piotr Sus',
+          'Paweł Niedziela', 'Filip Szwed', 'Aleksander Roman', 'Karol Wypasek', 'Piotr Sus',
           'Krzysztof Radawiec', 'Bartosz Krzyk', 'Dominik Madej', 'Jakub Plicner', 'Jan Dworakowski', 'Michał Mączka'
         ]
       }
     ],
     date: '01.01.2023',
-    teamPhoto: '/assets/images/projects/habsat-cansat/habsat-cansat-team.jpg',
+    teamPhoto: '/assets/images/projects/rakieta/rakieta-team.png',
     status: 'Aktywny',
     site: 'github.com/grupacosmo/cosmorocket',
     siteUrl: 'https://github.com/grupacosmo/cosmorocket',
@@ -170,7 +170,7 @@ const dummyProjectDetails: ProjectDetailsItem[] = [
       }
     ],
     date: '01.10.2023',
-    teamPhoto: '/assets/images/projects/habsat-cansat/habsat-cansat-team.jpg',
+    teamPhoto: '/assets/images/projects/gra/gra-team.png',
     status: 'Aktywny',
     site: 'github.com/grupacosmo/cosmobot',
     siteUrl: 'https://github.com/grupacosmo/cosmobot',
@@ -195,7 +195,7 @@ const dummyProjectDetails: ProjectDetailsItem[] = [
       }
     ],
     date: '01.04.2023',
-    teamPhoto: '/assets/images/projects/habsat-cansat/habsat-cansat-team.jpg',
+    teamPhoto: '/assets/images/projects/dron/dron-team.png',
     status: 'Aktywny',
     site: '',
     siteUrl: '',
