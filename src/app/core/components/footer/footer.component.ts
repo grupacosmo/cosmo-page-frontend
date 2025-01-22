@@ -16,11 +16,11 @@ export class FooterComponent {
           link: '/',
           external: false
         },
-        {
-          name: 'Aktualności',
-          link: '/news',
-          external: false
-        },
+        // {
+        //   name: 'Aktualności',
+        //   link: '/news',
+        //   external: false
+        // },
         // {
         //   name: 'Zespół',
         //   link: '/team',
@@ -31,11 +31,11 @@ export class FooterComponent {
           link: '/projects',
           external: false
         },
-        {
-          name: 'Osiągnięcia',
-          link: '/achievments',
-          external: false
-        },
+        // {
+        //   name: 'Osiągnięcia',
+        //   link: '/achievments',
+        //   external: false
+        // },
       ]
     },
     {
