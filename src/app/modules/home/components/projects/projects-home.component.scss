@@ -108,9 +108,6 @@ app-projects-home {
         .projects-container {
             .project {
                 font-size: $font-size-s;
-                &::before {
-                    filter: blur(0px)
-                };
             }
         }
     }
