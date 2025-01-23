@@ -120,7 +120,7 @@ const dummyProjectDetails: ProjectDetailsItem[] = [
     ],
     date: '01.10.2021',
     teamPhoto: '/assets/images/projects/habsat-cansat/habsat-cansat-team.jpg',
-    status: 'Aktywny',
+    status: 'Zakończony',
     site: 'github.com/grupacosmo/cansat',
     siteUrl: 'https://github.com/grupacosmo/cansat',
     mainPhoto: '/assets/images/projects/habsat-cansat/habsat-cansat-main.png',
