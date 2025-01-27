@@ -8,8 +8,8 @@ describe('AddAchievementComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AddAchievementComponent]
-    })
+    declarations: [AddAchievementComponent]
+})
     .compileComponents();
     
     fixture = TestBed.createComponent(AddAchievementComponent);

@@ -8,8 +8,8 @@ describe('AchievmentDetailsDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AchievmentDetailsDialogComponent]
-    })
+    declarations: [AchievmentDetailsDialogComponent]
+})
     .compileComponents();
     
     fixture = TestBed.createComponent(AchievmentDetailsDialogComponent);

@@ -8,8 +8,8 @@ describe('TeamCheckboxComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [TeamCheckboxComponent]
-    })
+    declarations: [TeamCheckboxComponent]
+})
     .compileComponents();
     
     fixture = TestBed.createComponent(TeamCheckboxComponent);
