@@ -71,14 +71,6 @@ const dummyProjects: ProjectItem[] = [
 const dummyCardProjects: ProjectsCardDetails = {
   currentProjects: [
     {
-      id: '1',
-      image: '/assets/images/projects/habsat-cansat/habsat-cansat-main.png',
-      title: 'HABSat oraz Cansat',
-      description: 'HABSAT to sonda stratosferyczna monitorująca atmosferę, a CANSAT to miniaturowy satelita testowany na różnych nośnikach. Oba projekty przesyłają dane w czasie rzeczywistym dzięki zaawansowanym czujnikom.',
-      team: 'OBC',
-      date: '01.10.2021'
-    },
-    {
       id: '2',
       image: '/assets/images/projects/rakieta/rakieta-main.jpg',
       title: 'Rakieta',
@@ -104,6 +96,14 @@ const dummyCardProjects: ProjectsCardDetails = {
     },
   ],
   finishedProjects: [
+    {
+      id: '1',
+      image: '/assets/images/projects/habsat-cansat/habsat-cansat-main.png',
+      title: 'HABSat oraz Cansat',
+      description: 'HABSAT to sonda stratosferyczna monitorująca atmosferę, a CANSAT to miniaturowy satelita testowany na różnych nośnikach. Oba projekty przesyłają dane w czasie rzeczywistym dzięki zaawansowanym czujnikom.',
+      team: 'OBC',
+      date: '01.10.2021',
+    },
   ]
 }
 
@@ -120,7 +120,7 @@ const dummyProjectDetails: ProjectDetailsItem[] = [
     ],
     date: '01.10.2021',
     teamPhoto: '/assets/images/projects/habsat-cansat/habsat-cansat-team.jpg',
-    status: 'Aktywny',
+    status: 'Zakończony',
     site: 'github.com/grupacosmo/cansat',
     siteUrl: 'https://github.com/grupacosmo/cansat',
     mainPhoto: '/assets/images/projects/habsat-cansat/habsat-cansat-main.png',
