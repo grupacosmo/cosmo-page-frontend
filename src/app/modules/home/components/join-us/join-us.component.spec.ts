@@ -8,8 +8,8 @@ describe('JoinUsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [JoinUsComponent]
-    })
+    declarations: [JoinUsComponent]
+})
     .compileComponents();
     
     fixture = TestBed.createComponent(JoinUsComponent);

@@ -8,8 +8,8 @@ describe('AchievmentsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AchievmentsComponent]
-    })
+    declarations: [AchievmentsComponent]
+})
     .compileComponents();
     
     fixture = TestBed.createComponent(AchievmentsComponent);
