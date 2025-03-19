@@ -13,6 +13,6 @@ export class JoinUsComponent {
     }
 
     protected openForm() {
-        window.open('https://forms.gle/FdwcQGdhW1aKxfYZ7', '_blank');
+        window.open('https://forms.gle/18KxKvX6rkyzu6cJA', '_blank');
     }
 }
