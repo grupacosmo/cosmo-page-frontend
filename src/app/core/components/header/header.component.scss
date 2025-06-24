@@ -10,7 +10,7 @@ header {
     height: $header-height;
     background-color: rgba(0, 0, 0, 0.15);
     display: flex;
-    padding: 2rem 6rem;
+    padding: 2rem;
     align-items: center;
     justify-content: space-between;
     user-select: none;
@@ -25,6 +25,15 @@ header {
     }
 
     nav {
+        display: flex;
+        align-items: center;
+        
+        .language-container {
+            margin-left: 6rem;
+            display: flex;
+            height: auto;
+        }
+        
         ul {
             display: flex;
             gap: 2rem;
@@ -111,9 +120,14 @@ header {
     header {
         padding: 2rem;
 
-        nav {
+        
+        nav {            
+            .language-container {
+                margin-left: 2rem;
+            }
+            
             .mobile {
-                display: block;
+                display: flex;
                 cursor: pointer;
 
                 mat-icon {

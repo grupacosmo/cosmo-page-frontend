@@ -12,6 +12,9 @@
         <button class="mobile" (click)="toggleMenu()">
             <mat-icon>{{ menuOpen ? 'close' : 'menu' }}</mat-icon>
         </button>
+        <div class="language-container">
+            <app-language-picker />
+        </div>
         <ul class="mobile-menu" [@slideInOut]="menuState">
             <li><a routerLink="/" routerLinkActive="active" (click)="toggleMenu()" class="item">Home</a></li>
             <li><a routerLink="/projects" routerLinkActive="active" (click)="toggleMenu()" class="item">Projekty</a></li>
