@@ -17,6 +17,7 @@ export class LanguagePickerComponent {
   readonly isOpen = signal<boolean>(false);
   readonly languages = signal<Language[]>(AVAILABLE_LANGUAGES);
   readonly currentLanguage: WritableSignal<Language>;
+  readonly isChangingLanguage = signal<boolean>(false);
 
   constructor(private languageService: LanguageService) {
     this.currentLanguage = this.languageService.currentLanguage;
@@ -31,7 +32,12 @@ export class LanguagePickerComponent {
   }
 
   selectLanguage(language: Language): void {
-    this.languageService.setLanguage(language.code);
-    this.closeDropdown();
+    if (language.code !== this.currentLanguage().code) {
+      this.isChangingLanguage.set(true);
+      this.isOpen.set(false);
+      this.languageService.setLanguage(language.code);
+    } else {
+      this.closeDropdown();
+    }
   }
 }

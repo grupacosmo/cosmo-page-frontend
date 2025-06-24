@@ -1,45 +1,50 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { TranslatePipe } from '../../../shared/pipes/translate/translate.pipe';
 
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
-  styleUrl: './footer.component.scss'
+  styleUrl: './footer.component.scss',
+  standalone: true,
+  imports: [CommonModule, RouterModule, TranslatePipe]
 })
 export class FooterComponent {
 
   protected columns = [
     {
-      header: 'Linki',
+      header: 'navigation.links',
       links: [
         {
-          name: 'Strona główna',
+          name: 'navigation.home',
           link: '/',
           external: false
         },
         {
-          name: 'Aktualności',
+          name: 'navigation.news',
           link: '/news',
           external: false
         },
         {
-          name: 'Zespół',
+          name: 'navigation.team',
           link: '/team',
           external: false
         },
         {
-          name: 'Projekty',
+          name: 'navigation.projects',
           link: '/projects',
           external: false
         },
         {
-          name: 'Osiągnięcia',
+          name: 'navigation.achievements',
           link: '/achievments',
           external: false
         },
       ].filter((c) => !['/achievments', '/news'].includes(c.link) )
     },
     {
-      header: 'Social media',
+      header: 'footer.followUs',
       links: [
         {
           name: 'Facebook',
@@ -59,7 +64,7 @@ export class FooterComponent {
       ]
     },
     {
-      header: 'Kontakt',
+      header: 'footer.contactUs',
       links: [
         {
           name: 'kolocosmopk@gmail.com',

@@ -1,0 +1,35 @@
+{
+  "common": {
+    "readMore": "Czytaj więcej",
+    "back": "Powrót",
+    "submit": "Wyślij",
+    "cancel": "Anuluj",
+    "save": "Zapisz",
+    "edit": "Edytuj",
+    "delete": "Usuń"
+  },
+  "navigation": {
+    "home": "Strona główna",
+    "projects": "Projekty",
+    "team": "Nasz Zespół",
+    "achievements": "Osiągnięcia",
+    "news": "Aktualności",
+    "contact": "Kontakt",
+    "links": "Linki"
+  },
+  "home": {
+    "welcome": "Witamy w Cosmic Space Organization",
+    "aboutUs": "O nas",
+    "ourMission": "Nasza Misja",
+    "joinUs": "Dołącz do nas",
+    "partners": "Nasi Partnerzy",
+    "latestProjects": "Najnowsze Projekty",
+    "latestNews": "Najnowsze Aktualności"
+  },
+  "footer": {
+    "address": "Adres",
+    "contactUs": "Skontaktuj się z nami",
+    "followUs": "Śledź nas",
+    "allRightsReserved": "Wszelkie prawa zastrzeżone"
+  }
+}
