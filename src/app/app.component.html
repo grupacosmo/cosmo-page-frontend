@@ -1,7 +1,10 @@
-@if (!isAdminPanel()) {
+@if(isLoading()) {
+    <img src="assets/images/logo_animated.svg" alt="" style="position: fixed; width: 100px; height: 120px; top: 50%; left: 50%; margin-top: -60px; margin-left: -50px;">
+}
+@if (!isAdminPanel() && !isLoading()) {
     <app-header />
 }
 <router-outlet></router-outlet>
-@if (!isAdminPanel()) {
+@if (!isAdminPanel() && !isLoading()) {
     <app-footer />
 }
