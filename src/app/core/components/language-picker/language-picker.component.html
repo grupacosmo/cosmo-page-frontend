@@ -1,0 +1,22 @@
+<div class="language-picker" (clickOutside)="closeDropdown()">
+  <div class="language-picker__selected" (click)="toggleDropdown()" [class.loading]="isChangingLanguage()">
+    <img [src]="currentLanguage().flag" alt="Selected language flag" class="language-picker__flag">
+    @if (isChangingLanguage()) {
+      <div class="language-picker__loading">
+        <span class="loading-spinner"></span>
+      </div>
+    }
+  </div>
+  <div class="language-picker__dropdown" [class.open]="isOpen()">
+    <ul class="language-picker__list">
+      @for (language of languages(); track language) {
+        <li class="language-picker__item"
+            (click)="selectLanguage(language)"
+            [class.selected]="currentLanguage().code === language.code">
+          <img [src]="language.flag" alt="{{ language.name | translate }} flag" class="language-picker__flag">
+          <span class="language-picker__name">{{ language.name | translate }}</span>
+        </li>
+      }
+    </ul>
+  </div>
+</div>

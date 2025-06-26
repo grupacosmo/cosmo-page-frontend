@@ -3,14 +3,15 @@ import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs';
 import { scrollTop } from './shared/helpers/navigationHelpers';
 import { CoreModule } from './core/core.module';
-import { NgIf } from '@angular/common';
+import { HeaderComponent } from './core/components/header/header.component';
+import { FooterComponent } from './core/components/footer/footer.component';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',
     standalone: true,
-    imports: [NgIf, CoreModule, RouterOutlet]
+    imports: [CoreModule, RouterOutlet, HeaderComponent, FooterComponent]
 })
 export class AppComponent {
   constructor(private router: Router) { }

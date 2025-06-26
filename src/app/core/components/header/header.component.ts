@@ -1,5 +1,10 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
+import { TranslatePipe } from '../../../shared/pipes/translate/translate.pipe';
+import { LanguagePickerComponent } from '../language-picker/language-picker.component';
 
 @Component({
   selector: 'app-header',
@@ -20,7 +25,10 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
         animate('0.5s ease-in')
       ])
     ])
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [CommonModule, RouterModule, MatIconModule, TranslatePipe, LanguagePickerComponent],
+  standalone: true
 })
 export class HeaderComponent {
   menuOpen = false;

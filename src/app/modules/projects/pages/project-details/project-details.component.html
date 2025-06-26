@@ -1,6 +1,6 @@
 <section class="banner">
     <section class="content">
-        <h1 class="title">Projekty</h1>
+        <h1 class="title">{{ 'navigation.projects' | translate }}</h1>
     </section>
 </section>
     
@@ -9,51 +9,51 @@
         <div class="projects-container main-card">
             @if (projectDetails) {
                 <section>
-                    <app-custom-button [routerLink]="['/projects']" [text]="'Wszystkie projekty'" [isSecondaryButton]="true" [backButton]="true"></app-custom-button>
+                    <app-custom-button [routerLink]="['/projects']" [text]="'projects.allProjects' | translate" [isSecondaryButton]="true" [backButton]="true" />
                 </section>
                 <section class="">
                     <div class="main-container-top">
                         <div class="main-container-left">
-                            <h1>{{ projectDetails.title }}</h1>
-                            <p>{{ projectDetails.shortDescrpiton }}</p>
-                            <p class="main-container-item"><img src="assets/images/icons/team.svg" alt="team">{{ teams }}</p>
-                            <p class="main-container-item"><img src="assets/images/icons/date.svg" alt="team">{{ projectDetails.date }}</p>
-                            <p class="main-container-item"><img src="assets/images/icons/project-status.svg" alt="team">{{ projectDetails.status }}</p>
-                            <a class="main-container-item" [attr.href]="projectDetails.siteUrl" target="_blank" rel="noopener noreferrer" *ngIf="projectDetails.site.length > 0"><img src="assets/images/icons/site.svg" alt="team">{{ projectDetails.site }}</a>
+                            <h1>{{ projectDetails.title | translate }}</h1>
+                            <p>{{ projectDetails.shortDescrpiton | translate }}</p>
+                            <p class="main-container-item"><img src="assets/images/icons/team.svg" alt="team">{{ teams | translate }}</p>
+                            <p class="main-container-item"><img src="assets/images/icons/date.svg" alt="team">{{ projectDetails.date | translate }}</p>
+                            <p class="main-container-item"><img src="assets/images/icons/project-status.svg" alt="team">{{ projectDetails.status | translate }}</p>
+                            <a class="main-container-item" [attr.href]="projectDetails.siteUrl" target="_blank" rel="noopener noreferrer" *ngIf="projectDetails.site.length > 0"><img src="assets/images/icons/site.svg" alt="team">{{ projectDetails.site | translate }}</a>
                         </div>
                         <div class="main-container-right">
                             <img class="image" [src]="projectDetails.mainPhoto" alt="project-photo" />
-                            <p class="photo-description">{{ projectDetails.mainPhotoDescription }}</p>
+                            <p class="photo-description">{{ projectDetails.mainPhotoDescription | translate }}</p>
                         </div>
                     </div>
                     <div class="main-container-bottom">
-                        <h2>{{ text.description }}</h2>
-                        <p>{{ projectDetails.description }}</p>
+                        <h2>{{ text.description | translate }}</h2>
+                        <p>{{ projectDetails.description | translate }}</p>
                     </div>
                 </section>
                 <hr class="divider"/>
                 <section>
                     <div class="experiment-container">  
                         <div class="experiment-container-left">
-                            <h2>{{ text.experiment }}</h2>
-                            <p>{{ projectDetails.experimentDescription }}</p>
+                            <h2>{{ text.experiment | translate }}</h2>
+                            <p>{{ projectDetails.experimentDescription | translate }}</p>
                         </div>
                         <div class="experiment-container-right">
                             <img class="image" [src]="projectDetails.photos[0]" alt="experiment-photos" />
-                            <p class="photo-description">{{ projectDetails.photosDescriptions[0] }}</p>
+                            <p class="photo-description">{{ projectDetails.photosDescriptions[0] | translate }}</p>
                         </div>
                     </div>
                 </section>
                 <hr class="divider"/>
                 <section>
-                    <h2>{{ text.team }}</h2>
+                    <h2>{{ text.team | translate }}</h2>
                     <div class="teams-container">
                         <div class="teams-container-left">
                             <img class="image" [src]="projectDetails.teamPhoto" alt="team-photo">
                         </div>
                         <div class="teams-container-right">
                             @for (team of projectDetails.teams; track team.name) {
-                                <h3>{{ team.name }}</h3>
+                                <h3>{{ team.name | translate }}</h3>
                                 <hr>
                                 <ul>
                                     <li *ngFor="let member of team?.members">
@@ -70,7 +70,7 @@
             } @else {
                 <section>
                     <div class="unexpected-error">
-                        Wystąpił niespodziewany błąd
+                        {{ 'common.unexpectedErrorOccured' | translate }}
                     </div>
                 </section>
             }

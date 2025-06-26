@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class PartnersComponent {
   protected text = {
-    title: 'Partnerzy'
+    title: 'common.partners',
   }
 
   protected partners = [

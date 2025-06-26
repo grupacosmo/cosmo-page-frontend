@@ -17,10 +17,10 @@ export class ProjectDetailsComponent implements OnInit {
   teams = '';
 
   protected text = {
-    backToProjects: 'Wszystkie projety',
-    description: 'Opis projektu',
-    experiment: 'Eksperyment',
-    team: 'Zespół'
+    backToProjects: 'projects.allProjects',
+    description: 'projects.projectDescription',
+    experiment: 'common.experiment',
+    team: 'common.team',
   }
 
   private readonly route = inject(ActivatedRoute);
