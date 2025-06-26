@@ -14,8 +14,8 @@ export class HomeComponent {
   @ViewChild('joinUsSection', { static: true }) joinUsSection!: ElementRef;
 
   protected text = {
-    description: 'Studenckie koło naukowe Politechniki Krakowskiej',
-    joinUs: 'Dołącz do nas'
+    description: 'home.name',
+    joinUs: 'home.joinUs'
   }
 
   protected socialMedia = [

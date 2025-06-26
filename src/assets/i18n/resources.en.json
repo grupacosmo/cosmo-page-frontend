@@ -1,12 +1,22 @@
 {
   "common": {
     "readMore": "Read more",
+    "readMore2": "Read more",
+    "fillForm": "Fill out the form",
     "back": "Back",
     "submit": "Submit",
     "cancel": "Cancel",
     "save": "Save",
     "edit": "Edit",
-    "delete": "Delete"
+    "delete": "Delete",
+    "partners": "Partners",
+    "current": "Current",
+    "completed": "Completed",
+    "experiment": "Experiment",
+    "team": "Team",
+    "unexpectedErrorOccured": "An unexpected error occurred.",
+    "polish": "Polish",
+    "english": "English"
   },
   "navigation": {
     "home": "Home",
@@ -18,6 +28,11 @@
     "links": "Links"
   },
   "home": {
+    "name": "Student scientific club of the Krakow University of Technology",
+    "aboutUsDescription": "We are a group of students from different faculties, with different skills, who have one thing in common – an interest in space. We have been operating at the Krakow University of Technology since 2019, we have completed projects and plans to implement more. We are currently building the first sounding rocket, a glider drone and we are designing an educational computer game.",
+    "meetOurTeam": "Meet our team",
+    "joinCosmo": "JOIN COSMO PK",
+    "joinCosmoDescription": "If you want to join one of our projects or have your own idea, send us your application - we will contact you",
     "welcome": "Welcome to Cosmic Space Organization",
     "aboutUs": "About Us",
     "ourMission": "Our Mission",
@@ -25,6 +40,44 @@
     "partners": "Our Partners",
     "latestProjects": "Latest Projects",
     "latestNews": "Latest News"
+  },
+  "projects": {
+    "allProjects": "All Projects",
+    "projectDescription": "Project description",
+    "mocks": {
+      "rakietaTitle": "Rocket",
+      "rakietaDescription": "The 'Rocket' project involves creating a rocket with its own engine and onboard computer, allowing full flight control and real-time parameter analysis, which increases mission safety and precision.",
+      "rakietaTeam": "Rocket Team",
+      "cosmoBotTitle": "CosmoBot Game",
+      "cosmoBotDescription": "An educational simulation game where players program autonomous robots to build a base on an alien planet. Develop logical skills and learn physics through exploration, resource extraction, and team management.",
+      "cosmoBotTeam": "GameDev",
+      "dronTitle": "Drone",
+      "dronDescription": "The drone project involves building a glider aircraft that will be used for terrain observation and cargo transport, utilizing advanced technologies and aerodynamic simulations.",
+      "dronTeam": "Drone Team",
+      "habsatTitle": "HABSat and Cansat",
+      "habsatDescription": "HABSAT is a stratospheric probe monitoring the atmosphere, while CANSAT is a miniature satellite tested on various carriers. Both projects transmit data in real-time thanks to advanced sensors.",
+      "habsatTeam": "OBC",
+      "habsatDetailsDescriptionShort": "HABSAT is a stratospheric research probe in cubesat standard, monitoring atmospheric phenomena, and CANSAT is a miniature can-sized satellite that can be tested on rockets, drones, and balloons. Both projects enable real-time data transmission thanks to advanced sensors and communication systems.",
+      "habsatDetailsMainPhotoDescription": "Photo taken from HABsat probe",
+      "habsatDetailsDescription": "The HABSAT and CANSAT projects are initiatives aimed at developing miniature research devices adapted for atmospheric observation from high altitudes. HABSAT is a stratospheric probe constructed according to the cubesat standard, whose main component is an onboard computer based on the STM32 microcontroller. Equipped with pressure sensors, temperature, accelerometer, and GPS module, the HABSAT probe collects and transmits data in real-time to the ground station via LoRa protocol. CANSAT, with dimensions of a standard can, performs similar functions, but its compact size allows testing in a wide range of applications – from balloon flights to drones. Thanks to the styrofoam housing, HABSAT is well insulated and protected during landing.",
+      "habsatDetailsExperimentDescription": "The experiment using HABSAT and CANSAT includes operational and environmental tests, during which the communication system performance, device stability in various atmospheric conditions, and accuracy of collected data will be verified. As part of the experiments, HABSAT will be launched to stratospheric altitude using a balloon, and CANSAT will conduct tests in various carrier configurations, such as balloon or drone, to assess its versatility and resistance to external conditions.",
+      "subteamPhoto": "Subteam photo",
+      "rakietaDetailsDescriptionShort": "The 'Rocket' project involves creating a rocket with its own engine and onboard computer, allowing full flight control and real-time parameter analysis, which increases mission safety and precision.",
+      "rakietaDetailsMainPhotoDescription": "Rocket",
+      "rakietaDetailsDescription": "The 'Rocket' project is an ambitious initiative implemented by our scientific club, aimed at creating an advanced research rocket capable of autonomous flight and monitoring key parameters in real-time. The project focuses on developing a proprietary rocket engine, powered by fuel created by our team, which gives full control over the propulsion process. This allows precise adjustment of flight characteristics to mission tasks and objectives, which is a big step towards optimizing performance and system reliability. In the current version of the rocket, an onboard computer designed from scratch on a special PCB board made in SMD technology has been used. Thanks to programming the system in C++, the onboard computer enables precise flight parameter tracking and constant radio communication with the base station. Advanced onboard electronics allow dynamic response to changing flight conditions, increasing the precision and safety of conducted missions. After already conducted engine tests, the team has solid foundations for further project development, which opens new possibilities in rocket technology and autonomous flight research.",
+      "rakietaDetailsExperimentDescription": "The experiment involves conducting a functionality test of the rocket with proprietary engine and onboard computer, aimed at verifying flight stability, propulsion efficiency, and real-time parameter monitoring capabilities. During the test, data regarding altitude, velocity, acceleration, and atmospheric conditions will be collected. A rocket launch will be conducted, during which the onboard computer will analyze and transmit data to the ground station, allowing evaluation of the control system performance and response to changing flight conditions. Based on the experiment results, the team will assess whether the rocket meets the assumed parameters and determine potential improvements in construction and software.",
+      "cosmoBotDetailsDescriptionShort": "An educational simulation game where players program autonomous robots to build a base on an alien planet. Develop logical skills and learn physics through exploration, resource extraction, and robot team management.",
+      "cosmoBotDetailsMainPhotoDescription": "Graphics depicting a space mission in the Cosmobot game",
+      "cosmoBotDetailsDescription": "Cosmobot is an educational strategy game aimed at teaching players to conduct space missions using programmable robots. The player takes on the role of commander of a team of autonomous robots, whose task is to explore and build a base on an alien planet. To complete missions, players must program robots for tasks such as resource extraction, material transport, and defense against threats. Cosmobot combines learning with entertainment, using mechanics inspired by games like Factorio and GLADIABOTS. The game allows developing logical thinking, algorithmics, and programming skills by solving complex problems and technological challenges.",
+      "cosmoBotDetailsExperimentDescription": "The experiment involves testing various scenarios in the game to verify the effectiveness of teaching programming basics and resource management in simulated space mission conditions. The player programs autonomous robots to perform tasks such as construction, extraction, and base defense, and the experiment results will determine how effectively players learn through the game and how its educational value can be increased.",
+      "cosmoBotDetailsModelsFromGame": "Models from the game",
+      "cosmoBotDetailsResources": "Resource extraction by robots",
+      "dronDetailsDescriptionShort": "The drone project involves building a glider aircraft that will be used for terrain observation and cargo transport, utilizing advanced technologies and aerodynamic simulations.",
+      "dronDetailsMainPhotoDescription": "Graphics depicting the drone project",
+      "dronDetailsDescription": "The Drone project is an advanced glider platform aimed at conducting observation and cargo transport. The engineering team develops the drone using tools such as ANSYS Workbench and Inventor, allowing for aerodynamic simulations and construction strength optimization. The drone construction is based on fiberglass and 3D printing technology, ensuring lightness and durability. The project assumes creating a universal platform that, thanks to its light and durable construction, will be suitable for both observation and transport missions.",
+      "dronDetailsExperimentDescription": "The experiment involves testing a miniature drone model to verify the aerodynamic and structural assumptions of the project. The model will undergo a series of test flights, during which parameters such as stability, lift capacity, and response to various atmospheric conditions will be monitored, allowing optimization of the full-scale drone project.",
+      "dronDetails3dPrint": "3D printed drone part"
+    }
   },
   "footer": {
     "address": "Address",

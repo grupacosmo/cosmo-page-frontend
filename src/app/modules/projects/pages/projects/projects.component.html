@@ -1,7 +1,7 @@
 
 <section class="banner">
     <section class="content">
-        <h1 class="title">Projekty</h1>
+        <h1 class="title">{{ 'navigation.projects' | translate }}</h1>
     </section>
 </section>
     
@@ -9,17 +9,17 @@
     <main class="main-container">
         <div class="projects-container main-card">
             <app-tabs>
-                <app-tab headerTitle="Aktualne">
+                <app-tab [headerTitle]="'common.current' | translate">
                     <section>
                         @if (projects$ | async; as projects) {
-                            <app-project-card *ngFor="let project of projects.currentProjects" [project]="project"></app-project-card>
+                            <app-project-card *ngFor="let project of projects.currentProjects" [project]="project" />
                         }
                     </section>
                 </app-tab>
-                <app-tab headerTitle="Zakończone">
+                <app-tab [headerTitle]="'common.completed' | translate">
                     <section>
                         @if (projects$ | async; as projects) {
-                            <app-project-card *ngFor="let project of projects.finishedProjects" [project]="project"></app-project-card>
+                            <app-project-card *ngFor="let project of projects.finishedProjects" [project]="project" />
                         }
                     </section>
                 </app-tab>

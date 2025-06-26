@@ -2,7 +2,7 @@
 <section class="banner">
     <section class="content">
         <h1 class="logo">COSMO PK</h1>
-        <p>{{ text.description }}</p>
+        <p>{{ text.description | translate }}</p>
         <div class="social-media">
             @for (media of socialMedia; track media.icon) {
                 <a [href]="media.href" target="_blank" rel="noreferrer">
@@ -10,7 +10,7 @@
                 </a>
             }
         </div>
-        <app-custom-button class="join-us" [text]="text.joinUs" (click)="scrollToJoinUs()"></app-custom-button>
+        <app-custom-button class="join-us" [text]="text.joinUs | translate" (click)="scrollToJoinUs()"></app-custom-button>
     </section>
 </section>
 
@@ -18,7 +18,7 @@
     <main class="main-container">
         <div class="main-card">
             <section>
-                <app-about-us></app-about-us>
+                <app-about-us />
             </section>
             <hr class="divider"/>
             <!-- <section>
@@ -26,15 +26,15 @@
             </section> -->
             <hr class="divider"/>
             <section>
-                <app-projects-home></app-projects-home>
+                <app-projects-home />
             </section>
             <hr class="divider"/>
             <section #joinUsSection>
-                <app-join-us></app-join-us>
+                <app-join-us />
             </section>
             <hr class="divider"/>
             <section>
-                <app-partners></app-partners> 
+                <app-partners />
             </section>
         </div>
     </main>

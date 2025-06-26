@@ -7,9 +7,9 @@ import {Component} from '@angular/core';
 })
 export class JoinUsComponent {
     protected text = {
-        joinCosmo: 'DOŁĄCZ DO COSMO PK',
-        summary: 'Jeśli chcesz się przyłączyć do jednego z naszych projektów lub masz własny pomysł, wyślij nam swoje zgłoszenie – odezwiemy się do Ciebie',
-        learnMore: 'Wypełnij formularz',
+        joinCosmo: 'home.joinCosmo',
+        summary: 'home.joinCosmoDescription',
+        learnMore: 'common.fillForm',
     }
 
     protected openForm() {

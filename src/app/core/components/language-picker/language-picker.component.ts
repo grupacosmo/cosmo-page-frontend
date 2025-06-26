@@ -4,11 +4,12 @@ import { LanguageService } from '../../services/language/language.service';
 import { ClickOutsideDirective } from '../../../shared/directives/click-outside.directive';
 import { Language } from '../../models/language/language';
 import { AVAILABLE_LANGUAGES } from '../../constants/available-languages';
+import { TranslatePipe } from 'src/app/shared/pipes/translate/translate.pipe';
 
 @Component({
   selector: 'app-language-picker',
   standalone: true,
-  imports: [CommonModule, ClickOutsideDirective],
+  imports: [CommonModule, ClickOutsideDirective, TranslatePipe],
   templateUrl: './language-picker.component.html',
   styleUrl: './language-picker.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

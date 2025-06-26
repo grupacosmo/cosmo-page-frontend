@@ -73,25 +73,25 @@ const dummyCardProjects: ProjectsCardDetails = {
     {
       id: '2',
       image: '/assets/images/projects/rakieta/rakieta-main.jpg',
-      title: 'Rakieta',
-      description: 'Projekt "Rakieta" polega na stworzeniu rakiety z własnym silnikiem i komputerem pokładowym, umożliwiającym pełną kontrolę lotu i analizę parametrów w czasie rzeczywistym, co zwiększa bezpieczeństwo i precyzję misji.',
-      team: 'Zespół Rakieta',
+      title: 'projects.mocks.rakietaTitle',
+      description: 'projects.mocks.rakietaDescription',
+      team: 'projects.mocks.rakietaTeam',
       date: '01.01.2023'
     },
     {
       id: '3',
       image: '/assets/images/projects/gra/gra-main.png',
-      title: 'Gra CosmoBot',
-      description: 'Edukacyjna gra symulacyjna, w której gracze programują autonomiczne roboty do budowy bazy na obcej planecie. Rozwijaj umiejętności logiczne i ucz się fizyki poprzez eksplorację, wydobycie zasobów i zarządzanie zespołem robotów.',
-      team: 'GameDev',
+      title: 'projects.mocks.cosmoBotTitle',
+      description: 'projects.mocks.cosmoBotDescription',
+      team: 'projects.mocks.cosmoBotTeam',
       date: '02.05.2023'
     },
     {
       id: '4',
       image: '/assets/images/projects/dron/dron-main.png',
-      title: 'Dron',
-      description: 'Projekt drona polega na budowie statku szybowcowego, który będzie służył do obserwacji terenu i transportu ładunków, z wykorzystaniem zaawansowanych technologii i symulacji aerodynamicznych.',
-      team: 'Zespół Dron',
+      title: 'projects.mocks.dronTitle',
+      description: 'projects.mocks.dronDescription',
+      team: 'projects.mocks.dronTeam',
       date: '01.04.2023'
     },
   ],
@@ -99,9 +99,9 @@ const dummyCardProjects: ProjectsCardDetails = {
     {
       id: '1',
       image: '/assets/images/projects/habsat-cansat/habsat-cansat-main.png',
-      title: 'HABSat oraz Cansat',
-      description: 'HABSAT to sonda stratosferyczna monitorująca atmosferę, a CANSAT to miniaturowy satelita testowany na różnych nośnikach. Oba projekty przesyłają dane w czasie rzeczywistym dzięki zaawansowanym czujnikom.',
-      team: 'OBC',
+      title: 'projects.mocks.habsatTitle',
+      description: 'projects.mocks.habsatDescription',
+      team: 'projects.mocks.habsatTeam',
       date: '01.10.2021',
     },
   ]
@@ -110,33 +110,33 @@ const dummyCardProjects: ProjectsCardDetails = {
 const dummyProjectDetails: ProjectDetailsItem[] = [
   {
     id: '1',
-    title: 'HABSat oraz Cansat',
-    shortDescrpiton: 'HABSAT to stratosferyczna sonda badawcza w standardzie cubesat, monitorująca zjawiska atmosferyczne, a CANSAT to miniaturowy satelita wielkości puszki, który może być testowany na rakietach, dronach i balonach. Oba projekty umożliwiają transmisję danych w czasie rzeczywistym dzięki zaawansowanym czujnikom i systemom komunikacyjnym.',
+    title: 'projects.mocks.habsatTitle',
+    shortDescrpiton: 'projects.mocks.habsatDetailsDescriptionShort',
     teams: [
       {
-        name: 'OBC',
+        name: 'projects.mocks.habsatTeam',
         members: ['mgr. inż. Filip Zyga', 'inż. Julia Słowikowska', 'inż. Wiktor Więcław', 'Damian Kluczyński', 'Dariusz Surdel', 'Jakub Kubica', 'Kamil Dziedzic', 'Maciej Rybiński', 'Piotr Skała']
       }
     ],
     date: '01.10.2021',
     teamPhoto: '/assets/images/projects/habsat-cansat/habsat-cansat-team.jpg',
-    status: 'Zakończony',
+    status: 'common.completed',
     site: 'github.com/grupacosmo/cansat',
     siteUrl: 'https://github.com/grupacosmo/cansat',
     mainPhoto: '/assets/images/projects/habsat-cansat/habsat-cansat-main.png',
-    mainPhotoDescription: 'Zdjęcie wykonane z sondy HABsat',
-    description: 'Projekt HABSAT i CANSAT to inicjatywy mające na celu rozwój miniaturowych urządzeń badawczych przystosowanych do obserwacji atmosfery z dużych wysokości. HABSAT jest stratosferyczną sondą skonstruowaną zgodnie ze standardem cubesat, której głównym elementem jest komputer pokładowy oparty na mikrokontrolerze STM32. Wyposażona w czujniki ciśnienia, temperatury, akcelerometr oraz moduł GPS, sonda HABSAT zbiera i przekazuje dane w czasie rzeczywistym do stacji naziemnej przez protokół LoRa. CANSAT, o rozmiarach standardowej puszki, pełni podobne funkcje, lecz jego kompaktowy rozmiar pozwala na testowanie w szerokim zakresie zastosowań – od lotów balonowych po drony. Dzięki styropianowej obudowie HABSAT jest dobrze izolowany i chroniony podczas lądowania.',
-    experimentDescription: 'Eksperyment z wykorzystaniem HABSAT i CANSAT obejmuje testy operacyjne i środowiskowe, podczas których sprawdzana będzie wydajność systemu komunikacji, stabilność urządzeń w różnych warunkach atmosferycznych oraz dokładność zbieranych danych. W ramach eksperymentów HABSAT zostanie wypuszczony na wysokość stratosferyczną za pomocą balonu, a CANSAT przeprowadzi testy w różnych konfiguracjach nośników, takich jak balon czy dron, w celu oceny jego uniwersalności i odporności na warunki zewnętrzne.',
+    mainPhotoDescription: 'projects.mocks.habsatDetailsMainPhotoDescription',
+    description: 'projects.mocks.habsatDetailsDescription',
+    experimentDescription: 'projects.mocks.habsatDetailsExperimentDescription',
     photos: ['/assets/images/projects/habsat-cansat/habsat-cansat-eksperyment.jpg'],
-    photosDescriptions: ['Zdjęcie podzespołu']
+    photosDescriptions: ['projects.mocks.subteamPhoto']
   },
   {
     id: '2',
-    title: 'Rakieta',
-    shortDescrpiton: 'Projekt "Rakieta" polega na stworzeniu rakiety z własnym silnikiem i komputerem pokładowym, umożliwiającym pełną kontrolę lotu i analizę parametrów w czasie rzeczywistym, co zwiększa bezpieczeństwo i precyzję misji.',
+    title: 'projects.mocks.rakietaTitle',
+    shortDescrpiton: 'projects.mocks.rakietaDetailsDescriptionShort',
     teams: [
       {
-        name: 'Zespół Rakieta',
+        name: 'projects.mocks.rakietaTeam',
         members: [
           'Bartosz Słowik', 'Patryk Paluch', 'Michał Mruk', 'Michał Brzeziński', 'Aleksy Biela', 'Anna Derela',
           'Paweł Niedziela', 'Filip Szwed', 'Aleksander Roman', 'Karol Wypasek', 'Piotr Sus',
@@ -146,23 +146,23 @@ const dummyProjectDetails: ProjectDetailsItem[] = [
     ],
     date: '01.01.2023',
     teamPhoto: '/assets/images/projects/rakieta/rakieta-team.png',
-    status: 'Aktywny',
+    status: 'common.current',
     site: 'github.com/grupacosmo/cosmorocket',
     siteUrl: 'https://github.com/grupacosmo/cosmorocket',
     mainPhoto: '/assets/images/projects/rakieta/rakieta-main.jpg',
-    mainPhotoDescription: 'Rakieta',
-    description: 'Projekt "Rakieta" to ambitna inicjatywa realizowana przez nasze koło naukowe, której celem jest stworzenie zaawansowanej rakiety badawczej, zdolnej do autonomicznego lotu i monitorowania kluczowych parametrów w czasie rzeczywistym. Projekt skupia się na opracowaniu autorskiego silnika rakietowego, zasilanego paliwem stworzonym przez nasz zespół, co daje pełną kontrolę nad procesem napędowym. Pozwala to precyzyjnie dostosować charakterystykę lotu do zadań i celów misji, co jest dużym krokiem w stronę optymalizacji wydajności oraz niezawodności systemu. W obecnej wersji rakiety zastosowano zaprojektowany od podstaw komputer pokładowy na specjalnej płytce PCB wykonanej w technologii SMD. Dzięki zaprogramowaniu systemu w języku C++, komputer pokładowy umożliwia precyzyjne śledzenie parametrów lotu oraz stałą łączność radiową ze stacją bazową. Zaawansowana elektronika pokładowa pozwala dynamicznie reagować na zmienne warunki lotu, zwiększając precyzję i bezpieczeństwo przeprowadzanych misji. Po przeprowadzonych już testach silnika zespół posiada solidne podstawy do dalszego rozwoju projektu, który otwiera nowe możliwości w zakresie technologii rakietowych i badań nad autonomicznym lotem',
-    experimentDescription: 'Eksperyment polega na przeprowadzeniu testu funkcjonalności rakiety z autorskim silnikiem i komputerem pokładowym, mającym na celu weryfikację stabilności lotu, efektywności napędu oraz możliwości monitorowania parametrów w czasie rzeczywistym. W trakcie testu zbierane będą dane dotyczące wysokości, prędkości, przyspieszenia i warunków atmosferycznych. Przeprowadzony zostanie start rakiety, podczas którego komputer pokładowy będzie analizował oraz przekazywał dane do stacji naziemnej, co pozwoli na ocenę wydajności systemu sterowania i reagowanie na zmienne warunki lotu. Na podstawie wyników eksperymentu zespół oceni, czy rakieta spełnia zakładane parametry i określi potencjalne usprawnienia w konstrukcji i oprogramowaniu.',
+    mainPhotoDescription: 'projects.mocks.rakietaDetailsMainPhotoDescription',
+    description: 'projects.mocks.rakietaDetailsDescription',
+    experimentDescription: 'projects.mocks.rakietaDetailsExperimentDescription',
     photos: ['/assets/images/projects/rakieta/rakieta-eksperyment.jpg'],
-    photosDescriptions: ['Zdjęcie podzespołu']
+    photosDescriptions: ['projects.mocks.subteamPhoto']
   },
   {
     id: '3',
-    title: 'Cosmobot - Gra Edukacyjna',
-    shortDescrpiton: 'Edukacyjna gra symulacyjna, w której gracze programują autonomiczne roboty do budowy bazy na obcej planecie. Rozwijaj umiejętności logiczne i ucz się fizyki poprzez eksplorację, wydobycie zasobów i zarządzanie zespołem robotów.',
+    title: 'projects.mocks.cosmoBotTitle',
+    shortDescrpiton: 'projects.mocks.cosmoBotDetailsDescriptionShort',
     teams: [
       {
-        name: 'GameDev',
+        name: 'projects.mocks.cosmoBotTeam',
         members: [
           'Patryk Paluch', 'Adam Kiraly', 'Kacper Lewandowski', 'Filip Krasoń', 'Piotr Nycz', 
           'Bartosz Krzyk', 'Kamil Włodarczyk', 'Tomasz Kisiel'
@@ -171,23 +171,23 @@ const dummyProjectDetails: ProjectDetailsItem[] = [
     ],
     date: '01.10.2023',
     teamPhoto: '/assets/images/projects/gra/gra-team.png',
-    status: 'Aktywny',
+    status: 'common.current',
     site: 'github.com/grupacosmo/cosmobot',
     siteUrl: 'https://github.com/grupacosmo/cosmobot',
     mainPhoto: '/assets/images/projects/gra/gra-main.png',
-    mainPhotoDescription: 'Grafika przedstawiająca misję kosmiczną w grze Cosmobot',
-    description: 'Cosmobot to edukacyjna gra strategiczna, której celem jest nauczenie graczy przeprowadzania misji kosmicznych przy użyciu programowalnych robotów. Gracz wciela się w rolę dowódcy zespołu autonomicznych robotów, których zadaniem jest eksploracja oraz budowa bazy na obcej planecie. Aby ukończyć misje, gracze muszą programować roboty do takich zadań jak wydobycie zasobów, transport materiałów i obrona przed zagrożeniami. Cosmobot łączy naukę z rozrywką, wykorzystując mechaniki inspirowane grami takimi jak Factorio i GLADIABOTS. Gra pozwala na rozwijanie umiejętności logicznego myślenia, algorytmiki i programowania poprzez rozwiązywanie złożonych problemów i wyzwań technologicznych.',
-    experimentDescription: 'Eksperyment polega na testowaniu różnych scenariuszy w grze, aby zweryfikować skuteczność nauczania podstaw programowania i zarządzania zasobami w symulowanych warunkach misji kosmicznej. Gracz programuje autonomiczne roboty do realizacji zadań takich jak budowa, wydobycie i obrona bazy, a wyniki eksperymentu pozwolą określić, jak efektywnie gracze uczą się poprzez grę i jak można zwiększyć jej walory edukacyjne.',
+    mainPhotoDescription: 'projects.mocks.cosmoBotDetailsMainPhotoDescription',
+    description: 'projects.mocks.cosmoBotDetailsDescription',
+    experimentDescription: 'projects.mocks.cosmoBotDetailsExperimentDescription',
     photos: ['/assets/images/projects/gra/gra-eksperyment.png'],
-    photosDescriptions: ['Modele z gry', 'Wydobycie zasobów przez roboty']
+    photosDescriptions: ['projects.mocks.cosmoBotDetailsModelsFromGame', 'projects.mocks.cosmoBotDetailsResources']
   },
   {
     id: '4',
-    title: 'Dron',
-    shortDescrpiton: 'Projekt drona polega na budowie statku szybowcowego, który będzie służył do obserwacji terenu i transportu ładunków, z wykorzystaniem zaawansowanych technologii i symulacji aerodynamicznych.',
+    title: 'projects.mocks.dronTitle',
+    shortDescrpiton: 'projects.mocks.dronDetailsDescriptionShort',
     teams: [
       {
-        name: 'Zespół Dron',
+        name: 'projects.mocks.dronTeam',
         members: [
           'Patryk Kusper', 'Mateusz Bielat', 'Kinga Kaim', 'Anna Derela', 'Łukasz Budziński', 
           'Konrad Synowiec', 'Damian Kluczyński'
@@ -196,14 +196,14 @@ const dummyProjectDetails: ProjectDetailsItem[] = [
     ],
     date: '01.04.2023',
     teamPhoto: '/assets/images/projects/dron/dron-team.png',
-    status: 'Aktywny',
+    status: 'common.current',
     site: '',
     siteUrl: '',
     mainPhoto: '/assets/images/projects/dron/dron-main.png',
-    mainPhotoDescription: 'Grafika przedstawiająca projekt drona',
-    description: 'Projekt Dron to zaawansowana platforma szybowcowa, której celem jest przeprowadzanie obserwacji i transport ładunków. Zespół inżynierów opracowuje drona z użyciem narzędzi takich jak ANSYS Workbench i Inventor, pozwalających na symulacje aerodynamiczne i optymalizację wytrzymałości konstrukcji. Konstrukcja drona opiera się na włóknie szklanym oraz technologii druku 3D, co zapewnia lekkość i wytrzymałość. Projekt zakłada stworzenie uniwersalnej platformy, która dzięki lekkiej i wytrzymałej konstrukcji, będzie odpowiednia zarówno do misji obserwacyjnych, jak i transportowych.',
-    experimentDescription: 'Eksperyment polega na testowaniu miniaturowego modelu drona w celu weryfikacji założeń aerodynamicznych oraz wytrzymałościowych projektu. Model zostanie poddany serii lotów testowych, podczas których monitorowane będą takie parametry jak stabilność, nośność oraz reakcja na różne warunki atmosferyczne, co pozwoli na optymalizację projektu pełnowymiarowego drona.',
+    mainPhotoDescription: 'projects.mocks.dronDetailsMainPhotoDescription',
+    description: 'projects.mocks.dronDetailsDescription',
+    experimentDescription: 'projects.mocks.dronDetailsExperimentDescription',
     photos: ['/assets/images/projects/dron/dron-eksperyment.jpg'],
-    photosDescriptions: ['Wydrukowana za pomoca druku 3D część drona']
+    photosDescriptions: ['projects.mocks.dronDetails3dPrint']
   }
 ];

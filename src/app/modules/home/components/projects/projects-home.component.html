@@ -1,6 +1,6 @@
 <header>
-    <h2>{{ text.title }}</h2>
-    <app-custom-button [routerLink]="['/projects']" class="join-us" [text]="text.allProjects" [isSecondaryButton]="true"></app-custom-button>
+    <h2>{{ text.title | translate }}</h2>
+    <app-custom-button [routerLink]="['/projects']" class="join-us" [text]="text.allProjects | translate" [isSecondaryButton]="true" />
 </header>
 @if (projects$ | async; as projects) {
     <section class="projects-container">

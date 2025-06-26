@@ -13,8 +13,8 @@
         <li class="language-picker__item"
             (click)="selectLanguage(language)"
             [class.selected]="currentLanguage().code === language.code">
-          <img [src]="language.flag" alt="{{ language.name }} flag" class="language-picker__flag">
-          <span class="language-picker__name">{{ language.name }}</span>
+          <img [src]="language.flag" alt="{{ language.name | translate }} flag" class="language-picker__flag">
+          <span class="language-picker__name">{{ language.name | translate }}</span>
         </li>
       }
     </ul>

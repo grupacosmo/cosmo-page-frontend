@@ -1,8 +1,8 @@
 <div class="container">
     <img src="https://cdn-icons-png.freepik.com/512/5537/5537993.png"/>
     <div class="content">
-        <h1 class="title">{{ text.joinCosmo }}</h1>
-        <p>{{ text.summary }}</p>
-        <app-custom-button [text]="text.learnMore" (click)="openForm()"></app-custom-button>
+        <h1 class="title">{{ text.joinCosmo | translate }}</h1>
+        <p>{{ text.summary | translate }}</p>
+        <app-custom-button [text]="text.learnMore | translate" (click)="openForm()"></app-custom-button>
     </div>
 </div>

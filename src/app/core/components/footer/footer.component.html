@@ -6,7 +6,7 @@
                 <ul>
                     @for (link of column.links; track link) {
                         @if (link.external) {
-                            <a [href]="link.link" target="_blank" rel="noopener noreferrer">{{ link.name }}</a>
+                            <a [href]="link.link" target="_blank" rel="noopener noreferrer">{{ link.name | translate }}</a>
                         } @else {
                             <a [routerLink]="link.link">{{ link.name | translate }}</a>
                         }

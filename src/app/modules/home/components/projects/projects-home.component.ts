@@ -15,8 +15,8 @@ export class ProjectsHomeComponent implements OnInit {
   protected projects$!: Observable<ProjectItem[]>;
 
   protected text = {
-    title: 'Projekty',
-    allProjects: 'Wszystkie projekty'
+    title: 'navigation.projects',
+    allProjects: 'projects.allProjects',
   }
 
   ngOnInit(): void {
