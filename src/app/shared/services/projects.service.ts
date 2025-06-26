@@ -53,7 +53,7 @@ const dummyProjects: ProjectItem[] = [
     },
     {
       id: '2',
-      title: 'RAKIETA',
+      title: 'projects.mocks.rakietaTitle',
       url: '/assets/images/projects/rakieta/rakieta-main.jpg'
     },
     {
@@ -63,7 +63,7 @@ const dummyProjects: ProjectItem[] = [
     },
     {
       id: '4',
-      title: 'DRON',
+      title: 'projects.mocks.dronTitle',
       url: '/assets/images/projects/dron/dron-main.png'
     },
 ];
