@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { NewsItem, NewsService } from 'src/app/shared/services/news.service';
+import { Component, inject, OnInit } from '@angular/core';
+import { NewsService } from 'src/app/shared/services/news.service';
 import { Observable } from 'rxjs';
+import { NewsItem } from '../../models/news';
+import { getNewsImage } from '../../helpers/imageHelper';
 
 @Component({
   selector: 'app-news-summary',
@@ -8,6 +10,8 @@ import { Observable } from 'rxjs';
   styleUrl: './news-summary.component.scss'
 })
 export class NewsSummaryComponent implements OnInit {
+  protected readonly getNewsImage = getNewsImage
+
   protected news$!: Observable<NewsItem[]>
 
   protected text = {
@@ -15,9 +19,10 @@ export class NewsSummaryComponent implements OnInit {
     readMore: 'Czytaj dalej'
   }
 
-  constructor(private newsService: NewsService) {}
+  private readonly newsService = inject(NewsService)
 
   ngOnInit() {
     this.news$ = this.newsService.getNews();
   }
+
 }

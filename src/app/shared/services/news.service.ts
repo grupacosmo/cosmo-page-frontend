@@ -1,17 +1,18 @@
-import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 import { PostData } from 'src/app/modules/admin/components/postComponents/add-post/add-post.component';
 import { HttpService } from './http.service';
+import { NewsItem } from '../models/news';
 
-export interface NewsItem {
-  id: string;
-  slug: string;
-  title: string,
-  content: string;
-  date: string;
-  imageUrl: string;
-} 
+export interface IFacebookReponse<TData> {
+  data: TData
+}
+
+export interface IFacebookPost {
+  id: string,
+  created_time: string,
+  message: string,
+}
 
 @Injectable({
   providedIn: 'root'
@@ -24,8 +25,22 @@ export class NewsService {
   constructor() { }
 
   getNews(): Observable<NewsItem[]> {
-    // return this.http.get<NewsItem[]>('');
-    return of(fakeNews);
+    const url = this.apiController + '/facebook/posts';
+    return this.http.get<IFacebookReponse<IFacebookPost[]>>(url).pipe(
+      map((res) => res.data),
+      map((posts: IFacebookPost[]) => {
+        return posts.map(post => {
+          return {
+            id: post.id,
+            slug: post.id,
+            title: post.message,
+            content: post.message,
+            date: post.created_time,
+            imageUrl: '',
+          }
+        })
+        })
+    );
   }
 
   getBySlug(slug: string): Observable<NewsItem | undefined> {

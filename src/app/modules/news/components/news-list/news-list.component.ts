@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { PageEvent } from '@angular/material/paginator';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
+import { getNewsImage } from 'src/app/shared/helpers/imageHelper';
 import { scrollTop } from 'src/app/shared/helpers/navigationHelpers';
-import { NewsItem, NewsService } from 'src/app/shared/services/news.service';
+import { NewsItem } from 'src/app/shared/models/news';
+import { NewsService } from 'src/app/shared/services/news.service';
 
 @Component({
   selector: 'app-news-list',
@@ -19,6 +20,8 @@ export class NewsListComponent {
   protected text = {
     readMore: 'Czytaj dalej'
   }
+
+  protected readonly getNewsImage = getNewsImage
 
   private subscription!: Subscription;
 
@@ -42,4 +45,5 @@ export class NewsListComponent {
     this.newsItemsToDisplay = this.newsItems.slice(displayIndexStart, displayIndexEnd);
     scrollTop('smooth');
   }
+
 }

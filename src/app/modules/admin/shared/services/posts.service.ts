@@ -1,7 +1,8 @@
 import { Injectable, inject } from '@angular/core';
 import { Post } from '../models/post.model';
-import { NewsItem, NewsService } from 'src/app/shared/services/news.service';
+import { NewsService } from 'src/app/shared/services/news.service';
 import { Observable, map } from 'rxjs';
+import { NewsItem } from 'src/app/shared/models/news';
 
 @Injectable({
   providedIn: 'root'

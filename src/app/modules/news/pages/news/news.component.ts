@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { NewsItem, NewsService } from 'src/app/shared/services/news.service';
+import { NewsItem } from 'src/app/shared/models/news';
+import { NewsService } from 'src/app/shared/services/news.service';
 @Component({
   selector: 'app-news',
   templateUrl: './news.component.html',

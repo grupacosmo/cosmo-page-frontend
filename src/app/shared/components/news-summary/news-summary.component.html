@@ -7,7 +7,7 @@
         @for (newsItem of news; track newsItem.id) {
             <div
                 class="newsItem"
-                [style.backgroundImage]="'url('+ newsItem.imageUrl + ')'"
+                [style.backgroundImage]="getNewsImage(newsItem.imageUrl)"
                 [routerLink]="['/news', newsItem.slug]"
             >
                 <div class="overlay">

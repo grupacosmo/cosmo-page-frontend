@@ -17,12 +17,12 @@
         </mat-card> -->
         <div
           class="newsItem"
-          [style.backgroundImage]="'url('+ newsItem.imageUrl + ')'"
+          [style.backgroundImage]="getNewsImage(newsItem.imageUrl)"
           [routerLink]="['/news', newsItem.slug]"
         >
             <div class="overlay">
               <div class="basic-info">
-                <span class="date">{{ newsItem.date }}</span>
+                <span class="date">{{ newsItem.date | date:'medium' }}</span>
                 <h3>{{ newsItem.title }}</h3>
                 <p>
                   {{ newsItem.content | truncate: [150] }}

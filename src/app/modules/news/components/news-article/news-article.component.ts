@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { filter, map, switchMap } from 'rxjs';
-import { NewsItem, NewsService } from 'src/app/shared/services/news.service';
+import { NewsItem } from 'src/app/shared/models/news';
+import { NewsService } from 'src/app/shared/services/news.service';
 
 @Component({
   selector: 'app-news-article',
