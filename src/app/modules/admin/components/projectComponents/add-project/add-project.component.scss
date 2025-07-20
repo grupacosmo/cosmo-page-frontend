@@ -1,4 +1,4 @@
-@import '../../../shared/styles/addComponents.component.scss';
+@use '../../../shared/styles/addComponents.component.scss'  as *;
 
 .shortDesc{
     height: 20vh;

@@ -1,4 +1,4 @@
-@import '../sidebar-item/sidebar-item.component.scss';
+@use '../sidebar-item/sidebar-item.component.scss'  as *;
 
 .container{
     text-align: center;

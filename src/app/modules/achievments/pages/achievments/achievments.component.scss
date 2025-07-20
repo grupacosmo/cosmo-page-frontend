@@ -1,6 +1,6 @@
 @use '@angular/material' as mat;
-@import './../../../../../assets/styles/theme';
-@import './../../../../../assets/styles/global';
+@use './../../../../../assets/styles/theme'  as *;
+@use './../../../../../assets/styles/global'  as *;
 
 
 ::ng-deep {
