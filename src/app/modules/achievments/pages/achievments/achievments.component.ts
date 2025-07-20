@@ -6,9 +6,10 @@ import { AchievmentService } from 'src/app/shared/services/achievment.service';
 import { AchievmentDetailsDialogComponent } from '../../components/achievment-details-dialog/achievment-details-dialog.component';
 
 @Component({
-  selector: 'app-achievments',
-  templateUrl: './achievments.component.html',
-  styleUrls: ['./achievments.component.scss', '../../style.scss']
+    selector: 'app-achievments',
+    templateUrl: './achievments.component.html',
+    styleUrls: ['./achievments.component.scss', '../../style.scss'],
+    standalone: false
 })
 export class AchievmentsComponent {
   achievments$!: Observable<AchievmentItem[]>;

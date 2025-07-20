@@ -5,9 +5,10 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { Subscription, tap } from 'rxjs';;
 
 @Component({
-  selector: 'app-project-card',
-  templateUrl: './project-card.component.html',
-  styleUrl: './project-card.component.scss'
+    selector: 'app-project-card',
+    templateUrl: './project-card.component.html',
+    styleUrl: './project-card.component.scss',
+    standalone: false
 })
 export class ProjectCardComponent implements OnInit, OnDestroy {
   private readonly router = inject(Router);

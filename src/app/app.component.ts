@@ -10,7 +10,6 @@ import { FooterComponent } from './core/components/footer/footer.component';
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',
-    standalone: true,
     imports: [CoreModule, RouterOutlet, HeaderComponent, FooterComponent]
 })
 export class AppComponent {

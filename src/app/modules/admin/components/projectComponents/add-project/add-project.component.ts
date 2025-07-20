@@ -10,9 +10,10 @@ type UploadedFile =  {
 }
 
 @Component({
-  selector: 'app-add-project',
-  templateUrl: './add-project.component.html',
-  styleUrl: './add-project.component.scss'
+    selector: 'app-add-project',
+    templateUrl: './add-project.component.html',
+    styleUrl: './add-project.component.scss',
+    standalone: false
 })
 export class AddProjectComponent {
   @ViewChild('attachments') attachment: any;

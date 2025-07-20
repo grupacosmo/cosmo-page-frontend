@@ -1,7 +1,8 @@
 import { Directive, Host, HostBinding, HostListener } from '@angular/core';
 
 @Directive({
-  selector: '[appTurnBurger]'
+    selector: '[appTurnBurger]',
+    standalone: false
 })
 export class TurnBurgerDirective {
 

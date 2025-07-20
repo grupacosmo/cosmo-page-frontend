@@ -3,9 +3,10 @@ import { ProjectDetailsItem } from 'src/app/shared/models/project-details-item';
 import { ProjectsAdminService } from '../../../shared/services/projects.service';
 
 @Component({
-  selector: 'app-project',
-  templateUrl: './project.component.html',
-  styleUrls: ['./project.component.scss']
+    selector: 'app-project',
+    templateUrl: './project.component.html',
+    styleUrls: ['./project.component.scss'],
+    standalone: false
 })
 export class ProjectComponent {
   @Input() project!: ProjectDetailsItem;

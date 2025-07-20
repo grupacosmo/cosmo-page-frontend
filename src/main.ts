@@ -10,7 +10,7 @@ import { AppRoutingModule } from './app/app-routing.module';
 import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
 import { MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule } from '@angular/material/dialog';
 import { AccountService } from './app/core/services/account/account.service';
-import { APP_INITIALIZER, importProvidersFrom } from '@angular/core';
+import { importProvidersFrom, inject, provideAppInitializer } from '@angular/core';
 
 function appInitializer(accountService: AccountService) {
     return () => new Promise(resolve => {
@@ -57,7 +57,10 @@ function appInitializer(accountService: AccountService) {
 bootstrapApplication(AppComponent, {
     providers: [
         importProvidersFrom(BrowserModule, AppRoutingModule, CoreModule, SocialLoginModule, MatDialogModule),
-        { provide: APP_INITIALIZER, useFactory: appInitializer, multi: true, deps: [AccountService] },
+        provideAppInitializer(() => {
+        const initializerFn = (appInitializer)(inject(AccountService));
+        return initializerFn();
+      }),
         { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } },
         provideHttpClient(withInterceptorsFromDi()),
         provideAnimations()

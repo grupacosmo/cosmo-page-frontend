@@ -6,9 +6,10 @@ const mediaPath = './../../../../../assets/images/social-media/';
 
 
 @Component({
-  selector: 'app-sidenav',
-  templateUrl: './sidenav.component.html',
-  styleUrl: './sidenav.component.scss'
+    selector: 'app-sidenav',
+    templateUrl: './sidenav.component.html',
+    styleUrl: './sidenav.component.scss',
+    standalone: false
 })
 export class SidenavComponent {
   protected text = {

@@ -5,6 +5,7 @@ import { TabComponent } from './tab/tab.component';
     selector: 'app-tabs',
     templateUrl: './tabs.component.html',
     styleUrl: './tabs.component.scss',
+    standalone: false
 })
 export class TabsComponent implements AfterContentInit {
     @ContentChildren(TabComponent) tabs!: QueryList<TabComponent>;

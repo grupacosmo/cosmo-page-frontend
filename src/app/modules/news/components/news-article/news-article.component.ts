@@ -4,9 +4,10 @@ import { filter, map, switchMap } from 'rxjs';
 import { NewsItem, NewsService } from 'src/app/shared/services/news.service';
 
 @Component({
-  selector: 'app-news-article',
-  templateUrl: './news-article.component.html',
-  styleUrl: './news-article.component.scss'
+    selector: 'app-news-article',
+    templateUrl: './news-article.component.html',
+    styleUrl: './news-article.component.scss',
+    standalone: false
 })
 export class NewsArticleComponent {
   protected newsItem: NewsItem | 'Loading'| undefined = 'Loading';

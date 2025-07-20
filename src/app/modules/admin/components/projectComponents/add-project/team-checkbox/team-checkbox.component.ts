@@ -3,9 +3,10 @@ import { TeamCheckbox } from './TeamCheckbox.model';
 import { FormArray, } from '@angular/forms';
 
 @Component({
-  selector: 'app-team-checkbox',
-  templateUrl: './team-checkbox.component.html',
-  styleUrl: './team-checkbox.component.scss'
+    selector: 'app-team-checkbox',
+    templateUrl: './team-checkbox.component.html',
+    styleUrl: './team-checkbox.component.scss',
+    standalone: false
 })
 
 export class TeamCheckboxComponent {
