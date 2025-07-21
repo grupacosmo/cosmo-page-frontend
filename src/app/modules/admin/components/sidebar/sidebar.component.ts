@@ -2,9 +2,10 @@ import { Component, EventEmitter, HostListener, inject, Output } from '@angular/
 import { SidebarService } from '../../shared/services/sidebar.service';
 
 @Component({
-  selector: 'app-sidebar',
-  templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.scss']
+    selector: 'app-sidebar',
+    templateUrl: './sidebar.component.html',
+    styleUrls: ['./sidebar.component.scss'],
+    standalone: false
 })
 export class SidebarComponent {
   public path: string = "../../../../../assets/";

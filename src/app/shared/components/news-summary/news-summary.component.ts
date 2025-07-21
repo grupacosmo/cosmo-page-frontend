@@ -3,9 +3,10 @@ import { NewsItem, NewsService } from 'src/app/shared/services/news.service';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-news-summary',
-  templateUrl: './news-summary.component.html',
-  styleUrl: './news-summary.component.scss'
+    selector: 'app-news-summary',
+    templateUrl: './news-summary.component.html',
+    styleUrl: './news-summary.component.scss',
+    standalone: false
 })
 export class NewsSummaryComponent implements OnInit {
   protected news$!: Observable<NewsItem[]>

@@ -18,9 +18,10 @@ export interface PostData {
 }
 
 @Component({
-  selector: 'app-post-edit-dialog',
-  templateUrl: './edit-post-dialog.component.html',
-  styleUrl: './edit-post-dialog.component.scss'
+    selector: 'app-post-edit-dialog',
+    templateUrl: './edit-post-dialog.component.html',
+    styleUrl: './edit-post-dialog.component.scss',
+    standalone: false
 })
 
 export class EditPostDialogComponent {

@@ -1,4 +1,4 @@
-@import './sidebar-components/sidebar-item/sidebar-item.component';
+@use './sidebar-components/sidebar-item/sidebar-item.component'  as *;
 
 @font-face {
     font-family: "Inter";

@@ -7,12 +7,11 @@ import { AVAILABLE_LANGUAGES } from '../../constants/available-languages';
 import { TranslatePipe } from 'src/app/shared/pipes/translate/translate.pipe';
 
 @Component({
-  selector: 'app-language-picker',
-  standalone: true,
-  imports: [CommonModule, ClickOutsideDirective, TranslatePipe],
-  templateUrl: './language-picker.component.html',
-  styleUrl: './language-picker.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-language-picker',
+    imports: [CommonModule, ClickOutsideDirective, TranslatePipe],
+    templateUrl: './language-picker.component.html',
+    styleUrl: './language-picker.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LanguagePickerComponent {
   readonly isOpen = signal<boolean>(false);

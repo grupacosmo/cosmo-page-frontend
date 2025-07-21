@@ -20,9 +20,10 @@ export interface PostData {
 }
 
 @Component({
-  selector: 'app-add-post',
-  templateUrl: './add-post.component.html',
-  styleUrl: './add-post.component.scss'
+    selector: 'app-add-post',
+    templateUrl: './add-post.component.html',
+    styleUrl: './add-post.component.scss',
+    standalone: false
 })
 
 export class AddPostComponent {

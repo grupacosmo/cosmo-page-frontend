@@ -4,11 +4,10 @@ import { RouterModule } from '@angular/router';
 import { TranslatePipe } from '../../../shared/pipes/translate/translate.pipe';
 
 @Component({
-  selector: 'app-footer',
-  templateUrl: './footer.component.html',
-  styleUrl: './footer.component.scss',
-  standalone: true,
-  imports: [CommonModule, RouterModule, TranslatePipe]
+    selector: 'app-footer',
+    templateUrl: './footer.component.html',
+    styleUrl: './footer.component.scss',
+    imports: [CommonModule, RouterModule, TranslatePipe]
 })
 export class FooterComponent {
 

@@ -1,5 +1,5 @@
-@import '../../../assets/styles/global';
-@import '../../../assets/styles/theme';
+@use '../../../assets/styles/global' as *;
+@use '../../../assets/styles/theme' as *;
 
 ::ng-deep {
     app-header {

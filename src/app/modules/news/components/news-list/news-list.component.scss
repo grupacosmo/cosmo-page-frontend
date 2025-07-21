@@ -1,6 +1,6 @@
 @use '@angular/material' as mat;
-@import '../../../../../assets/styles/global';
-@import '../../../../../assets/styles/theme';
+@use '../../../../../assets/styles/global' as *;
+@use '../../../../../assets/styles/theme' as *;
 
 :host {
     mat-paginator {

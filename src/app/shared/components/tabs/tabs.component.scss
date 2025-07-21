@@ -1,5 +1,6 @@
 @use '@angular/material' as mat;
-@import '../../../../assets/styles/theme';
+@use '../../../../assets/styles/theme' as *;
+@use '../../../../assets/styles/variables' as *;
 
 app-tabs {
     .tabs-container {
