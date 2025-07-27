@@ -1,4 +1,4 @@
-@import './variables';
+@use './variables' as *;
 
 // Theme
 $primary-1: $cosmo-magenta;

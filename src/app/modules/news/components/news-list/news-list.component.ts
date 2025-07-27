@@ -6,9 +6,10 @@ import { NewsItem } from 'src/app/shared/models/news';
 import { NewsService } from 'src/app/shared/services/news.service';
 
 @Component({
-  selector: 'app-news-list',
-  templateUrl: './news-list.component.html',
-  styleUrl: './news-list.component.scss'
+    selector: 'app-news-list',
+    templateUrl: './news-list.component.html',
+    styleUrl: './news-list.component.scss',
+    standalone: false
 })
 export class NewsListComponent {
   protected newsItems: NewsItem[] = [];

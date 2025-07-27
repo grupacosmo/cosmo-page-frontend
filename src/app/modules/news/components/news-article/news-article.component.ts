@@ -5,9 +5,10 @@ import { NewsItem } from 'src/app/shared/models/news';
 import { NewsService } from 'src/app/shared/services/news.service';
 
 @Component({
-  selector: 'app-news-article',
-  templateUrl: './news-article.component.html',
-  styleUrl: './news-article.component.scss'
+    selector: 'app-news-article',
+    templateUrl: './news-article.component.html',
+    styleUrl: './news-article.component.scss',
+    standalone: false
 })
 export class NewsArticleComponent {
   protected newsItem: NewsItem | 'Loading'| undefined = 'Loading';

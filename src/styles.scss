@@ -1,22 +1,24 @@
 ///////////// CUSTOM BUTTON STYLES
-@import './app/shared/controls/custom-button/custom-button.component.scss';
+@use './app/shared/controls/custom-button/custom-button.component.scss';
 
 //////////// CUSTOM TABS STYLES
-@import './app/shared/components/tabs/tabs.component.scss';
-@import './app/shared/components/tabs/tab/tab.component.scss';
+@use './app/shared/components/tabs/tabs.component.scss';
+@use './app/shared/components/tabs/tab/tab.component.scss';
 
 ///////////// HOME COMPONENTS
-@import './app/modules/home/components/about-us/about-us.component.scss';
-@import './app/modules/home/components/partners/partners.component.scss';
-@import './app/modules/home/components/projects/projects-home.component.scss';
+@use './app/modules/home/components/about-us/about-us.component.scss';
+@use './app/modules/home/components/partners/partners.component.scss';
+@use './app/modules/home/components/projects/projects-home.component.scss';
 
 ///////////// PROJECTS COMPONENTS
-@import './app/modules/projects/pages/projects/projects.component.scss';
-@import './app/modules/projects/components/project-card/project-card.component.scss';
-@import './app/modules/projects/pages/project-details/project-details.component.scss';
+@use './app/modules/projects/pages/projects/projects.component.scss';
+@use './app/modules/projects/components/project-card/project-card.component.scss';
+@use './app/modules/projects/pages/project-details/project-details.component.scss';
+@use './assets/styles/variables' as *;
+@use './assets/styles/theme' as *;
 
 //Angular material styles
-@import "@angular/material/prebuilt-themes/indigo-pink.css";
+@use "@angular/material/prebuilt-themes/indigo-pink.css" as *;
 //FONTS
 @font-face {
     font-family: "Inter";

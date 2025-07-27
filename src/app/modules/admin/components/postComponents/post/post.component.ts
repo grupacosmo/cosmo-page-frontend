@@ -4,9 +4,10 @@ import { PostsService } from '../../../shared/services/posts.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EditPostDialogComponent } from '../../edit-dialogs/edit-post-dialog/edit-post-dialog.component';
 @Component({
-  selector: 'app-post',
-  templateUrl: './post.component.html',
-  styleUrl: './post.component.scss'
+    selector: 'app-post',
+    templateUrl: './post.component.html',
+    styleUrl: './post.component.scss',
+    standalone: false
 })
 
 export class PostComponent {

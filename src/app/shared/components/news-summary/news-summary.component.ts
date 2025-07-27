@@ -5,9 +5,10 @@ import { NewsItem } from '../../models/news';
 import { getNewsImage } from '../../helpers/imageHelper';
 
 @Component({
-  selector: 'app-news-summary',
-  templateUrl: './news-summary.component.html',
-  styleUrl: './news-summary.component.scss'
+    selector: 'app-news-summary',
+    templateUrl: './news-summary.component.html',
+    styleUrl: './news-summary.component.scss',
+    standalone: false
 })
 export class NewsSummaryComponent implements OnInit {
   protected readonly getNewsImage = getNewsImage

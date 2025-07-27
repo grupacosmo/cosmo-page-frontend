@@ -7,28 +7,27 @@ import { TranslatePipe } from '../../../shared/pipes/translate/translate.pipe';
 import { LanguagePickerComponent } from '../language-picker/language-picker.component';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss'],
-  animations: [
-    trigger('slideInOut', [
-      state('in', style({
-        transform: 'translateY(0)'
-      })),
-      state('out', style({
-        transform: 'translateY(-100%)'
-      })),
-      transition('out => in', [
-        animate('0.5s ease-out')
-      ]),
-      transition('in => out', [
-        animate('0.5s ease-in')
-      ])
-    ])
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, RouterModule, MatIconModule, TranslatePipe, LanguagePickerComponent],
-  standalone: true
+    selector: 'app-header',
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.scss'],
+    animations: [
+        trigger('slideInOut', [
+            state('in', style({
+                transform: 'translateY(0)'
+            })),
+            state('out', style({
+                transform: 'translateY(-100%)'
+            })),
+            transition('out => in', [
+                animate('0.5s ease-out')
+            ]),
+            transition('in => out', [
+                animate('0.5s ease-in')
+            ])
+        ])
+    ],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [CommonModule, RouterModule, MatIconModule, TranslatePipe, LanguagePickerComponent]
 })
 export class HeaderComponent {
   menuOpen = false;

@@ -4,9 +4,10 @@ import { ProjectDetailsItem } from 'src/app/shared/models/project-details-item';
 import { ProjectsService } from 'src/app/shared/services/projects.service';
 
 @Component({
-  selector: 'app-project-details',
-  templateUrl: './project-details.component.html',
-  styleUrl: './project-details.component.scss'
+    selector: 'app-project-details',
+    templateUrl: './project-details.component.html',
+    styleUrl: './project-details.component.scss',
+    standalone: false
 })
 export class ProjectDetailsComponent implements OnInit {
 

@@ -4,9 +4,10 @@ import { ProjectsCardDetails } from 'src/app/shared/models/projects-card-details
 import { ProjectsService } from 'src/app/shared/services/projects.service';
 
 @Component({
-  selector: 'app-projects',
-  templateUrl: './projects.component.html',
-  styleUrl: './projects.component.scss',
+    selector: 'app-projects',
+    templateUrl: './projects.component.html',
+    styleUrl: './projects.component.scss',
+    standalone: false
 })
 export class ProjectsComponent implements OnInit {
 

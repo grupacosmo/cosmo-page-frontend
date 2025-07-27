@@ -1,4 +1,4 @@
-@import '../../../shared/styles/addComponents.component.scss';
+@use '../../../shared/styles/addComponents.component.scss'  as *;
 $background-main: #222222;
 $header-footer-bg: #3f3f3f;
 $header-footer-border: #7b7b7b;

@@ -1,5 +1,5 @@
-@import './../../../../../assets/styles/theme';
-@import '../../projects-styles.scss';
+@use './../../../../../assets/styles/theme' as *;
+@use '../../projects-styles.scss' as *;
 
 @mixin containers-widths($main-left, $main-right, $exp-left, $exp-right, $team-left, $team-right) {
     .main-container-top {
