@@ -3,6 +3,7 @@ import { Post } from '../models/post.model';
 import { NewsService } from 'src/app/shared/services/news.service';
 import { Observable, map } from 'rxjs';
 import { NewsItem } from 'src/app/shared/models/news';
+import { IPostsResponse, PostItem } from 'src/app/shared/interfaces/PostInterfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -15,12 +16,13 @@ export class PostsService {
 
   getPostsFromServer(): Observable<Post[]> {
     return this.service.getNews().pipe(
-      map((newsItems: NewsItem[]) => {
+      map((response: IPostsResponse) => response.content),
+      map((newsItems: PostItem[]) => {
         const newPosts = newsItems.map(newsItem => new Post(
-          newsItem.title,
+          newsItem.title ?? '',
           '',
-          newsItem.imageUrl,
-          newsItem.content,
+          newsItem.backgroundPhoto?.src ?? '',
+          newsItem.description,
           { cosmo: false, fb: false }
         ));
         this.posts = newPosts;

@@ -3,16 +3,18 @@ import { map, Observable, of } from 'rxjs';
 import { PostData } from 'src/app/modules/admin/components/postComponents/add-post/add-post.component';
 import { HttpService } from './http.service';
 import { NewsItem } from '../models/news';
+import { IPostsResponse, PostDetails } from '../interfaces/PostInterfaces';
 
-export interface IFacebookReponse<TData> {
-  data: TData
+interface PagingParams {
+  page?: number,
+  size?: number
 }
 
-export interface IFacebookPost {
-  id: string,
-  created_time: string,
-  message: string,
+const DefaultParams: PagingParams = {
+  page: 0,
+  size: 10
 }
+
 
 @Injectable({
   providedIn: 'root'
@@ -20,31 +22,23 @@ export interface IFacebookPost {
 
 export class NewsService {
   private http: HttpService = inject(HttpService);
-  private readonly apiController: string = 'api';
+  private readonly apiController: string = 'api/posts';
 
   constructor() { }
 
-  getNews(): Observable<NewsItem[]> {
-    const url = this.apiController + '/facebook/posts';
-    return this.http.get<IFacebookReponse<IFacebookPost[]>>(url).pipe(
-      map((res) => res.data),
-      map((posts: IFacebookPost[]) => {
-        return posts.map(post => {
-          return {
-            id: post.id,
-            slug: post.id,
-            title: post.message,
-            content: post.message,
-            date: post.created_time,
-            imageUrl: '',
-          }
-        })
-        })
-    );
+  getNews(pagingParams: PagingParams = {}): Observable<IPostsResponse> {
+    const params = {
+      ...DefaultParams,
+      ...pagingParams
+    }
+
+    const url = this.apiController + `?page=${params.page}&size=${params.size}`;
+    return this.http.get<IPostsResponse>(url)
   }
 
-  getBySlug(slug: string): Observable<NewsItem | undefined> {
-    return of(fakeNews.find(news => news.slug === slug))
+  getBySlug(id: string): Observable<PostDetails | string>  {
+    const url = this.apiController + '/' + id;
+    return this.http.get<PostDetails>(url)
   }
 
   onPost(news: PostData){

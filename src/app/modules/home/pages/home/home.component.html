@@ -21,10 +21,12 @@
                 <app-about-us />
             </section>
             <hr class="divider"/>
-            <section>
-                <app-news-summary></app-news-summary>
-            </section>
-            <hr class="divider"/>
+            @if (isDevMode()) {
+                <section>
+                    <app-news-summary></app-news-summary>
+                </section>
+                <hr class="divider"/>
+            }
             <section>
                 <app-projects-home />
             </section>

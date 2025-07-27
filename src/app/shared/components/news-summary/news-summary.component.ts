@@ -1,8 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { NewsService } from 'src/app/shared/services/news.service';
-import { Observable } from 'rxjs';
-import { NewsItem } from '../../models/news';
+import { map, Observable } from 'rxjs';
 import { getNewsImage } from '../../helpers/imageHelper';
+import { PostItem } from '../../interfaces/PostInterfaces';
 
 @Component({
     selector: 'app-news-summary',
@@ -13,7 +13,7 @@ import { getNewsImage } from '../../helpers/imageHelper';
 export class NewsSummaryComponent implements OnInit {
   protected readonly getNewsImage = getNewsImage
 
-  protected news$!: Observable<NewsItem[]>
+  protected news$!: Observable<PostItem[]>
 
   protected text = {
     news: 'Aktualności',
@@ -23,7 +23,7 @@ export class NewsSummaryComponent implements OnInit {
   private readonly newsService = inject(NewsService)
 
   ngOnInit() {
-    this.news$ = this.newsService.getNews();
+    this.news$ = this.newsService.getNews({ page: 0, size: 4 }).pipe(map(r => r.content));
   }
 
 }

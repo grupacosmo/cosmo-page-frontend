@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { isDevMode, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './shared/services/Auth/auth-guard.service';
 
@@ -8,11 +8,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./modules/home/home.module').then((m) => m.HomeModule),
   },
-  {
+  isDevMode() ? {
     path: 'news',
     loadChildren: () =>
       import('./modules/news/news.module').then((m) => m.NewsModule),
-  },
+  } : {},
   // {
   //   path: 'team',
   //   loadChildren: () =>
