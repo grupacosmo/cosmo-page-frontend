@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { catchError, Observable, of, throwError } from 'rxjs';
 import { AuthResult } from '../interfaces/AuthInterfaces';
 import { API_KEY } from '../consts';
 
@@ -26,15 +26,11 @@ export class HttpService {
   }
 
   post(endpoint: string, data: any, options?: any): Observable<any>{
-    // return this.http.post(`${this.apiUrl}/${endpoint}`, data, options).pipe(
-    //   catchError(error => {
-    //     console.error('Error occurred:', error);
-    //     return throwError('Something went wrong!');
-    //   })
-    // );
-    return of<AuthResult>({
-      message: 'Login successful',
-      isAuthenticated: true
-    });
+    return this.http.post(`${this.apiUrl}/${endpoint}`, data, { ...this.httpOptions }).pipe(
+      catchError(error => {
+        console.error('Error occurred:', error);
+        return throwError('Something went wrong!');
+      })
+    );
   }
 }
