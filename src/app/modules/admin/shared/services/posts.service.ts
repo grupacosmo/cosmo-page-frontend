@@ -2,7 +2,6 @@ import { Injectable, inject } from '@angular/core';
 import { Post } from '../models/post.model';
 import { NewsService } from 'src/app/shared/services/news.service';
 import { Observable, map } from 'rxjs';
-import { NewsItem } from 'src/app/shared/models/news';
 import { IPostsResponse, PostItem } from 'src/app/shared/interfaces/PostInterfaces';
 
 @Injectable({
