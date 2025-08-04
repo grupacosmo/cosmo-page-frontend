@@ -1,7 +1,7 @@
 @if(newsItem && newsItem !== 'Loading') {
     
     <article>
-        <app-custom-button [routerLink]="['/news']" [text]="text.goBack" [isSecondaryButton]="true" [backButton]="true"></app-custom-button>
+        <app-custom-button [routerLink]="['/news']" [text]="text.goBack | translate" [isSecondaryButton]="true" [backButton]="true"></app-custom-button>
         <h1 class="title">{{ newsItem.title }}</h1>
         <span>{{ newsItem.date | date }}</span>
         <img [src]="getNewsImage(newsItem.images?.[0]?.src)" [alt]="newsItem.id">
@@ -16,7 +16,7 @@
             }
         </div>
         <footer>
-            <p>{{ text.author }}: PlacehoderAuthorwp.pl</p>
+            <p>{{ text.author | translate }}: PlacehoderAuthorwp.pl</p>
         </footer>
     </article>
 

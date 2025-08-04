@@ -15,7 +15,7 @@ export class ProjectsHomeComponent implements OnInit {
 
   protected projects$!: Observable<ProjectItem[]>;
 
-  protected text = {
+  readonly text = {
     title: 'navigation.projects',
     allProjects: 'projects.allProjects',
   }

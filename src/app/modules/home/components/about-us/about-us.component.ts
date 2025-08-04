@@ -7,7 +7,7 @@ import {Component} from '@angular/core';
     standalone: false
 })
 export class AboutUsComponent {
-    protected text = {
+    readonly text = {
         title: 'home.aboutUs',
         about: `home.aboutUsDescription`,
         meetOurTeam: 'home.meetOurTeam',

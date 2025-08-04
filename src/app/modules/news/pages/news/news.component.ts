@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
     standalone: false
 })
 export class NewsComponent {
-  protected text = {
-    readMore: 'Czytaj dalej'
+  readonly text = {
+    news: 'navigation.news'
   }
 }

@@ -17,7 +17,7 @@ export class ProjectDetailsComponent implements OnInit {
 
   teams = '';
 
-  protected text = {
+  readonly text = {
     backToProjects: 'projects.allProjects',
     description: 'projects.projectDescription',
     experiment: 'common.experiment',

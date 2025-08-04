@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
     standalone: false
 })
 export class PartnersComponent {
-  protected text = {
+  readonly text = {
     title: 'common.partners',
   }
 

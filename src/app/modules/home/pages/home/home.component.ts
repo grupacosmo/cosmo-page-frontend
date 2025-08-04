@@ -14,7 +14,7 @@ const mediaPath = './../../../../../assets/images/social-media/';
 export class HomeComponent {
   @ViewChild('joinUsSection', { static: true }) joinUsSection!: ElementRef;
 
-  protected text = {
+  readonly text = {
     description: 'home.name',
     joinUs: 'home.joinUs'
   }

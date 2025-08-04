@@ -15,9 +15,9 @@ export class NewsSummaryComponent implements OnInit {
 
   protected news$!: Observable<PostItem[]>
 
-  protected text = {
-    news: 'Aktualności',
-    readMore: 'Czytaj dalej'
+  readonly text = {
+    news: 'navigation.news',
+    readMore: 'common.readMore'
   }
 
   private readonly newsService = inject(NewsService)

@@ -1,7 +1,6 @@
 {
   "common": {
     "readMore": "Read more",
-    "readMore2": "Read more",
     "fillForm": "Fill out the form",
     "back": "Back",
     "submit": "Submit",
@@ -40,6 +39,11 @@
     "partners": "Our Partners",
     "latestProjects": "Latest Projects",
     "latestNews": "Latest News"
+  },
+  "news": {
+    "moreNews": "More news",
+    "goBack": "All news",
+    "author": "Author"
   },
   "projects": {
     "allProjects": "All Projects",

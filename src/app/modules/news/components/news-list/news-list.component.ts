@@ -22,10 +22,6 @@ export class NewsListComponent {
 
   protected totalPages = 0;
 
-  protected text = {
-    readMore: 'Czytaj dalej'
-  }
-
   protected readonly getNewsImage = getNewsImage
 
   private subscription!: Subscription;

@@ -13,11 +13,9 @@ import { NewsService } from 'src/app/shared/services/news.service';
 })
 export class NewsArticleComponent {
   protected newsItem: PostDetails | 'Loading'| undefined = 'Loading';
-  protected text = {
-    readMore: 'Czytaj dalej',
-    moreNews: "Więcej aktualności",
-    goBack: "Powrót do aktualności",
-    author: "Autor",
+  readonly text = {
+    goBack: "news.goBack",
+    author: "news.author",
   }
   constructor(
       private route: ActivatedRoute,

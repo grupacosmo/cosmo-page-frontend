@@ -7,7 +7,7 @@ import {Component} from '@angular/core';
     standalone: false
 })
 export class JoinUsComponent {
-    protected text = {
+    readonly text = {
         joinCosmo: 'home.joinCosmo',
         summary: 'home.joinCosmoDescription',
         learnMore: 'common.fillForm',
