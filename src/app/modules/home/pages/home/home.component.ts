@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, isDevMode, ViewChild } from '@angular/core';
 
 // TODO
 // REPLACE TEMPORTARY SOLUTION
@@ -18,6 +18,8 @@ export class HomeComponent {
     description: 'home.name',
     joinUs: 'home.joinUs'
   }
+
+  readonly isDevMode = isDevMode;
 
   protected socialMedia = [
     {

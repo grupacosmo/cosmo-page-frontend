@@ -4,10 +4,16 @@
         <app-custom-button [routerLink]="['/news']" [text]="text.goBack" [isSecondaryButton]="true" [backButton]="true"></app-custom-button>
         <h1 class="title">{{ newsItem.title }}</h1>
         <span>{{ newsItem.date | date }}</span>
-        <img [src]="newsItem.imageUrl" [alt]="newsItem.slug">
+        <img [src]="getNewsImage(newsItem.images?.[0]?.src)" [alt]="newsItem.id">
         <div class="content-wrapper">
-            <p class="content">{{ newsItem.content.repeat(10).substring(0, newsItem.content.repeat(10).length / 2) }}</p>
-            <p class="content">{{ newsItem.content.repeat(10).substring(newsItem.content.repeat(10).length / 2) }}</p>
+
+            @if(newsItem.description.length > 1000) {
+                <p class="content">{{ newsItem.description.substring(0, newsItem.description.length / 2) }}</p>
+                <p class="content">{{ newsItem.description.substring(newsItem.description.length / 2) }}</p>
+            }
+            @else {
+                <p class="content">{{ newsItem.description }}</p>
+            }
         </div>
         <footer>
             <p>{{ text.author }}: PlacehoderAuthorwp.pl</p>

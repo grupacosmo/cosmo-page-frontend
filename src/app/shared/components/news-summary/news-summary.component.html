@@ -2,13 +2,13 @@
     <h2>{{ text.news }}</h2>
     <app-custom-button [routerLink]="['/news']" class="join-us" [text]="text.readMore" [isSecondaryButton]="true"></app-custom-button>
 </header>
-@if (news$ | async | slice:0:4 ; as news) {
+@if (news$ | async ; as news) {
     <section class="news-container">
         @for (newsItem of news; track newsItem.id) {
             <div
                 class="newsItem"
-                [style.backgroundImage]="'url('+ newsItem.imageUrl + ')'"
-                [routerLink]="['/news', newsItem.slug]"
+                [style.backgroundImage]="getNewsImage(newsItem.backgroundPhoto?.src)"
+                [routerLink]="['/news', newsItem.id]"
             >
                 <div class="overlay">
                     <span class="date">{{ newsItem.date }}</span>

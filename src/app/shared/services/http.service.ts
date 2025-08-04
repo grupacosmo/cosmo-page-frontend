@@ -1,21 +1,24 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { catchError, Observable, of, throwError } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { AuthResult } from '../interfaces/AuthInterfaces';
+import { API_KEY, API_URL } from '../consts';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpService {
-  get apiUrl(): string | undefined {
-    return "http://localhost:3000";
+  private http: HttpClient = inject(HttpClient);
+
+  private httpOptions = {
+    withCredentials: true,
+    headers: new HttpHeaders({
+    'apiKey': API_KEY,
+    })
   }
 
-  private http: HttpClient = inject(HttpClient);
-  constructor() { }
-
-  get(endpoint: string, options?: any): Observable<any> {
-    return this.http.get(`${this.apiUrl}/${endpoint}`, options);
+  get<T>(endpoint: string, options: any = {}): Observable<T> {
+    return this.http.get<T>(`${API_URL}/${endpoint}`, { ...this.httpOptions });
   }
 
   post(endpoint: string, data: any, options?: any): Observable<any>{
