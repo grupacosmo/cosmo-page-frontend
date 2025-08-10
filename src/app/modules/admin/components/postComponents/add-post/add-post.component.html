@@ -2,10 +2,10 @@
     <h1 class="page-name">Dodaj post</h1>
     <form [formGroup]="postForm" (ngSubmit)="onPost()">
       <input type="text" formControlName="title" placeholder="Tytuł"/>
-      <!-- <div class="group-container">
-        <div class="double-input-container"> -->
+      <div class="group-container">
+        <div class="double-input-container">
           <input type="text" formControlName="author" placeholder="Autor"/>
-          <!-- <input type="file" class="file-input" accept="image/*" multiple (change)="showPreview($event)"/>
+          <input type="file" class="file-input" accept="image/*" multiple (change)="showPreview($event)"/>
         </div>
         <div class="images-container" *ngIf="previews.length > 0">
           <h4>Obrazy</h4>
@@ -15,7 +15,7 @@
             <button type="button" class="delete" (click)="onDelete(preview.file.name)">&#9760;</button>
           </div>
         </div>
-      </div> -->
+      </div>
       <div class="row-container">
         <h3>Tekst</h3>
         <textarea class="text-input" formControlName="text" placeholder="Dodaj tekst"></textarea>

@@ -3,6 +3,7 @@ import {FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { PostInterface } from 'src/app/shared/interfaces/PostInterfaces';
 import { NewsService } from 'src/app/shared/services/news.service';
 import { PostMapperService } from '../../../shared/services/posts-mapper.service';
+import { ImageService } from 'src/app/shared/services/images.service';
 
 interface UploadedFile {
   preview: string,
@@ -20,6 +21,11 @@ export interface PostData {
   platforms: any,
 }
 
+export interface MapFormResult {
+  postData: PostInterface;
+  imageList?: FileList;
+}
+
 @Component({
     selector: 'app-add-post',
     templateUrl: './add-post.component.html',
@@ -30,6 +36,7 @@ export interface PostData {
 export class AddPostComponent {
   @ViewChild('attachments') attachment: any;
   private newsService = inject(NewsService);
+  private imageService = inject(ImageService);
   private postMapperService = inject(PostMapperService);
   protected postForm: FormGroup;
   public path: string = "../../../../../assets/";
@@ -40,7 +47,6 @@ export class AddPostComponent {
     this.postForm = this.fb.group({
       title: ['', Validators.required],
       author: ['', Validators.required],
-      // attachments: [''],
       text: ['', Validators.required],
       // platforms: this.fb.array([
       //   this.fb.control(false),
@@ -75,10 +81,25 @@ export class AddPostComponent {
       return;
     }
 
-    const postData: PostInterface = this.postMapperService.mapFormToPost(this.postForm.value);
+    console.log(this.postForm);
+    console.log(this.selectedFiles);
 
-    console.log(postData);
-    
+    const result: MapFormResult = this.postMapperService.mapFormToPost(this.postForm.value, this.selectedFiles);
+    const { postData, imageList } = result;
+
+    console.log(postData, imageList);
+
+    if(imageList){
+      this.imageService.addImages(imageList).subscribe({
+        next: () => {
+          console.log('Images uploaded successfully');
+        },
+        error: (err: any) => {
+          console.error('Error uploading images:', err);
+        }
+      });
+    }
+
     this.newsService.addPost(postData).subscribe({
       next: () => {
         this.postForm.reset();

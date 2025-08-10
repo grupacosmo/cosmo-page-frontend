@@ -41,6 +41,10 @@ export class NewsService {
     return this.http.get<PostDetails>(url)
   }
 
+  handlePost(){
+
+  }
+
   addPost(news: PostInterface): Observable<void> {
     return this.http.post(`${this.apiController}`, news);
   }

@@ -45,6 +45,8 @@ export class NewsListComponent {
   }
 
   changePage(pageIndex: number) {
+    console.log("AAA");
+    
     this.pageIndex = pageIndex;
     const displayIndexStart = pageIndex * this.itemsPerPage;
     const displayIndexEnd = displayIndexStart + this.itemsPerPage;
