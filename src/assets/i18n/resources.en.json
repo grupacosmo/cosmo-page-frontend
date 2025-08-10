@@ -16,7 +16,8 @@
     "team": "Team",
     "unexpectedErrorOccured": "An unexpected error occurred.",
     "polish": "Polish",
-    "english": "English"
+    "english": "English",
+    "noImages": "No images to display"
   },
   "navigation": {
     "home": "Home",

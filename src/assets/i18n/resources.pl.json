@@ -16,7 +16,8 @@
     "team": "Zespół",
     "unexpectedErrorOccured": "Wystąpił nieoczekiwany błąd",
     "polish": "Polski",
-    "english": "Angielski"
+    "english": "Angielski",
+    "noImages": "Brak obrazów do wyświetlenia"
   },
   "navigation": {
     "home": "Strona główna",
