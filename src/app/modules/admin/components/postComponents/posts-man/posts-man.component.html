@@ -6,5 +6,8 @@
             <h4>Opcje</h4>
         </div>
         <app-post *ngFor="let post of posts" [post]="post"></app-post>
+        <!-- <mat-paginator (page)="changePage($event.pageIndex)" [pageSize]="itemsPerPage" hidePageSize [length]="totalPages"
+            aria-label="Select page">
+        </mat-paginator> -->
     </div>
 </section>

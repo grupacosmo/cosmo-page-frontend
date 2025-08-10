@@ -11,7 +11,6 @@ import { NewsArticleComponent } from './components/news-article/news-article.com
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
 
-
 @NgModule({
   declarations: [
     NewsComponent,
