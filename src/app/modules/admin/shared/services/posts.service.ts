@@ -40,7 +40,7 @@ export class PostsService {
     //edytowanko
   }
 
-  delPost(post: Post){
+  delPost(post: PostItem){
     const index: number = this.posts.findIndex((e) => e.title == post.title);
     this.posts.splice(index, 1);
   }

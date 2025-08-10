@@ -1,8 +1,8 @@
-import { Component, Input, inject } from '@angular/core';
-import { Post } from '../../../shared/models/post.model';
+import { Component, Input, inject, input } from '@angular/core';
 import { PostsService } from '../../../shared/services/posts.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EditPostDialogComponent } from '../../edit-dialogs/edit-post-dialog/edit-post-dialog.component';
+import { PostItem } from 'src/app/shared/interfaces/PostInterfaces';
 @Component({
     selector: 'app-post',
     templateUrl: './post.component.html',
@@ -11,11 +11,11 @@ import { EditPostDialogComponent } from '../../edit-dialogs/edit-post-dialog/edi
 })
 
 export class PostComponent {
-  @Input() post: Post = new Post("", "", "", "", {cosmo: false, fb: false});
+  readonly post = input.required<PostItem>({alias: 'newsItem'});
   managerService = inject(PostsService);
   constructor(public dialog: MatDialog){}
 
-  openDialog(post: Post): void {
+  openDialog(post: PostItem): void {
     console.log("AAa")
     const dialogRef = this.dialog.open(EditPostDialogComponent, {
       height: '100%',
@@ -30,7 +30,7 @@ export class PostComponent {
     });
   }
 
-  editPost(post: Post): void{
+  editPost(post: PostItem): void{
     this.openDialog(post);
   }
 }
