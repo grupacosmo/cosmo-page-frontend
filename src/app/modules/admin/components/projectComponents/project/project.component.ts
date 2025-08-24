@@ -5,8 +5,7 @@ import { ProjectsAdminService } from '../../../shared/services/projects.service'
 @Component({
     selector: 'app-project',
     templateUrl: './project.component.html',
-    styleUrls: ['./project.component.scss'],
-    standalone: false
+    styleUrls: ['./project.component.scss']
 })
 export class ProjectComponent {
   @Input() project!: ProjectDetailsItem;

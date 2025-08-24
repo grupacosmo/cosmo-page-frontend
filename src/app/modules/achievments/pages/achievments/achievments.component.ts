@@ -4,12 +4,14 @@ import { Observable } from 'rxjs';
 import { AchievmentItem } from 'src/app/shared/models/achievments';
 import { AchievmentService } from 'src/app/shared/services/achievment.service';
 import { AchievmentDetailsDialogComponent } from '../../components/achievment-details-dialog/achievment-details-dialog.component';
+import { MatIcon } from '@angular/material/icon';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'app-achievments',
     templateUrl: './achievments.component.html',
     styleUrls: ['./achievments.component.scss', '../../style.scss'],
-    standalone: false
+    imports: [MatIcon, AsyncPipe]
 })
 export class AchievmentsComponent {
   achievments$!: Observable<AchievmentItem[]>;

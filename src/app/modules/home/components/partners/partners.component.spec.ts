@@ -8,7 +8,7 @@ describe('PartnersComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    declarations: [PartnersComponent]
+    imports: [PartnersComponent]
 })
     .compileComponents();
     

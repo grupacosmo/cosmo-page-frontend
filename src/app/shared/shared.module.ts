@@ -10,25 +10,23 @@ import { TabComponent } from './components/tabs/tab/tab.component';
 
 
 @NgModule({
-  declarations: [
-    CustomButtonComponent,
-    NewsSummaryComponent,
-    TruncatePipe,
-    TabsComponent,
-    TabComponent
-  ],
-  imports: [
-    CommonModule,
-    RouterModule,
-    TranslatePipe
-  ],
-  exports: [
-    CustomButtonComponent,
-    NewsSummaryComponent,
-    TruncatePipe,
-    TranslatePipe,
-    TabsComponent,
-    TabComponent
-  ]
+    imports: [
+        CommonModule,
+        RouterModule,
+        TranslatePipe,
+        CustomButtonComponent,
+        NewsSummaryComponent,
+        TruncatePipe,
+        TabsComponent,
+        TabComponent
+    ],
+    exports: [
+        CustomButtonComponent,
+        NewsSummaryComponent,
+        TruncatePipe,
+        TranslatePipe,
+        TabsComponent,
+        TabComponent
+    ]
 })
 export class SharedModule { }

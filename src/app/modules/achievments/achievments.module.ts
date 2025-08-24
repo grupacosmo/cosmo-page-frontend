@@ -11,17 +11,15 @@ import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
-  declarations: [
-    AchievmentsComponent,
-    AchievmentDetailsDialogComponent
-  ],
-  imports: [
-    CommonModule,
-    AchievmentsRoutingModule,
-    MatIconModule,
-    MatDialogModule,
-    MatButtonModule,
-    SharedModule
-  ]
+    imports: [
+        CommonModule,
+        AchievmentsRoutingModule,
+        MatIconModule,
+        MatDialogModule,
+        MatButtonModule,
+        SharedModule,
+        AchievmentsComponent,
+        AchievmentDetailsDialogComponent
+    ]
 })
 export class AchievmentsModule { }

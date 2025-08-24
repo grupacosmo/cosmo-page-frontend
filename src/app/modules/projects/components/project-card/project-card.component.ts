@@ -1,14 +1,16 @@
 import { Component, inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { ProjectCardInfo } from '../../models/project-card-info.model';
-import { Router } from '@angular/router';
+import { Router, RouterLinkActive, RouterLink } from '@angular/router';
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { Subscription, tap } from 'rxjs';;
+import { Subscription, tap } from 'rxjs';
+import { CustomButtonComponent } from '../../../../shared/controls/custom-button/custom-button.component';
+import { TranslatePipe } from '../../../../shared/pipes/translate/translate.pipe';;
 
 @Component({
     selector: 'app-project-card',
     templateUrl: './project-card.component.html',
     styleUrl: './project-card.component.scss',
-    standalone: false
+    imports: [RouterLinkActive, RouterLink, CustomButtonComponent, TranslatePipe]
 })
 export class ProjectCardComponent implements OnInit, OnDestroy {
   private readonly router = inject(Router);

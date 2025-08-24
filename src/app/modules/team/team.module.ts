@@ -6,12 +6,10 @@ import { TeamComponent } from './pages/team/team.component';
 
 
 @NgModule({
-  declarations: [
-    TeamComponent
-  ],
-  imports: [
-    CommonModule,
-    TeamRoutingModule
-  ]
+    imports: [
+        CommonModule,
+        TeamRoutingModule,
+        TeamComponent
+    ]
 })
 export class TeamModule { }

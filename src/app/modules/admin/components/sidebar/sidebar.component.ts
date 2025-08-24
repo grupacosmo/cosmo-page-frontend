@@ -1,11 +1,15 @@
 import { Component, EventEmitter, HostListener, inject, Output } from '@angular/core';
 import { SidebarService } from '../../shared/services/sidebar.service';
+import { NgIf, NgStyle } from '@angular/common';
+import { RouterLink } from '@angular/router';
+import { SidebarItemComponent } from './sidebar-components/sidebar-item/sidebar-item.component';
+import { SidebarBurgerItemComponent } from './sidebar-components/sidebar-burger-item/sidebar-burger-item.component';
 
 @Component({
     selector: 'app-sidebar',
     templateUrl: './sidebar.component.html',
     styleUrls: ['./sidebar.component.scss'],
-    standalone: false
+    imports: [NgIf, RouterLink, SidebarItemComponent, NgStyle, SidebarBurgerItemComponent]
 })
 export class SidebarComponent {
   public path: string = "../../../../../assets/";

@@ -8,7 +8,7 @@ describe('AddAchievementComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    declarations: [AddAchievementComponent]
+    imports: [AddAchievementComponent]
 })
     .compileComponents();
     

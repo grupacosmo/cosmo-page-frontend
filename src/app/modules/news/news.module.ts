@@ -13,19 +13,17 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 @NgModule({
-  declarations: [
-    NewsComponent,
-    SidenavComponent,
-    NewsListComponent,
-    NewsArticleComponent
-  ],
-  imports: [
-    CommonModule,
-    NewsRoutingModule,
-    MatCardModule,
-    SharedModule,
-    MatIconModule,
-    MatPaginatorModule
-  ]
+    imports: [
+        CommonModule,
+        NewsRoutingModule,
+        MatCardModule,
+        SharedModule,
+        MatIconModule,
+        MatPaginatorModule,
+        NewsComponent,
+        SidenavComponent,
+        NewsListComponent,
+        NewsArticleComponent
+    ]
 })
 export class NewsModule { }

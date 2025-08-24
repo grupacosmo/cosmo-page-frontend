@@ -13,20 +13,18 @@ import { ProjectsHomeComponent } from './components/projects/projects-home.compo
 import { JoinUsComponent } from './components/join-us/join-us.component';
 
 @NgModule({
-  declarations: [
-    HomeComponent,
-    AboutUsComponent,
-    PartnersComponent,
-    ProjectsHomeComponent,
-    JoinUsComponent
-  ],
-  imports: [
-    CommonModule,
-    HomeRoutingModule,
-    MatButtonModule,
-    SharedModule,
-    MatCardModule,
-    MatIconModule
-  ]
+    imports: [
+        CommonModule,
+        HomeRoutingModule,
+        MatButtonModule,
+        SharedModule,
+        MatCardModule,
+        MatIconModule,
+        HomeComponent,
+        AboutUsComponent,
+        PartnersComponent,
+        ProjectsHomeComponent,
+        JoinUsComponent
+    ]
 })
 export class HomeModule { }

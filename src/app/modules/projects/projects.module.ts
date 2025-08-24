@@ -9,16 +9,14 @@ import { ProjectDetailsComponent } from './pages/project-details/project-details
 import { ObserversModule } from '@angular/cdk/observers';
 
 @NgModule({
-  declarations: [
-    ProjectsComponent,
-    ProjectCardComponent,
-    ProjectDetailsComponent,
-  ],
-  imports: [
-    CommonModule,
-    ProjectsRoutingModule,
-    SharedModule,
-    ObserversModule
-  ]
+    imports: [
+        CommonModule,
+        ProjectsRoutingModule,
+        SharedModule,
+        ObserversModule,
+        ProjectsComponent,
+        ProjectCardComponent,
+        ProjectDetailsComponent
+    ]
 })
 export class ProjectsModule { }

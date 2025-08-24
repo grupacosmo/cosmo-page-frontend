@@ -1,13 +1,16 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ProjectDetailsItem } from 'src/app/shared/models/project-details-item';
 import { ProjectsService } from 'src/app/shared/services/projects.service';
+import { CustomButtonComponent } from '../../../../shared/controls/custom-button/custom-button.component';
+import { NgIf, NgFor } from '@angular/common';
+import { TranslatePipe } from '../../../../shared/pipes/translate/translate.pipe';
 
 @Component({
     selector: 'app-project-details',
     templateUrl: './project-details.component.html',
     styleUrl: './project-details.component.scss',
-    standalone: false
+    imports: [CustomButtonComponent, RouterLink, NgIf, NgFor, TranslatePipe]
 })
 export class ProjectDetailsComponent implements OnInit {
 

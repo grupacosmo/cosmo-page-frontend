@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
+import { NgFor } from '@angular/common';
+import { TranslatePipe } from '../../../../shared/pipes/translate/translate.pipe';
 
 @Component({
     selector: 'app-partners',
     templateUrl: './partners.component.html',
     styleUrl: './partners.component.scss',
-    standalone: false
+    imports: [NgFor, TranslatePipe]
 })
 export class PartnersComponent {
   readonly text = {

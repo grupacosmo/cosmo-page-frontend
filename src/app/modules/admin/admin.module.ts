@@ -20,31 +20,29 @@ import { EditPostDialogComponent } from './components/edit-dialogs/edit-post-dia
 import { MatDialogActions, MatDialogContent, MatDialogTitle } from '@angular/material/dialog';
 
 @NgModule({
-  declarations: [
-      AdminComponent,
-      SidebarComponent,
-      AddPostComponent,
-      PostsManComponent,
-      TurnBurgerDirective,
-      PostComponent,
-      AddProjectComponent,
-      ProjectsManComponent,
-      AddAchievementComponent,
-      AchievementsManComponent,
-      TeamCheckboxComponent,
-      ProjectComponent,
-      SidebarItemComponent,
-      SidebarBurgerItemComponent,
-      EditPostDialogComponent,
-  ],
-  imports: [
-    CommonModule,
-    AdminRoutingModule,
-    ReactiveFormsModule,
-    MatDialogTitle,
-    MatDialogContent,
-    MatDialogActions
-  ],
-  providers: []
+    imports: [
+        CommonModule,
+        AdminRoutingModule,
+        ReactiveFormsModule,
+        MatDialogTitle,
+        MatDialogContent,
+        MatDialogActions,
+        AdminComponent,
+        SidebarComponent,
+        AddPostComponent,
+        PostsManComponent,
+        TurnBurgerDirective,
+        PostComponent,
+        AddProjectComponent,
+        ProjectsManComponent,
+        AddAchievementComponent,
+        AchievementsManComponent,
+        TeamCheckboxComponent,
+        ProjectComponent,
+        SidebarItemComponent,
+        SidebarBurgerItemComponent,
+        EditPostDialogComponent
+    ],
+    providers: []
 })
 export class AdminModule { }

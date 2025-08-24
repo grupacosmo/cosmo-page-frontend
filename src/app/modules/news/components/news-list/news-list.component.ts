@@ -4,12 +4,16 @@ import { getNewsImage } from 'src/app/shared/helpers/imageHelper';
 import { scrollTop } from 'src/app/shared/helpers/navigationHelpers';
 import { PostItem } from 'src/app/shared/interfaces/PostInterfaces';
 import { NewsService } from 'src/app/shared/services/news.service';
+import { RouterLink } from '@angular/router';
+import { MatPaginator } from '@angular/material/paginator';
+import { DatePipe } from '@angular/common';
+import { TruncatePipe } from '../../../../shared/pipes/truncate.pipe';
 
 @Component({
     selector: 'app-news-list',
     templateUrl: './news-list.component.html',
     styleUrl: './news-list.component.scss',
-    standalone: false
+    imports: [RouterLink, MatPaginator, DatePipe, TruncatePipe]
 })
 export class NewsListComponent {
   protected newsItems: PostItem[] = [];

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 // TODO
 // REPLACE TEMPORTARY SOLUTION
@@ -9,7 +10,7 @@ const mediaPath = './../../../../../assets/images/social-media/';
     selector: 'app-sidenav',
     templateUrl: './sidenav.component.html',
     styleUrl: './sidenav.component.scss',
-    standalone: false
+    imports: [RouterLink]
 })
 export class SidenavComponent {
   readonly text = {

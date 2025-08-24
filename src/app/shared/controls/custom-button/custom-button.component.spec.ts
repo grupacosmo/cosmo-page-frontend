@@ -8,7 +8,7 @@ describe('PrimaryButtonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    declarations: [CustomButtonComponent]
+    imports: [CustomButtonComponent]
 })
     .compileComponents();
     
