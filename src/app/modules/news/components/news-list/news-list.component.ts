@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { PageEvent } from '@angular/material/paginator';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
+import { getNewsImage } from 'src/app/shared/helpers/imageHelper';
 import { scrollTop } from 'src/app/shared/helpers/navigationHelpers';
-import { NewsItem, NewsService } from 'src/app/shared/services/news.service';
+import { PostItem } from 'src/app/shared/interfaces/PostInterfaces';
+import { NewsService } from 'src/app/shared/services/news.service';
 
 @Component({
     selector: 'app-news-list',
@@ -11,23 +12,30 @@ import { NewsItem, NewsService } from 'src/app/shared/services/news.service';
     standalone: false
 })
 export class NewsListComponent {
-  protected newsItems: NewsItem[] = [];
+  protected newsItems: PostItem[] = [];
 
-  protected newsItemsToDisplay: NewsItem[] = []
+  protected newsItemsToDisplay: PostItem[] = []
 
   protected itemsPerPage = 6;
+
+  protected pageIndex = 0;
+
+  protected totalPages = 0;
 
   protected text = {
     readMore: 'Czytaj dalej'
   }
+
+  protected readonly getNewsImage = getNewsImage
 
   private subscription!: Subscription;
 
   constructor(private newsService: NewsService) {}
 
   ngOnInit() {
-    this.subscription = this.newsService.getNews().subscribe(news => {
-      this.newsItems = news
+    this.subscription = this.newsService.getNews({ page: this.pageIndex, size: this.itemsPerPage }).subscribe(news => {
+      this.newsItems = news.content
+      this.totalPages = news.totalPages
       this.changePage(0);
     });
   }
@@ -37,10 +45,12 @@ export class NewsListComponent {
   }
 
   changePage(pageIndex: number) {
+    this.pageIndex = pageIndex;
     const displayIndexStart = pageIndex * this.itemsPerPage;
     const displayIndexEnd = displayIndexStart + this.itemsPerPage;
 
     this.newsItemsToDisplay = this.newsItems.slice(displayIndexStart, displayIndexEnd);
     scrollTop('smooth');
   }
+
 }

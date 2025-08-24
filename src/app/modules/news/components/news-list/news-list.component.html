@@ -17,15 +17,15 @@
         </mat-card> -->
         <div
           class="newsItem"
-          [style.backgroundImage]="'url('+ newsItem.imageUrl + ')'"
-          [routerLink]="['/news', newsItem.slug]"
+          [style.backgroundImage]="getNewsImage(newsItem.backgroundPhoto?.src)"
+          [routerLink]="['/news', newsItem.id]"
         >
             <div class="overlay">
               <div class="basic-info">
-                <span class="date">{{ newsItem.date }}</span>
+                <span class="date">{{ newsItem.date | date:'medium' }}</span>
                 <h3>{{ newsItem.title }}</h3>
                 <p>
-                  {{ newsItem.content | truncate: [150] }}
+                  {{ newsItem.description | truncate: [150] }}
                 </p>
               </div>
             </div>
@@ -37,6 +37,6 @@
     (page)="changePage($event.pageIndex)"
     [pageSize]="itemsPerPage"
     hidePageSize
-    [length]="newsItems.length"
+    [length]="totalPages"
     aria-label="Select page">
   </mat-paginator>

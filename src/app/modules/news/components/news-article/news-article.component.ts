@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { filter, map, switchMap } from 'rxjs';
-import { NewsItem, NewsService } from 'src/app/shared/services/news.service';
+import { getNewsImage } from 'src/app/shared/helpers/imageHelper';
+import { PostDetails } from 'src/app/shared/interfaces/PostInterfaces';
+import { NewsService } from 'src/app/shared/services/news.service';
 
 @Component({
     selector: 'app-news-article',
@@ -10,7 +12,7 @@ import { NewsItem, NewsService } from 'src/app/shared/services/news.service';
     standalone: false
 })
 export class NewsArticleComponent {
-  protected newsItem: NewsItem | 'Loading'| undefined = 'Loading';
+  protected newsItem: PostDetails | 'Loading'| undefined = 'Loading';
   protected text = {
     readMore: 'Czytaj dalej',
     moreNews: "Więcej aktualności",
@@ -30,13 +32,14 @@ export class NewsArticleComponent {
       filter((slug: string) => !!slug),
       switchMap(slug => this.newsService.getBySlug(slug)),
     ).subscribe(item => {
-      if (item) {
+      if (typeof item === 'object') {
         this.newsItem = item;
       }
       else {
         this.router.navigate(['']);
       }
     })
-
   }
+
+  getNewsImage = (url?:string) => getNewsImage(url, true);
 }

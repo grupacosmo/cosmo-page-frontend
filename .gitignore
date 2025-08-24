@@ -64,3 +64,5 @@ aio/content/examples/.DS_Store
 /node_modules
 /.angular/cache
 .vscode/
+
+.env

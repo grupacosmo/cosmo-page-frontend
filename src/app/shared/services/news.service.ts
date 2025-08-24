@@ -1,17 +1,19 @@
-import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { PostData } from 'src/app/modules/admin/components/postComponents/add-post/add-post.component';
 import { HttpService } from './http.service';
+import { IPostsResponse, PostDetails } from '../interfaces/PostInterfaces';
 
-export interface NewsItem {
-  id: string;
-  slug: string;
-  title: string,
-  content: string;
-  date: string;
-  imageUrl: string;
-} 
+interface PagingParams {
+  page?: number,
+  size?: number
+}
+
+const DefaultParams: PagingParams = {
+  page: 0,
+  size: 10
+}
+
 
 @Injectable({
   providedIn: 'root'
@@ -19,17 +21,23 @@ export interface NewsItem {
 
 export class NewsService {
   private http: HttpService = inject(HttpService);
-  private readonly apiController: string = 'api';
+  private readonly apiController: string = 'api/posts';
 
   constructor() { }
 
-  getNews(): Observable<NewsItem[]> {
-    // return this.http.get<NewsItem[]>('');
-    return of(fakeNews);
+  getNews(pagingParams: PagingParams = {}): Observable<IPostsResponse> {
+    const params = {
+      ...DefaultParams,
+      ...pagingParams
+    }
+
+    const url = this.apiController + `?page=${params.page}&size=${params.size}`;
+    return this.http.get<IPostsResponse>(url)
   }
 
-  getBySlug(slug: string): Observable<NewsItem | undefined> {
-    return of(fakeNews.find(news => news.slug === slug))
+  getBySlug(id: string): Observable<PostDetails | string>  {
+    const url = this.apiController + '/' + id;
+    return this.http.get<PostDetails>(url)
   }
 
   onPost(news: PostData){
@@ -89,7 +97,7 @@ export class NewsService {
   }
 }
 
-let fakeNews: NewsItem[] = [
+let fakeNews: any[] = [
   {
     id: '1',
     slug: '1',
