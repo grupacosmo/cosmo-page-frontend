@@ -6,17 +6,17 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () =>
-      import('./modules/home/home.module').then((m) => m.HomeModule),
+      import('./modules/home/home.routes').then((m) => m.homeRoutes),
   },
   {
     path: 'projects',
     loadChildren: () =>
-      import('./modules/projects/projects.module').then((m) => m.ProjectsModule),
+      import('./modules/projects/projects.routes').then((m) => m.adminRoutes),
   },
   {
     path: 'admin',
     loadChildren: () =>
-      import('./modules/admin/admin.module').then((m) => m.AdminModule),
+      import('./modules/admin/admin.routes').then((m) => m.adminRoutes),
     canActivate: [AuthGuard]
   },
   {
@@ -30,17 +30,17 @@ const devRoutes = [
  {
     path: 'news',
     loadChildren: () =>
-      import('./modules/news/news.module').then((m) => m.NewsModule),
+      import('./modules/news/news.routes').then((m) => m.newsRoutes),
   },
   {
     path: 'team',
     loadChildren: () =>
-      import('./modules/team/team.module').then((m) => m.TeamModule),
+      import('./modules/team/team.routes').then((m) => m.teamRoutes),
   },
   {
     path: 'achievments',
     loadChildren: () =>
-      import('./modules/achievments/achievments.module').then((m) => m.AchievmentsModule),
+      import('./modules/achievments/achievments.routes').then((m) => m.achievmentsRoutes),
   }
 ]
 

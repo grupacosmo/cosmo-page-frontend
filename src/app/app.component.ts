@@ -2,7 +2,6 @@ import { Component, signal } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs';
 import { scrollTop } from './shared/helpers/navigationHelpers';
-import { CoreModule } from './core/core.module';
 import { HeaderComponent } from './core/components/header/header.component';
 import { FooterComponent } from './core/components/footer/footer.component';
 
@@ -10,7 +9,7 @@ import { FooterComponent } from './core/components/footer/footer.component';
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',
-    imports: [CoreModule, RouterOutlet, HeaderComponent, FooterComponent]
+    imports: [RouterOutlet, HeaderComponent, FooterComponent]
 })
 export class AppComponent {
   isLoading = signal(true);

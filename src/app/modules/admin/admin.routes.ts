@@ -8,7 +8,7 @@ import { ProjectsManComponent } from './components/projectComponents/projects-ma
 import { AddAchievementComponent } from './components/achievementsComponents/add-achievement/add-achievement.component';
 import { AchievementsManComponent } from './components/achievementsComponents/achievements-man/achievements-man.component';
 
-const routes: Routes = [
+export const adminRoutes: Routes = [
   {
     path: '',
     component: AdminComponent,
@@ -40,9 +40,3 @@ const routes: Routes = [
     ]
   }
 ];
-
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
-})
-export class AdminRoutingModule { }
