@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PostData } from 'src/app/modules/admin/components/postComponents/add-post/add-post.component';
 import { HttpService } from './http.service';
-import { IPostsResponse, PostDetails } from '../interfaces/PostInterfaces';
+import { IPostsResponse, PostDetails, PostInterface } from '../interfaces/PostInterfaces';
 
 interface PagingParams {
   page?: number,

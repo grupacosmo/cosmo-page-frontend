@@ -11,12 +11,12 @@ export class ImageService {
 
     constructor() {}
 
-    addImages(images: FileList): Observable<void> {
+    addImages(images: FileList): Observable<any> {
         const formData = new FormData();
         for(let i = 0; i < images.length; i++) {
             formData.append('images', images[i], images[i].name);
         }
+
         return this.http.post(`${this.apiController}`, formData);
     }
-
 }

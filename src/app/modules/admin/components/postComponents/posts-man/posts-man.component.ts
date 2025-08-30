@@ -22,7 +22,9 @@ export class PostsManComponent {
     this.newsService.getNews({ page: this.pageIndex, size: this.itemsPerPage }).subscribe(news => {
       this.newsItemsToDisplay = news.content;
       this.totalElements = news.totalElements;
+          console.log(this.newsItemsToDisplay);
     });
+    
   }
 
   changePage(pageIndex: number) {

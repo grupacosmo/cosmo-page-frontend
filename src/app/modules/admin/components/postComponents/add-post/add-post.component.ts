@@ -90,13 +90,8 @@ export class AddPostComponent {
     console.log(postData, imageList);
 
     if(imageList){
-      this.imageService.addImages(imageList).subscribe({
-        next: () => {
-          console.log('Images uploaded successfully');
-        },
-        error: (err: any) => {
-          console.error('Error uploading images:', err);
-        }
+      this.imageService.addImages(imageList).subscribe((data: any) => {
+        console.log('Images uploaded successfully:', data);
       });
     }
 
