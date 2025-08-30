@@ -19,8 +19,7 @@ export class NewsListComponent {
   protected itemsPerPage = 6;
 
   protected pageIndex = 0;
-
-  protected totalPages = 0;
+  protected totalElements = 0;
 
   protected text = {
     readMore: 'Czytaj dalej'
@@ -35,7 +34,7 @@ export class NewsListComponent {
   ngOnInit() {
     this.subscription = this.newsService.getNews({ page: this.pageIndex, size: this.itemsPerPage }).subscribe(news => {
       this.newsItems = news.content
-      this.totalPages = news.totalPages
+      this.totalElements = news.totalElements
       this.changePage(0);
     });
   }
@@ -48,6 +47,11 @@ export class NewsListComponent {
     this.pageIndex = pageIndex;
     const displayIndexStart = pageIndex * this.itemsPerPage;
     const displayIndexEnd = displayIndexStart + this.itemsPerPage;
+
+    this.newsService.getNews({ page: this.pageIndex, size: this.itemsPerPage }).subscribe(news => {
+      this.newsItemsToDisplay = news.content;
+      this.totalElements = news.totalElements;
+    });
 
     this.newsItemsToDisplay = this.newsItems.slice(displayIndexStart, displayIndexEnd);
     scrollTop('smooth');

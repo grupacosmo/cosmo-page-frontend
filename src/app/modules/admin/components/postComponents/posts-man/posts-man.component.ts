@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { PostsService } from '../../../shared/services/posts.service';
-import { Post } from '../../../shared/models/post.model';
+import { NewsService } from 'src/app/shared/services/news.service';;
+import { PostItem } from 'src/app/shared/interfaces/PostInterfaces';
 
 @Component({
     selector: 'app-posts-man',
@@ -10,14 +10,28 @@ import { Post } from '../../../shared/models/post.model';
 })
 
 export class PostsManComponent {
-  private service = inject(PostsService);
-  public posts: Post[] = [];
+  private newsService = inject(NewsService);
+  protected newsItemsToDisplay: PostItem[] = []
+  protected pageIndex = 0;
+  protected itemsPerPage = 6;
+  protected totalElements = 0;
 
   constructor(){}
 
   ngOnInit(){
-    this.service.getPostsFromServer().subscribe((posts: Post[]) => {
-      this.posts = posts;
+    this.newsService.getNews({ page: this.pageIndex, size: this.itemsPerPage }).subscribe(news => {
+      this.newsItemsToDisplay = news.content;
+      this.totalElements = news.totalElements;
+          console.log(this.newsItemsToDisplay);
+    });
+    
+  }
+
+  changePage(pageIndex: number) {
+    this.pageIndex = pageIndex;
+    this.newsService.getNews({ page: this.pageIndex, size: this.itemsPerPage }).subscribe(news => {
+      this.newsItemsToDisplay = news.content;
+      this.totalElements = news.totalElements;
     });
   }
 }

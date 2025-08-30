@@ -1,7 +1,9 @@
 import { Component, ViewChild, inject } from '@angular/core';
-import {Form, FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { Observable } from 'rxjs';
-import { PostsService } from '../../../shared/services/posts.service';
+import {FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { PostInterface } from 'src/app/shared/interfaces/PostInterfaces';
+import { NewsService } from 'src/app/shared/services/news.service';
+import { PostMapperService } from '../../../shared/services/posts-mapper.service';
+import { ImageService } from 'src/app/shared/services/images.service';
 
 interface UploadedFile {
   preview: string,
@@ -19,6 +21,11 @@ export interface PostData {
   platforms: any,
 }
 
+export interface MapFormResult {
+  postData: PostInterface;
+  imageList?: FileList;
+}
+
 @Component({
     selector: 'app-add-post',
     templateUrl: './add-post.component.html',
@@ -28,7 +35,9 @@ export interface PostData {
 
 export class AddPostComponent {
   @ViewChild('attachments') attachment: any;
-  private service = inject(PostsService);
+  private newsService = inject(NewsService);
+  private imageService = inject(ImageService);
+  private postMapperService = inject(PostMapperService);
   protected postForm: FormGroup;
   public path: string = "../../../../../assets/";
   selectedFiles?: FileList;
@@ -38,12 +47,11 @@ export class AddPostComponent {
     this.postForm = this.fb.group({
       title: ['', Validators.required],
       author: ['', Validators.required],
-      attachments: [''],
       text: ['', Validators.required],
-      platforms: this.fb.array([
-        this.fb.control(false),
-        this.fb.control(false)
-      ])
+      // platforms: this.fb.array([
+      //   this.fb.control(false),
+      //   this.fb.control(false)
+      // ])
     });
   }
 
@@ -69,20 +77,32 @@ export class AddPostComponent {
   }
 
   onPost(): void {
-    const formValue = this.postForm.value;
-    const postData = {
-      id: '',
-      slug: '',
-      date: '',
-      title: formValue.title,
-      author: formValue.author,
-      text: formValue.text,
-      platforms: formValue.platforms,
-      attachments: this.previews.map(p => p.file)
-    };
+    if (this.postForm.invalid) {
+      return;
+    }
 
-    console.log('Post Data:', postData);
-    this.service.getNewsService().onPost(postData);
+    console.log(this.postForm);
+    console.log(this.selectedFiles);
+
+    const result: MapFormResult = this.postMapperService.mapFormToPost(this.postForm.value, this.selectedFiles);
+    const { postData, imageList } = result;
+
+    console.log(postData, imageList);
+
+    if(imageList){
+      this.imageService.addImages(imageList).subscribe((data: any) => {
+        console.log('Images uploaded successfully:', data);
+      });
+    }
+
+    this.newsService.addPost(postData).subscribe({
+      next: () => {
+        this.postForm.reset();
+      },
+      error: (err: any) => {
+        console.error('Error adding post:', err);
+      }
+    });
   }
 
   onDelete(fileName: string) {

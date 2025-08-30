@@ -8,6 +8,12 @@ export interface PostDetails {
     date?: string;
 }
 
+export interface PostInterface {
+    title: string;
+    description: string;
+    author: string;
+}
+
 export interface IPostsResponse {
   content: PostItem[];
   pageable: Pageable;
