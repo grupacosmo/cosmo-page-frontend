@@ -1,9 +1,8 @@
 import { inject, Injectable } from '@angular/core';
-import { map, Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { PostData } from 'src/app/modules/admin/components/postComponents/add-post/add-post.component';
 import { HttpService } from './http.service';
-import { NewsItem } from '../models/news';
-import { IPostsResponse, PostDetails, PostInterface } from '../interfaces/PostInterfaces';
+import { IPostsResponse, PostDetails } from '../interfaces/PostInterfaces';
 
 interface PagingParams {
   page?: number,
@@ -67,7 +66,7 @@ export class NewsService {
   }
 }
 
-let fakeNews: NewsItem[] = [
+let fakeNews: any[] = [
   {
     id: '1',
     slug: '1',

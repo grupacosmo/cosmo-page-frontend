@@ -39,7 +39,7 @@ article {
 
         .content {
             font-size: $font-size-m;
-            text-align: justify;
+            text-align: left;
             
             @media (min-width: 1280px) {
                 flex: 1;

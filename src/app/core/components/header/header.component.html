@@ -6,8 +6,10 @@
         <ul class="desktop">
             <li><a routerLink="/" routerLinkActive="active" class="item">{{ 'navigation.home' | translate }}</a></li>
             <li><a routerLink="/projects" routerLinkActive="active" class="item">{{ 'navigation.projects' | translate }}</a></li>
-            <li><a routerLink="/news" routerLinkActive="active" class="item">{{ 'navigation.news' | translate }}</a></li>
-            <!-- <li><a routerLink="/achievments" routerLinkActive="active" class="item">{{ 'navigation.achievements' | translate }}</a></li> -->
+            @if(isDevMode()) {
+                <li><a routerLink="/news" routerLinkActive="active" class="item">{{ 'navigation.news' | translate }}</a></li>
+                <li><a routerLink="/achievments" routerLinkActive="active" class="item">{{ 'navigation.achievements' | translate }}</a></li>
+            }
         </ul>
         <button class="mobile" (click)="toggleMenu()">
             <mat-icon>{{ menuOpen ? 'close' : 'menu' }}</mat-icon>
@@ -18,8 +20,10 @@
         <ul class="mobile-menu" [@slideInOut]="menuState">
             <li><a routerLink="/" routerLinkActive="active" (click)="toggleMenu()" class="item">{{ 'navigation.home' | translate }}</a></li>
             <li><a routerLink="/projects" routerLinkActive="active" (click)="toggleMenu()" class="item">{{ 'navigation.projects' | translate }}</a></li>
-            <li><a routerLink="/news" routerLinkActive="active" (click)="toggleMenu()" class="item">{{ 'navigation.news' | translate }}</a></li>
-            <!-- <li><a routerLink="/achievments" routerLinkActive="active" (click)="toggleMenu()" class="item">{{ 'navigation.achievements' | translate }}</a></li> -->
+            @if(isDevMode()) {
+                <li><a routerLink="/news" routerLinkActive="active" (click)="toggleMenu()" class="item">{{ 'navigation.news' | translate }}</a></li>
+                <li><a routerLink="/achievments" routerLinkActive="active" (click)="toggleMenu()" class="item">{{ 'navigation.achievements' | translate }}</a></li>
+            }
         </ul>
     </nav>
 </header>

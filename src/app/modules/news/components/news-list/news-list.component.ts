@@ -19,7 +19,6 @@ export class NewsListComponent {
   protected itemsPerPage = 6;
 
   protected pageIndex = 0;
-
   protected totalElements = 0;
 
   protected text = {

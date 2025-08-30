@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { filter, map, switchMap } from 'rxjs';
 import { getNewsImage } from 'src/app/shared/helpers/imageHelper';
-import { PostDetails, PostItem } from 'src/app/shared/interfaces/PostInterfaces';
-import { NewsItem } from 'src/app/shared/models/news';
+import { PostDetails } from 'src/app/shared/interfaces/PostInterfaces';
 import { NewsService } from 'src/app/shared/services/news.service';
 
 @Component({
