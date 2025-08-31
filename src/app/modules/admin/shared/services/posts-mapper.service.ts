@@ -14,7 +14,8 @@ export class PostMapperService {
         const postData: PostInterface = {
             title: postForm.title,
             description: postForm.text,
-            author: postForm.author
+            author: postForm.author,
+            images: []
         };
 
         const imageList: FileList | undefined = selectedFiles?.length ? selectedFiles : undefined;

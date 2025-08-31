@@ -1,9 +1,11 @@
 import { Component, ViewChild, inject } from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { PostInterface } from 'src/app/shared/interfaces/PostInterfaces';
+import { Image, PostInterface } from 'src/app/shared/interfaces/PostInterfaces';
 import { NewsService } from 'src/app/shared/services/news.service';
 import { PostMapperService } from '../../../shared/services/posts-mapper.service';
 import { ImageService } from 'src/app/shared/services/images.service';
+import { ImageUploaded } from 'src/app/shared/interfaces/ImageInterface';
+import { forkJoin, Observable } from 'rxjs';
 
 interface UploadedFile {
   preview: string,
@@ -55,55 +57,62 @@ export class AddPostComponent {
     });
   }
 
-  showPreview(event: any){
+  showPreview(event: any) {
     this.previews = [];
     this.selectedFiles = event.target.files;
 
-    if (this.selectedFiles && this.selectedFiles[0]) {
-      const numberOfFiles = this.selectedFiles.length;
+    if (this.selectedFiles && this.selectedFiles.length > 0) {
+      const filesArray = Array.from(this.selectedFiles);
+      const observables = filesArray.map(file => this.fileToBase64(file));
 
-      for (let i = 0; i < numberOfFiles; i++) {
-        const reader = new FileReader();
-        const file = this.selectedFiles![i];
-
-        reader.onload = (event: any) => {
-          const preview = event.target.result;
-          this.previews.push({preview, file});
-        };
-        
-        reader.readAsDataURL(file);
-      }
-    }
-  }
-
-  onPost(): void {
-    if (this.postForm.invalid) {
-      return;
-    }
-
-    console.log(this.postForm);
-    console.log(this.selectedFiles);
-
-    const result: MapFormResult = this.postMapperService.mapFormToPost(this.postForm.value, this.selectedFiles);
-    const { postData, imageList } = result;
-
-    console.log(postData, imageList);
-
-    if(imageList){
-      this.imageService.addImages(imageList).subscribe((data: any) => {
-        console.log('Images uploaded successfully:', data);
+      forkJoin(observables).subscribe({
+        next: (base64Array: string[]) => {
+          base64Array.forEach((preview, index) => {
+            this.previews.push({ preview, file: filesArray[index] });
+          });
+        },
+        error: (err) => console.error('Error converting files:', err)
       });
     }
+  }
 
-    this.newsService.addPost(postData).subscribe({
-      next: () => {
-        this.postForm.reset();
+onPost(): void {
+  if (this.postForm.invalid) {
+    return;
+  }
+
+  const result: MapFormResult = this.postMapperService.mapFormToPost(this.postForm.value, this.selectedFiles);
+  const { postData, imageList } = result;
+
+  if (imageList && imageList.length > 0) {
+    this.imageService.addImages(imageList).subscribe({
+      next: (imageUrls: ImageUploaded[]) => {
+        const imagesForPost = imageUrls.map(img => ({
+          id: img.id,
+          name: null,
+          type: null,
+          data: null
+        }))
+
+        // Tutaj przypisujemy pełne obiekty Image do posta
+        postData.images.push(...imagesForPost);
+
+        // Wysyłamy post do backendu
+        this.newsService.addPost(postData).subscribe({
+          next: () => this.postForm.reset(),
+          error: (err) => console.error('Error adding post:', err)
+        });
       },
-      error: (err: any) => {
-        console.error('Error adding post:', err);
-      }
+      error: (err) => console.error('Error uploading images:', err)
+    });
+  } else {
+    this.newsService.addPost(postData).subscribe({
+      next: () => this.postForm.reset(),
+      error: (err) => console.error('Error adding post:', err)
     });
   }
+}
+
 
   onDelete(fileName: string) {
     const index: number = this.previews.findIndex((preview) => preview.file.name === fileName);
@@ -138,6 +147,25 @@ export class AddPostComponent {
 
   trackByFn(index: number, item: any): number {
     return index;
+  }
+
+
+  fileToBase64(file: File): Observable<string> {
+    return new Observable<string>(observer => {
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        observer.next(reader.result as string);
+        observer.complete();
+      };
+
+      reader.onerror = (error) => {
+        observer.error('Error converting file to base64');
+      };
+
+      reader.readAsDataURL(file);
+      return () => reader.abort();
+    });
   }
 }
 

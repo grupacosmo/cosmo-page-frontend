@@ -1,3 +1,5 @@
+import { ImageEntity } from "./ImageInterface";
+
 export interface PostDetails {
     title?:string;
     id: string;
@@ -12,6 +14,7 @@ export interface PostInterface {
     title: string;
     description: string;
     author: string;
+    images: ImageEntity[];
 }
 
 export interface IPostsResponse {
