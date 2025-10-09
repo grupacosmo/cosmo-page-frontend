@@ -13,17 +13,17 @@ export class PartnersComponent {
 
   protected partners = [
     {
-      src: '../../../../../assets/images/wiit-partner.png',
+      src: '../../../../../assets/images/wiim-partner.png',
       link: 'https://it.pk.edu.pl/'
     },
     // {
     //   src: '../../../../../assets/images/baltic-sat-apps-logo.jpg',
     //   link: 'https://interreg-baltic.eu/project/balticsatapps/'
     // },
-    {
-      src: '../../../../../assets/images/katedra-informatyki-logo.png',
-      link: 'https://ii.pk.edu.pl/'
-    },
+    // {
+    //   src: '../../../../../assets/images/katedra-informatyki-logo.png',
+    //   link: 'https://ii.pk.edu.pl/'
+    // },
     {
       src: '../../../../../assets/images/lux-on-js-logo.jpeg',
       link: 'https://www.luxonis.com/'
