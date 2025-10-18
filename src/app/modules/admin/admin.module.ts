@@ -18,6 +18,7 @@ import { SidebarItemComponent } from './components/sidebar/sidebar-components/si
 import { SidebarBurgerItemComponent } from './components/sidebar/sidebar-components/sidebar-burger-item/sidebar-burger-item.component';
 import { EditPostDialogComponent } from './components/edit-dialogs/edit-post-dialog/edit-post-dialog.component';
 import { MatDialogActions, MatDialogContent, MatDialogTitle } from '@angular/material/dialog';
+import { MatPaginatorModule } from "@angular/material/paginator";
 
 @NgModule({
   declarations: [
@@ -43,8 +44,9 @@ import { MatDialogActions, MatDialogContent, MatDialogTitle } from '@angular/mat
     ReactiveFormsModule,
     MatDialogTitle,
     MatDialogContent,
-    MatDialogActions
-  ],
+    MatDialogActions,
+    MatPaginatorModule
+],
   providers: []
 })
 export class AdminModule { }

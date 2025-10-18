@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PostData } from 'src/app/modules/admin/components/postComponents/add-post/add-post.component';
 import { HttpService } from './http.service';
-import { IPostsResponse, PostDetails } from '../interfaces/PostInterfaces';
+import { IPostsResponse, PostDetails, PostInterface } from '../interfaces/PostInterfaces';
 
 interface PagingParams {
   page?: number,
@@ -40,43 +40,12 @@ export class NewsService {
     return this.http.get<PostDetails>(url)
   }
 
-  onPost(news: PostData){
-    let id = String(parseInt(fakeNews[fakeNews.length - 1].id) - 1);
+  handlePost(){
 
-    const date = new Date();
-    let day = date.getDate();
-    let month = date.getMonth() + 1;
-    let year = date.getFullYear();
-    let currentDate = `${day}-${month}-${year}`;
+  }
 
-    console.log({     
-      id: id,
-      slug: id,
-      title: news.title,
-      content: news.text,
-      date: currentDate,
-      imageUrl: news.attachments[0].file,
-    })
-
-    fakeNews.push({
-      id: id,
-      slug: id,
-      title: news.title,
-      content: news.text,
-      date: currentDate,
-      imageUrl: news.attachments[0].file,
-    });
-
-    console.log(fakeNews);
-
-    // let updatedNews: NewsItem = {
-    //   ...news,
-    //   title: news.title,
-    //   content: news.text,
-    //   imageUrl: news.attachments[0].file,
-    // };
-
-    // this.http.post(`${this.apiController}/post`, news);
+  addPost(news: PostInterface): Observable<void> {
+    return this.http.post(`${this.apiController}`, news);
   }
 
   onEdit(news: PostData){

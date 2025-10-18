@@ -20,7 +20,7 @@
         <h3>Tekst</h3>
         <textarea class="text-input" formControlName="text" placeholder="Dodaj tekst"></textarea>
       </div>
-      <div class="row-container">
+      <!-- <div class="row-container">
         <h3>Platformy</h3>
         <div formArrayName="platforms">
           <div class="checkbox-img-container" *ngFor="let control of getPlatforms().controls; let i = index">
@@ -30,7 +30,7 @@
             <input type="checkbox" class="checkbox" [formControlName]="i" (change)="onCheckboxChange(i, $event)">
           </div>
         </div>
-      </div>
+      </div> -->
       <div class="submit-container">
         <input type="submit" value="Dodaj post" [disabled]="postForm.invalid">
       </div>
