@@ -1,0 +1,173 @@
+@use '@angular/material' as mat;
+@use './../../../../../assets/styles/theme' as *;
+@use './../../../../../assets/styles/global' as *;
+@use './../../../../../assets/styles/variables' as *;
+
+
+::ng-deep {
+    app-header {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+}
+
+:host {
+    flex-grow: 1;
+    display: grid;
+    grid-template-rows: 40rem 1fr;
+
+    .banner {
+        padding-top: $header-height;
+        background: url('../../../../../assets/images/night-sky.jpeg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        background-position-y: 70%;
+        z-index: 1;
+        padding: 10rem 0;
+        user-select: none;
+
+        &:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left:0;
+            height: 100%;
+            width: 100%;
+            background-color: #0015D370;
+        }
+
+        .content {
+            max-width: 1600px;
+            margin: 0 auto;
+            color: white;
+            position: relative;
+            padding: 0 6rem;
+            
+            .title {
+                font-size: 6rem;
+                font-weight: normal;
+            }
+        }
+    }
+
+    .content-container {
+        background: linear-gradient($primary-3, $primary-1);
+        box-shadow: -10px -50px 62px $primary-3, 10px -50px 62px $primary-3;
+        z-index: 2;
+        position: relative
+    }
+}
+
+.team-container {
+    display: flex;
+    flex-direction: column;
+
+    h1 {
+        text-align: center;
+    }
+
+    .team-navigation {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        width: 100%;
+        align-self: center;
+        font-size: 24px;
+        font-weight: bold;
+        gap: 20px;
+        padding: 2rem;
+        margin-bottom: 3rem;
+
+        .team-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px 25px;
+            transition: background-color 0.2s, color 0.2s;
+            color: $cosmo-magenta-light;
+            cursor: pointer;
+            flex-basis: 0;
+
+            @media (max-width: 768px) {
+                flex-grow: 1;
+            }
+
+            &:hover {
+                color: $primary-1;
+            }
+        }
+        
+    }
+
+    .team-section {
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 24px;
+        margin: 2em 0 3.5em;
+    
+        .member-card {
+            display: flex;
+            flex-direction: column;
+            width: min(calc(100vw - 200px), 250px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            height: 330px;
+            padding: 15px;
+            position: relative;            
+            
+            .front {
+                position: absolute;
+                inset: 15px;
+                gap: 10px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                opacity: 1;
+                transition: opacity 0.3s ease-in-out;
+
+                .member-name {
+                    font-size: 2rem;
+                    font-weight: bold;
+                    text-align: center;
+                }
+
+                .member-role {
+                    font-size: 1.8rem;
+                    text-align: center;
+                    color: $cosmo-magenta-light;
+                    font-weight: bold;
+                }
+
+                .member-image {
+                    width: 180px;
+                    height: 180px;
+                    object-fit: cover;
+                    border-radius: 50%;
+                }
+            }
+
+            .back {
+                overflow-y: auto;
+                overflow-x: hidden;
+                opacity: 0;
+                z-index: 1;
+                font-size: 1.8rem;
+                text-align: center;
+                transition: opacity 0.3s ease-in-out;
+            }
+
+            &:hover {
+                .front:not(.static) {
+                    opacity: 0;
+                }
+
+                .back {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
