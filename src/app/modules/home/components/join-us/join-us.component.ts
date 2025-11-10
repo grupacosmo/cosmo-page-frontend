@@ -16,6 +16,6 @@ export class JoinUsComponent {
     }
 
     protected openForm() {
-        window.open('https://forms.gle/18KxKvX6rkyzu6cJA', '_blank');
+        window.open('https://forms.gle/yzAawvpRiB8iofgM9', '_blank');
     }
 }
