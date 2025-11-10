@@ -1,1 +1,40 @@
-<p>team works!</p>
+<section class="banner">
+    <section class="content">
+        <h1 class="title">Zespół</h1>
+    </section>
+</section>
+<section class="content-container">
+    <main class="main-container">
+        <div class="team-container main-card">
+            <nav class="team-navigation">
+                @for (team of teamMembers; track team.team) {
+                    <div class="team-button" (click)="scrollToTeam(team.team)" [class.active]="activeTeam() === team.team">{{ team.team }}</div>
+                }
+            </nav>
+
+           @for (team of teamMembers; track team.team) {
+            <h1 id="{{ team.team }}">{{team.team}}</h1>
+                <section class="team-section">
+                    @for (member of team.members; track member.name) {
+                        <div class="member-card">
+                            <div class="front"
+                                [class.static]="!member.description"
+                            >
+                                <img class="member-image" [src]="member.image" alt="{{ member.name }}">
+                                <h3 class="member-name">{{ member.name }}</h3>
+                                <div class="member-roles">
+                                    @for (role of member.roles; track role) {
+                                        <p class="member-role">{{ role }}</p>
+                                    }
+                                </div>
+                            </div>
+                            <div class="back">
+                                <p class="member-description">{{ member.description }}</p>
+                            </div>
+                        </div>
+                    }
+                </section>
+           }
+        </div>
+    </main>
+</section>
