@@ -5,12 +5,12 @@ import { AppComponent } from './app/app.component';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { withInterceptorsFromDi, provideHttpClient } from '@angular/common/http';
 import { SocialLoginModule } from '@abacritt/angularx-social-login';
-import { CoreModule } from './app/core/core.module';
-import { AppRoutingModule } from './app/app-routing.module';
 import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
 import { MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule } from '@angular/material/dialog';
 import { AccountService } from './app/core/services/account/account.service';
 import { importProvidersFrom, inject, provideAppInitializer } from '@angular/core';
+import { provideRouter } from '@angular/router';
+import { routeConfig } from './routes';
 
 function appInitializer(accountService: AccountService) {
     return () => new Promise(resolve => {
@@ -56,12 +56,12 @@ function appInitializer(accountService: AccountService) {
 
 bootstrapApplication(AppComponent, {
     providers: [
-        importProvidersFrom(BrowserModule, AppRoutingModule, CoreModule, SocialLoginModule, MatDialogModule),
         provideAppInitializer(() => {
-        const initializerFn = (appInitializer)(inject(AccountService));
-        return initializerFn();
-      }),
+            const initializerFn = (appInitializer)(inject(AccountService));
+            return initializerFn();
+        }),
         { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } },
+        provideRouter(routeConfig),
         provideHttpClient(withInterceptorsFromDi()),
         provideAnimations()
     ]

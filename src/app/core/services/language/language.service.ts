@@ -39,7 +39,7 @@ export class LanguageService {
         }
     }
 
-    translate(key: string): string {
+    translate(key?: string): string {
         if (!key) return '';
         
         if (this.dictionary() === null) {

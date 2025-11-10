@@ -1,20 +1,5 @@
 <section>
     @for (newsItem of newsItemsToDisplay; track newsItem.id) {
-        <!-- <mat-card class="card">
-            <img mat-card-image [src]="newsItem.imageUrl" [alt]="newsItem.title">
-            <mat-card-header>
-                <mat-card-title><h1>{{ newsItem.title }}</h1></mat-card-title>
-              </mat-card-header>
-            <mat-card-content>
-                <p>
-                    {{ newsItem.content | truncate: [150] }}
-                </p>
-              </mat-card-content>
-            <footer>
-                <span>{{ newsItem.date }}</span>
-                <app-custom-button [routerLink]="[newsItem.id]" [text]="'Czytaj dalej'"></app-custom-button>
-              </footer>
-        </mat-card> -->
         <div
           class="newsItem"
           [style.backgroundImage]="getNewsImage(newsItem.backgroundPhoto?.src)"

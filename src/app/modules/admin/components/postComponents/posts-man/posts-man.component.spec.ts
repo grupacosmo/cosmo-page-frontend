@@ -8,7 +8,7 @@ describe('PostsManComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    declarations: [PostsManComponent]
+    imports: [PostsManComponent]
 })
     .compileComponents();
     

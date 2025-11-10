@@ -6,8 +6,7 @@ import { EditPostDialogComponent } from '../../edit-dialogs/edit-post-dialog/edi
 @Component({
     selector: 'app-post',
     templateUrl: './post.component.html',
-    styleUrl: './post.component.scss',
-    standalone: false
+    styleUrl: './post.component.scss'
 })
 
 export class PostComponent {

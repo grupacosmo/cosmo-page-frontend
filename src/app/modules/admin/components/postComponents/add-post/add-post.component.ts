@@ -1,7 +1,8 @@
 import { Component, ViewChild, inject } from '@angular/core';
-import {Form, FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Form, FormArray, FormBuilder, FormGroup, Validators, ReactiveFormsModule } from "@angular/forms";
 import { Observable } from 'rxjs';
 import { PostsService } from '../../../shared/services/posts.service';
+import { NgIf, NgFor } from '@angular/common';
 
 interface UploadedFile {
   preview: string,
@@ -23,7 +24,7 @@ export interface PostData {
     selector: 'app-add-post',
     templateUrl: './add-post.component.html',
     styleUrl: './add-post.component.scss',
-    standalone: false
+    imports: [ReactiveFormsModule, NgIf, NgFor]
 })
 
 export class AddPostComponent {

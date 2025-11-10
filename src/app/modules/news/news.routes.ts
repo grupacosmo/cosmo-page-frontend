@@ -4,7 +4,7 @@ import { NewsComponent } from './pages/news/news.component';
 import { NewsListComponent } from './components/news-list/news-list.component';
 import { NewsArticleComponent } from './components/news-article/news-article.component';
 
-const routes: Routes = [
+export const newsRoutes: Routes = [
   {
     path: '',
     component: NewsComponent,
@@ -20,9 +20,3 @@ const routes: Routes = [
     ]
   }
 ];
-
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
-})
-export class NewsRoutingModule { }

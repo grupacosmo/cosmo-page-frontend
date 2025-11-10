@@ -1,8 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 import { TeamsService } from '../../../shared/services/teams.service';
 import { TeamCheckbox } from './team-checkbox/TeamCheckbox.model';
-import { FormArray, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ProjectsAdminService } from '../../../shared/services/projects.service';
+import { NgFor } from '@angular/common';
 
 type UploadedFile =  {
   preview: string,
@@ -13,7 +14,7 @@ type UploadedFile =  {
     selector: 'app-add-project',
     templateUrl: './add-project.component.html',
     styleUrl: './add-project.component.scss',
-    standalone: false
+    imports: [ReactiveFormsModule, NgFor]
 })
 export class AddProjectComponent {
   @ViewChild('attachments') attachment: any;

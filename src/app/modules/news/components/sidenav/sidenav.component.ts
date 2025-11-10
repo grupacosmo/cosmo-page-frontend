@@ -1,26 +1,27 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 // TODO
 // REPLACE TEMPORTARY SOLUTION
 const mediaPath = './../../../../../assets/images/social-media/';
 
-
+// Currently unused
 @Component({
     selector: 'app-sidenav',
     templateUrl: './sidenav.component.html',
     styleUrl: './sidenav.component.scss',
-    standalone: false
+    imports: [RouterLink]
 })
 export class SidenavComponent {
-  protected text = {
-    news: 'Aktualności',
-    newest: 'Najnowsze',
-    links: 'Linki',
-    homepage: 'Strona głowna',
-    team: 'Zespół',
-    projects: 'Projekty',
-    achievments: 'Osiągnięcia',
-    seeAlso: 'Zobacz też'
+  readonly text = {
+    news: 'navigation.news',
+    newest: 'sidenav.newest',
+    links: 'navigation.links',
+    homepage: 'navigation.home',
+    team: 'navigation.team',
+    projects: 'navigation.projects',
+    achievments: 'navigation.achievments',
+    seeAlso: 'sidenav.seeAlso'
   }
 
   protected links = [

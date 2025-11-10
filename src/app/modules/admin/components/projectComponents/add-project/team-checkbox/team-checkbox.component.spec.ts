@@ -8,7 +8,7 @@ describe('TeamCheckboxComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    declarations: [TeamCheckboxComponent]
+    imports: [TeamCheckboxComponent]
 })
     .compileComponents();
     

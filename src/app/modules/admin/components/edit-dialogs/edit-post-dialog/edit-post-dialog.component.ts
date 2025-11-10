@@ -1,7 +1,9 @@
 import { Component, inject, ViewChild } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { PostsService } from '../../../shared/services/posts.service';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialogTitle, MatDialogContent, MatDialogActions } from '@angular/material/dialog';
+import { CdkScrollable } from '@angular/cdk/scrolling';
+import { NgIf, NgFor } from '@angular/common';
 
 
 interface UploadedFile {
@@ -21,7 +23,7 @@ export interface PostData {
     selector: 'app-post-edit-dialog',
     templateUrl: './edit-post-dialog.component.html',
     styleUrl: './edit-post-dialog.component.scss',
-    standalone: false
+    imports: [MatDialogTitle, CdkScrollable, MatDialogContent, ReactiveFormsModule, NgIf, NgFor, MatDialogActions]
 })
 
 export class EditPostDialogComponent {

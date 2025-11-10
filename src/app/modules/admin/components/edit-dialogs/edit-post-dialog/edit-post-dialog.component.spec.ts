@@ -8,7 +8,7 @@ describe('EditPostDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    declarations: [EditPostDialogComponent]
+    imports: [EditPostDialogComponent]
 })
     .compileComponents();
     

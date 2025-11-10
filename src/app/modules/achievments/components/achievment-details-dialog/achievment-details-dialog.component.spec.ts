@@ -8,7 +8,7 @@ describe('AchievmentDetailsDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    declarations: [AchievmentDetailsDialogComponent]
+    imports: [AchievmentDetailsDialogComponent]
 })
     .compileComponents();
     
