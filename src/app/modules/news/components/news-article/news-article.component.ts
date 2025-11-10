@@ -29,17 +29,17 @@ export class NewsArticleComponent {
 
   ngOnInit() {
     this.route.params
-    .pipe(
-      map(params => params['slug']),
-      filter((slug: string) => !!slug),
-      switchMap(slug => this.newsService.getBySlug(slug)),
-    ).subscribe(item => {
-      if (typeof item === 'object') {
-        this.newsItem = item;
-      }
-      else {
-        this.router.navigate(['']);
-      }
+      .pipe(
+        map(params => params['slug']),
+        filter((slug: string) => !!slug),
+        switchMap(slug => this.newsService.getBySlug(slug)),
+      ).subscribe(item => {
+        if (typeof item === 'object') {
+          this.newsItem = item;
+        }
+        else {
+          this.router.navigate(['']);
+        }
     })
   }
 

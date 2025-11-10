@@ -29,5 +29,5 @@ export class NewsSummaryComponent implements OnInit {
   ngOnInit() {
     this.news$ = this.newsService.getNews({ page: 0, size: 4 }).pipe(map(r => r.content));
   }
-
+  
 }
