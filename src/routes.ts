@@ -20,6 +20,11 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'team',
+    loadChildren: () =>
+      import('./app/modules/team/team.routes').then((m) => m.teamRoutes),
+  },
+  {
     path: '**',
     pathMatch: 'full',
     redirectTo: '/'
@@ -31,11 +36,6 @@ const devRoutes = [
     path: 'news',
     loadChildren: () =>
       import('./app/modules/news/news.routes').then((m) => m.newsRoutes),
-  },
-  {
-    path: 'team',
-    loadChildren: () =>
-      import('./app/modules/team/team.routes').then((m) => m.teamRoutes),
   },
   {
     path: 'achievments',
