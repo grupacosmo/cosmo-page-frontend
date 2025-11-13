@@ -56,8 +56,8 @@ export class FooterComponent {
           external: true
         },
         {
-          name: 'Twitter',
-          link: 'https://twitter.com/home',
+          name: 'X',
+          link: 'https://x.com/pkcosmopk',
           external: true
         },
       ]
