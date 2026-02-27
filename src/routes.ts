@@ -14,6 +14,11 @@ const routes: Routes = [
       import('./app/modules/projects/projects.routes').then((m) => m.adminRoutes),
   },
   {
+    path: 'news',
+    loadChildren: () =>
+      import('./app/modules/news/news.routes').then((m) => m.newsRoutes),
+  },
+  {
     path: 'admin',
     loadChildren: () =>
       import('./app/modules/admin/admin.routes').then((m) => m.adminRoutes),
@@ -32,11 +37,6 @@ const routes: Routes = [
 ];
 
 const devRoutes = [
- {
-    path: 'news',
-    loadChildren: () =>
-      import('./app/modules/news/news.routes').then((m) => m.newsRoutes),
-  },
   {
     path: 'achievments',
     loadChildren: () =>

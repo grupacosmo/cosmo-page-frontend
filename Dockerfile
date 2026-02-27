@@ -2,6 +2,9 @@ FROM node:20-alpine
 
 WORKDIR /usr/src/app
 
+ARG API_KEY
+ENV API_KEY=$API_KEY
+
 COPY . /usr/src/app
 
 RUN npm install -g @angular/cli

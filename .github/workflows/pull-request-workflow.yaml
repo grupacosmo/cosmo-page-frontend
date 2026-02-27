@@ -49,6 +49,8 @@ jobs:
           file: Dockerfile
           push: true
           tags: cosmopk/cosmo-page-frontend:latest
+          build-args: |
+            API_KEY=${{ secrets.API_KEY }}
 
   deploy:
     if: ${{ github.ref == 'refs/heads/main' }}
