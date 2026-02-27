@@ -2,8 +2,8 @@ FROM node:20-alpine
 
 WORKDIR /usr/src/app
 
-ARG API_URL
-ENV API_URL=$API_URL
+ARG API_KEY
+ENV API_KEY=$API_KEY
 
 COPY . /usr/src/app
 

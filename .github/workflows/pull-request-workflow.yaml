@@ -50,7 +50,7 @@ jobs:
           push: true
           tags: cosmopk/cosmo-page-frontend:latest
           build-args: |
-            API_URL=${{ secrets.API_URL }}
+            API_KEY=${{ secrets.API_KEY }}
 
   deploy:
     if: ${{ github.ref == 'refs/heads/main' }}
