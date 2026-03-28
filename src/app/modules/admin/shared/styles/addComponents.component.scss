@@ -1,11 +1,62 @@
-﻿$font-color: #ffffff;
+﻿/* =========================
+    Color Palette
+    ========================= */
+// Primary text colors
+$font-color: #ffffff;
 $font-color-darker: #d1d1d1;
+$label-text: rgba(50, 50, 50, 0.95);
+$placeholder-text: rgba(255, 255, 255, 0.78);
+$platform-label-text: rgba(255, 255, 255, 0.92);
+$toolbar-link-text: #233144;
+$toolbar-link-hover-text: #f2f6fb;
+
+// Input/textarea backgrounds
 $input-background: rgba(255, 255, 255, 0.05);
 $input-background-darker: rgba(255, 255, 255, 0.12);
 $textarea-background: rgba(255, 255, 255, 0.04);
+$file-input-background: rgba(255, 255, 255, 0.02);
+$file-selector-button-bg: rgba(255, 255, 255, 0.04);
+$file-selector-button-bg-hover: rgba(255, 255, 255, 0.06);
+$platform-option-bg: rgba(255, 255, 255, 0.03);
+
+// Borders and outlines
 $control-border: rgba(255, 255, 255, 0.38);
 $control-border-focus: var(--admin-accent-color, #c71da5);
+$file-input-border: rgba(255, 255, 255, 0.14);
+$file-selector-border: rgba(255, 255, 255, 0.16);
+$file-selector-border-hover: rgba(255, 255, 255, 0.26);
+$platform-option-border: rgba(255, 255, 255, 0.18);
+$toolbar-link-border: rgba(35, 49, 68, 0.55);
+$toolbar-link-border-hover: rgba(35, 49, 68, 0.85);
+$delete-button-border: rgba(255, 255, 255, 0.3);
 
+// Shadows
+$shadow-input-normal: 0 10px 24px rgba(8, 16, 28, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+$shadow-input-focus: 0 12px 26px rgba(8, 16, 28, 0.34);
+$shadow-submit-button: 0 10px 22px rgba(13, 17, 30, 0.3);
+$label-text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+
+// Loading and preview items
+$preview-item-bg: rgba(255, 255, 255, 0.04);
+$preview-item-border: rgba(255, 255, 255, 0.08);
+$delete-icon-color: rgba(255, 255, 255, 0.82);
+$delete-icon-hover-color: #ffffff;
+
+// Gradient backgrounds (decorative)
+$gradient-bg-light: rgba(90, 110, 135, 0.11);
+$gradient-bg-dark: #161B21;
+$triangle-gradient-start: rgba(128, 154, 186, 0.4);
+$triangle-gradient-end: rgba(35, 49, 68, 0.78);
+$triangle-gradient-secondary-start: rgba(84, 104, 132, 0.5);
+$triangle-gradient-secondary-end: rgba(15, 23, 35, 0.9);
+
+// Toolbar backgrounds
+$toolbar-link-bg: rgba(186, 201, 217, 0.28);
+$toolbar-link-bg-hover: rgba(35, 49, 68, 0.88);
+
+/* =========================
+    Fonts
+    ========================= */
 @font-face {
     font-family: 'InterRegular';
     src: url('/assets/fonts/Inter-Regular.ttf') format('truetype');
@@ -20,69 +71,24 @@ $control-border-focus: var(--admin-accent-color, #c71da5);
     font-style: italic;
 }
 
-form{
-    display: flex;
-    flex-direction: column;
-    gap: 1.6rem;
+/* =========================
+   Base Layout
+   ========================= */
+form {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
     font-family: 'InterRegular', Arial, sans-serif;
 }
 
-input{
-    width: 80%;
-    min-height: 4.4rem;
-    padding: 1.1rem 1.4rem;
-    margin: 1.2rem 0;
-    margin-left: 0;
-    font-size: 1.8rem;
-    color: $font-color;
-    background-color: $input-background;
-    border: solid 1px $control-border;
-    border-radius: 0.8rem;
-    transition: border-color 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
-    &::placeholder {
-        color: rgba(255, 255, 255, 0.78);
-        opacity: 1;
-    }
-}
-
-input:not([type='checkbox']):not([type='radio']):focus,
-textarea:focus {
-    outline: none;
-    border-color: $control-border-focus;
-    box-shadow: 0 0 0 2px color-mix(in srgb, $control-border-focus 35%, transparent);
-}
-
-input[type='submit']:hover{
-    background-color: $input-background-darker;
+/* =========================
+   Typography
+   ========================= */
+p {
     color: $font-color;
 }
 
-input[type='submit']{
-    cursor: pointer;
-    font-weight: 600;
-    border-color: transparent;
-    background: linear-gradient(90deg, color-mix(in srgb, $control-border-focus 82%, #4d6fa0) 0%, $control-border-focus 100%);
-}
-
-textarea {
-    width: 80%;
-    height: 60vh;
-    min-height: 26rem;
-    padding: 1.1rem 1.4rem;
-    font-size: 1.5rem;
-    color: $font-color;
-    background-color: $textarea-background;
-    border: solid 1px $control-border;
-    border-radius: 0.8rem;
-    resize: vertical;
-    &::placeholder {
-        color: rgba(255, 255, 255, 0.78);
-        opacity: 1;
-    }
-}
-
-h1{
-    padding: 3% 0%;
+h1 {
+    padding: 1rem 0%;
     font-size: 3rem;
     font-family: 'InterRegular', Arial, sans-serif;
     text-decoration: underline;
@@ -90,15 +96,15 @@ h1{
     color: white;
 }
 
-h2{
+h2 {
     padding: 2%;
     font-size: 2.5rem;
     font-family: 'InterExtraLight', 'InterRegular', Arial, sans-serif;
     color: $font-color-darker;
 }
 
-h3{
-    padding: 5% 0%;
+h3 {
+    padding: 0%;
     font-size: 2rem;
     font-family: 'InterRegular', Arial, sans-serif;
     text-decoration: underline;
@@ -106,7 +112,7 @@ h3{
     color: white;
 }
 
-h4{
+h4 {
     padding: 3% 5%;
     font-size: 2.5rem;
     font-family: 'InterRegular', Arial, sans-serif;
@@ -116,194 +122,256 @@ h4{
     color: $font-color;
 }
 
-input[type='file'] {
-    width: fit-content;
-    min-height: 4rem;
-    padding: 0.7rem;
-    font-size: 1.4rem;
-    border-radius: 0.8rem;
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    background: rgba(255, 255, 255, 0.02);
-}
-
-input[type='file']::file-selector-button {
-    margin-right: 1rem;
-    padding: 0.55rem 1rem;
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    border-radius: 0.6rem;
-    color: rgba(255, 255, 255, 0.9);
-    font-family: 'InterRegular', Arial, sans-serif;
-    font-size: 1.3rem;
-    cursor: pointer;
-    background: color-mix(in srgb, var(--admin-accent-color, #c71da5) 14%, rgba(255, 255, 255, 0.04));
-    transition: background-color 160ms ease, border-color 160ms ease;
-}
-
-input[type='file']::file-selector-button:hover {
-    border-color: rgba(255, 255, 255, 0.26);
-    background: color-mix(in srgb, var(--admin-accent-color, #c71da5) 22%, rgba(255, 255, 255, 0.06));
-}
-
-p{
-    color: $font-color;
-}
-
-.container{
+/* =========================
+   Shared Containers
+   ========================= */
+/* Main wrapper shared by admin add/edit pages. */
+.container {
     width: 95%;
     margin-left: 5%;
 
-    .file-input{
-        align-content: center;
-        padding: 0% 1%;
-    }
-
-    .group-container{
-        width: 80%;
-        padding: 1.4rem 1.2rem;
-        background-color: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 1.2rem;
+    .left-side-container {
+        width: 100%;
         display: flex;
-        justify-content: center;
         flex-direction: column;
+        align-items: left;
 
-        input{
-            width: 76%;
-            min-height: 4rem;
-            margin: 1rem 2%;
-            margin-left: 5%;
-            padding: 1rem 1.2rem;
-            align-content: center;
+        input {
+            width: 450px;
+            min-height: 4.5rem;
+            padding: 1.1rem 1.4rem;
+            margin-bottom: 1rem;
+            margin-left: 0;
+            font-size: 1.8rem;
             color: $font-color;
             background-color: $input-background;
-            border: 1px solid $control-border;
+            border: solid 1px $control-border;
             border-radius: 0.8rem;
+            transition: border-color 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
+    
+            &::placeholder {
+                color: $placeholder-text;
+                opacity: 1;
+            }
         }
 
-        .file-input{
-            align-content: center;
-            padding: 0% 1%;
-        }
-
-        .images-container{
+        .row-container {
             width: 100%;
+            display: flex;
+            flex-direction: column;
+
+            h3 {
+                width: 100%;
+                text-align: left;
+            }
+
+            input {
+                width: 10%;
+                margin-bottom: 0;
+            }
+        }
+
+        .file-input {
+                align-content: center;
+                padding: 0% 1%;
+        }
+
+        /* File input and button variant. */
+        input[type='file'] {
+            min-height: 4rem;
+            padding: 0.7rem;
+            font-size: 1.4rem;
+            border-radius: 0.8rem;
+            border: 1px solid $file-input-border;
+            background: $file-input-background;
+        }
+
+        input[type='file']::file-selector-button {
+            margin-right: 1rem;
+            padding: 0.55rem 1rem;
+            border: 1px solid $file-selector-border;
+            border-radius: 0.6rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-family: 'InterRegular', Arial, sans-serif;
+            font-size: 1.3rem;
+            cursor: pointer;
+            background: color-mix(in srgb, var(--admin-accent-color, #c71da5) 14%, $file-selector-button-bg);
+            transition: background-color 160ms ease, border-color 160ms ease;
+        }
+
+        input[type='file']::file-selector-button:hover {
+            border-color: $file-selector-border-hover;
+            background: color-mix(in srgb, var(--admin-accent-color, #c71da5) 22%, $file-selector-button-bg-hover);
+        }
+    
+        /* Uploaded image list with filename, preview and delete action. */
+        .images-container {
             display: block;
-        
-            .images-preview-container{
-                display: grid; 
-                    grid-template-columns: minmax(160px, 1.2fr) minmax(90px, 0.9fr) auto;
-                    align-items: center;
-                    gap: 1rem;
-                    min-height: 74px;
-                margin: 5%;
-                    padding: 0.8rem 1rem;
-                    border-radius: 0.9rem;
-                    background: rgba(255, 255, 255, 0.04);
-                    border: 1px solid rgba(255, 255, 255, 0.08);
-        
-                .images-preview-container-element{
+    
+            .images-preview-container {
+                display: grid;
+                grid-template-columns: minmax(160px, 1.2fr) minmax(90px, 0.9fr) auto;
+                align-items: center;
+                margin-bottom: 1rem;
+                gap: 1rem;
+                min-height: 74px;
+                padding: 0.8rem 1rem;
+                border-radius: 0.9rem;
+                background: $preview-item-bg;
+                border: 1px solid $preview-item-border;
+    
+                .images-preview-container-element {
                     padding: 0.4rem 0.6rem;
                     align-self: center;
                     overflow: auto;
                 }
-        
-                .image-preview{
+    
+                .image-preview {
                     @extend .images-preview-container-element;
                     max-height: 52px;
                     width: 100%;
                     object-fit: contain;
                     justify-self: center;
                 }
-        
-                p{
+    
+                p {
                     @extend .images-preview-container-element;
                     margin: 0;
                     text-align: left;
                     font-family: 'InterExtraLight', 'InterRegular', Arial, sans-serif;
                 }
-        
-                .delete{
+    
+                .delete {
                     width: 32px;
                     height: 32px;
                     display: inline-flex;
                     align-items: center;
                     justify-content: center;
-                    border: 1px solid rgba(255, 255, 255, 0.3);
+                    border: 1px solid $delete-button-border;
                     border-radius: 999px;
                     background: transparent;
                     cursor: pointer;
                     justify-self: end;
                     transition: border-color 180ms ease, background-color 180ms ease, transform 180ms ease;
                 }
-
+    
                 .delete-icon {
                     display: inline-block;
                     font-size: 1.9rem;
                     line-height: 1;
-                    color: rgba(255, 255, 255, 0.82);
+                    color: $delete-icon-color;
                     transform: translateY(-1px);
                 }
-
+    
                 .delete:hover {
                     border-color: var(--admin-accent-color, #c71da5);
                     background-color: color-mix(in srgb, var(--admin-accent-color, #c71da5) 22%, transparent);
                     transform: scale(1.06);
                 }
-
+    
                 .delete:hover .delete-icon {
-                    color: #ffffff;
+                    color: $delete-icon-hover-color;
                 }
+            }
+        }
+    
+        /* Checkbox row with text labels. */
+        .checkbox-text-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: left;
+            align-items: center;
+    
+            input {
+                margin: 5%;
+                padding: 0;
+                width: 10%;
+            }
+    
+            label {
+                width: 5%;
+                justify-content: center;
+            }
+        }
+
+        /* Shared focus ring for text controls only. */
+        input:not([type='checkbox']):not([type='radio']):focus,
+        textarea:focus {
+            outline: none;
+            border-color: $control-border-focus;
+            box-shadow: 0 0 0 2px color-mix(in srgb, $control-border-focus 35%, transparent);
+        }
+    
+        /* Checkbox row variant with icon/image. */
+        .checkbox-img-container {
+            @extend .checkbox-text-container;
+    
+            input {
+                width: 5%;
+            }
+    
+            .checkbox-img {
+                width: 100%;
             }
         }
     }
 
-    .checkbox-text-container{
+    .right-side-container {
         display: flex;
-        flex-direction: row;
-        justify-content: left;
+        flex-direction: column;
         align-items: center;
 
-        input{
-            margin: 5%;
-            padding: 0;
-            width: 10%;
+        /* Multiline content field. */
+        textarea {
+            width: 80%;
+            height: 60vh;
+            min-height: 26rem;
+            padding: 1.1rem 1.4rem;
+            font-size: 1.5rem;
+            color: $font-color;
+            background-color: $textarea-background;
+            border: solid 1px $control-border;
+            border-radius: 0.8rem;
+            resize: vertical;
+
+            &::placeholder {
+                color: $placeholder-text;
+                opacity: 1;
+            }
         }
 
-        label{
-            width: 5%;
+        /* Submit container wrapper for better layout control. */
+        .submit-container {
+            display: flex;
             justify-content: center;
-        }
-    }
-
-    .checkbox-img-container{
-        @extend .checkbox-text-container;
-        
-        input{
-            width: 5%;
-        }
-
-        .checkbox-img{
+            align-items: center;
             width: 100%;
         }
-    }
 
-    .submit-container{
-        width: 80%;
-        margin-top: 5%;
-        display: flex;
-        justify-content: center;
+        /* Submit control styling. */
+        input[type='submit'] {
+            margin: 2rem 0;
+            cursor: pointer;
+            color: $font-color-darker;
+            background-color: $input-background;
+            font-weight: 600;
+            border-color: transparent;
+            transition: background-color 160ms ease, color 160ms ease;
+        }
 
-        input{
-            width: min(100%, 32rem);
-            height: 10vh;
-            min-height: 4.4rem;
+        input[type='submit']:hover {
+            background-color: $input-background-darker;
             color: $font-color;
         }
     }
 }
 
+/* =========================
+   Responsive: <= 768px
+   ========================= */
 @media only screen and (max-width: 768px) {
-    input{
+    /* Global control sizing for tablet/small laptop. */
+    input {
         font-size: 1.5rem;
         width: 90%;
     }
@@ -312,34 +380,36 @@ p{
         width: 90%;
     }
 
-    .checkbox-text-container{
+    /* Checkbox row spacing and label width for smaller screens. */
+    .checkbox-text-container {
         display: flex;
         flex-direction: row;
         justify-content: left;
         align-items: center;
 
-        input{
+        input {
             margin: 5%;
             padding: 0;
             width: 10%;
         }
 
-        label{
+        label {
             width: 10%;
             justify-content: center;
         }
     }
 
-    .container{
+    /* Container and inner block scaling. */
+    .container {
         margin-left: 2%;
         width: 98%;
 
-        .group-container{
+        .group-container {
             width: 92%;
 
-            .images-container{  
-                .images-preview-container{
-                    .image-preview{
+            .images-container {
+                .images-preview-container {
+                    .image-preview {
                         height: 4em;
                     }
                 }
@@ -355,21 +425,26 @@ p{
         }
     }
 
-    h1{
+    /* Typography scale-down on tablet. */
+    h1 {
         font-size: 2rem;
     }
 
-    h3{
+    h3 {
         font-size: 1.5rem;
     }
 
-    h4{
+    h4 {
         font-size: 1.25rem;
     }
 }
 
+/* =========================
+   Responsive: <= 456px
+   ========================= */
 @media only screen and (max-width: 456px) {
-    input{
+    /* Global control sizing for narrow mobile. */
+    input {
         font-size: 1rem;
         width: 100%;
     }
@@ -378,47 +453,49 @@ p{
         width: 100%;
     }
 
-    .checkbox-text-container{
+    /* Checkbox row spacing and label width for narrow mobile. */
+    .checkbox-text-container {
         display: flex;
         flex-direction: row;
         justify-content: left;
         align-items: center;
 
-        input{
+        input {
             margin: 5%;
             padding: 0;
             width: 10%;
         }
 
-        label{
+        label {
             margin-right: 5%;
             width: 15%;
             justify-content: center;
         }
     }
 
-    .checkbox-img-container{
+    .checkbox-img-container {
         width: 50%;
     }
 
-    .container{
+    /* Narrow mobile layout adjustments for container and preview row. */
+    .container {
         margin-left: 0;
         width: 100%;
 
-        .group-container{
+        .group-container {
             width: 100%;
 
-            .images-container{  
-                .images-preview-container{
-                    .image-preview{
+            .images-container {
+                .images-preview-container {
+                    .image-preview {
                         height: 2em;
                     }
 
-                    p{
+                    p {
                         font-size: 0.5em;
                     }
-            
-                    .delete{
+
+                    .delete {
                         font-size: 20px;
                     }
                 }
@@ -435,11 +512,12 @@ p{
         }
     }
 
-    h1{
+    /* Typography scale-down on narrow mobile. */
+    h1 {
         font-size: 1.5rem;
     }
 
-    h3{
+    h3 {
         font-size: 1rem;
         text-underline-offset: 0.5rem;
     }
