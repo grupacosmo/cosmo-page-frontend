@@ -5,14 +5,16 @@
       <div class="group-container">
         <div class="double-input-container">
           <input type="text" formControlName="author" placeholder="Autor"/>
-          <input type="file" class="file-input" accept="image/*" multiple (change)="showPreview($event)"/>
+          <input #attachments type="file" class="file-input" accept="image/*" multiple (change)="showPreview($event)"/>
         </div>
         <div class="images-container" *ngIf="previews.length > 0">
           <h4>Obrazy</h4>
           <div class="images-preview-container" *ngFor="let preview of previews; trackBy: trackByFn">
             <p>{{ preview.file.name }}</p>
             <img [src]="preview.preview" [alt]="preview.file.name" class="image-preview"/>
-            <button type="button" class="delete" (click)="onDelete(preview.file.name)">&#9760;</button>
+            <button type="button" class="delete" (click)="onDelete(preview.file.name)">
+              <span class="delete-icon">x</span>
+            </button>
           </div>
         </div>
       </div>
@@ -22,12 +24,16 @@
       </div>
       <div class="row-container">
         <h3>Platformy</h3>
-        <div formArrayName="platforms">
-          <div class="checkbox-img-container" *ngFor="let control of getPlatforms().controls; let i = index">
-            <label>
-              <img [src]="path + 'images/logo.png'" alt="" class="checkbox-img">
-            </label>
-            <input type="checkbox" class="checkbox" [formControlName]="i" (change)="onCheckboxChange(i, $event)">
+        <div formArrayName="platforms" class="platforms-options">
+          <div class="platform-option" *ngFor="let control of getPlatforms().controls; let i = index">
+            <input
+              type="checkbox"
+              class="platform-checkbox"
+              [id]="'platform-' + i"
+              [formControlName]="i"
+              (change)="onCheckboxChange(i, $event)"
+            >
+            <label [for]="'platform-' + i">{{ platformOptions[i]?.label }}</label>
           </div>
         </div>
       </div>

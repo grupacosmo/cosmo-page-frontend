@@ -83,6 +83,23 @@
       "dronDetails3dPrint": "Wydrukowana za pomoca druku 3D część drona"
     }
   },
+  "admin": {
+    "controlPanel": "Panel sterowania",
+    "contentManagement": "Zarządzanie treścią",
+    "pageAndSessionSettings": "Ustawienia strony i sesji",
+    "dashboard": "Pulpit",
+    "posts": "Posty",
+    "addPost": "Dodaj post",
+    "managePosts": "Zarządzaj postami",
+    "achievements": "Osiągnięcia",
+    "addAchievement": "Dodaj osiągnięcie",
+    "manageAchievements": "Zarządzaj osiągnięciami",
+    "teams": "Zespoły",
+    "addTeam": "Dodaj zespół",
+    "manageTeams": "Zarządzaj zespołami",
+    "pageSettings": "Ustawienia strony",
+    "logout": "Wyloguj"
+  },
   "footer": {
     "address": "Adres",
     "contactUs": "Skontaktuj się z nami",

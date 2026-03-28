@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+﻿import { Routes } from '@angular/router';
 import { AuthGuard } from './app/shared/services/Auth/auth-guard.service';
 import { isDevMode } from '@angular/core';
 
@@ -11,7 +11,9 @@ const routes: Routes = [
   {
     path: 'projects',
     loadChildren: () =>
-      import('./app/modules/projects/projects.routes').then((m) => m.adminRoutes),
+      import('./app/modules/projects/projects.routes').then(
+        (m) => m.adminRoutes,
+      ),
   },
   {
     path: 'news',
@@ -32,20 +34,25 @@ const routes: Routes = [
   {
     path: '**',
     pathMatch: 'full',
-    redirectTo: '/'
-  }
+    redirectTo: '/',
+  },
 ];
 
 const devRoutes = [
   {
     path: 'achievments',
     loadChildren: () =>
-      import('./app/modules/achievments/achievments.routes').then((m) => m.achievmentsRoutes),
-  }
-]
+      import('./app/modules/achievments/achievments.routes').then(
+        (m) => m.achievmentsRoutes,
+      ),
+  },
+];
 
 if (isDevMode()) {
-  routes.splice(1, 0, ...devRoutes)
+  routes.splice(1, 0, ...devRoutes);
 }
 
 export const routeConfig = routes;
+
+
+

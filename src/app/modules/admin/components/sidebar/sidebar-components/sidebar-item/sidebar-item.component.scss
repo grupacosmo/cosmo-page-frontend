@@ -1,106 +1,36 @@
-$font-color-link: rgb(217, 217, 217);
-$font-color-hover: #2B203A;
-
-@mixin container-header {
-    display: flex;
-    justify-content: left;
-    gap: 1rem;
+.sidebar-link {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.7rem;
+    margin: 0.25rem auto;
+    padding: 0.55rem 0.85rem;
+    color: #ffffff;
+    text-decoration: none;
     font-size: 2rem;
-    margin: 4rem 0 2rem 0;
-
-    span {
-        font-size: 3rem;
-        display: inline-block;
-        transition: transform 0.3s ease-in-out;
-    }
+    line-height: 1.2rem;
+    border-radius: 0 0.5rem 0.5rem 0;
+    transition: color 180ms ease, background-color 180ms ease;
 }
 
-.container {
-    margin-left: 1rem;
-
-    .menuClosed{
-        display: none;
-    }    
-
-    .container-header {
-        @include container-header();
-    }
-
-    .container-header:hover span{
-        transform: translateY(-1rem);
-    }
-
-    ul {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        list-style: none;
-
-        li {
-            margin: 1.5rem 0rem;
-            font-size: 2rem;
-            transition: transform 0.3s ease-in-out;
-
-            a {
-                display: inline-block;
-                text-decoration: none;
-                text-align: left;
-                color: $font-color-link;
-                padding: 1rem;
-                margin-left: 4rem;
-                border-radius: 2rem;
-                transition: color 0.3s ease, font-weight 0.3s ease, background-color 0.3s ease, font-size 0.3s ease;
-
-                &.active-link {
-                    background-color: #ffffff;
-                    color: $font-color-hover;
-                    font-weight: bold;
-                    font-size: 2.1rem;
-                    z-index: 1;
-                }
-
-                &:not(.active-link):hover {
-                    background-color: rgba(255, 255, 255, 0.1);
-                    color: $font-color-link;
-                }
-            }
-        }
-
-        li:hover{
-            transform: translateY(-0.5rem);
-        }
-    }
+.sidebar-link:hover,
+.sidebar-link.active {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.08);
+    // background-image: linear-gradient(
+    //     90deg,
+    //     color-mix(in srgb, rgba(255, 255, 255, 0.16) 38%, transparent) 0%,
+    //      var(--admin-accent-color, #c71da5) 100%
+    // );
+    border-left: #c71da5 10px solid;
 }
 
-@media screen and (max-width: 1024px) {
-    .container {
-        .container-header {
-            font-size: 1.5rem;
-            margin: 3rem 0 1rem 0;
-            flex-direction: column;
+.sidebar-link__icon {
+    font-size: 2rem;
+    line-height: 1;
+}
 
-            span {
-                font-size: 2.5rem;
-            }
-        }
-
-        .container-header:hover span{
-            transform: translateX(1rem);
-        }
-
-        ul li:hover{
-            transform: translateY(-0.5rem);
-        }
-    }
-
-    .container ul li {
-        font-size: 1.5rem;
-
-        a {
-            margin-left: 1rem;
-            &.active-link {
-                font-size: 1.6rem;
-            }
-        }
-    }
+.sidebar-link__label {
+    white-space: nowrap;
 }

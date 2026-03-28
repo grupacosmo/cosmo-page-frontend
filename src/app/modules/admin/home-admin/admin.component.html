@@ -1,4 +1,24 @@
 <div class="container">
-    <app-sidebar (isScrollBlocked)="checkDisplay($event)"></app-sidebar>
-    <div class="main" [ngStyle]="{'display': (isScrollBlocked ? 'none' : 'block')}"><router-outlet></router-outlet></div>
+    <mat-toolbar>
+        @if(isMobile) {
+            <button mat-icon-button (click)="toggleSidenav(sidenav)">
+                <mat-icon>{{ sidenav.opened ? 'close' : 'menu' }}</mat-icon>
+            </button>
+        }
+    </mat-toolbar>
+    <mat-sidenav-container [hasBackdrop]="isMobile">
+        <mat-sidenav 
+            #sidenav
+            [opened]="!isMobile || isSidenavOpen"
+            (openedChange)="isSidenavOpen = $event"
+            [mode]="isMobile ? 'over' : 'side'"
+            class="sidenav"
+            [style.width]="isMobile ? '100vw' : '250px'"
+        >
+            <app-sidebar></app-sidebar>
+        </mat-sidenav>
+        <mat-sidenav-content class="content">
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
 </div>

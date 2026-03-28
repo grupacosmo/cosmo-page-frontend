@@ -83,6 +83,23 @@
       "dronDetails3dPrint": "3D printed drone part"
     }
   },
+  "admin": {
+    "controlPanel": "Control panel",
+    "contentManagement": "Content management",
+    "pageAndSessionSettings": "Page and session settings",
+    "dashboard": "Dashboard",
+    "posts": "Posts",
+    "addPost": "Add post",
+    "managePosts": "Manage posts",
+    "achievements": "Achievements",
+    "addAchievement": "Add achievement",
+    "manageAchievements": "Manage achievements",
+    "teams": "Teams",
+    "addTeam": "Add team",
+    "manageTeams": "Manage teams",
+    "pageSettings": "Page settings",
+    "logout": "Logout"
+  },
   "footer": {
     "address": "Address",
     "contactUs": "Contact Us",

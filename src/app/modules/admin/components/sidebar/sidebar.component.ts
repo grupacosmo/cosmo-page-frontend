@@ -1,35 +1,32 @@
-import { Component, EventEmitter, HostListener, inject, Output } from '@angular/core';
-import { SidebarService } from '../../shared/services/sidebar.service';
-import { NgIf, NgStyle } from '@angular/common';
-import { RouterLink } from '@angular/router';
+﻿import { Component, OnInit } from '@angular/core';
+import { MatListModule } from '@angular/material/list';
+import { SidebarElementsService } from './sidebar-elements.service';
 import { SidebarItemComponent } from './sidebar-components/sidebar-item/sidebar-item.component';
-import { SidebarBurgerItemComponent } from './sidebar-components/sidebar-burger-item/sidebar-burger-item.component';
+
+type SidebarElement = {
+  title: string;
+  icon: string;
+  link: string;
+};
 
 @Component({
-    selector: 'app-sidebar',
-    templateUrl: './sidebar.component.html',
-    styleUrls: ['./sidebar.component.scss'],
-    imports: [NgIf, RouterLink, SidebarItemComponent, NgStyle, SidebarBurgerItemComponent]
+  selector: 'app-sidebar',
+  standalone: true,
+  templateUrl: './sidebar.component.html',
+  styleUrls: ['./sidebar.component.scss'],
+  imports: [MatListModule, SidebarItemComponent],
 })
-export class SidebarComponent {
-  public path: string = "../../../../../assets/";
-  windowWidth: number = window.innerWidth;
-  display: boolean = false;
+export class SidebarComponent implements OnInit {
+  protected sidebarElements: SidebarElement[] = [];
 
-  @Output() isScrollBlocked = new EventEmitter<Boolean>();
+  constructor(
+    private readonly sidebarElementsService: SidebarElementsService,
+  ) {}
 
-  @HostListener('window:resize', ['$event'])
-  
-  onResize() {
-    this.windowWidth = window.innerWidth;
-  }
-
-  onRouterLinkActive($event: boolean) {
-    console.log($event);
-  }
-
-  onClick() {
-    this.display = !this.display;
-    this.isScrollBlocked.emit(this.display);
+  ngOnInit(): void {
+    this.sidebarElements = this.sidebarElementsService.getSidebarElements();
   }
 }
+
+
+

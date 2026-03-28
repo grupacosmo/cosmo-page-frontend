@@ -1,37 +1,47 @@
-import { Component, ViewChild, inject } from '@angular/core';
-import { Form, FormArray, FormBuilder, FormGroup, Validators, ReactiveFormsModule } from "@angular/forms";
+﻿import { Component, ViewChild, inject } from '@angular/core';
+import {
+  Form,
+  FormArray,
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { Observable } from 'rxjs';
 import { PostsService } from '../../../shared/services/posts.service';
 import { NgIf, NgFor } from '@angular/common';
 
 interface UploadedFile {
-  preview: string,
-  file: any,
+  preview: string;
+  file: any;
 }
 
 export interface PostData {
-  id: string,
-  slug: string,
-  date: string,
-  title: string,
-  author: string,
-  attachments: UploadedFile[],
-  text: string,
-  platforms: any,
+  id: string;
+  slug: string;
+  date: string;
+  title: string;
+  author: string;
+  attachments: UploadedFile[];
+  text: string;
+  platforms: any;
 }
 
 @Component({
-    selector: 'app-add-post',
-    templateUrl: './add-post.component.html',
-    styleUrl: './add-post.component.scss',
-    imports: [ReactiveFormsModule, NgIf, NgFor]
+  selector: 'app-add-post',
+  templateUrl: './add-post.component.html',
+  styleUrl: './add-post.component.scss',
+  imports: [ReactiveFormsModule, NgIf, NgFor],
 })
-
 export class AddPostComponent {
   @ViewChild('attachments') attachment: any;
   private service = inject(PostsService);
   protected postForm: FormGroup;
-  public path: string = "../../../../../assets/";
+  public path: string = '../../../../../assets/';
+  public platformOptions = [
+    { label: 'Facebook', icon: 'assets/images/social-media/fb.png' },
+    { label: 'Strona Cosmo PK', icon: 'assets/images/cosmo-white.png' },
+  ];
   selectedFiles?: FileList;
   previews: UploadedFile[] = [];
 
@@ -43,12 +53,12 @@ export class AddPostComponent {
       text: ['', Validators.required],
       platforms: this.fb.array([
         this.fb.control(false),
-        this.fb.control(false)
-      ])
+        this.fb.control(false),
+      ]),
     });
   }
 
-  showPreview(event: any){
+  showPreview(event: any) {
     this.previews = [];
     this.selectedFiles = event.target.files;
 
@@ -61,9 +71,9 @@ export class AddPostComponent {
 
         reader.onload = (event: any) => {
           const preview = event.target.result;
-          this.previews.push({preview, file});
+          this.previews.push({ preview, file });
         };
-        
+
         reader.readAsDataURL(file);
       }
     }
@@ -79,7 +89,7 @@ export class AddPostComponent {
       author: formValue.author,
       text: formValue.text,
       platforms: formValue.platforms,
-      attachments: this.previews.map(p => p.file)
+      attachments: this.previews.map((p) => p.file),
     };
 
     console.log('Post Data:', postData);
@@ -87,15 +97,17 @@ export class AddPostComponent {
   }
 
   onDelete(fileName: string) {
-    const index: number = this.previews.findIndex((preview) => preview.file.name === fileName);
+    const index: number = this.previews.findIndex(
+      (preview) => preview.file.name === fileName,
+    );
     this.previews.splice(index, 1);
 
     const dataTransfer = new DataTransfer();
 
     for (let i = 0; i < this.selectedFiles!.length; i++) {
-        if (i !== index) {
-            dataTransfer.items.add(this.selectedFiles![i]);
-        }
+      if (i !== index) {
+        dataTransfer.items.add(this.selectedFiles![i]);
+      }
     }
 
     const newFileList = dataTransfer.files;
@@ -121,4 +133,6 @@ export class AddPostComponent {
     return index;
   }
 }
+
+
 
