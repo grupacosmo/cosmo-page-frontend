@@ -1,0 +1,155 @@
+<div 
+  class="slider-container" 
+  [style.height]="height()"
+  (mouseenter)="onMouseEnter()"
+  (mouseleave)="onMouseLeaveContainer()"
+>
+
+  @if (images().length) {
+    <div 
+      class="slider-wrapper"
+      (touchstart)="onTouchStart($event)"
+      (touchmove)="onTouchMove($event)"
+      (touchend)="onTouchEnd()"
+    >
+  
+      <div class="slider-track" #sliderContainer>
+        @for (image of images(); track image; let i = $index) {
+          <div 
+            class="slide" 
+            [class.active]="i === currentIndex()"
+            (click)="onSlideClick($event)"
+            [style.cursor]="enableFullscreen() ? 'pointer' : 'default'"
+          >
+            <img 
+              [src]="image.src" 
+              [alt]="image.alt || 'Slider image'" 
+              draggable="false"
+            >
+            @if (image.caption) {
+              <div class="slide-caption">
+                {{ image.caption }}
+              </div>
+            }
+            @if (enableFullscreen()) {
+              <div class="fullscreen-hint">
+                <mat-icon>fullscreen</mat-icon>
+              </div>
+            }
+          </div>
+        }
+      </div>
+    </div>
+  
+    @if (canShowArrows()) {
+      <div class="slider-arrows">
+        <button 
+            class="arrow arrow-prev" 
+            (click)="onArrowClick('prev')"
+            [disabled]="isTransitioning()"
+            aria-label="Previous image"
+          >
+          <mat-icon>arrow_back_ios_new</mat-icon>
+        </button>
+  
+        <button 
+          class="arrow arrow-next" 
+          (click)="onArrowClick('next')"
+          [disabled]="isTransitioning()"
+          aria-label="Next image"
+        >
+          <mat-icon>arrow_forward_ios_new</mat-icon>
+        </button>
+      </div>
+    }
+  
+    @if (canShowDots()) {
+      <div class="slider-dots">
+        @for (image of images(); track image; let i = $index) {
+          <button 
+            class="dot" 
+            [class.active]="i === currentIndex()"
+            [disabled]="isTransitioning()"
+            (click)="onDotClick(i)"
+            [attr.aria-label]="'Go to slide ' + (i + 1)"
+          ></button>
+        }
+      </div>
+    }
+  } @else {
+    <div class="slider-placeholder">
+      <p>{{ 'common.noImages' | translate }}</p>
+    </div>
+  }
+</div>
+
+@if (isFullscreen()) {
+  <div 
+    class="fullscreen-overlay" 
+    #fullscreenModal
+    (click)="closeFullscreen()"
+    (touchstart)="onTouchStart($event)"
+    (touchmove)="onTouchMove($event)"
+    (touchend)="onTouchEnd()"
+  >
+
+    <button 
+      class="fullscreen-close" 
+      (click)="closeFullscreen()"
+      aria-label="Close fullscreen"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+
+    <div class="fullscreen-slider-container" (click)="$event.stopPropagation()">
+      <div class="fullscreen-slider-track">
+        @for (image of images(); track image; let i = $index) {
+          <div class="fullscreen-slide">
+            <img [src]="image.src" [alt]="image.alt || 'Slider image'" draggable="false">
+            @if (image.caption) {
+              <div class="fullscreen-caption">
+                {{ image.caption }}
+              </div>
+            }
+          </div>
+        }
+      </div>
+    </div>
+
+    @if (hasMultipleImages()) {
+      <div class="fullscreen-arrows">
+        <button 
+          class="fullscreen-arrow fullscreen-arrow-prev" 
+          (click)="prevSlide(true); $event.stopPropagation()"
+          aria-label="Previous image"
+        >
+          <mat-icon>arrow_back_ios_new</mat-icon>
+        </button>
+
+        <button 
+          class="fullscreen-arrow fullscreen-arrow-next" 
+          (click)="nextSlide(true); $event.stopPropagation()"
+          aria-label="Next image"
+        >
+          <mat-icon>arrow_forward_ios_new</mat-icon>
+        </button>
+      </div>
+    }
+
+    @if (hasMultipleImages()) {
+      <div class="fullscreen-dots">
+        @for (image of images(); track image; let i = $index) {
+          <button class="fullscreen-dot" 
+            [class.active]="i === currentIndex()"
+            (click)="onDotClick(i); $event.stopPropagation()"
+            [attr.aria-label]="'Go to slide ' + (i + 1)"
+          ></button>
+        }
+      </div>
+    }
+
+    <div class="fullscreen-counter">
+      {{ currentIndex() + 1 }} / {{ images().length }}
+    </div>
+  </div>
+}
