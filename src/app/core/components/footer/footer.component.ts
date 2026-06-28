@@ -40,7 +40,7 @@ export class FooterComponent {
           link: '/achievments',
           external: false
         },
-      ].filter((c) => !['/achievments', '/news'].includes(c.link) )
+      ].filter((c) => !['/achievments'].includes(c.link) )
     },
     {
       header: 'footer.followUs',
