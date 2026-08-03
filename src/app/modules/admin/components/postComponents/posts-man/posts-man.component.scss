@@ -1,1 +1,487 @@
-@use '../../../shared/styles/manComponents.component.scss'  as *;
+$accent-color: #c71da5;
+$input-bg: rgba(255, 255, 255, 0.05);
+$input-border: rgba(255, 255, 255, 0.18);
+$input-focus: rgba(255, 255, 255, 0.08);
+$label-color: rgba(255, 255, 255, 0.9);
+$text-color: rgba(255, 255, 255, 0.8);
+$placeholder-color: rgba(255, 255, 255, 0.6);
+
+.posts-management-container {
+  width: 100%;
+  padding: 0 5%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.posts-management {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  padding: 0 5%;
+}
+
+.posts-section {
+  width: 100%;
+}
+
+.page-title {
+  margin: 0 0 2rem 0;
+  font-size: 2.5rem;
+  font-weight: 500;
+  color: #ffffff;
+  text-decoration: underline;
+  text-underline-offset: 1rem;
+  font-family: 'InterRegular', Arial, sans-serif;
+}
+
+/* Tabs Styling */
+.content-tabs {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 0.8rem;
+  border: 1px solid $input-border;
+  overflow: hidden;
+
+  ::ng-deep {
+    .mat-mdc-tab-labels {
+      background: rgba(255, 255, 255, 0.02);
+      border-bottom: 1px solid $input-border;
+
+      .mat-mdc-tab {
+        color: rgba(255, 255, 255, 0.6);
+        min-width: 140px !important;
+        text-transform: none;
+        font-size: 0.95rem;
+
+        &.mat-mdc-tab-active {
+          color: $accent-color;
+
+          .mdc-tab__content::after {
+            background-color: $accent-color;
+          }
+        }
+      }
+    }
+
+    .mat-mdc-tab-body-content {
+      padding: 0;
+    }
+  }
+}
+
+.tab-label {
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.tab-content {
+  padding: 2rem;
+}
+
+.posts-section {
+  width: 100%;
+}
+
+.add-post-section {
+  width: 100%;
+}
+
+.posts-header {
+  margin-bottom: 1.5rem;
+
+  h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: $label-color;
+    font-weight: 400;
+  }
+}
+
+.posts-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.no-posts {
+  padding: 2rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid $input-border;
+  border-radius: 0.8rem;
+  color: $text-color;
+  font-size: 1rem;
+}
+
+/* Add Post Section */
+.add-post-section {
+  width: 100%;
+  padding-bottom: 3rem;
+}
+
+.form-title {
+  margin: 0 0 1.5rem 0;
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: $accent-color;
+  font-family: 'InterRegular', Arial, sans-serif;
+}
+
+.add-post-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.date-group {
+  flex: 0 0 180px;
+}
+
+.title-group {
+  flex: 1;
+}
+
+.author-group {
+  flex: 1;
+}
+
+.text-group {
+  grid-column: 1 / -1;
+}
+
+.upload-group {
+  grid-column: 1 / -1;
+}
+
+.platforms-group {
+  grid-column: 1 / -1;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: $label-color;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+}
+
+.form-input,
+.form-textarea,
+.file-input {
+  padding: 0.8rem 1rem;
+  font-size: 0.95rem;
+  color: #ffffff;
+  background-color: $input-bg;
+  border: 1px solid $input-border;
+  border-radius: 0.6rem;
+  font-family: inherit;
+  transition: all 180ms ease;
+
+  &::placeholder {
+    color: $placeholder-color;
+  }
+
+  &:focus {
+    outline: none;
+    background-color: $input-focus;
+    border-color: $accent-color;
+    box-shadow: 0 0 0 2px rgba(199, 29, 165, 0.15);
+  }
+}
+
+.form-input {
+  height: 2.5rem;
+}
+
+.date-input {
+  height: 2.5rem;
+
+  &::-webkit-calendar-picker-indicator {
+    filter: invert(1) brightness(0.9);
+    cursor: pointer;
+  }
+}
+
+.form-textarea {
+  min-height: 120px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.file-input-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 1rem;
+  background-color: $input-bg;
+  border: 2px dashed $input-border;
+  border-radius: 0.6rem;
+  transition: all 160ms ease;
+
+  &:hover {
+    border-color: $accent-color;
+    background-color: rgba(199, 29, 165, 0.08);
+  }
+}
+
+.file-input {
+  cursor: pointer;
+  width: 100%;
+  height: auto;
+  padding: 0;
+  border: none;
+  background: transparent;
+
+  &::file-selector-button {
+    margin: 0;
+    padding: 0.6rem 1.5rem;
+    background-color: rgba(199, 29, 165, 0.15);
+    border: 1px solid rgba(199, 29, 165, 0.3);
+    border-radius: 0.4rem;
+    color: $label-color;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 160ms ease;
+    white-space: nowrap;
+
+    &:hover {
+      background-color: rgba(199, 29, 165, 0.25);
+      border-color: $accent-color;
+      color: #ffffff;
+    }
+  }
+}
+
+/* Image Previews */
+.images-container {
+  grid-column: 1 / -1;
+  padding-top: 0.5rem;
+}
+
+.preview-title {
+  margin: 0 0 1rem 0;
+  font-size: 0.9rem;
+  color: $label-color;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+
+.images-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 1rem;
+}
+
+.image-item {
+  position: relative;
+  aspect-ratio: 1;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid $input-border;
+  border-radius: 0.6rem;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .image-preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .image-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 0.5rem;
+    max-height: 40%;
+    overflow: hidden;
+  }
+
+  .image-name {
+    margin: 0;
+    font-size: 0.75rem;
+    color: $text-color;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .delete-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 28px;
+    height: 28px;
+    border: 1px solid $input-border;
+    background: rgba(0, 0, 0, 0.6);
+    color: #ffffff;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 160ms ease;
+    padding: 0;
+
+    &:hover {
+      background: $accent-color;
+      border-color: $accent-color;
+    }
+  }
+}
+
+/* Platforms */
+.platforms-options {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.platform-option {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid $input-border;
+  border-radius: 0.6rem;
+  cursor: pointer;
+  transition: all 160ms ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: $accent-color;
+  }
+
+  .platform-checkbox {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    margin: 0;
+    accent-color: $accent-color;
+  }
+
+  span {
+    color: $label-color;
+    font-size: 0.95rem;
+    user-select: none;
+  }
+}
+
+/* Form Actions */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid $input-border;
+}
+
+.submit-btn {
+  padding: 0.8rem 2rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(199, 29, 165, 0.15);
+  border: 1px solid rgba(199, 29, 165, 0.3);
+  border-radius: 0.6rem;
+  cursor: pointer;
+  transition: all 160ms ease;
+
+  &:hover:not(:disabled) {
+    background: rgba(199, 29, 165, 0.25);
+    border-color: $accent-color;
+    color: #ffffff;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+/* Responsive */
+@media only screen and (max-width: 768px) {
+  .posts-management {
+    gap: 2rem;
+    padding: 0 3%;
+  }
+
+  .page-title {
+    font-size: 1.5rem;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .date-group {
+    flex: unset;
+  }
+
+  .images-grid {
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .submit-btn {
+    width: 100%;
+  }
+
+  .posts-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Snackbar Styling */
+:host ::ng-deep {
+  .success-snackbar {
+    background-color: rgba(76, 175, 80, 0.9) !important;
+    color: #ffffff !important;
+
+    .mdc-snackbar__surface {
+      background-color: rgba(76, 175, 80, 0.9) !important;
+    }
+
+    .mdc-button__label {
+      color: #ffffff !important;
+    }
+  }
+
+  .error-snackbar {
+    background-color: rgba(244, 67, 54, 0.9) !important;
+    color: #ffffff !important;
+
+    .mdc-snackbar__surface {
+      background-color: rgba(244, 67, 54, 0.9) !important;
+    }
+
+    .mdc-button__label {
+      color: #ffffff !important;
+    }
+  }
+}

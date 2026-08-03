@@ -15,7 +15,7 @@ export class SidebarElementsService {
     {
       title: 'admin.contentManagement',
       icon: 'edit',
-      link: '/admin/addPost',
+      link: '/admin/postsMan',
     },
   ];
 

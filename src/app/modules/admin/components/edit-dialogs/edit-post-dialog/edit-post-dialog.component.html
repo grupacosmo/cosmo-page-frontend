@@ -1,45 +1,47 @@
-<h2 mat-dialog-title class="header">Edytujesz post: {{this.data.title}}</h2>
-<mat-dialog-content class="content">
-    <div class="container">
-        <form [formGroup]="editPostForm" (ngSubmit)="onEdit()">
-            <input type="text" formControlName="title" placeholder="Tytuł"/>
-            <div class="group-container">
-              <div class="double-input-container">
-                <input type="text" formControlName="author" placeholder="Autor"/>
-                <input type="file" class="file-input" accept="image/*" multiple (change)="showPreview($event)"/>
-              </div>
-              <div class="images-container" *ngIf="previews.length > 0">
-                <h4>Obrazy</h4>
-                <div class="images-preview-container" *ngFor="let preview of previews; trackBy: trackByFn">
-                  <p>{{ preview.file.name }}</p>
-                  <img [src]="preview.preview" [alt]="preview.file.name" class="image-preview"/>
-                  <button type="button" class="delete" (click)="onDelete(preview.file.name)">
-                    <span class="delete-icon">x</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div class="row-container">
-              <h3>Tekst</h3>
-              <textarea class="text-input" formControlName="text" placeholder="Dodaj tekst"></textarea>
-            </div>
-            <div class="row-container">
-              <h3>Platformy</h3>
-              <div formArrayName="platforms" class="platforms">
-                <div class="checkbox-img-container" *ngFor="let control of getPlatforms().controls; let i = index">
-                  <label>
-                    <img [src]="path + 'images/logo.png'" alt="" class="checkbox-img">
-                  </label>
-                  <input type="checkbox" class="checkbox" [formControlName]="i" (change)="onCheckboxChange(i, $event)">
-                </div>
-              </div>
-            </div>
-            <div class="submit-container">
-              <input type="submit" value="Edytuj post" [disabled]="!editPostForm.invalid">
-            </div>
-          </form>
-    </div>
-</mat-dialog-content>
-<mat-dialog-actions class="footer">
-    <button mat-button (click)="onNoClick()" cdkFocusInitial>Przerwij</button>
-</mat-dialog-actions>
+<div class="dialog-wrapper">
+  <div class="dialog-header">
+    <h2>Edytuj post</h2>
+    <button type="button" class="close-btn" (click)="onNoClick()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+
+  <mat-dialog-content class="dialog-body">
+    <form [formGroup]="editPostForm" (ngSubmit)="onEdit()">
+      <!-- Title -->
+      <div class="form-field">
+        <label>Tytuł *</label>
+        <input type="text" formControlName="title" placeholder="Wpisz tytuł" required/>
+      </div>
+
+      <!-- Text -->
+      <div class="form-field">
+        <label>Tekst posta *</label>
+        <textarea formControlName="text" placeholder="Wpisz zawartość posta" rows="6"></textarea>
+      </div>
+
+      <!-- File Upload -->
+      <div class="form-field">
+        <label>Załączniki</label>
+        <input #attachments type="file" accept="image/*" multiple (change)="showPreview($event)"/>
+      </div>
+
+      <!-- Image Previews -->
+      <div class="image-preview-grid" *ngIf="previews.length > 0">
+        <div class="preview-item" *ngFor="let preview of previews; trackBy: trackByFn">
+          <img [src]="preview.preview" [alt]="preview.file.name"/>
+          <button type="button" class="remove-btn" (click)="onDelete(preview.file.name)" title="Usuń">×</button>
+          <span class="file-name">{{ preview.file.name | slice:0:15 }}</span>
+        </div>
+      </div>
+    </form>
+  </mat-dialog-content>
+
+  <div class="dialog-actions">
+    <button type="button" class="btn-cancel" (click)="onNoClick()">Anuluj</button>
+    <button type="button" class="btn-submit" (click)="onEdit()" [disabled]="editPostForm.invalid">Edytuj post</button>
+  </div>
+</div>

@@ -111,3 +111,16 @@ hr.divider {
         }
     }
 }
+
+/* Material Tabs Color Override for Admin Panel */
+:root {
+    --mat-mdc-tab-active-indicator-color: #c71da5;
+}
+
+.mat-mdc-tab.mat-mdc-tab-active {
+    color: #c71da5 !important;
+
+    .mdc-tab__content::after {
+        background-color: #c71da5 !important;
+    }
+}

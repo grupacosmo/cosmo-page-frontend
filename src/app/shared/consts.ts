@@ -1,3 +1,4 @@
-export const API_KEY = process.env['API_KEY'] ?? "INVALID_API_KEY";
+import { environment } from '../../environments/environment';
 
-export const API_URL = process.env['API_URL'] ?? 'http://localhost:8080';
+export const API_KEY = environment.apiKey;
+export const API_URL = environment.apiUrl;
