@@ -5,8 +5,7 @@ import { PostComponent } from '../post/post.component';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { API_URL, API_KEY } from '../../../../../shared/consts';
+import { HttpService } from '../../../../../shared/services/http.service';
 
 interface UploadedFile {
   preview: string;
@@ -24,7 +23,7 @@ export class PostsManComponent {
   @ViewChild('attachments') attachment: any;
   private fb = inject(FormBuilder);
   private snackBar = inject(MatSnackBar);
-  private http = inject(HttpClient);
+  private http = inject(HttpService);
   public posts: Post[] = [];
   public postForm: FormGroup;
   public previews: UploadedFile[] = [];
@@ -43,12 +42,8 @@ export class PostsManComponent {
   }
 
   loadPosts(): void {
-    const headers = new HttpHeaders({
-      'apiKey': API_KEY,
-    });
-    this.http.get<any>(`${API_URL}/api/posts?page=0&size=100`, { headers }).subscribe({
+    this.http.get<any>('api/posts?page=0&size=100').subscribe({
       next: (response) => {
-        // Map the response to Post objects
         if (response.content && Array.isArray(response.content)) {
           this.posts = response.content.map((item: any) => new Post(
             item.title || '',
@@ -95,18 +90,12 @@ export class PostsManComponent {
     this.isSubmitting = true;
     const formValue = this.postForm.value;
 
-    // Create JSON payload for backend
     const postData = {
       title: formValue.title,
       description: formValue.text,
     };
 
-    // Send to backend with API key header
-    const headers = new HttpHeaders({
-      'apiKey': API_KEY,
-      'Content-Type': 'application/json',
-    });
-    this.http.post(`${API_URL}/api/posts`, postData, { headers }).subscribe({
+    this.http.post('api/posts', postData).subscribe({
       next: (response: any) => {
         this.snackBar.open('✓ Post created successfully!', 'Close', {
           duration: 4000,
@@ -116,7 +105,6 @@ export class PostsManComponent {
         });
         this.resetForm();
         this.isSubmitting = false;
-        // Reload posts
         this.loadPosts();
       },
       error: (error: any) => {
