@@ -99,7 +99,23 @@
     "addTeam": "Dodaj zespół",
     "manageTeams": "Zarządzaj zespołami",
     "pageSettings": "Ustawienia strony",
-    "logout": "Wyloguj"
+    "logout": "Wyloguj",
+    "postsManager": {
+      "recentPostsTab": "Ostatnie posty",
+      "addPostTab": "Dodaj post",
+      "syncWithFacebook": "Synchronizuj z Facebookiem",
+      "syncing": "Synchronizowanie...",
+      "noPosts": "Brak postów. Przejdź na kartę \"Dodaj post\" aby stworzyć swój pierwszy post!",
+      "titleLabel": "Tytuł",
+      "titlePlaceholder": "Wpisz tytuł posta",
+      "textLabel": "Tekst posta",
+      "textPlaceholder": "Wpisz zawartość posta...",
+      "attachmentsLabel": "Załączniki",
+      "addedImages": "Dodane obrazy",
+      "removeImage": "Usuń obraz",
+      "publish": "Opublikuj",
+      "publishing": "Publikowanie..."
+    }
   },
   "footer": {
     "address": "Adres",

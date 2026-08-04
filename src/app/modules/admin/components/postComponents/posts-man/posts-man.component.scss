@@ -42,19 +42,27 @@ $placeholder-color: rgba(255, 255, 255, 0.6);
   border: 1px solid $input-border;
   overflow: hidden;
 
+  --mat-tab-header-inactive-label-text-color: #ffffff;
+  --mat-tab-header-active-label-text-color: #ffffff;
+  --mat-tab-header-inactive-hover-label-text-color: #ffffff;
+  --mat-tab-header-inactive-focus-label-text-color: #ffffff;
+  --mat-tab-header-active-hover-label-text-color: #ffffff;
+  --mat-tab-header-active-focus-label-text-color: #ffffff;
+  --mat-tab-header-label-text-size: 1.3rem;
+
   ::ng-deep {
     .mat-mdc-tab-labels {
       background: rgba(255, 255, 255, 0.02);
       border-bottom: 1px solid $input-border;
 
       .mat-mdc-tab {
-        color: rgba(255, 255, 255, 0.6);
         min-width: 140px !important;
         text-transform: none;
-        font-size: 0.95rem;
+        opacity: 0.85;
 
         &.mat-mdc-tab-active {
-          color: $accent-color;
+          opacity: 1;
+          font-weight: 600;
 
           .mdc-tab__content::after {
             background-color: $accent-color;
@@ -70,7 +78,7 @@ $placeholder-color: rgba(255, 255, 255, 0.6);
 }
 
 .tab-label {
-  font-size: 0.95rem;
+  font-size: 1.3rem;
   font-weight: 500;
 }
 
@@ -87,6 +95,8 @@ $placeholder-color: rgba(255, 255, 255, 0.6);
 }
 
 .posts-header {
+  display: flex;
+  justify-content: flex-end;
   margin-bottom: 1.5rem;
 
   h3 {
@@ -95,6 +105,11 @@ $placeholder-color: rgba(255, 255, 255, 0.6);
     color: $label-color;
     font-weight: 400;
   }
+}
+
+.sync-btn {
+  padding: 0.7rem 1.5rem;
+  font-size: 1.1rem;
 }
 
 .posts-container {
@@ -171,7 +186,7 @@ $placeholder-color: rgba(255, 255, 255, 0.6);
 
 .form-label {
   display: block;
-  font-size: 0.95rem;
+  font-size: 1.3rem;
   font-weight: 500;
   color: $label-color;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
@@ -181,7 +196,7 @@ $placeholder-color: rgba(255, 255, 255, 0.6);
 .form-textarea,
 .file-input {
   padding: 0.8rem 1rem;
-  font-size: 0.95rem;
+  font-size: 1.2rem;
   color: #ffffff;
   background-color: $input-bg;
   border: 1px solid $input-border;
@@ -202,11 +217,11 @@ $placeholder-color: rgba(255, 255, 255, 0.6);
 }
 
 .form-input {
-  height: 2.5rem;
+  height: 3rem;
 }
 
 .date-input {
-  height: 2.5rem;
+  height: 3rem;
 
   &::-webkit-calendar-picker-indicator {
     filter: invert(1) brightness(0.9);
@@ -254,7 +269,7 @@ $placeholder-color: rgba(255, 255, 255, 0.6);
     color: $label-color;
     cursor: pointer;
     font-family: inherit;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     font-weight: 500;
     transition: all 160ms ease;
     white-space: nowrap;
@@ -275,7 +290,7 @@ $placeholder-color: rgba(255, 255, 255, 0.6);
 
 .preview-title {
   margin: 0 0 1rem 0;
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   color: $label-color;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -400,7 +415,7 @@ $placeholder-color: rgba(255, 255, 255, 0.6);
 
 .submit-btn {
   padding: 0.8rem 2rem;
-  font-size: 0.95rem;
+  font-size: 1.15rem;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.8);
   background: rgba(199, 29, 165, 0.15);

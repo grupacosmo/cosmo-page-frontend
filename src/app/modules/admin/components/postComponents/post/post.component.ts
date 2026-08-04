@@ -22,8 +22,6 @@ export class PostComponent {
 
   openDialog(post: Post): void {
     const dialogRef = this.dialog.open(EditPostDialogComponent, {
-      width: '90%',
-      maxWidth: '600px',
       data: post,
       backdropClass: 'custom-backdrop',
       panelClass: 'custom-dialog-panel',

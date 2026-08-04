@@ -99,7 +99,23 @@
     "addTeam": "Add team",
     "manageTeams": "Manage teams",
     "pageSettings": "Page settings",
-    "logout": "Logout"
+    "logout": "Logout",
+    "postsManager": {
+      "recentPostsTab": "Recent posts",
+      "addPostTab": "Add post",
+      "syncWithFacebook": "Sync with Facebook",
+      "syncing": "Syncing...",
+      "noPosts": "No posts yet. Go to the \"Add post\" tab to create your first post!",
+      "titleLabel": "Title",
+      "titlePlaceholder": "Enter post title",
+      "textLabel": "Post text",
+      "textPlaceholder": "Enter post content...",
+      "attachmentsLabel": "Attachments",
+      "addedImages": "Added images",
+      "removeImage": "Remove image",
+      "publish": "Publish",
+      "publishing": "Publishing..."
+    }
   },
   "footer": {
     "address": "Address",

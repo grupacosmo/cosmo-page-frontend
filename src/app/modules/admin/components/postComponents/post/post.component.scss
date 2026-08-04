@@ -2,7 +2,7 @@ $accent-color: #c71da5;
 $bg-card: rgba(255, 255, 255, 0.05);
 $border-color: rgba(255, 255, 255, 0.15);
 $text-primary: rgba(255, 255, 255, 0.9);
-$text-secondary: rgba(255, 255, 255, 0.7);
+$text-secondary: rgba(255, 255, 255, 0.85);
 
 .post-card {
   display: flex;
@@ -32,7 +32,7 @@ $text-secondary: rgba(255, 255, 255, 0.7);
 
 .post-title {
   margin: 0;
-  font-size: 1.3rem;
+  font-size: 1.6rem;
   font-weight: 600;
   color: $text-primary;
   font-family: 'InterRegular', Arial, sans-serif;
@@ -74,7 +74,7 @@ $text-secondary: rgba(255, 255, 255, 0.7);
 
 .post-author {
   margin: 0;
-  font-size: 0.85rem;
+  font-size: 1rem;
   color: $text-secondary;
   font-family: 'InterRegular', Arial, sans-serif;
 
@@ -86,7 +86,7 @@ $text-secondary: rgba(255, 255, 255, 0.7);
 
 .post-text {
   margin: 0;
-  font-size: 0.9rem;
+  font-size: 1.15rem;
   color: $text-secondary;
   line-height: 1.4;
   font-family: 'InterRegular', Arial, sans-serif;
@@ -160,11 +160,11 @@ $text-secondary: rgba(255, 255, 255, 0.7);
   }
 
   .post-title {
-    font-size: 1.1rem;
+    font-size: 1.4rem;
   }
 
   .post-text {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
 }
 
@@ -179,7 +179,7 @@ $text-secondary: rgba(255, 255, 255, 0.7);
   }
 
   .post-title {
-    font-size: 1rem;
+    font-size: 1.25rem;
   }
 
   .post-footer {

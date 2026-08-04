@@ -1,40 +1,51 @@
 <div class="posts-management-container">
-  <h1 class="page-title">Zarządzanie treścią</h1>
+  <h1 class="page-title">{{ PostsManText.PageTitle | translate }}</h1>
 
   <mat-tab-group class="content-tabs" [selectedIndex]="0">
     <!-- Tab 1: Posts List (Default) -->
-    <mat-tab label="Ostatnie posty">
+    <mat-tab [label]="PostsManText.RecentPostsTab | translate">
       <ng-template mat-tab-label>
-        <span class="tab-label">Ostatnie posty</span>
+        <span class="tab-label">{{ PostsManText.RecentPostsTab | translate }}</span>
       </ng-template>
 
       <div class="tab-content posts-section">
+        <div class="posts-header">
+          <button
+            type="button"
+            class="submit-btn sync-btn"
+            [disabled]="isSyncing"
+            (click)="syncFacebookPosts()"
+          >
+            {{ (isSyncing ? PostsManText.SyncInProgress : PostsManText.SyncIdle) | translate }}
+          </button>
+        </div>
+
         <div *ngIf="posts.length > 0; else noPosts" class="posts-container">
           <app-post *ngFor="let post of posts" [post]="post" (changed)="loadPosts()"></app-post>
         </div>
         <ng-template #noPosts>
           <div class="no-posts">
-            <p>Brak postów. Przejdź na kartę "Dodaj post" aby stworzyć swój pierwszy post!</p>
+            <p>{{ PostsManText.NoPosts | translate }}</p>
           </div>
         </ng-template>
       </div>
     </mat-tab>
 
     <!-- Tab 2: Add Post Form -->
-    <mat-tab label="Dodaj post">
+    <mat-tab [label]="PostsManText.AddPostTab | translate">
       <ng-template mat-tab-label>
-        <span class="tab-label">Dodaj post</span>
+        <span class="tab-label">{{ PostsManText.AddPostTab | translate }}</span>
       </ng-template>
 
       <div class="tab-content add-post-section">
         <form [formGroup]="postForm" (ngSubmit)="onPost()" class="add-post-form">
           <!-- Title -->
           <div class="form-group">
-            <label class="form-label">Tytuł *</label>
+            <label class="form-label">{{ PostsManText.TitleLabel | translate }} *</label>
             <input
               type="text"
               formControlName="title"
-              placeholder="Wpisz tytuł posta"
+              [placeholder]="PostsManText.TitlePlaceholder | translate"
               class="form-input"
               required
             />
@@ -42,10 +53,10 @@
 
           <!-- Text Area -->
           <div class="form-group">
-            <label class="form-label">Tekst posta *</label>
+            <label class="form-label">{{ PostsManText.TextLabel | translate }} *</label>
             <textarea
               formControlName="text"
-              placeholder="Wpisz zawartość posta..."
+              [placeholder]="PostsManText.TextPlaceholder | translate"
               class="form-textarea"
               required
             ></textarea>
@@ -53,7 +64,7 @@
 
           <!-- Images Upload -->
           <div class="form-group">
-            <label class="form-label">Załączniki</label>
+            <label class="form-label">{{ PostsManText.AttachmentsLabel | translate }}</label>
             <div class="file-input-wrapper">
               <input
                 #attachments
@@ -68,7 +79,7 @@
 
           <!-- Image Previews -->
           <div class="images-container" *ngIf="previews.length > 0">
-            <h4 class="preview-title">Dodane obrazy</h4>
+            <h4 class="preview-title">{{ PostsManText.AddedImages | translate }}</h4>
             <div class="images-grid">
               <div class="image-item" *ngFor="let preview of previews; trackBy: trackByFn">
                 <img [src]="preview.preview" [alt]="preview.file.name" class="image-preview"/>
@@ -79,7 +90,7 @@
                   type="button"
                   class="delete-btn"
                   (click)="onDelete(preview.file.name)"
-                  title="Usuń obraz"
+                  [title]="PostsManText.RemoveImage | translate"
                 >
                   ×
                 </button>
@@ -94,7 +105,7 @@
               class="submit-btn"
               [disabled]="postForm.invalid || isSubmitting"
             >
-              {{ isSubmitting ? 'Publikowanie...' : 'Opublikuj' }}
+              {{ (isSubmitting ? PostsManText.PublishInProgress : PostsManText.PublishIdle) | translate }}
             </button>
           </div>
         </form>

@@ -6,20 +6,40 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpService } from '../../../../../shared/services/http.service';
+import { TranslatePipe } from '../../../../../shared/pipes/translate/translate.pipe';
 
 interface UploadedFile {
   preview: string;
   file: any;
 }
 
+export enum PostsManText {
+  PageTitle = 'admin.contentManagement',
+  RecentPostsTab = 'admin.postsManager.recentPostsTab',
+  AddPostTab = 'admin.postsManager.addPostTab',
+  SyncIdle = 'admin.postsManager.syncWithFacebook',
+  SyncInProgress = 'admin.postsManager.syncing',
+  NoPosts = 'admin.postsManager.noPosts',
+  TitleLabel = 'admin.postsManager.titleLabel',
+  TitlePlaceholder = 'admin.postsManager.titlePlaceholder',
+  TextLabel = 'admin.postsManager.textLabel',
+  TextPlaceholder = 'admin.postsManager.textPlaceholder',
+  AttachmentsLabel = 'admin.postsManager.attachmentsLabel',
+  AddedImages = 'admin.postsManager.addedImages',
+  RemoveImage = 'admin.postsManager.removeImage',
+  PublishIdle = 'admin.postsManager.publish',
+  PublishInProgress = 'admin.postsManager.publishing',
+}
+
 @Component({
     selector: 'app-posts-man',
     templateUrl: './posts-man.component.html',
     styleUrl: './posts-man.component.scss',
-    imports: [CommonModule, PostComponent, ReactiveFormsModule, MatTabsModule, MatSnackBarModule]
+    imports: [CommonModule, PostComponent, ReactiveFormsModule, MatTabsModule, MatSnackBarModule, TranslatePipe]
 })
 
 export class PostsManComponent {
+  protected readonly PostsManText = PostsManText;
   @ViewChild('attachments') attachment: any;
   private fb = inject(FormBuilder);
   private snackBar = inject(MatSnackBar);
@@ -28,6 +48,7 @@ export class PostsManComponent {
   public postForm: FormGroup;
   public previews: UploadedFile[] = [];
   public isSubmitting = false;
+  public isSyncing = false;
   private selectedFiles?: FileList;
 
   constructor() {
@@ -59,6 +80,34 @@ export class PostsManComponent {
           duration: 3000,
           panelClass: ['error-snackbar'],
         });
+      },
+    });
+  }
+
+  syncFacebookPosts(): void {
+    if (this.isSyncing) return;
+
+    this.isSyncing = true;
+    this.http.put('api/posts/sync', {}).subscribe({
+      next: () => {
+        this.snackBar.open('✓ Posty zsynchronizowane z Facebookiem!', 'Close', {
+          duration: 4000,
+          horizontalPosition: 'end',
+          verticalPosition: 'top',
+          panelClass: ['success-snackbar'],
+        });
+        this.isSyncing = false;
+        this.loadPosts();
+      },
+      error: (error: any) => {
+        const errorMsg = error.error?.message || 'Nie udało się zsynchronizować postów';
+        this.snackBar.open(`✗ ${errorMsg}`, 'Close', {
+          duration: 5000,
+          horizontalPosition: 'end',
+          verticalPosition: 'top',
+          panelClass: ['error-snackbar'],
+        });
+        this.isSyncing = false;
       },
     });
   }
