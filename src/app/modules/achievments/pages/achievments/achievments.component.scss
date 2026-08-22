@@ -15,7 +15,6 @@
     flex-grow: 1;
     display: grid;
     grid-template-rows: 40rem 1fr;
-    user-select: none;
 
     .banner {
         padding-top: $header-height;
