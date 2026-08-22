@@ -19,7 +19,6 @@ export class NewsArticleComponent {
   protected newsItem: PostDetails | 'Loading'| undefined = 'Loading';
   readonly text = {
     goBack: "news.goBack",
-    author: "news.author",
   }
   constructor(
       private route: ActivatedRoute,

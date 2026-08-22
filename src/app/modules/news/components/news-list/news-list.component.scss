@@ -82,12 +82,16 @@ section {
 
     .basic-info {
         transition: 0.5s;
-        transform: translateY(7rem);
+        transform: translateY(2.5rem);
         z-index: 999;
 
         h3 {
             margin: 0;
             font-size: $font-size-l;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
         }
 
         p {
