@@ -7,7 +7,6 @@ app-tabs {
         display: flex;
         flex-direction: column;
         width: 100%;
-        user-select: none;
 
         .tabs {
             display: flex;
@@ -16,6 +15,7 @@ app-tabs {
             width: 100%;
             border-top-left-radius: 15px;
             border-top-right-radius: 15px;
+            user-select: none;
 
             .tab {
                 flex: 1;
