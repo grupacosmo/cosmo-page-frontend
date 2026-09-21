@@ -46,7 +46,9 @@
                     <div *ngFor="let preview of previews; let i = index" class="images-preview-container">
                         <p>{{preview.file.name}}</p>
                         <img [src]="preview.preview" [alt]="preview.file.name" class="image-preview"/>
-                        <button type="button" class="delete" (click)="onDelete(preview.file.name)">&#9760;</button>
+                        <button type="button" class="delete" (click)="onDelete(preview.file.name)">
+                            <span class="delete-icon">x</span>
+                        </button>
                         <input type="text" placeholder="podpis zdjęcia" [formControlName]="i"/>
                     </div>
                 </div>

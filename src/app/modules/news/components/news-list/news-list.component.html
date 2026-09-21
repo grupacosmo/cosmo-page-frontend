@@ -20,8 +20,9 @@
   
   <mat-paginator
     (page)="changePage($event.pageIndex)"
+    [pageIndex]="pageIndex"
     [pageSize]="itemsPerPage"
     hidePageSize
-    [length]="totalPages"
+    [length]="totalElements"
     aria-label="Select page">
   </mat-paginator>

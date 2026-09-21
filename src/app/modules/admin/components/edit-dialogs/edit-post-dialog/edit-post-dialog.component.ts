@@ -1,10 +1,9 @@
 import { Component, inject, ViewChild } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { PostsService } from '../../../shared/services/posts.service';
-import { MAT_DIALOG_DATA, MatDialogRef, MatDialogTitle, MatDialogContent, MatDialogActions } from '@angular/material/dialog';
-import { CdkScrollable } from '@angular/cdk/scrolling';
-import { NgIf, NgFor } from '@angular/common';
-
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialogContent } from '@angular/material/dialog';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { NgIf, NgFor, CommonModule } from '@angular/common';
 
 interface UploadedFile {
   preview: string,
@@ -13,17 +12,16 @@ interface UploadedFile {
 
 export interface PostData {
   title: string,
-  author: string,
-  attachments: UploadedFile[],
-  text: string,
-  platforms: any,
+  text?: string,
+  id?: string,
 }
 
 @Component({
     selector: 'app-post-edit-dialog',
     templateUrl: './edit-post-dialog.component.html',
     styleUrl: './edit-post-dialog.component.scss',
-    imports: [MatDialogTitle, CdkScrollable, MatDialogContent, ReactiveFormsModule, NgIf, NgFor, MatDialogActions]
+    imports: [MatDialogContent, ReactiveFormsModule, NgIf, NgFor, CommonModule, MatSnackBarModule],
+    standalone: true
 })
 
 export class EditPostDialogComponent {
@@ -32,19 +30,14 @@ export class EditPostDialogComponent {
     editPostForm: FormGroup;
     @ViewChild('attachments') attachment: any;
     private service = inject(PostsService);
-    public path: string = "../../../../../assets/";
+    private snackBar = inject(MatSnackBar);
     selectedFiles?: FileList;
     previews: UploadedFile[] = [];
 
     constructor(private fb: FormBuilder){
       this.editPostForm = this.fb.group({
-        title: [this.data.title, Validators.required],
-        author: [this.data.author, Validators.required],
-        attachments: [this.data.attachments],
-        text: [this.data.attachments, Validators.required],
-        platforms: this.fb.array(
-          Array.isArray(this.data.platforms) ? this.data.platforms.map(platform => this.fb.control(platform)) : [this.fb.control(false), this.fb.control(false)]
-        ),
+        title: [this.data?.title || '', Validators.required],
+        text: [this.data?.text || '', Validators.required],
       });
     }
 
@@ -55,74 +48,76 @@ export class EditPostDialogComponent {
     showPreview(event: any){
       this.previews = [];
       this.selectedFiles = event.target.files;
-  
+
       if (this.selectedFiles && this.selectedFiles[0]) {
         const numberOfFiles = this.selectedFiles.length;
-  
+
         for (let i = 0; i < numberOfFiles; i++) {
           const reader = new FileReader();
           const file = this.selectedFiles![i];
-  
+
           reader.onload = (event: any) => {
             const preview = event.target.result;
             this.previews.push({preview, file});
           };
-          
+
           reader.readAsDataURL(file);
         }
       }
     }
-  
+
     onEdit(): void {
+      if (!this.editPostForm.valid) {
+        return;
+      }
+
       const formValue = this.editPostForm.value;
       const postData = {
-        id: '',
-        slug: '',
-        date: '',
         title: formValue.title,
-        author: formValue.author,
-        text: formValue.text,
-        platforms: formValue.platforms,
-        attachments: this.previews.map(p => p.file)
+        description: formValue.text,
       };
-  
-      console.log('Post Data:', postData);
-      console.log("Sent");
-      this.service.getNewsService().onEdit(postData);
-      this.dialogRef.close();
+
+      const postId = this.data.id || '';
+
+      this.service.getNewsService().onEdit(postId, postData).subscribe({
+        next: () => {
+          this.snackBar.open('✓ Post updated successfully!', 'Close', {
+            duration: 3000,
+            horizontalPosition: 'end',
+            verticalPosition: 'top',
+            panelClass: ['success-snackbar'],
+          });
+          this.dialogRef.close(true);
+        },
+        error: (error: any) => {
+          console.error('Error editing post:', error);
+          this.snackBar.open('✗ Failed to update post', 'Close', {
+            duration: 4000,
+            horizontalPosition: 'end',
+            verticalPosition: 'top',
+            panelClass: ['error-snackbar'],
+          });
+        },
+      });
     }
-  
+
     onDelete(fileName: string) {
       const index: number = this.previews.findIndex((preview) => preview.file.name === fileName);
       this.previews.splice(index, 1);
-  
+
       const dataTransfer = new DataTransfer();
-  
+
       for (let i = 0; i < this.selectedFiles!.length; i++) {
           if (i !== index) {
               dataTransfer.items.add(this.selectedFiles![i]);
           }
       }
-  
+
       const newFileList = dataTransfer.files;
       this.attachment.nativeElement.files = newFileList;
       this.selectedFiles = newFileList;
     }
-  
-    getPlatforms(): FormArray {
-      return this.editPostForm.get('platforms') as FormArray;
-    }
-  
-    onCheckboxChange(index: number, event: any) {
-      const platforms = this.getPlatforms();
-      if (event.target.checked) {
-        platforms.at(index).setValue(true);
-      } else {
-        platforms.at(index).setValue(false);
-      }
-      platforms.updateValueAndValidity();
-    }
-  
+
     trackByFn(index: number, item: any): number {
       return index;
     }

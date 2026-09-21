@@ -37,9 +37,8 @@ html, body {
 
 html { font-size: 62.5% } 
 
-// initial zoom for screen >= 1280
 @media (min-width: 1280px) {
-    html {
+    html:not(.admin-route) {
         zoom: 0.8;
     }
 }
@@ -109,5 +108,16 @@ hr.divider {
             border-bottom-left-radius: 0;
             border-bottom-right-radius: 0;
         }
+    }
+}
+
+/* Material Tabs Color Override for Admin Panel */
+:root {
+    --mat-mdc-tab-active-indicator-color: #c71da5;
+}
+
+.mat-mdc-tab.mat-mdc-tab-active {
+    .mdc-tab__content::after {
+        background-color: #c71da5 !important;
     }
 }

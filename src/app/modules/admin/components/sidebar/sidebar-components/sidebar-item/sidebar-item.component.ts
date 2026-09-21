@@ -1,17 +1,21 @@
-import { Component, Input } from '@angular/core';
-import { Link } from 'src/app/modules/admin/shared/interfaces/SidebarInterfaces';
-import { NgFor } from '@angular/common';
-import { RouterLinkActive, RouterLink } from '@angular/router';
+﻿import { Component, input } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+import { TranslatePipe } from '../../../../../../shared/pipes/translate/translate.pipe';
 
 @Component({
-    selector: 'app-sidebar-item',
-    templateUrl: './sidebar-item.component.html',
-    styleUrl: './sidebar-item.component.scss',
-    imports: [NgFor, RouterLinkActive, RouterLink]
-})  
+  selector: 'app-sidebar-item',
+  standalone: true,
+  templateUrl: './sidebar-item.component.html',
+  styleUrl: './sidebar-item.component.scss',
+  imports: [RouterLink, RouterLinkActive, TranslatePipe],
+})
+export class SidebarItemComponent {
+  title = input<string>('');
+  icon = input<string>('');
+  link = input<string>('');
 
-export class SidebarItemComponent{
-  @Input({ required: true }) icon: string = ""; 
-  @Input({ required: true }) title: string = ""; 
-  @Input({ required: true }) links: Link[] = []; 
+  constructor() {}
 }
+
+
+

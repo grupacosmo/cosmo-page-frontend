@@ -1,84 +1,16 @@
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-
-<aside *ngIf=" windowWidth > 768 else loading">
-    <div class="sidebar-items">
-        <a routerLink="/"><img [src]="path + 'images/logo.png'"  alt="logo" class="logo"/></a>
-        
-        <app-sidebar-item 
-            [icon]="'newspaper'"
-            [title]="'Posty'"
-            [links]="[
-                { label: 'Dodaj post', link: 'addPost' },
-                { label: 'Zarządzaj postami', link: 'postsMan' }
-            ]">
-        </app-sidebar-item>
-        
-        <app-sidebar-item 
-            [icon]="'lightbulb'"
-            [title]="'Projekty'"
-            [links]="[
-                { label: 'Dodaj projekt', link: 'addProject' },
-                { label: 'Zarządzaj projektami', link: 'projectsMan' }
-            ]">
-        </app-sidebar-item>
-        
-        <app-sidebar-item 
-            [icon]="'trophy'"
-            [title]="'Osiągnięcia'"
-            [links]="[
-                { label: 'Dodaj osiągnięcie', link: 'addAchievements' },
-                { label: 'Zarządzaj osiągnięciami', link: 'achievementsMan' }
-            ]">
-        </app-sidebar-item>
-        
-        <app-sidebar-item 
-            [icon]="'logout'"
-            [title]="'Wyloguj się'"
-            [links]="[]">
-        </app-sidebar-item>
-
-        <!-- <div class="logout-container">
-            <span class="material-symbols-outlined">logout</span>
-            <h3 *ngIf="isSidebarOpened">Wyloguj się</h3>
-        </div> -->
-    </div>
-</aside>
-
-<ng-template #loading>
-    <button type="button" class="burger-button" (click)="onClick()">{{this.display ? "&#10006;" : "&#9776;"}}</button>
-    <aside class="burger" [ngStyle]="this.display ? {display: 'flex', overflow: 'hidden'} : {display: 'none', overflow: 'scroll'}">
-        <div class="sidebar-items">
-            <a routerLink="/"><img [src]="path + 'images/logo.png'"  alt="logo" class="logo"/></a>
-            
-            <app-sidebar-burger-item
-                [icon]="'news'" 
-                [title]="'POSTY'"
-                [links]="[
-                    { label: 'Dodaj post', link: 'addPost' },
-                    { label: 'Zarządzaj postami', link: 'postsMan' }
-                ]"
-                (clickEvent)="onClick()">
-            </app-sidebar-burger-item>
-            
-            <app-sidebar-burger-item
-                [icon]="'lightbulb'" 
-                [title]="'PROJEKTY'"
-                [links]="[
-                    { label: 'Dodaj projekt', link: 'addProject' },
-                    { label: 'Zarządzaj projektami', link: 'projectsMan' }
-                ]"
-                (clickEvent)="onClick()">
-            </app-sidebar-burger-item>
-            
-            <app-sidebar-burger-item
-                [icon]="'trophy'" 
-                [title]="'OSIĄGNIĘCIA'"
-                [links]="[
-                    { label: 'Dodaj osiągnięcie', link: 'addAchievements' },
-                    { label: 'Zarządzaj osiągnięciami', link: 'achievementsMan' }
-                ]"
-                (clickEvent)="onClick()">
-            </app-sidebar-burger-item>
-        </div>
-    </aside>
-</ng-template>
+<div class="sidebar-header">
+    <img src="/assets/images/cosmo-white.png" alt="logo" class="header-image">
+    <!-- <div class="header-text">
+        <h2>Cosmo PK</h2>
+        <p>Admin Panel</p>
+    </div> -->
+</div>
+<mat-nav-list>
+    @for(el of sidebarElements; track $index) {
+        <app-sidebar-item
+            [icon]="el.icon"
+            [title]="el.title"
+            [link]="el.link"
+        ></app-sidebar-item>
+    }
+</mat-nav-list>

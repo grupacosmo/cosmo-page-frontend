@@ -84,6 +84,39 @@
       "dronDetails3dPrint": "Wydrukowana za pomoca druku 3D część drona"
     }
   },
+  "admin": {
+    "controlPanel": "Panel sterowania",
+    "contentManagement": "Zarządzanie treścią",
+    "pageAndSessionSettings": "Ustawienia strony i sesji",
+    "dashboard": "Pulpit",
+    "posts": "Posty",
+    "addPost": "Dodaj post",
+    "managePosts": "Zarządzaj postami",
+    "achievements": "Osiągnięcia",
+    "addAchievement": "Dodaj osiągnięcie",
+    "manageAchievements": "Zarządzaj osiągnięciami",
+    "teams": "Zespoły",
+    "addTeam": "Dodaj zespół",
+    "manageTeams": "Zarządzaj zespołami",
+    "pageSettings": "Ustawienia strony",
+    "logout": "Wyloguj",
+    "postsManager": {
+      "recentPostsTab": "Ostatnie posty",
+      "addPostTab": "Dodaj post",
+      "syncWithFacebook": "Synchronizuj z Facebookiem",
+      "syncing": "Synchronizowanie...",
+      "noPosts": "Brak postów. Przejdź na kartę \"Dodaj post\" aby stworzyć swój pierwszy post!",
+      "titleLabel": "Tytuł",
+      "titlePlaceholder": "Wpisz tytuł posta",
+      "textLabel": "Tekst posta",
+      "textPlaceholder": "Wpisz zawartość posta...",
+      "attachmentsLabel": "Załączniki",
+      "addedImages": "Dodane obrazy",
+      "removeImage": "Usuń obraz",
+      "publish": "Opublikuj",
+      "publishing": "Publikowanie..."
+    }
+  },
   "footer": {
     "address": "Adres",
     "contactUs": "Skontaktuj się z nami",
