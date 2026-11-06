@@ -1,27 +1,76 @@
-# CosmoFrontendApp
+# Cosmo PK – website
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.8.
+Website of the Cosmo PK student scientific club (Kraków University of Technology).
 
-## Development server
+**Stack:** Next.js (App Router) · React · TypeScript (strict) · Tailwind CSS v4 · pnpm · Node.js 26 LTS
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Quick start (Docker)
 
-## Code scaffolding
+Requires only Docker with Compose v2.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```bash
+docker compose up --build    # http://localhost:3000
+```
 
-## Build
+Optional: `cp .env.example .env` and set `COSMO_API_KEY` / `COSMO_API_URL` / `FRONTEND_PORT`.
+By default the container talks to a backend on your host at `http://host.docker.internal:8080`.
+Stop with `docker compose down`. New services (e.g. the backend) go in `compose.yaml`.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Local development
 
-## Running unit tests
+Requires Node.js 26.13.0+ (see `.nvmrc`, e.g. `nvm use`). Node 25+ no longer ships Corepack, so
+install it once with `npm i -g corepack && corepack enable` (or install pnpm 10 directly).
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```bash
+cp .env.example .env.local   # fill in the API key
+pnpm install
+pnpm dev                     # http://localhost:3000
+```
 
-## Running end-to-end tests
+| Script           | Purpose                       |
+| ---------------- | ----------------------------- |
+| `pnpm dev`       | Development server            |
+| `pnpm build`     | Production build (standalone) |
+| `pnpm start`     | Serve the production build    |
+| `pnpm lint`      | ESLint                        |
+| `pnpm typecheck` | TypeScript check              |
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Configuration
 
-## Further help
+| Variable        | Description                                                   |
+| --------------- | ------------------------------------------------------------- |
+| `COSMO_API_URL` | Base URL of the Cosmo backend (default `http://localhost:8080`) |
+| `COSMO_API_KEY` | Key sent in the `apiKey` header to the backend                |
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Both are **server-only**: news is fetched in Server Components (`lib/api.ts`), so the key never
+reaches the browser. Do not prefix them with `NEXT_PUBLIC_`. In Docker they are passed at runtime
+(`.env` via `compose.yaml`, or `--env-file`), never as build arguments.
+
+## Project structure
+
+```
+app/                     routes (App Router)
+  layout.tsx             header, footer, locale
+  page.tsx               homepage
+  projects/              list (tabs) + [id] details
+  news/                  list (?page=N) + [slug] article; shared banner layout
+  team/                  team members
+  achievements/          placeholder page, development only
+components/
+  layout/                Header, Footer, LanguagePicker, PageShell
+  home/                  homepage sections
+  news/ projects/ team/ achievements/
+  ui/                    Button, Slider, Tabs, Icon, ScrollLink, Divider
+lib/
+  api.ts                 server-only backend client
+  data/                  static content (projects, team, partners…)
+  i18n/                  locale cookie, dictionaries lookup, setLocale action
+  types.ts               shared types
+locales/                 pl.json / en.json translations
+public/images/           static assets
+```
+
+## Translations
+
+The language is stored in the `language` cookie (`pl` default, `en`). Add strings to both
+`locales/pl.json` and `locales/en.json`; the compiler fails if their keys diverge.

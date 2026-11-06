@@ -1,0 +1,96 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-cosmo-magenta: #79287c;
+  --color-cosmo-magenta-light: #9c27b0;
+  --color-cosmo-blue: #0015d3;
+  --color-cosmo-dark-blue: #000958;
+  --color-cosmo-overlay: #0015d370;
+
+  --text-cosmo-xs: 12px;
+  --text-cosmo-s: 14px;
+  --text-cosmo-m: 18px;
+  --text-cosmo-l: 22px;
+  --text-cosmo-xl: 28px;
+
+  --breakpoint-xs: 30rem; /* 480px */
+
+  --font-sans: Arial, Helvetica, sans-serif;
+
+  /* Material Design elevation levels used by the original design. */
+  --shadow-elevation-2: 0 3px 1px -2px rgb(0 0 0 / 0.2), 0 2px 2px 0 rgb(0 0 0 / 0.14), 0 1px 5px 0 rgb(0 0 0 / 0.12);
+  --shadow-elevation-3: 0 3px 3px -2px rgb(0 0 0 / 0.2), 0 3px 4px 0 rgb(0 0 0 / 0.14), 0 1px 8px 0 rgb(0 0 0 / 0.12);
+  --shadow-elevation-5: 0 3px 5px -1px rgb(0 0 0 / 0.2), 0 5px 8px 0 rgb(0 0 0 / 0.14), 0 1px 14px 0 rgb(0 0 0 / 0.12);
+  --shadow-elevation-6: 0 3px 5px -1px rgb(0 0 0 / 0.2), 0 6px 10px 0 rgb(0 0 0 / 0.14), 0 1px 18px 0 rgb(0 0 0 / 0.12);
+  --shadow-content: -10px -50px 62px var(--color-cosmo-dark-blue), 10px -50px 62px var(--color-cosmo-dark-blue);
+
+  --animate-spin-slow: spin 1s ease-in-out infinite;
+  --animate-fade-in: fade-in 0.3s ease;
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+}
+
+@layer base {
+  html,
+  body {
+    height: 100%;
+  }
+
+  /* The original site renders at 80% on wide screens. */
+  @media (min-width: 1280px) {
+    html {
+      zoom: 0.8;
+    }
+  }
+
+  body {
+    font-size: 16px;
+  }
+
+  /* Restore user-agent heading styles that the original design relies on. */
+  h1 { font-size: 2em; font-weight: bold; }
+  h2 { font-size: 1.5em; font-weight: bold; }
+  h3 { font-size: 1.17em; font-weight: bold; }
+
+  img {
+    display: inline-block;
+  }
+
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: var(--color-cosmo-dark-blue); }
+  ::-webkit-scrollbar-thumb { background: var(--color-cosmo-magenta-light); border-radius: 15px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--color-cosmo-magenta); }
+}
+
+/* Mosaic layout of the four latest news tiles. */
+@utility news-grid {
+  display: grid;
+  gap: 15px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-areas:
+    'news-1 news-2 news-3'
+    'news-1 news-2 news-4';
+
+  @media (max-width: 1280px) {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas:
+      'news-1 news-1 news-2 news-3'
+      'news-1 news-1 news-2 news-4';
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-template-areas:
+      'news-1 news-2'
+      'news-1 news-2'
+      'news-1 news-2'
+      'news-1 news-2'
+      'news-3 news-4'
+      'news-3 news-4';
+  }
+}

@@ -1,0 +1,27 @@
+# Start everything with:  docker compose up --build
+# Configuration is read from `.env` (see .env.example); all variables are optional.
+
+services:
+  frontend:
+    build:
+      context: .
+    image: cosmopk/cosmo-page-frontend:local
+    ports:
+      - "${FRONTEND_PORT:-3000}:3000"
+    environment:
+      # Inside the container `localhost` is the container itself, so by default point at the
+      # backend running on the host machine. Once a backend service is added below, use
+      # http://backend:8080 instead.
+      COSMO_API_URL: ${COSMO_API_URL:-http://host.docker.internal:8080}
+      COSMO_API_KEY: ${COSMO_API_KEY:-}
+    extra_hosts:
+      # Makes host.docker.internal resolve on Linux too (Docker Desktop provides it already).
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+
+  # Example for later — add the backend and the frontend can reach it as http://backend:8080:
+  #
+  # backend:
+  #   image: cosmopk/cosmo-backend:latest
+  #   env_file: .env
+  #   restart: unless-stopped
