@@ -1,17 +1,17 @@
 import type { Metadata } from 'next';
 import { PageShell } from '@/components/layout/PageShell';
 import { MemberCard } from '@/components/team/MemberCard';
-import { ScrollLink } from '@/components/ui/ScrollLink';
+import { ScrollLink } from '@/components/common/ScrollLink';
 import { teams } from '@/lib/data/team';
-import { getTranslator } from '@/lib/i18n/server';
+import { getTranslations } from 'next-intl/server';
 
 export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslator();
+  const t = await getTranslations();
   return { title: `${t('common.team')} | Cosmo PK` };
 }
 
 export default async function TeamPage() {
-  const t = await getTranslator();
+  const t = await getTranslations();
 
   return (
     <PageShell

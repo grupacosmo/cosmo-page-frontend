@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { Surface } from '@/components/common/Surface';
 import type { TeamMember } from '@/lib/types';
 
 /** Shows photo, name and roles; flips to the bio on hover when one exists. */
@@ -6,9 +7,11 @@ export function MemberCard({ member }: { member: TeamMember }) {
   const hasBio = member.description.length > 0;
 
   return (
-    <div
+    <Surface
       tabIndex={hasBio ? 0 : undefined}
-      className="group relative flex h-[330px] w-[min(calc(100vw-200px),250px)] flex-col p-[15px] shadow-[0_4px_6px_rgba(0,0,0,0.1)] outline-none"
+      elevation="soft"
+      padding="sm"
+      className="group relative flex h-[330px] w-[min(calc(100vw-200px),250px)] flex-col outline-none"
     >
       <div
         className={`absolute inset-[15px] flex flex-col items-center gap-2.5 transition-opacity duration-300 ease-in-out ${
@@ -36,6 +39,6 @@ export function MemberCard({ member }: { member: TeamMember }) {
           {member.description}
         </p>
       )}
-    </div>
+    </Surface>
   );
 }

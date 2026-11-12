@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Divider } from '@/components/common/Divider';
 import type { Translate } from '@/lib/i18n/server';
 import { CONTACT_ADDRESS, CONTACT_EMAIL, socialLinks } from '@/lib/data/site';
 import type { NavItem } from './Header';
@@ -49,7 +50,7 @@ export function Footer({ t, navItems }: FooterProps) {
           <li>{CONTACT_ADDRESS}</li>
         </FooterColumn>
       </div>
-      <hr className="h-px w-full border-none bg-cosmo-magenta md:-ml-[2em]" />
+      <Divider weight="thin" className="md:-ml-[2em]" />
       <p className="text-center md:text-left">
         &copy; {new Date().getFullYear()}, {t('footer.allRightsReserved')}{' '}
         <span className="underline">Cosmo PK Group</span>

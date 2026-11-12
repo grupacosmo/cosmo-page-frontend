@@ -1,0 +1,12 @@
+{
+  "upcoming": "Nadchodzące",
+  "past": "Minione",
+  "empty": "Brak aktualnych wydarzeń",
+  "emptyPast": "Brak minionych wydarzeń",
+  "show": "Pokaż",
+  "pageSize": "Liczba wydarzeń na stronie",
+  "location": "Miejsce",
+  "date": "Termin",
+  "eventPage": "Strona wydarzenia",
+  "allEvents": "Wszystkie wydarzenia"
+}

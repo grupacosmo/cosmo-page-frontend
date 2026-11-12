@@ -5,7 +5,7 @@ const IMG = '/images/projects';
 export const projects: Project[] = [
   {
     id: '1',
-    shortTitle: 'HABSAT',
+    shortTitle: 'projects.mocks.habsatShortTitle',
     title: 'projects.mocks.habsatTitle',
     cardDescription: 'projects.mocks.habsatDescription',
     shortDescription: 'projects.mocks.habsatDetailsDescriptionShort',
@@ -66,7 +66,7 @@ export const projects: Project[] = [
   },
   {
     id: '3',
-    shortTitle: 'COSMOBOT',
+    shortTitle: 'projects.mocks.cosmoBotShortTitle',
     title: 'projects.mocks.cosmoBotTitle',
     cardDescription: 'projects.mocks.cosmoBotDescription',
     shortDescription: 'projects.mocks.cosmoBotDetailsDescriptionShort',

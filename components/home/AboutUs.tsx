@@ -1,4 +1,4 @@
-import { Slider } from '@/components/ui/Slider';
+import { Slider } from '@/components/common/Slider';
 import { aboutUsSlides } from '@/lib/data/site';
 
 interface AboutUsProps {

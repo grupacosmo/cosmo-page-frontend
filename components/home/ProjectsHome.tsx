@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { LinkButton } from '@/components/ui/CustomButton';
+import { SectionHeader } from '@/components/common/Container';
+import { CtaLink } from '@/components/common/CtaButton';
 import { cssUrl } from '@/lib/format';
 import type { Translate } from '@/lib/i18n/server';
 import type { Project } from '@/lib/types';
@@ -21,10 +22,11 @@ export function ProjectsHome({ t, projects }: ProjectsHomeProps) {
 
   return (
     <div className="flex flex-col justify-center">
-      <header className="flex justify-between gap-[4em] p-[15px]">
-        <h2 className="m-0">{t('navigation.projects')}</h2>
-        <LinkButton href="/projects" text={t('projects.allProjects')} secondary />
-      </header>
+      <SectionHeader
+        title={t('navigation.projects')}
+        action={<CtaLink href="/projects" text={t('projects.allProjects')} secondary />}
+        className="gap-[4em]"
+      />
       <section className="flex flex-col items-center justify-center gap-[0.5em] xs:flex-row xs:gap-0">
         {featured.map((project, index) => {
           const { clip, offset, title } = TILE_SHAPES[index]!;

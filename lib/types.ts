@@ -1,3 +1,5 @@
+import type { Locale } from '@/lib/i18n/config';
+
 /** A dotted translation key (e.g. `navigation.home`) or a literal that is rendered as-is. */
 export type TranslationKey = string;
 
@@ -71,6 +73,29 @@ export interface SlideImage {
   height: number;
   caption?: string;
 }
+
+export interface EventTranslation {
+  title: string;
+  description: string;
+  location: string;
+}
+
+export interface CosmoEvent {
+  /** URL slug: `/news/<id>`. */
+  id: string;
+  /** ISO 8601 start, with offset. */
+  date: string;
+  /** ISO 8601 end, for multi-hour or multi-day events. */
+  endDate?: string;
+  image: string;
+  /** Optional external page (registration, livestream…). */
+  url?: string;
+  /** Per-locale content; untranslated locales simply don't list the event. */
+  translations: Partial<Record<Locale, EventTranslation>>;
+}
+
+/** An event resolved for one locale. */
+export type LocalizedEvent = Omit<CosmoEvent, 'translations'> & EventTranslation;
 
 /* ---- Cosmo backend API ---- */
 

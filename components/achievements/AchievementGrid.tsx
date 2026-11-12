@@ -1,8 +1,12 @@
 'use client';
 
 import Image from 'next/image';
-import { useEffect, useRef, useState } from 'react';
-import { Icon } from '@/components/ui/Icon';
+import { useState } from 'react';
+import { Icon } from '@/components/common/Icon';
+import { IconButton } from '@/components/common/IconButton';
+import { ModalContent } from '@/components/common/Modal';
+import { Surface } from '@/components/common/Surface';
+import { Dialog, DialogClose, DialogTitle } from '@/components/ui/dialog';
 import type { Achievement } from '@/lib/types';
 
 function Medal({ date, compact }: { date: string; compact?: boolean }) {
@@ -22,58 +26,48 @@ function Medal({ date, compact }: { date: string; compact?: boolean }) {
 }
 
 export function AchievementGrid({ achievements }: { achievements: Achievement[] }) {
+  // `selected` outlives `open` so the panel keeps its content during the close animation.
   const [selected, setSelected] = useState<Achievement | null>(null);
-  const dialogRef = useRef<HTMLDialogElement>(null);
-
-  useEffect(() => {
-    if (selected) dialogRef.current?.showModal();
-  }, [selected]);
+  const [open, setOpen] = useState(false);
+  const show = (achievement: Achievement) => {
+    setSelected(achievement);
+    setOpen(true);
+  };
 
   return (
-    <>
+    <Dialog open={open} onOpenChange={setOpen}>
       <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] justify-items-center gap-[30px] px-[50px] py-[50px] xl:px-[100px]">
         {achievements.map((achievement) => (
-          <button
-            key={achievement.id}
-            type="button"
-            onClick={() => setSelected(achievement)}
-            className="cursor-pointer rounded-[15px] p-[1em] transition duration-500 hover:scale-105 hover:shadow-elevation-3"
-          >
-            <Medal date={achievement.date} compact />
-            <h2 className="text-justify">{achievement.title}</h2>
-          </button>
+          <Surface key={achievement.id} asChild radius="lg" padding="em" interactive="zoom">
+            <button type="button" onClick={() => show(achievement)}>
+              <Medal date={achievement.date} compact />
+              <h2 className="text-justify">{achievement.title}</h2>
+            </button>
+          </Surface>
         ))}
       </div>
 
-      <dialog
-        ref={dialogRef}
-        onClose={() => setSelected(null)}
-        onClick={(event) => event.target === dialogRef.current && dialogRef.current.close()}
-        className="m-auto max-w-[800px] rounded p-5 shadow-elevation-5 backdrop:bg-transparent"
-      >
+      <ModalContent variant="panel">
         {selected && (
           <>
             <header className="flex justify-end">
-              <button
-                type="button"
-                aria-label="Close"
-                onClick={() => dialogRef.current?.close()}
-                className="flex size-10 cursor-pointer items-center justify-center rounded-full hover:bg-black/5"
-              >
-                <Icon name="close" />
-              </button>
+              <DialogClose asChild>
+                <IconButton icon="close" label="Close" />
+              </DialogClose>
             </header>
             <section className="flex flex-col gap-5 md:flex-row">
               <Medal date={selected.date} />
               <div className="shrink-0 basis-[5px] bg-linear-to-r from-cosmo-magenta to-cosmo-blue md:bg-linear-to-b" />
               <div className="flex flex-col gap-[1em] text-justify">
-                <h2>{selected.title}</h2>
+                <DialogTitle asChild>
+                  <h2>{selected.title}</h2>
+                </DialogTitle>
                 <p>{selected.description}</p>
               </div>
             </section>
           </>
         )}
-      </dialog>
-    </>
+      </ModalContent>
+    </Dialog>
   );
 }

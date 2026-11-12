@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState, type ReactNode } from 'react';
-import { Icon } from '@/components/ui/Icon';
+import { IconButton } from '@/components/common/IconButton';
 
 export interface NavItem {
   href: string;
@@ -39,16 +39,17 @@ export function Header({ items, languagePicker }: HeaderProps) {
           ))}
         </ul>
 
-        <button
-          type="button"
-          className="hidden cursor-pointer text-white max-md:flex"
-          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+        <IconButton
+          tone="plain"
+          size="auto"
+          icon={menuOpen ? 'close' : 'menu'}
+          iconSize={34}
+          label={menuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={menuOpen}
           aria-controls="mobile-menu"
           onClick={() => setMenuOpen((open) => !open)}
-        >
-          <Icon name={menuOpen ? 'close' : 'menu'} size={34} />
-        </button>
+          className="hidden max-md:flex"
+        />
 
         <div className="ml-[60px] flex max-md:ml-5">{languagePicker}</div>
 

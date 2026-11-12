@@ -6,6 +6,11 @@ const PATHS = {
   chevronLeft: 'M17.77 3.77 16 2 6 12l10 10 1.77-1.77L9.54 12z',
   chevronRight: 'M6.23 20.23 8 22l10-10L8 2 6.23 3.77 14.46 12z',
   chevronRightSmall: 'M10 6 8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z',
+  chevronLeftSmall: 'M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z',
+  place:
+    'M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z',
+  openInNew:
+    'M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z',
   arrowBack: 'M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z',
   person:
     'M12 6c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2m0 10c2.7 0 5.8 1.29 6 2H6c.23-.72 3.31-2 6-2m0-12C9.79 4 8 5.79 8 8s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 10c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4z',
@@ -27,6 +32,8 @@ export function Icon({ name, size = 24, className }: IconProps) {
       viewBox="0 0 24 24"
       width={size}
       height={size}
+      // Inline size wins over container rules such as shadcn Button's default `[&_svg]:size-4`.
+      style={{ width: size, height: size }}
       fill="currentColor"
       aria-hidden="true"
       focusable="false"

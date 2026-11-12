@@ -1,13 +1,14 @@
 import type { Metadata } from 'next';
 import { PageShell } from '@/components/layout/PageShell';
 import { ProjectCard } from '@/components/projects/ProjectCard';
-import { Tabs } from '@/components/ui/Tabs';
+import { CosmoTabs } from '@/components/common/Tabs';
 import { getProjectsByStatus } from '@/lib/data/projects';
-import { getTranslator, type Translate } from '@/lib/i18n/server';
+import { getTranslations } from 'next-intl/server';
+import type { Translate } from '@/lib/i18n/server';
 import type { ProjectStatus } from '@/lib/types';
 
 export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslator();
+  const t = await getTranslations();
   return { title: `${t('navigation.projects')} | Cosmo PK` };
 }
 
@@ -22,7 +23,7 @@ function ProjectList({ t, status }: { t: Translate; status: ProjectStatus }) {
 }
 
 export default async function ProjectsPage() {
-  const t = await getTranslator();
+  const t = await getTranslations();
 
   return (
     <PageShell
@@ -32,10 +33,10 @@ export default async function ProjectsPage() {
       cardClassName="w-full overflow-hidden p-0"
       fullHeight
     >
-      <Tabs
+      <CosmoTabs
         tabs={[
-          { label: t('common.current'), content: <ProjectList t={t} status="current" /> },
-          { label: t('common.completed'), content: <ProjectList t={t} status="completed" /> },
+          { value: 'current', label: t('common.current'), content: <ProjectList t={t} status="current" /> },
+          { value: 'completed', label: t('common.completed'), content: <ProjectList t={t} status="completed" /> },
         ]}
       />
     </PageShell>

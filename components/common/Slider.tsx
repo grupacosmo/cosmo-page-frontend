@@ -1,9 +1,14 @@
 'use client';
 
 import Image from 'next/image';
-import { useCallback, useEffect, useRef, useState, type TouchEvent } from 'react';
+import { useCallback, useEffect, useRef, useState, type KeyboardEvent, type TouchEvent } from 'react';
+import { Button } from '@/components/ui/button';
+import { Dialog, DialogClose, DialogTitle } from '@/components/ui/dialog';
 import type { SlideImage } from '@/lib/types';
+import { cn } from '@/lib/utils';
 import { Icon } from './Icon';
+import { IconButton } from './IconButton';
+import { ModalContent } from './Modal';
 
 interface SliderProps {
   images: SlideImage[];
@@ -47,20 +52,10 @@ export function Slider({ images, emptyText, autoSlideInterval = 5000, height = '
     return () => window.clearInterval(timer);
   }, [hasMultiple, isPaused, isFullscreen, autoSlideInterval, next, index]);
 
-  useEffect(() => {
-    if (!isFullscreen) return;
-    const handleKey = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setIsFullscreen(false);
-      if (event.key === 'ArrowLeft') goTo(index - 1, false);
-      if (event.key === 'ArrowRight') goTo(index + 1, false);
-    };
-    document.addEventListener('keydown', handleKey);
-    document.body.style.overflow = 'hidden';
-    return () => {
-      document.removeEventListener('keydown', handleKey);
-      document.body.style.overflow = '';
-    };
-  }, [isFullscreen, index, goTo]);
+  const onLightboxKeyDown = (event: KeyboardEvent) => {
+    if (event.key === 'ArrowLeft') goTo(index - 1, false);
+    if (event.key === 'ArrowRight') goTo(index + 1, false);
+  };
 
   const onTouchStart = (event: TouchEvent) => {
     const x = event.touches[0]?.clientX ?? 0;
@@ -110,10 +105,11 @@ export function Slider({ images, emptyText, autoSlideInterval = 5000, height = '
             style={{ transform: `translateX(-${index * 100}%)` }}
           >
             {images.map((image, i) => (
-              <button
+              <Button
                 key={i}
-                type="button"
-                className="relative flex h-full w-full flex-[0_0_100%] cursor-pointer items-center justify-center"
+                variant="bare"
+                size="none"
+                className="relative flex h-full w-full flex-[0_0_100%] items-center justify-center rounded-none border-0 active:not-aria-[haspopup]:translate-y-0"
                 onClick={() => !wasSwipe() && setIsFullscreen(true)}
                 aria-label={`${image.alt} (fullscreen)`}
                 tabIndex={i === index ? 0 : -1}
@@ -136,7 +132,7 @@ export function Slider({ images, emptyText, autoSlideInterval = 5000, height = '
                 <span className="pointer-events-none absolute top-2.5 right-2.5 flex size-8 items-center justify-center rounded-full bg-black/60 text-white opacity-0 transition-opacity duration-200 group-hover:opacity-100 md:size-10">
                   <Icon name="fullscreen" size={20} />
                 </span>
-              </button>
+              </Button>
             ))}
           </div>
         </div>
@@ -145,16 +141,17 @@ export function Slider({ images, emptyText, autoSlideInterval = 5000, height = '
           <>
             <div className="pointer-events-none absolute inset-0 flex items-center justify-between px-[5px] opacity-0 group-hover:opacity-100 md:px-2.5">
               {(['prev', 'next'] as const).map((direction) => (
-                <button
+                <IconButton
                   key={direction}
-                  type="button"
+                  tone="light"
+                  size="lg"
+                  icon={direction === 'prev' ? 'chevronLeft' : 'chevronRight'}
+                  iconSize={20}
+                  label={direction === 'prev' ? 'Previous image' : 'Next image'}
                   disabled={isTransitioning}
                   onClick={() => goTo(direction === 'prev' ? index - 1 : index + 1)}
-                  aria-label={direction === 'prev' ? 'Previous image' : 'Next image'}
-                  className="pointer-events-auto z-10 flex size-10 cursor-pointer items-center justify-center rounded-full bg-white/70 text-[#333] transition-all duration-200 hover:not-disabled:scale-105 active:not-disabled:scale-95 disabled:cursor-not-allowed disabled:opacity-50 md:size-12 md:hover:not-disabled:scale-110"
-                >
-                  <Icon name={direction === 'prev' ? 'chevronLeft' : 'chevronRight'} size={20} />
-                </button>
+                  className="pointer-events-auto z-10"
+                />
               ))}
             </div>
             <Dots count={count} index={index} disabled={isTransitioning} onSelect={(i) => goTo(i)} />
@@ -162,27 +159,26 @@ export function Slider({ images, emptyText, autoSlideInterval = 5000, height = '
         )}
       </div>
 
-      {isFullscreen && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          className="fixed inset-0 z-[9999] flex animate-fade-in cursor-pointer items-center justify-center bg-black/95 motion-reduce:animate-none"
-          onClick={() => setIsFullscreen(false)}
+      <Dialog open={isFullscreen} onOpenChange={setIsFullscreen}>
+        <ModalContent
+          variant="lightbox"
+          onKeyDown={onLightboxKeyDown}
           onTouchStart={onTouchStart}
           onTouchMove={onTouchMove}
           onTouchEnd={onTouchEnd}
         >
-          <button
-            type="button"
-            autoFocus
-            onClick={() => setIsFullscreen(false)}
-            aria-label="Close fullscreen"
-            className="absolute top-2.5 right-2.5 z-[10001] flex size-10 cursor-pointer items-center justify-center rounded-full bg-white/20 text-white transition-colors hover:bg-white/30 md:size-12"
-          >
-            <Icon name="close" />
-          </button>
+          <DialogTitle className="sr-only">{images[index]?.alt}</DialogTitle>
+          <DialogClose asChild>
+            <IconButton
+              tone="glass"
+              size="lg"
+              icon="close"
+              label="Close fullscreen"
+              className="absolute top-2.5 right-2.5 z-[10001]"
+            />
+          </DialogClose>
 
-          <div className="flex h-full w-full cursor-default items-center overflow-hidden" onClick={(e) => e.stopPropagation()}>
+          <div className="flex h-full w-full items-center overflow-hidden">
             <div
               className="flex h-full w-full transition-transform duration-300 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] will-change-transform motion-reduce:transition-none"
               style={{ transform: `translateX(-${index * 100}%)` }}
@@ -211,73 +207,72 @@ export function Slider({ images, emptyText, autoSlideInterval = 5000, height = '
           {hasMultiple && (
             <div className="pointer-events-none absolute inset-0 z-[10000] flex items-center justify-between px-2.5 md:px-5">
               {(['prev', 'next'] as const).map((direction) => (
-                <button
+                <IconButton
                   key={direction}
-                  type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    goTo(direction === 'prev' ? index - 1 : index + 1, false);
-                  }}
-                  aria-label={direction === 'prev' ? 'Previous image' : 'Next image'}
-                  className="pointer-events-auto flex size-12 cursor-pointer items-center justify-center rounded-full bg-white/20 text-white transition-all duration-200 hover:scale-110 hover:bg-white/30 active:scale-95 md:size-[60px]"
-                >
-                  <Icon name={direction === 'prev' ? 'chevronLeft' : 'chevronRight'} size={28} />
-                </button>
-              ))}
-            </div>
-          )}
-
-          {hasMultiple && (
-            <div className="absolute bottom-[15px] left-1/2 z-[10000] flex -translate-x-1/2 gap-[5px] md:bottom-5 md:gap-[7.5px]">
-              {images.map((_, i) => (
-                <button
-                  key={i}
-                  type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    goTo(i, false);
-                  }}
-                  aria-label={`Go to slide ${i + 1}`}
-                  className={`size-3 cursor-pointer rounded-full border-2 transition-all duration-200 hover:scale-110 hover:border-white/90 md:size-4 md:hover:scale-120 ${
-                    i === index ? 'border-white bg-white/90' : 'border-white/60 bg-transparent'
-                  }`}
+                  tone="glass"
+                  size="xl"
+                  icon={direction === 'prev' ? 'chevronLeft' : 'chevronRight'}
+                  iconSize={28}
+                  label={direction === 'prev' ? 'Previous image' : 'Next image'}
+                  onClick={() => goTo(direction === 'prev' ? index - 1 : index + 1, false)}
+                  className="pointer-events-auto hover:scale-110 active:scale-95"
                 />
               ))}
             </div>
           )}
 
+          {hasMultiple && (
+            <Dots
+              count={count}
+              index={index}
+              onSelect={(i) => goTo(i, false)}
+              className="bottom-[15px] z-[10000] gap-[5px] md:bottom-5 md:gap-[7.5px]"
+              dotClassName="size-3 md:size-4 hover:border-white/90"
+              inactiveClassName="border-white/60"
+            />
+          )}
+
           <div className="absolute top-2.5 left-2.5 z-[10001] rounded-[20px] bg-black/60 px-2.5 py-[5px] text-xs font-medium text-white">
             {index + 1} / {count}
           </div>
-        </div>
-      )}
+        </ModalContent>
+      </Dialog>
     </>
   );
 }
 
-function Dots({
-  count,
-  index,
-  disabled,
-  onSelect,
-}: {
+interface DotsProps {
   count: number;
   index: number;
-  disabled: boolean;
+  disabled?: boolean;
   onSelect: (index: number) => void;
-}) {
+  className?: string;
+  dotClassName?: string;
+  inactiveClassName?: string;
+}
+
+function Dots({ count, index, disabled, onSelect, className, dotClassName, inactiveClassName }: DotsProps) {
   return (
-    <div className="absolute bottom-[7.5px] left-1/2 z-10 flex -translate-x-1/2 gap-[3.75px] md:bottom-2.5 md:gap-[5px]">
+    <div
+      className={cn(
+        'absolute bottom-[7.5px] left-1/2 z-10 flex -translate-x-1/2 gap-[3.75px] md:bottom-2.5 md:gap-[5px]',
+        className,
+      )}
+    >
       {Array.from({ length: count }, (_, i) => (
-        <button
+        <Button
           key={i}
-          type="button"
+          variant="bare"
+          size="none"
           disabled={disabled}
           onClick={() => onSelect(i)}
           aria-label={`Go to slide ${i + 1}`}
-          className={`size-2.5 cursor-pointer rounded-full border-2 transition-all duration-200 hover:not-disabled:scale-110 hover:not-disabled:border-white disabled:cursor-not-allowed disabled:opacity-50 md:size-3 md:hover:not-disabled:scale-120 ${
-            i === index ? 'border-white bg-white/90' : 'border-white/80 bg-transparent'
-          }`}
+          aria-current={i === index}
+          className={cn(
+            'size-2.5 rounded-full border-2 bg-clip-border transition-all duration-200 hover:not-disabled:scale-110 hover:not-disabled:border-white active:not-aria-[haspopup]:translate-y-0 disabled:cursor-not-allowed md:size-3 md:hover:not-disabled:scale-120',
+            dotClassName,
+            i === index ? 'border-white bg-white/90' : cn('border-white/80 bg-transparent', inactiveClassName),
+          )}
         />
       ))}
     </div>

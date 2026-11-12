@@ -1,4 +1,6 @@
 import type { ReactNode } from 'react';
+import { Container } from '@/components/common/Container';
+import { Surface } from '@/components/common/Surface';
 import { cssUrl } from '@/lib/format';
 
 interface PageShellProps {
@@ -22,9 +24,9 @@ export function PageShell({ title, image, imagePositionY, cardClassName, fullHei
         className="relative z-[1] bg-cover bg-no-repeat py-[100px] before:absolute before:inset-0 before:bg-cosmo-overlay"
         style={{ backgroundImage: cssUrl(image), backgroundPositionY: imagePositionY }}
       >
-        <div className="relative mx-auto max-w-[1600px] px-[60px] text-white">
+        <Container gutter="page" className="relative text-white">
           <h1 className="text-[40px] font-normal md:text-[60px]">{title}</h1>
-        </div>
+        </Container>
       </section>
       <section
         className={`relative z-[2] bg-linear-to-b from-cosmo-dark-blue to-cosmo-magenta shadow-content ${fullHeight ? 'min-h-[calc(100vh-70px)]' : ''}`}
@@ -35,10 +37,15 @@ export function PageShell({ title, image, imagePositionY, cardClassName, fullHei
   );
 }
 
+/** The white page sheet that holds a page's content. */
 export function MainCard({ className, children }: { className?: string; children: ReactNode }) {
   return (
-    <main className="mx-auto max-w-[1600px] xl:px-[60px] xl:pb-10">
-      <div className={`rounded-t-[15px] bg-white xl:rounded-b-[15px] ${className ?? 'p-5'}`}>{children}</div>
-    </main>
+    <Container asChild gutter="sheet">
+      <main>
+        <Surface tone="paper" radius="sheet" padding="md" className={className}>
+          {children}
+        </Surface>
+      </main>
+    </Container>
   );
 }

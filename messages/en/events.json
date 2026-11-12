@@ -1,0 +1,12 @@
+{
+  "upcoming": "Upcoming",
+  "past": "Past",
+  "empty": "No current events",
+  "emptyPast": "No past events",
+  "show": "Show",
+  "pageSize": "Events per page",
+  "location": "Location",
+  "date": "Date",
+  "eventPage": "Event page",
+  "allEvents": "All events"
+}

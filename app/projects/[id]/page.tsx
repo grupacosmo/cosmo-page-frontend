@@ -1,11 +1,12 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import { PageShell } from '@/components/layout/PageShell';
-import { LinkButton } from '@/components/ui/CustomButton';
-import { Divider } from '@/components/ui/Divider';
-import { Icon } from '@/components/ui/Icon';
+import { CtaLink } from '@/components/common/CtaButton';
+import { Section } from '@/components/common/Container';
+import { Divider } from '@/components/common/Divider';
+import { Icon } from '@/components/common/Icon';
 import { getProject } from '@/lib/data/projects';
-import { getTranslator } from '@/lib/i18n/server';
+import { getTranslations } from 'next-intl/server';
 import type { ProjectPhoto } from '@/lib/types';
 
 interface ProjectPageProps {
@@ -13,7 +14,7 @@ interface ProjectPageProps {
 }
 
 export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
-  const [{ id }, t] = await Promise.all([params, getTranslator()]);
+  const [{ id }, t] = await Promise.all([params, getTranslations()]);
   const project = getProject(id);
   return { title: project ? `${t(project.title)} | Cosmo PK` : 'Cosmo PK' };
 }
@@ -46,13 +47,13 @@ function MetaItem({ icon, children }: { icon: string; children: React.ReactNode 
 const column = 'max-md:mx-auto max-md:flex max-md:flex-col max-md:items-center';
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
-  const [{ id }, t] = await Promise.all([params, getTranslator()]);
+  const [{ id }, t] = await Promise.all([params, getTranslations()]);
   const project = getProject(id);
 
   if (!project) {
     return (
       <PageShell title={t('navigation.projects')} image="/images/satellite.jpg" imagePositionY="50%" fullHeight>
-        <section className="my-[2em]">{t('common.unexpectedErrorOccured')}</section>
+        <Section>{t('common.unexpectedErrorOccured')}</Section>
       </PageShell>
     );
   }
@@ -67,11 +68,11 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       cardClassName="overflow-hidden px-5 py-5 lg:px-[60px]"
       fullHeight
     >
-      <section className="my-[2em]">
-        <LinkButton href="/projects" text={t('projects.allProjects')} secondary back />
-      </section>
+      <Section>
+        <CtaLink href="/projects" text={t('projects.allProjects')} secondary back />
+      </Section>
 
-      <section className="my-[2em]">
+      <Section>
         <div className="flex flex-col gap-[1em] md:flex-row md:gap-[3em]">
           <div className="w-full md:w-[35%] lg:w-[45%]">
             <h1 className="my-0 text-cosmo-l text-cosmo-magenta lg:text-cosmo-xl">{t(project.title)}</h1>
@@ -95,11 +96,11 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           <h2 className="mb-2.5">{t('projects.projectDescription')}</h2>
           <p className="text-left">{t(project.description)}</p>
         </div>
-      </section>
+      </Section>
 
       <Divider />
 
-      <section className="my-[2em]">
+      <Section>
         <div className="flex flex-col gap-[1em] md:flex-row md:gap-[3em]">
           <div className="w-full md:w-[60%] lg:w-[70%]">
             <h2 className="mb-2.5">{t('common.experiment')}</h2>
@@ -109,11 +110,11 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             <Photo photo={project.experimentPhoto} caption={t(project.experimentPhoto.description)} />
           </div>
         </div>
-      </section>
+      </Section>
 
       <Divider />
 
-      <section className="my-[2em]">
+      <Section>
         <h2 className="mb-2.5">{t('common.team')}</h2>
         <div className="flex flex-col gap-[1em] md:flex-row md:gap-[3em]">
           <div className={`w-[90%] md:w-[60%] lg:w-1/2 ${column}`}>
@@ -130,7 +131,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             {project.teams.map((team) => (
               <div key={team.name}>
                 <h3>{t(team.name)}</h3>
-                <hr className="my-[1em]" />
+                <Divider tone="current" weight="thin" className="my-[1em]" />
                 <ul className="grid grid-cols-1 justify-start gap-2.5 lg:grid-cols-2">
                   {team.members.map((member) => (
                     <li key={member} className="flex items-center gap-2.5 text-left">
@@ -143,7 +144,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             ))}
           </div>
         </div>
-      </section>
+      </Section>
     </PageShell>
   );
 }

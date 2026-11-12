@@ -1,6 +1,7 @@
 import Image from 'next/image';
-import { ButtonContent, buttonClasses } from '@/components/ui/CustomButton';
-import { ScrollLink } from '@/components/ui/ScrollLink';
+import { Container } from '@/components/common/Container';
+import { CtaContent, CtaSlot } from '@/components/common/CtaButton';
+import { ScrollLink } from '@/components/common/ScrollLink';
 import { socialLinks } from '@/lib/data/site';
 
 interface HeroProps {
@@ -12,7 +13,7 @@ interface HeroProps {
 export function Hero({ subtitle, joinUsLabel, joinUsTargetId }: HeroProps) {
   return (
     <section className="py-[100px] text-white">
-      <div className="mx-auto flex max-w-[1600px] flex-col px-[60px] max-xs:items-center max-xs:gap-2.5 max-xs:text-center">
+      <Container gutter="page" className="flex flex-col max-xs:items-center max-xs:gap-2.5 max-xs:text-center">
         <h1 className="m-0 text-[50px] font-normal xs:text-[60px]">COSMO PK</h1>
         <p className="mb-2.5 text-[20px] xs:text-[30px]">{subtitle}</p>
         <div className="flex gap-5 max-xs:justify-center">
@@ -29,10 +30,12 @@ export function Hero({ subtitle, joinUsLabel, joinUsTargetId }: HeroProps) {
             </a>
           ))}
         </div>
-        <ScrollLink targetId={joinUsTargetId} className={`${buttonClasses({})} mt-5 w-fit`}>
-          <ButtonContent text={joinUsLabel} />
-        </ScrollLink>
-      </div>
+        <CtaSlot className="mt-5 w-fit">
+          <ScrollLink targetId={joinUsTargetId}>
+            <CtaContent text={joinUsLabel} />
+          </ScrollLink>
+        </CtaSlot>
+      </Container>
     </section>
   );
 }
