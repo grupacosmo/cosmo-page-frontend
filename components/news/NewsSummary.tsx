@@ -1,10 +1,11 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { getLocale } from 'next-intl/server';
 import { SectionHeader } from '@/components/common/Container';
 import { CtaLink } from '@/components/common/CtaButton';
 import { Surface } from '@/components/common/Surface';
 import { getFeaturedEvents } from '@/lib/events';
-import { cssUrl } from '@/lib/format';
+import { SHIMMER_PLACEHOLDER } from '@/lib/shimmer';
 import type { Translate } from '@/lib/i18n/server';
 import { EmptyState } from './EmptyState';
 import { EventDateBadge } from './EventCard';
@@ -32,10 +33,17 @@ export async function NewsSummary({ t }: { t: Translate }) {
               tone="media"
               radius="md"
               interactive="zoom"
-              style={{ backgroundImage: cssUrl(event.image) }}
-              className={`relative min-h-[120px] hover:z-[2] ${TILE_AREAS[index]}`}
+              className={`relative isolate min-h-[120px] hover:z-[2] ${TILE_AREAS[index]}`}
             >
               <Link href={`/news/${encodeURIComponent(event.id)}`}>
+                <Image
+                  src={event.image}
+                  alt=""
+                  fill
+                  sizes={index === 0 ? '(max-width: 768px) 50vw, 40vw' : '(max-width: 768px) 50vw, 25vw'}
+                  placeholder={SHIMMER_PLACEHOLDER}
+                  className="-z-[1] object-cover"
+                />
                 <div className="flex h-full w-full flex-col items-start justify-between bg-linear-to-b from-[rgba(31,36,44,0)] from-33% to-[rgb(39,44,53)] p-2.5">
                   <EventDateBadge date={event.date} className="text-cosmo-xs" />
                   <h3 className="m-0">{event.title}</h3>

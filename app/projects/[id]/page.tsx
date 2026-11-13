@@ -1,13 +1,12 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
-import { PageShell } from '@/components/layout/PageShell';
+import { getTranslations } from 'next-intl/server';
 import { CtaLink } from '@/components/common/CtaButton';
 import { Section } from '@/components/common/Container';
 import { Divider } from '@/components/common/Divider';
-import { Icon } from '@/components/common/Icon';
+import { PageShell } from '@/components/layout/PageShell';
+import { ProjectExperiment, ProjectOverview, ProjectTeam } from '@/components/projects/ProjectSections';
 import { getProject } from '@/lib/data/projects';
-import { getTranslations } from 'next-intl/server';
-import type { ProjectPhoto } from '@/lib/types';
+import { BANNERS } from '@/lib/routes';
 
 interface ProjectPageProps {
   params: Promise<{ id: string }>;
@@ -19,132 +18,33 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
   return { title: project ? `${t(project.title)} | Cosmo PK` : 'Cosmo PK' };
 }
 
-function Photo({ photo, caption }: { photo: ProjectPhoto; caption: string }) {
-  return (
-    <>
-      <Image
-        src={photo.src}
-        alt={caption}
-        width={600}
-        height={400}
-        sizes="(max-width: 768px) 90vw, 50vw"
-        className="h-auto w-full rounded-[10px]"
-      />
-      <p className="text-left text-cosmo-xs">{caption}</p>
-    </>
-  );
-}
-
-function MetaItem({ icon, children }: { icon: string; children: React.ReactNode }) {
-  return (
-    <span className="flex items-center gap-[0.5em] text-black max-xs:text-cosmo-xs">
-      <Image src={icon} alt="" width={24} height={24} />
-      {children}
-    </span>
-  );
-}
-
-const column = 'max-md:mx-auto max-md:flex max-md:flex-col max-md:items-center';
-
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const [{ id }, t] = await Promise.all([params, getTranslations()]);
   const project = getProject(id);
 
   if (!project) {
     return (
-      <PageShell title={t('navigation.projects')} image="/images/satellite.jpg" imagePositionY="50%" fullHeight>
+      <PageShell title={t('navigation.projects')} {...BANNERS.projects} fullHeight>
         <Section>{t('common.unexpectedErrorOccured')}</Section>
       </PageShell>
     );
   }
 
-  const teamNames = project.teams.map((team) => t(team.name)).join(', ');
-
   return (
     <PageShell
       title={t('navigation.projects')}
-      image="/images/satellite.jpg"
-      imagePositionY="50%"
+      {...BANNERS.projects}
       cardClassName="overflow-hidden px-5 py-5 lg:px-[60px]"
       fullHeight
     >
       <Section>
         <CtaLink href="/projects" text={t('projects.allProjects')} secondary back />
       </Section>
-
-      <Section>
-        <div className="flex flex-col gap-[1em] md:flex-row md:gap-[3em]">
-          <div className="w-full md:w-[35%] lg:w-[45%]">
-            <h1 className="my-0 text-cosmo-l text-cosmo-magenta lg:text-cosmo-xl">{t(project.title)}</h1>
-            <p className="mb-[2em] text-left text-cosmo-l">{t(project.shortDescription)}</p>
-            <div className="flex flex-col">
-              <MetaItem icon="/images/icons/team.svg">{teamNames}</MetaItem>
-              <MetaItem icon="/images/icons/date.svg">{project.date}</MetaItem>
-              <MetaItem icon="/images/icons/project-status.svg">{t(`common.${project.status}`)}</MetaItem>
-              {project.repository && (
-                <a href={project.repository.url} target="_blank" rel="noopener noreferrer">
-                  <MetaItem icon="/images/icons/site.svg">{project.repository.label}</MetaItem>
-                </a>
-              )}
-            </div>
-          </div>
-          <div className={`w-[90%] md:w-[65%] lg:w-1/2 ${column}`}>
-            <Photo photo={project.mainPhoto} caption={t(project.mainPhoto.description)} />
-          </div>
-        </div>
-        <div>
-          <h2 className="mb-2.5">{t('projects.projectDescription')}</h2>
-          <p className="text-left">{t(project.description)}</p>
-        </div>
-      </Section>
-
+      <ProjectOverview t={t} project={project} />
       <Divider />
-
-      <Section>
-        <div className="flex flex-col gap-[1em] md:flex-row md:gap-[3em]">
-          <div className="w-full md:w-[60%] lg:w-[70%]">
-            <h2 className="mb-2.5">{t('common.experiment')}</h2>
-            <p className="text-left">{t(project.experimentDescription)}</p>
-          </div>
-          <div className={`w-[60%] md:w-[40%] lg:w-[30%] ${column}`}>
-            <Photo photo={project.experimentPhoto} caption={t(project.experimentPhoto.description)} />
-          </div>
-        </div>
-      </Section>
-
+      <ProjectExperiment t={t} project={project} />
       <Divider />
-
-      <Section>
-        <h2 className="mb-2.5">{t('common.team')}</h2>
-        <div className="flex flex-col gap-[1em] md:flex-row md:gap-[3em]">
-          <div className={`w-[90%] md:w-[60%] lg:w-1/2 ${column}`}>
-            <Image
-              src={project.teamPhoto}
-              alt={teamNames}
-              width={600}
-              height={400}
-              sizes="(max-width: 768px) 90vw, 50vw"
-              className="h-auto w-full rounded-[10px]"
-            />
-          </div>
-          <div className="w-full md:w-[40%] lg:w-1/2">
-            {project.teams.map((team) => (
-              <div key={team.name}>
-                <h3>{t(team.name)}</h3>
-                <Divider tone="current" weight="thin" className="my-[1em]" />
-                <ul className="grid grid-cols-1 justify-start gap-2.5 lg:grid-cols-2">
-                  {team.members.map((member) => (
-                    <li key={member} className="flex items-center gap-2.5 text-left">
-                      <Icon name="person" />
-                      {member}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      </Section>
+      <ProjectTeam t={t} project={project} />
     </PageShell>
   );
 }

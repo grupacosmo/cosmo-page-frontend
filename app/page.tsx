@@ -5,10 +5,12 @@ import { Partners } from '@/components/home/Partners';
 import { ProjectsHome } from '@/components/home/ProjectsHome';
 import { MainCard } from '@/components/layout/PageShell';
 import { NewsSummary } from '@/components/news/NewsSummary';
+import { NewsSummarySkeleton } from '@/components/news/NewsSkeletons';
 import { Section } from '@/components/common/Container';
 import { Divider } from '@/components/common/Divider';
 import { projects } from '@/lib/data/projects';
 import { getTranslations } from 'next-intl/server';
+import { Suspense } from 'react';
 
 const JOIN_US_ID = 'join-us';
 
@@ -25,7 +27,10 @@ export default async function HomePage() {
           </Section>
           <Divider />
           <Section>
-            <NewsSummary t={t} />
+            {/* Async (events source): streams in behind a skeleton without holding up the page. */}
+            <Suspense fallback={<NewsSummarySkeleton />}>
+              <NewsSummary t={t} />
+            </Suspense>
           </Section>
           <Divider />
           <Section>

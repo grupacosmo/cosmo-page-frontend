@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { CtaLink } from '@/components/common/CtaButton';
 import { Surface } from '@/components/common/Surface';
-import { cssUrl } from '@/lib/format';
+import { SHIMMER_PLACEHOLDER } from '@/lib/shimmer';
 import type { Translate } from '@/lib/i18n/server';
 import type { Project } from '@/lib/types';
 
@@ -27,10 +27,16 @@ export function ProjectCard({ t, project }: ProjectCardProps) {
           {/* On tablet/desktop the whole card is clickable; on mobile only the button navigates. */}
           <Link href={href} tabIndex={-1} aria-hidden="true" className="absolute inset-0 hidden md:block" />
 
-          <div
-            className="min-h-[250px] w-full bg-cover bg-center md:w-1/2 md:scale-[1.03] md:[clip-path:polygon(0_0,70%_0,100%_100%,0%_100%)] lg:w-[35%]"
-            style={{ backgroundImage: cssUrl(project.mainPhoto.src) }}
-          />
+          <div className="relative min-h-[250px] w-full md:w-1/2 md:scale-[1.03] md:[clip-path:polygon(0_0,70%_0,100%_100%,0%_100%)] lg:w-[35%]">
+            <Image
+              src={project.mainPhoto.src}
+              alt=""
+              fill
+              sizes="(max-width: 768px) 70vw, (max-width: 1024px) 45vw, 30vw"
+              placeholder={SHIMMER_PLACEHOLDER}
+              className="object-cover"
+            />
+          </div>
 
           <div className="flex w-full flex-col justify-between gap-[1em] p-[1em] md:my-[1em] md:w-[40%] md:p-0 md:text-cosmo-m lg:w-[55%] lg:text-cosmo-l">
             <div>

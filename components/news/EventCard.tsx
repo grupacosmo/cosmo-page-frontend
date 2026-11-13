@@ -1,9 +1,11 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { getFormatter } from 'next-intl/server';
 import { Icon } from '@/components/common/Icon';
 import { Surface } from '@/components/common/Surface';
 import { Badge } from '@/components/ui/badge';
-import { cssUrl, truncate } from '@/lib/format';
+import { truncate } from '@/lib/format';
+import { SHIMMER_PLACEHOLDER } from '@/lib/shimmer';
 import type { LocalizedEvent } from '@/lib/types';
 import { cn } from '@/lib/utils';
 
@@ -25,17 +27,26 @@ export async function EventDateBadge({ date, className }: { date: string; classN
 }
 
 /** Event tile that reveals an excerpt on hover (same look as the original news tiles). */
-export async function EventCard({ event }: { event: LocalizedEvent }) {
+export async function EventCard({ event, priority = false }: { event: LocalizedEvent; priority?: boolean }) {
   return (
     <Surface
       asChild
       tone="media"
       radius="md"
       interactive="hover"
-      style={{ backgroundImage: cssUrl(event.image) }}
-      className="group relative aspect-[4/3] min-h-[120px] w-full before:absolute before:inset-0 before:bg-linear-to-b before:from-[rgba(31,36,44,0.3)] before:from-33% before:to-[rgb(39,44,53)] before:opacity-0 before:transition before:duration-500 hover:before:opacity-100"
+      className="group relative isolate aspect-[4/3] min-h-[120px] w-full before:absolute before:inset-0 before:bg-linear-to-b before:from-[rgba(31,36,44,0.3)] before:from-33% before:to-[rgb(39,44,53)] before:opacity-0 before:transition before:duration-500 hover:before:opacity-100"
     >
       <Link href={`/news/${encodeURIComponent(event.id)}`}>
+        {/* Lazy-loaded photo with a shimmer until it arrives; `-z-[1]` keeps it under the overlays. */}
+        <Image
+          src={event.image}
+          alt=""
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+          priority={priority}
+          placeholder={SHIMMER_PLACEHOLDER}
+          className="-z-[1] object-cover"
+        />
         <EventDateBadge date={event.date} className="absolute top-4 left-4 z-[1]" />
         <div className="flex h-full w-full flex-col justify-end bg-linear-to-b from-[rgba(31,36,44,0)] from-33% to-[rgb(39,44,53)] p-5">
           <div className="relative z-[1] translate-y-[70px] transition duration-500 group-hover:translate-y-0">

@@ -15,5 +15,6 @@
   "unexpectedErrorOccured": "An unexpected error occurred.",
   "polish": "Polish",
   "english": "English",
-  "noImages": "No images to display"
+  "noImages": "No images to display",
+  "loading": "Loading…"
 }

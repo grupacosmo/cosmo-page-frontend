@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { Surface } from '@/components/common/Surface';
+import { SHIMMER_PLACEHOLDER } from '@/lib/shimmer';
 import type { TeamMember } from '@/lib/types';
 
 /** Shows photo, name and roles; flips to the bio on hover when one exists. */
@@ -23,6 +24,7 @@ export function MemberCard({ member }: { member: TeamMember }) {
           alt={member.name}
           width={180}
           height={180}
+          placeholder={SHIMMER_PLACEHOLDER}
           className="size-[180px] rounded-full object-cover"
         />
         <h3 className="text-center text-[20px] font-bold">{member.name}</h3>

@@ -13,6 +13,8 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   output: 'standalone',
   poweredByHeader: false,
+  // Automatic memoization of client components (replaces hand-written useMemo/useCallback/memo).
+  reactCompiler: true,
   async headers() {
     return [{ source: '/:path*', headers: securityHeaders }];
   },

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import { PageShell } from '@/components/layout/PageShell';
+import { BANNERS } from '@/lib/routes';
 import { getTranslations } from 'next-intl/server';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -14,8 +15,7 @@ export default async function NewsLayout({ children }: { children: ReactNode }) 
   return (
     <PageShell
       title={t('navigation.news')}
-      image="/images/night-sky.jpeg"
-      imagePositionY="70%"
+      {...BANNERS.news}
       // Flush sheet: the events tabs sit on its top edge; pages add their own padding.
       cardClassName="overflow-hidden p-0"
     >

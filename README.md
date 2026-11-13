@@ -51,8 +51,9 @@ reaches the browser. Do not prefix them with `NEXT_PUBLIC_`. In Docker they are 
 
 ```
 app/                     routes (App Router)
-  layout.tsx             header, footer, locale, NextIntlClientProvider
+  layout.tsx             header, footer, locale, NextIntlClientProvider, language-switch skeletons
   page.tsx               homepage
+  **/loading.tsx         per-route shimmer skeletons, shown while a route streams in
   projects/              list (tabs) + [id] details
   news/                  events: list (?tab=upcoming|past&page=N&size=3|6|12) + [slug] details
   team/                  team members
@@ -60,10 +61,14 @@ app/                     routes (App Router)
 components/
   ui/                    shadcn/ui primitives (generated, themed) — button, card, tabs, dialog…
   common/                Cosmo building blocks on top of ui/ (see below)
-  layout/                Header, Footer, LanguagePicker, PageShell
-  home/ news/ projects/ team/ achievements/
+  layout/                Header, Footer, LanguagePicker, PageShell, LocaleTransition, RouteSkeleton
+  home/ news/ projects/ team/ achievements/   feature components + their *Skeleton(s).tsx
 lib/
-  events.ts              event access layer (filtering, sorting, pagination, URL params)
+  events.ts              server-only event access layer (cached per request with React.cache)
+  eventsQuery.ts         tabs, page sizes, pagination and URL params (client-safe)
+  routes.ts              banner image per subpage (shared by pages and their skeletons)
+  shimmer.ts             SVG shimmer used as the placeholder of lazily loaded photos
+  hooks/                 useScrolled (sticky header), useSwipe (slider)
   data/                  static content (events, projects, team, partners…)
   i18n/                  next-intl request config, locales, setLocale action
   api.ts                 server-only backend client (for the future backend)
@@ -89,10 +94,32 @@ the Cosmo look (palette in `app/globals.css`, Cosmo variants such as `cosmo` / `
 | `CosmoTabs`, `CosmoTabLinks` | `Tabs` | trapezoid tabs (state- or URL-driven)                       |
 | `ModalContent`   | `Dialog`          | achievement panel, image lightbox                            |
 | `Divider`        | `Separator`       | section rules                                                |
+| `Skeleton`, `SkeletonText`, `SkeletonCta`, `SkeletonTabBar`, `LoadingRegion` | — | shimmer loading placeholders |
 
 Add primitives with `pnpm dlx shadcn@latest add <name>`. Always import `cn` from `@/lib/utils`
 (enforced by ESLint): it knows the custom `text-cosmo-*` / `shadow-elevation-*` tokens, which the
 stock merger would otherwise mis-merge (e.g. silently dropping `text-white`).
+
+## Loading states and performance
+
+- **Shimmer skeletons:** every page has a skeleton that matches its layout box for box (in the
+  feature folders, e.g. `components/news/NewsSkeletons.tsx`). They're shown by each route's
+  `loading.tsx` during navigation, by `<Suspense>` around async sections (the news teaser streams
+  in on its own), and while the **language switches**: `LocaleTransitionProvider` tracks the switch,
+  the nav labels shimmer in place and the page content and footer swap to their skeletons
+  (`LocalePendingSwap` + `RouteSkeleton`). The skeleton stays up at least 350 ms so it never just
+  flashes.
+- **Images:** photos use `next/image` (lazy, responsive sizes) with an animated shimmer placeholder
+  until they load. The slider's fullscreen lightbox is code-split and only fetched on first open.
+- **Re-renders:** the [React Compiler](https://react.dev/learn/react-compiler) (`reactCompiler` in
+  `next.config.ts`) memoizes client components, values and callbacks automatically, so there's no
+  hand-written `useMemo`/`useCallback`/`memo`. Most of the UI is Server Components with no client JS;
+  client islands are kept small (Header → `DesktopNav`/`MobileMenu`, Slider → `SlideTrack`/
+  `SliderControls`/`SliderLightbox`), and the sticky header's scroll hook only re-renders when the
+  scroll threshold is crossed.
+- **Sticky header:** fixed to the top; transparent over the banner, solid blurred backdrop once you
+  scroll. The language menu is positioned with CSS under its button (popper libraries mis-place it
+  because of the site's `zoom: 0.8` on wide screens).
 
 ## Translations
 

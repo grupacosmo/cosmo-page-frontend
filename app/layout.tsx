@@ -3,8 +3,11 @@ import type { ReactNode } from 'react';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getTranslations } from 'next-intl/server';
 import { Footer } from '@/components/layout/Footer';
+import { FooterSkeleton } from '@/components/layout/FooterSkeleton';
 import { Header } from '@/components/layout/Header';
 import { LanguagePicker } from '@/components/layout/LanguagePicker';
+import { LocalePendingSwap, LocaleTransitionProvider } from '@/components/layout/LocaleTransition';
+import { RouteSkeleton } from '@/components/layout/RouteSkeleton';
 import { LANGUAGES } from '@/lib/i18n/config';
 import { getFooterItems, getHeaderItems } from '@/lib/navigation';
 import './globals.css';
@@ -25,12 +28,17 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
     <html lang={locale}>
       <body className="flex min-h-full flex-col bg-cosmo-dark-blue font-sans">
         <NextIntlClientProvider>
-          <Header
-            items={getHeaderItems(t)}
-            languagePicker={<LanguagePicker current={locale} labels={languageLabels} />}
-          />
-          {children}
-          <Footer t={t} navItems={getFooterItems(t)} />
+          {/* While the language switches, content and footer show skeletons (the header shimmers itself). */}
+          <LocaleTransitionProvider>
+            <Header
+              items={getHeaderItems(t)}
+              languagePicker={<LanguagePicker current={locale} labels={languageLabels} />}
+            />
+            <LocalePendingSwap fallback={<RouteSkeleton />}>{children}</LocalePendingSwap>
+            <LocalePendingSwap fallback={<FooterSkeleton />}>
+              <Footer t={t} navItems={getFooterItems(t)} />
+            </LocalePendingSwap>
+          </LocaleTransitionProvider>
         </NextIntlClientProvider>
       </body>
     </html>

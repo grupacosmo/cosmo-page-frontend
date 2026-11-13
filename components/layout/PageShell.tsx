@@ -1,10 +1,12 @@
 import type { ReactNode } from 'react';
 import { Container } from '@/components/common/Container';
+import { Skeleton } from '@/components/common/Skeleton';
 import { Surface } from '@/components/common/Surface';
 import { cssUrl } from '@/lib/format';
 
 interface PageShellProps {
-  title: string;
+  /** Banner heading; omitted in loading skeletons, where it renders as a shimmer bar. */
+  title?: string;
   /** Banner background image path. */
   image: string;
   /** Vertical background position of the banner image, e.g. `50%`. */
@@ -25,7 +27,14 @@ export function PageShell({ title, image, imagePositionY, cardClassName, fullHei
         style={{ backgroundImage: cssUrl(image), backgroundPositionY: imagePositionY }}
       >
         <Container gutter="page" className="relative text-white">
-          <h1 className="text-[40px] font-normal md:text-[60px]">{title}</h1>
+          {title === undefined ? (
+            // Same box as the heading (font-size × line-height 1.5), so nothing shifts when it arrives.
+            <div className="flex h-[60px] items-center md:h-[90px]">
+              <Skeleton tone="dark" shape="line" className="h-[40px] w-[min(320px,80%)] md:h-[56px]" />
+            </div>
+          ) : (
+            <h1 className="text-[40px] font-normal md:text-[60px]">{title}</h1>
+          )}
         </Container>
       </section>
       <section

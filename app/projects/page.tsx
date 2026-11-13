@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { PageShell } from '@/components/layout/PageShell';
+import { BANNERS } from '@/lib/routes';
 import { ProjectCard } from '@/components/projects/ProjectCard';
 import { CosmoTabs } from '@/components/common/Tabs';
 import { getProjectsByStatus } from '@/lib/data/projects';
@@ -28,8 +29,7 @@ export default async function ProjectsPage() {
   return (
     <PageShell
       title={t('navigation.projects')}
-      image="/images/satellite.jpg"
-      imagePositionY="50%"
+      {...BANNERS.projects}
       cardClassName="w-full overflow-hidden p-0"
       fullHeight
     >
