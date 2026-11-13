@@ -33,7 +33,14 @@ export function LanguagePicker({ current, labels }: LanguagePickerProps) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost-inverse" size="icon" aria-label={labels[current]} disabled={pending}>
+        <Button
+          variant="ghost-inverse"
+          size="icon"
+          aria-label={labels[current]}
+          disabled={pending}
+          // 40px on phones, where it is tapped rather than clicked.
+          className="size-10 md:size-8"
+        >
           {pending ? (
             <LoaderCircle className="animate-spin" />
           ) : (

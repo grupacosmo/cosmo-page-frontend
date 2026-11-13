@@ -1,10 +1,9 @@
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
-import { Section } from '@/components/common/Container';
-import { ScrollLink } from '@/components/common/ScrollLink';
+import { CardCarousel } from '@/components/common/CardCarousel';
 import { PageShell } from '@/components/layout/PageShell';
-import { MemberCard, memberGrid } from '@/components/team/MemberCard';
-import { Button } from '@/components/ui/button';
+import { MemberCard } from '@/components/team/MemberCard';
+import { TeamNav } from '@/components/team/TeamNav';
 import { teams } from '@/lib/data/team';
 import { BANNERS } from '@/lib/routes';
 
@@ -18,25 +17,15 @@ export default async function TeamPage() {
 
   return (
     <PageShell title={t('common.team')} {...BANNERS.team}>
-      <nav aria-label={t('common.team')} className="flex flex-wrap gap-2">
-        {teams.map(({ team }) => (
-          <Button key={team} asChild variant="outline">
-            <ScrollLink targetId={team}>{team}</ScrollLink>
-          </Button>
-        ))}
-      </nav>
+      <TeamNav teams={teams} label={t('common.team')} />
 
+      {/* One fixed-height row per team: larger teams page sideways instead of growing the page. */}
       {teams.map(({ team, members }) => (
-        <Section key={team} id={team}>
-          <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">{team}</h2>
-          <ul className={memberGrid}>
-            {members.map((member) => (
-              <li key={member.name}>
-                <MemberCard member={member} />
-              </li>
-            ))}
-          </ul>
-        </Section>
+        <CardCarousel key={team} id={team} title={team} layout="people">
+          {members.map((member) => (
+            <MemberCard key={member.name} member={member} />
+          ))}
+        </CardCarousel>
       ))}
     </PageShell>
   );

@@ -16,5 +16,18 @@
   "polish": "Polski",
   "english": "Angielski",
   "noImages": "Brak obrazów do wyświetlenia",
-  "loading": "Ładowanie…"
+  "loading": "Ładowanie…",
+  "carousel": {
+    "previous": "Poprzednie",
+    "next": "Następne",
+    "previousImage": "Poprzednie zdjęcie",
+    "nextImage": "Następne zdjęcie",
+    "slideOf": "{current} z {total}",
+    "goToSlide": "Przejdź do slajdu {index}",
+    "gallery": "Galeria zdjęć",
+    "pause": "Wstrzymaj pokaz slajdów",
+    "play": "Wznów pokaz slajdów",
+    "openFullscreen": "otwórz na pełnym ekranie",
+    "closeFullscreen": "Zamknij pełny ekran"
+  }
 }

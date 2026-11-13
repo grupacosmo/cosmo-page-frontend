@@ -33,6 +33,11 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
             <Header
               items={getHeaderItems(t)}
               navLabel={t('navigation.links')}
+              menuLabels={{
+                title: t('navigation.menu'),
+                open: t('navigation.openMenu'),
+                close: t('navigation.closeMenu'),
+              }}
               languagePicker={<LanguagePicker current={locale} labels={languageLabels} />}
             />
             <LocalePendingSwap fallback={<RouteSkeleton />}>{children}</LocalePendingSwap>

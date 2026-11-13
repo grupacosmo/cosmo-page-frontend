@@ -1,5 +1,6 @@
-import { CardGrid, Container, Section } from '@/components/common/Container';
+import { Container, Section } from '@/components/common/Container';
 import {
+  CardCarouselSkeleton,
   CardSkeleton,
   LoadingRegion,
   SectionHeaderSkeleton,
@@ -49,14 +50,11 @@ export function HomeSkeleton() {
         <Separator />
         <NewsSummarySkeleton />
         <Separator />
-        <Section>
-          <SectionHeaderSkeleton action />
-          <CardGrid>
-            {Array.from({ length: 3 }, (_, i) => (
-              <CardSkeleton key={i} />
-            ))}
-          </CardGrid>
-        </Section>
+        <CardCarouselSkeleton layout="cards" action>
+          {Array.from({ length: 3 }, (_, i) => (
+            <CardSkeleton key={i} />
+          ))}
+        </CardCarouselSkeleton>
         <Skeleton className="h-44 rounded-xl" />
         <Section>
           <SectionHeaderSkeleton />

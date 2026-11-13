@@ -6,7 +6,7 @@ import type { ReactNode } from 'react';
 import { Container } from '@/components/common/Container';
 import { useScrolled } from '@/lib/hooks/useScrolled';
 import { cn } from '@/lib/utils';
-import { DesktopNav, MobileNav } from './HeaderNav';
+import { DesktopNav, MobileNav, type MobileNavLabels } from './HeaderNav';
 
 export interface NavItem {
   href: string;
@@ -15,8 +15,10 @@ export interface NavItem {
 
 interface HeaderProps {
   items: NavItem[];
-  /** Accessible name of the navigation (also the title of the mobile menu). */
+  /** Accessible name of the navigation. */
   navLabel: string;
+  /** Texts of the phone menu: its title and the open / close button names. */
+  menuLabels: MobileNavLabels;
   languagePicker: ReactNode;
 }
 
@@ -24,7 +26,7 @@ interface HeaderProps {
  * Sticky site header. It is fixed to the top and floats over each page's banner; once the page is
  * scrolled it gets a solid, blurred backdrop so it stays readable over the white content sheet.
  */
-export function Header({ items, navLabel, languagePicker }: HeaderProps) {
+export function Header({ items, navLabel, menuLabels, languagePicker }: HeaderProps) {
   const scrolled = useScrolled(8);
 
   return (
@@ -50,7 +52,7 @@ export function Header({ items, navLabel, languagePicker }: HeaderProps) {
         <div className="flex items-center gap-1">
           <DesktopNav items={items} label={navLabel} />
           {languagePicker}
-          <MobileNav items={items} label={navLabel} />
+          <MobileNav items={items} labels={menuLabels} />
         </div>
       </Container>
     </header>

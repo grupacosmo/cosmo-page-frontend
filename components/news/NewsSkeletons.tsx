@@ -1,5 +1,5 @@
-import { CardGrid, Section } from '@/components/common/Container';
-import { CardSkeleton, LoadingRegion, SectionHeaderSkeleton, SkeletonText } from '@/components/common/Skeleton';
+import { CardGrid } from '@/components/common/Container';
+import { CardCarouselSkeleton, CardSkeleton, LoadingRegion, SkeletonText } from '@/components/common/Skeleton';
 import { PageShell } from '@/components/layout/PageShell';
 import { Separator } from '@/components/ui/separator';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -24,18 +24,15 @@ export function EventsSkeleton() {
   );
 }
 
-/** Mirrors `NewsSummary`: section header with its action and a row of cards. */
+/** Mirrors `NewsSummary`: carousel header with its link and one row of cards. */
 export function NewsSummarySkeleton() {
   return (
     <LoadingRegion>
-      <Section>
-        <SectionHeaderSkeleton action />
-        <CardGrid columns={4}>
-          {Array.from({ length: 4 }, (_, i) => (
-            <CardSkeleton key={i} />
-          ))}
-        </CardGrid>
-      </Section>
+      <CardCarouselSkeleton layout="cards-wide" action>
+        {Array.from({ length: 4 }, (_, i) => (
+          <CardSkeleton key={i} />
+        ))}
+      </CardCarouselSkeleton>
     </LoadingRegion>
   );
 }

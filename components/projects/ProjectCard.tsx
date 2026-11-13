@@ -17,7 +17,7 @@ export function ProjectCard({ t, project }: ProjectCardProps) {
   const team = project.teams[0];
 
   return (
-    <Card className="group relative pt-0 transition-shadow hover:shadow-lg">
+    <Card className="group relative h-full pt-0 transition-shadow hover:shadow-lg">
       <div className="relative aspect-video overflow-hidden bg-muted">
         <Image
           src={project.mainPhoto.src}

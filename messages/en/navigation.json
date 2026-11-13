@@ -5,5 +5,8 @@
   "achievements": "Achievements",
   "news": "News",
   "contact": "Contact",
-  "links": "Links"
+  "links": "Links",
+  "menu": "Menu",
+  "openMenu": "Open menu",
+  "closeMenu": "Close menu"
 }

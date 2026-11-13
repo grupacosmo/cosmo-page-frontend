@@ -16,5 +16,18 @@
   "polish": "Polish",
   "english": "English",
   "noImages": "No images to display",
-  "loading": "Loading…"
+  "loading": "Loading…",
+  "carousel": {
+    "previous": "Previous",
+    "next": "Next",
+    "previousImage": "Previous image",
+    "nextImage": "Next image",
+    "slideOf": "{current} of {total}",
+    "goToSlide": "Go to slide {index}",
+    "gallery": "Photo gallery",
+    "pause": "Pause slideshow",
+    "play": "Resume slideshow",
+    "openFullscreen": "open fullscreen",
+    "closeFullscreen": "Close fullscreen"
+  }
 }

@@ -1,8 +1,15 @@
 import { useTranslations } from 'next-intl';
-import type { ComponentProps } from 'react';
+import { Children, type ComponentProps, type ReactNode } from 'react';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from '@/lib/utils';
+import {
+  carouselHeader,
+  carouselSlide,
+  carouselTrack,
+  carouselViewport,
+  type CarouselLayout,
+} from './carouselLayout';
 
 /**
  * Loading placeholders composed from the shadcn `Skeleton`. Every loading state in the app (route
@@ -41,7 +48,7 @@ export function SectionHeaderSkeleton({ action }: { action?: boolean }) {
 /** Mirrors the image-topped cards (`EventCard`, `ProjectCard`). */
 export function CardSkeleton() {
   return (
-    <Card className="pt-0">
+    <Card className="h-full pt-0">
       <Skeleton className="aspect-video rounded-none" />
       <CardHeader>
         <Skeleton className="h-5 w-2/3" />
@@ -51,6 +58,34 @@ export function CardSkeleton() {
         <SkeletonText lines={2} />
       </CardContent>
     </Card>
+  );
+}
+
+interface CardCarouselSkeletonProps {
+  layout: CarouselLayout;
+  /** Whether the real carousel has a "see all" link. */
+  action?: boolean;
+  /** One placeholder card per child. */
+  children: ReactNode;
+}
+
+/** Mirrors `CardCarousel` box for box: header row, one clipped row of cards and the phone-only link. */
+export function CardCarouselSkeleton({ layout, action, children }: CardCarouselSkeletonProps) {
+  return (
+    <div className="flex flex-col gap-6">
+      <div className={carouselHeader}>
+        <Skeleton className="h-8 w-48 max-w-1/2" />
+        {action && <Skeleton className="hidden h-8 w-36 rounded-lg sm:block" />}
+      </div>
+      <div className={cn('overflow-hidden', carouselViewport)}>
+        <div className={cn('flex', carouselTrack)}>
+          {Children.map(children, (child) => (
+            <div className={carouselSlide(layout)}>{child}</div>
+          ))}
+        </div>
+      </div>
+      {action && <Skeleton className="h-10 w-full rounded-lg sm:hidden" />}
+    </div>
   );
 }
 
