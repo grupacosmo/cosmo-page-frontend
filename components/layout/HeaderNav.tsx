@@ -17,6 +17,10 @@ function NavLabel({ label }: { label: string }) {
   );
 }
 
+/*
+ * Main navigation links use `prefetch`: the whole page (not just its loading skeleton) is fetched
+ * into the client cache while the link is on screen, so even the first click renders instantly.
+ */
 const desktopLink =
   'relative cursor-pointer after:absolute after:-bottom-0.5 after:left-0 after:h-0.5 after:w-full after:origin-bottom-left after:scale-x-0 after:bg-white after:transition-transform after:duration-300 after:ease-in-out hover:after:scale-x-100';
 
@@ -25,7 +29,7 @@ export function DesktopNav({ items }: { items: NavItem[] }) {
     <ul className="flex gap-5 text-cosmo-m text-white max-md:hidden">
       {items.map((item) => (
         <li key={item.href}>
-          <Link href={item.href} className={desktopLink}>
+          <Link href={item.href} prefetch className={desktopLink}>
             <NavLabel label={item.label} />
           </Link>
         </li>
@@ -55,6 +59,7 @@ export function MobileMenu({ id, items, open, onNavigate }: MobileMenuProps) {
         <li key={item.href} className="w-full">
           <Link
             href={item.href}
+            prefetch
             onClick={onNavigate}
             className="flex w-full items-center justify-center text-cosmo-xl text-white"
           >

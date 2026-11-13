@@ -42,7 +42,7 @@ export function Header({ items, languagePicker }: HeaderProps) {
         )}
       />
 
-      <Link href="/" className="h-[150px]" aria-label="Cosmo PK">
+      <Link href="/" prefetch className="h-[150px]" aria-label="Cosmo PK">
         <Image src="/images/cosmo-white.png" alt="Cosmo PK" width={341} height={288} priority className="h-full w-auto" />
       </Link>
 
