@@ -1,17 +1,19 @@
 'use client';
 
+import { LoaderCircle } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 import { useSwipe } from '@/lib/hooks/useSwipe';
 import type { SlideImage } from '@/lib/types';
+import { cn } from '@/lib/utils';
 import { SliderArrows, SliderDots } from './slider/SliderControls';
 import { SlideTrack } from './slider/SlideTrack';
 
 // Code-split: fetched on the first "open fullscreen", not with the page.
 const SliderLightbox = dynamic(() => import('./slider/SliderLightbox').then((module) => module.SliderLightbox), {
   loading: () => (
-    <div className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/95">
-      <span className="inline-block size-8 animate-spin-slow rounded-full border-2 border-white/30 border-t-white" />
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 text-white">
+      <LoaderCircle className="size-8 animate-spin" />
     </div>
   ),
 });
@@ -20,17 +22,19 @@ interface SliderProps {
   images: SlideImage[];
   emptyText: string;
   autoSlideInterval?: number;
-  height?: string;
+  /** Sizing of the slider box; defaults to a responsive aspect ratio. */
+  className?: string;
 }
 
 const TRANSITION_MS = 300;
+const boxClasses = 'aspect-[4/3] w-full overflow-hidden rounded-xl bg-muted sm:aspect-video lg:aspect-[4/3]';
 
 /**
  * Image carousel with autoplay, swipe, dots/arrows and a fullscreen lightbox. This component only
  * owns the state; rendering is split into `SlideTrack`, `SliderArrows`, `SliderDots` and the lazily
  * loaded `SliderLightbox`.
  */
-export function Slider({ images, emptyText, autoSlideInterval = 5000, height = '400px' }: SliderProps) {
+export function Slider({ images, emptyText, autoSlideInterval = 5000, className }: SliderProps) {
   const [index, setIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -66,17 +70,16 @@ export function Slider({ images, emptyText, autoSlideInterval = 5000, height = '
 
   if (count === 0) {
     return (
-      <div className="flex w-full items-center justify-center rounded-lg bg-[#f8f9fa] text-[#6c757d]" style={{ height }}>
-        <p>{emptyText}</p>
-      </div>
+      <p className={cn(boxClasses, 'flex items-center justify-center text-sm text-muted-foreground', className)}>
+        {emptyText}
+      </p>
     );
   }
 
   return (
     <>
       <div
-        className="group relative w-full touch-pan-y overflow-hidden rounded-lg bg-[#f0f0f0] select-none"
-        style={{ height }}
+        className={cn(boxClasses, 'group relative touch-pan-y select-none', className)}
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >

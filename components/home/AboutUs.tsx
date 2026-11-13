@@ -1,22 +1,31 @@
+import { ArrowRight } from 'lucide-react';
+import Link from 'next/link';
+import { Section } from '@/components/common/Container';
 import { Slider } from '@/components/common/Slider';
+import { Button } from '@/components/ui/button';
 import { aboutUsSlides } from '@/lib/data/site';
 
 interface AboutUsProps {
   title: string;
   description: string;
+  teamLabel: string;
   emptySliderText: string;
 }
 
-export function AboutUs({ title, description, emptySliderText }: AboutUsProps) {
+export function AboutUs({ title, description, teamLabel, emptySliderText }: AboutUsProps) {
   return (
-    <div className="flex justify-between gap-[2em] p-[15px] max-xl:flex-col">
-      <div className="flex w-full flex-col gap-[1em] xl:w-1/2">
-        <h2 className="m-0">{title}</h2>
-        <p className="text-justify text-cosmo-xs xs:text-cosmo-s xl:text-cosmo-m">{description}</p>
+    <Section className="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-12">
+      <div className="flex flex-col items-start gap-4">
+        <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">{title}</h2>
+        <p className="leading-relaxed text-muted-foreground">{description}</p>
+        <Button asChild variant="outline" size="lg">
+          <Link href="/team">
+            {teamLabel}
+            <ArrowRight />
+          </Link>
+        </Button>
       </div>
-      <div className="relative w-full rounded-[10px] select-none xl:w-[45%]">
-        <Slider images={aboutUsSlides} emptyText={emptySliderText} />
-      </div>
-    </div>
+      <Slider images={aboutUsSlides} emptyText={emptySliderText} />
+    </Section>
   );
 }

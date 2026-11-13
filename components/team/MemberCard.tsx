@@ -1,46 +1,81 @@
 import Image from 'next/image';
-import { Surface } from '@/components/common/Surface';
+import { Card } from '@/components/ui/card';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
 import { SHIMMER_PLACEHOLDER } from '@/lib/shimmer';
 import type { TeamMember } from '@/lib/types';
 
-/** Shows photo, name and roles; flips to the bio on hover when one exists. */
+/** Grid of member cards, shared by the team page and its skeleton. */
+export const memberGrid = 'grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5';
+
+const cardClasses = 'h-full w-full items-center gap-3 px-4 py-6 text-center';
+
+/** Wrapped in a span: a bare `<img>` as a card's first child would pick up the card's cover-image styles. */
+function Avatar({ member, className }: { member: TeamMember; className: string }) {
+  return (
+    <span className={`shrink-0 overflow-hidden rounded-full bg-muted ${className}`}>
+      <Image
+        src={member.image}
+        alt=""
+        width={96}
+        height={96}
+        placeholder={SHIMMER_PLACEHOLDER}
+        className="size-full object-cover"
+      />
+    </span>
+  );
+}
+
+function MemberSummary({ member }: { member: TeamMember }) {
+  return (
+    <>
+      <Avatar member={member} className="size-24" />
+      <span className="flex flex-col gap-1">
+        <span className="text-base font-medium text-balance">{member.name}</span>
+        <span className="text-xs text-balance text-cosmo-magenta-light">{member.roles.join(' · ')}</span>
+      </span>
+    </>
+  );
+}
+
+/** Photo, name and roles; members with a bio open it in a dialog. */
 export function MemberCard({ member }: { member: TeamMember }) {
-  const hasBio = member.description.length > 0;
+  if (member.description.length === 0) {
+    return (
+      <Card className={cardClasses}>
+        <MemberSummary member={member} />
+      </Card>
+    );
+  }
 
   return (
-    <Surface
-      tabIndex={hasBio ? 0 : undefined}
-      elevation="soft"
-      padding="sm"
-      className="group relative flex h-[330px] w-[min(calc(100vw-200px),250px)] flex-col outline-none"
-    >
-      <div
-        className={`absolute inset-[15px] flex flex-col items-center gap-2.5 transition-opacity duration-300 ease-in-out ${
-          hasBio ? 'group-hover:opacity-0 group-focus-visible:opacity-0' : ''
-        }`}
-      >
-        <Image
-          src={member.image}
-          alt={member.name}
-          width={180}
-          height={180}
-          placeholder={SHIMMER_PLACEHOLDER}
-          className="size-[180px] rounded-full object-cover"
-        />
-        <h3 className="text-center text-[20px] font-bold">{member.name}</h3>
-        <div>
-          {member.roles.map((role) => (
-            <p key={role} className="text-center text-cosmo-m font-bold text-cosmo-magenta-light">
-              {role}
-            </p>
-          ))}
-        </div>
-      </div>
-      {hasBio && (
-        <p className="z-[1] overflow-x-hidden overflow-y-auto text-center text-cosmo-m opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100 group-focus-visible:opacity-100">
-          {member.description}
-        </p>
-      )}
-    </Surface>
+    <Dialog>
+      <DialogTrigger asChild>
+        <Card
+          asChild
+          className={`${cardClasses} transition-shadow outline-none hover:shadow-lg focus-visible:ring-3 focus-visible:ring-ring/50`}
+        >
+          <button type="button">
+            <MemberSummary member={member} />
+          </button>
+        </Card>
+      </DialogTrigger>
+      <DialogContent className="gap-6 p-6 sm:max-w-lg">
+        <DialogHeader className="flex-row items-center gap-4 pr-8 text-left">
+          <Avatar member={member} className="size-16" />
+          <div className="flex flex-col gap-1">
+            <DialogTitle className="leading-snug">{member.name}</DialogTitle>
+            <DialogDescription className="text-cosmo-magenta-light">{member.roles.join(' · ')}</DialogDescription>
+          </div>
+        </DialogHeader>
+        <p className="max-h-[60dvh] overflow-y-auto leading-relaxed">{member.description}</p>
+      </DialogContent>
+    </Dialog>
   );
 }

@@ -1,18 +1,35 @@
 'use client';
 
+import { Menu } from 'lucide-react';
 import Link from 'next/link';
-import { Skeleton } from '@/components/common/Skeleton';
+import { usePathname } from 'next/navigation';
+import { SKELETON_ON_DARK } from '@/components/common/Skeleton';
+import { Button } from '@/components/ui/button';
+import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { Skeleton } from '@/components/ui/skeleton';
+import { cn } from '@/lib/utils';
 import type { NavItem } from './Header';
 import { useLocaleTransition } from './LocaleTransition';
 
-/** A nav label that turns into a shimmer bar of the same width while the language is switching. */
+interface NavProps {
+  items: NavItem[];
+  label: string;
+}
+
+/** Whether `href` is the current page or, for sections, one of its subpages. */
+function useIsActive() {
+  const pathname = usePathname();
+  return (href: string) => (href === '/' ? pathname === '/' : pathname.startsWith(href));
+}
+
+/** A nav label that turns into a placeholder bar of the same width while the language is switching. */
 function NavLabel({ label }: { label: string }) {
   const { pending } = useLocaleTransition();
   if (!pending) return label;
   return (
-    <span className="relative inline-block">
+    <span className="relative">
       <span className="invisible">{label}</span>
-      <Skeleton tone="dark" shape="line" className="absolute inset-x-0 top-1/2 -translate-y-1/2" />
+      <Skeleton className={cn('absolute inset-x-0 top-1/2 h-3 -translate-y-1/2', SKELETON_ON_DARK)} />
     </span>
   );
 }
@@ -21,52 +38,59 @@ function NavLabel({ label }: { label: string }) {
  * Main navigation links use `prefetch`: the whole page (not just its loading skeleton) is fetched
  * into the client cache while the link is on screen, so even the first click renders instantly.
  */
-const desktopLink =
-  'relative cursor-pointer after:absolute after:-bottom-0.5 after:left-0 after:h-0.5 after:w-full after:origin-bottom-left after:scale-x-0 after:bg-white after:transition-transform after:duration-300 after:ease-in-out hover:after:scale-x-100';
+export function DesktopNav({ items, label }: NavProps) {
+  const isActive = useIsActive();
 
-export function DesktopNav({ items }: { items: NavItem[] }) {
   return (
-    <ul className="flex gap-5 text-cosmo-m text-white max-md:hidden">
+    <nav aria-label={label} className="hidden items-center gap-1 md:flex">
       {items.map((item) => (
-        <li key={item.href}>
-          <Link href={item.href} prefetch className={desktopLink}>
+        <Button
+          key={item.href}
+          asChild
+          variant="ghost-inverse"
+          className={cn('text-white/80', isActive(item.href) && 'bg-white/10 text-white')}
+        >
+          <Link href={item.href} prefetch aria-current={isActive(item.href) ? 'page' : undefined}>
             <NavLabel label={item.label} />
           </Link>
-        </li>
+        </Button>
       ))}
-    </ul>
+    </nav>
   );
 }
 
-interface MobileMenuProps {
-  id: string;
-  items: NavItem[];
-  open: boolean;
-  onNavigate: () => void;
-}
+/** Menu button and slide-over navigation for small screens. */
+export function MobileNav({ items, label }: NavProps) {
+  const isActive = useIsActive();
 
-/** Full-screen overlay menu for small screens; slides down from the top. */
-export function MobileMenu({ id, items, open, onNavigate }: MobileMenuProps) {
   return (
-    <ul
-      id={id}
-      className={`fixed inset-0 -z-[1] hidden flex-col items-center justify-center gap-5 bg-black/90 transition-transform duration-500 max-md:flex ${
-        open ? 'translate-y-0 ease-out' : '-translate-y-full ease-in'
-      }`}
-      inert={!open}
-    >
-      {items.map((item) => (
-        <li key={item.href} className="w-full">
-          <Link
-            href={item.href}
-            prefetch
-            onClick={onNavigate}
-            className="flex w-full items-center justify-center text-cosmo-xl text-white"
-          >
-            <NavLabel label={item.label} />
-          </Link>
-        </li>
-      ))}
-    </ul>
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button variant="ghost-inverse" size="icon" aria-label={label} className="md:hidden">
+          <Menu />
+        </Button>
+      </SheetTrigger>
+      <SheetContent className="gap-0">
+        <SheetHeader>
+          <SheetTitle>{label}</SheetTitle>
+        </SheetHeader>
+        <nav aria-label={label} className="flex flex-col gap-1 px-2">
+          {items.map((item) => (
+            <SheetClose key={item.href} asChild>
+              <Button
+                asChild
+                variant={isActive(item.href) ? 'secondary' : 'ghost'}
+                size="lg"
+                className="justify-start text-base"
+              >
+                <Link href={item.href} prefetch aria-current={isActive(item.href) ? 'page' : undefined}>
+                  {item.label}
+                </Link>
+              </Button>
+            </SheetClose>
+          ))}
+        </nav>
+      </SheetContent>
+    </Sheet>
   );
 }

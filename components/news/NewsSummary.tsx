@@ -1,58 +1,41 @@
-import Image from 'next/image';
+import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { getLocale } from 'next-intl/server';
-import { SectionHeader } from '@/components/common/Container';
-import { CtaLink } from '@/components/common/CtaButton';
-import { Surface } from '@/components/common/Surface';
+import { CardGrid, Section, SectionHeader } from '@/components/common/Container';
+import { Button } from '@/components/ui/button';
 import { getFeaturedEvents } from '@/lib/events';
-import { SHIMMER_PLACEHOLDER } from '@/lib/shimmer';
 import type { Translate } from '@/lib/i18n/server';
 import { EmptyState } from './EmptyState';
-import { EventDateBadge } from './EventCard';
+import { EventCard } from './EventCard';
 
-const TILE_AREAS = ['[grid-area:news-1]', '[grid-area:news-2]', '[grid-area:news-3]', '[grid-area:news-4]'];
+const SUMMARY_COUNT = 4;
 
-/** Mosaic of the next (or latest) four events; an empty-state message when there are none. */
+/** The next (or latest) few events; an empty-state message when there are none. */
 export async function NewsSummary({ t }: { t: Translate }) {
-  const events = await getFeaturedEvents(await getLocale(), TILE_AREAS.length);
+  const events = await getFeaturedEvents(await getLocale(), SUMMARY_COUNT);
 
   return (
-    <>
+    <Section>
       <SectionHeader
         title={t('navigation.news')}
-        action={<CtaLink href="/news" text={t('common.readMore')} secondary />}
+        action={
+          <Button asChild variant="ghost">
+            <Link href="/news">
+              {t('common.readMore')}
+              <ArrowRight />
+            </Link>
+          </Button>
+        }
       />
       {events.length === 0 ? (
-        <EmptyState text={t('events.empty')} compact />
+        <EmptyState text={t('events.empty')} />
       ) : (
-        <section className="news-grid">
-          {events.map((event, index) => (
-            <Surface
-              key={event.id}
-              asChild
-              tone="media"
-              radius="md"
-              interactive="zoom"
-              className={`relative isolate min-h-[120px] hover:z-[2] ${TILE_AREAS[index]}`}
-            >
-              <Link href={`/news/${encodeURIComponent(event.id)}`}>
-                <Image
-                  src={event.image}
-                  alt=""
-                  fill
-                  sizes={index === 0 ? '(max-width: 768px) 50vw, 40vw' : '(max-width: 768px) 50vw, 25vw'}
-                  placeholder={SHIMMER_PLACEHOLDER}
-                  className="-z-[1] object-cover"
-                />
-                <div className="flex h-full w-full flex-col items-start justify-between bg-linear-to-b from-[rgba(31,36,44,0)] from-33% to-[rgb(39,44,53)] p-2.5">
-                  <EventDateBadge date={event.date} className="text-cosmo-xs" />
-                  <h3 className="m-0">{event.title}</h3>
-                </div>
-              </Link>
-            </Surface>
+        <CardGrid columns={4}>
+          {events.map((event) => (
+            <EventCard key={event.id} event={event} />
           ))}
-        </section>
+        </CardGrid>
       )}
-    </>
+    </Section>
   );
 }

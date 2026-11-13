@@ -2,10 +2,10 @@ import type { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import { getLocale, getTranslations } from 'next-intl/server';
 import { Suspense } from 'react';
-import { Divider } from '@/components/common/Divider';
 import { EventArticle } from '@/components/news/EventArticle';
 import { NewsSummarySkeleton } from '@/components/news/NewsSkeletons';
 import { NewsSummary } from '@/components/news/NewsSummary';
+import { Separator } from '@/components/ui/separator';
 import { getEvent } from '@/lib/events';
 
 interface EventPageProps {
@@ -26,12 +26,12 @@ export default async function EventPage({ params }: EventPageProps) {
   if (!event) redirect('/news');
 
   return (
-    <div className="p-5 xl:px-[70px]">
+    <>
       <EventArticle event={event} />
-      <Divider />
+      <Separator />
       <Suspense fallback={<NewsSummarySkeleton />}>
         <NewsSummary t={t} />
       </Suspense>
-    </div>
+    </>
   );
 }

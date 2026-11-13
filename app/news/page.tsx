@@ -1,5 +1,5 @@
 import { getLocale, getTranslations } from 'next-intl/server';
-import { CosmoTabLinks } from '@/components/common/Tabs';
+import { LinkTabs } from '@/components/common/Tabs';
 import { EventsList } from '@/components/news/EventsList';
 import { EVENT_TABS, eventsHref, getEvents, paginate, parseEventsQuery } from '@/lib/events';
 
@@ -20,10 +20,8 @@ export default async function NewsPage({ searchParams }: NewsPageProps) {
   }));
 
   return (
-    <CosmoTabLinks tabs={tabs} active={query.tab}>
-      <div className="p-5">
-        <EventsList query={query} result={result} />
-      </div>
-    </CosmoTabLinks>
+    <LinkTabs tabs={tabs} active={query.tab}>
+      <EventsList query={query} result={result} />
+    </LinkTabs>
   );
 }

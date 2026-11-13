@@ -1,4 +1,5 @@
 import { getTranslations } from 'next-intl/server';
+import { CardGrid } from '@/components/common/Container';
 import { PAGE_SIZES, eventsHref, type EventsQuery, type Page } from '@/lib/eventsQuery';
 import type { LocalizedEvent } from '@/lib/types';
 import { EmptyState } from './EmptyState';
@@ -20,14 +21,14 @@ export async function EventsList({ query, result }: EventsListProps) {
   }
 
   return (
-    <>
-      <section className="grid grid-cols-[repeat(auto-fill,minmax(min(350px,100%),1fr))] justify-center gap-[30px]">
+    <div className="flex flex-col gap-6">
+      <CardGrid>
         {result.items.map((event, index) => (
           // The first row is above the fold: load it eagerly; the rest lazy-load with a shimmer.
-          <EventCard key={event.id} event={event} priority={index < 3} />
+          <EventCard key={event.id} event={event} eager={index < 3} />
         ))}
-      </section>
-      <div className="mt-5 flex flex-wrap items-center justify-between gap-4">
+      </CardGrid>
+      <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
         <PageSizeSelect
           sizes={PAGE_SIZES}
           current={query.size}
@@ -48,6 +49,6 @@ export async function EventsList({ query, result }: EventsListProps) {
           }}
         />
       </div>
-    </>
+    </div>
   );
 }

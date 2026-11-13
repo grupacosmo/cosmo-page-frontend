@@ -1,44 +1,40 @@
-import { cva, type VariantProps } from 'class-variance-authority';
 import { Slot } from 'radix-ui';
 import type { ComponentProps, ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 
-/** Centered content column; every page-width wrapper uses it instead of ad-hoc `max-w-*` classes. */
-export const containerVariants = cva('mx-auto w-full', {
-  variants: {
-    width: {
-      page: 'max-w-[1600px]',
-      narrow: 'max-w-[600px]',
-    },
-    gutter: {
-      none: '',
-      /** Hero and banner text. */
-      page: 'px-[60px]',
-      /** White page sheet: side gutters only where the sheet floats on wide screens. */
-      sheet: 'xl:px-[60px] xl:pb-10',
-    },
-  },
-  defaultVariants: { width: 'page', gutter: 'none' },
-});
-
-type ContainerProps = ComponentProps<'div'> & VariantProps<typeof containerVariants> & { asChild?: boolean };
-
-export function Container({ className, width, gutter, asChild, ...props }: ContainerProps) {
+/** Centered page column with responsive gutters; every page-width wrapper uses it. */
+export function Container({ className, asChild, ...props }: ComponentProps<'div'> & { asChild?: boolean }) {
   const Comp = asChild ? Slot.Root : 'div';
-  return <Comp className={cn(containerVariants({ width, gutter }), className)} {...props} />;
+  return <Comp className={cn('mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8', className)} {...props} />;
 }
 
-/** Vertical rhythm block used between dividers on content pages. */
+/** A titled block of a page; the parent sets the spacing between sections. */
 export function Section({ className, ...props }: ComponentProps<'section'>) {
-  return <section className={cn('my-[2em]', className)} {...props} />;
+  return <section className={cn('flex flex-col gap-6', className)} {...props} />;
 }
 
-/** Section title with an optional action (e.g. a "read more" CTA) aligned to the right. */
-export function SectionHeader({ title, action, className }: { title: string; action?: ReactNode; className?: string }) {
+interface SectionHeaderProps {
+  title: string;
+  /** Optional control (e.g. a "see all" button) aligned to the right. */
+  action?: ReactNode;
+  className?: string;
+}
+
+export function SectionHeader({ title, action, className }: SectionHeaderProps) {
   return (
-    <header className={cn('flex justify-between p-[15px]', className)}>
-      <h2 className="m-0">{title}</h2>
+    <header className={cn('flex flex-wrap items-center justify-between gap-x-4 gap-y-2', className)}>
+      <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">{title}</h2>
       {action}
     </header>
+  );
+}
+
+/** Responsive grid for cards: one column on phones, two on tablets, `columns` on desktops. */
+export function CardGrid({ columns = 3, className, ...props }: ComponentProps<'div'> & { columns?: 3 | 4 }) {
+  return (
+    <div
+      className={cn('grid gap-6 sm:grid-cols-2', columns === 4 ? 'lg:grid-cols-4' : 'lg:grid-cols-3', className)}
+      {...props}
+    />
   );
 }

@@ -1,42 +1,38 @@
-import { LoadingRegion, Skeleton } from '@/components/common/Skeleton';
+import { LoadingRegion } from '@/components/common/Skeleton';
 import { PageShell } from '@/components/layout/PageShell';
+import { Card } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
 import { BANNERS } from '@/lib/routes';
-
-/** Mirrors `MemberCard`: round photo, name and role. */
-export function MemberCardSkeleton() {
-  return (
-    <div className="flex h-[330px] w-[min(calc(100vw-200px),250px)] flex-col items-center gap-2.5 p-[15px] shadow-[0_4px_6px_rgba(0,0,0,0.1)]">
-      <Skeleton shape="circle" className="size-[180px]" />
-      <Skeleton shape="line" className="mt-2 h-6 w-[70%]" />
-      <Skeleton shape="line" className="w-[50%]" />
-    </div>
-  );
-}
+import { memberGrid } from './MemberCard';
 
 function TeamGroupSkeleton({ members }: { members: number }) {
   return (
-    <div>
-      <Skeleton shape="line" className="mx-auto h-8 w-48" />
-      <section className="my-[2em] flex flex-wrap content-center justify-center gap-6">
+    <div className="flex flex-col gap-6">
+      <Skeleton className="h-8 w-40" />
+      <div className={memberGrid}>
         {Array.from({ length: members }, (_, i) => (
-          <MemberCardSkeleton key={i} />
+          <Card key={i} className="items-center gap-3 px-4 py-6">
+            <Skeleton className="size-24 rounded-full" />
+            <Skeleton className="h-5 w-3/4" />
+            <Skeleton className="h-3 w-1/2" />
+          </Card>
         ))}
-      </section>
+      </div>
     </div>
   );
 }
 
 export function TeamPageSkeleton({ title }: { title?: string }) {
   return (
-    <PageShell title={title} {...BANNERS.team} cardClassName="flex flex-col p-5">
-      <LoadingRegion>
-        <div className="mb-[30px] flex w-full flex-wrap justify-center gap-5 p-5">
+    <PageShell title={title} {...BANNERS.team}>
+      <LoadingRegion className="flex flex-col gap-10 sm:gap-12">
+        <div className="flex flex-wrap gap-2">
           {[0, 1, 2].map((i) => (
-            <Skeleton key={i} shape="pill" className="h-9 w-[140px]" />
+            <Skeleton key={i} className="h-8 w-24 rounded-lg" />
           ))}
         </div>
-        <TeamGroupSkeleton members={4} />
-        <TeamGroupSkeleton members={3} />
+        <TeamGroupSkeleton members={5} />
+        <TeamGroupSkeleton members={5} />
       </LoadingRegion>
     </PageShell>
   );

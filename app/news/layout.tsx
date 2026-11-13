@@ -13,12 +13,7 @@ export default async function NewsLayout({ children }: { children: ReactNode }) 
   const t = await getTranslations();
 
   return (
-    <PageShell
-      title={t('navigation.news')}
-      {...BANNERS.news}
-      // Flush sheet: the events tabs sit on its top edge; pages add their own padding.
-      cardClassName="overflow-hidden p-0"
-    >
+    <PageShell title={t('navigation.news')} {...BANNERS.news}>
       {children}
     </PageShell>
   );

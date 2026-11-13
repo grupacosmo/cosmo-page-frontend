@@ -26,12 +26,13 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
 
   return (
     <html lang={locale}>
-      <body className="flex min-h-full flex-col bg-cosmo-dark-blue font-sans">
+      <body className="flex flex-col bg-cosmo-dark-blue font-sans text-foreground antialiased">
         <NextIntlClientProvider>
           {/* While the language switches, content and footer show skeletons (the header shimmers itself). */}
           <LocaleTransitionProvider>
             <Header
               items={getHeaderItems(t)}
+              navLabel={t('navigation.links')}
               languagePicker={<LanguagePicker current={locale} labels={languageLabels} />}
             />
             <LocalePendingSwap fallback={<RouteSkeleton />}>{children}</LocalePendingSwap>

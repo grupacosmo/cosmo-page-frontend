@@ -1,10 +1,11 @@
+import { ArrowLeft } from 'lucide-react';
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
-import { CtaLink } from '@/components/common/CtaButton';
-import { Section } from '@/components/common/Container';
-import { Divider } from '@/components/common/Divider';
 import { PageShell } from '@/components/layout/PageShell';
 import { ProjectExperiment, ProjectOverview, ProjectTeam } from '@/components/projects/ProjectSections';
+import { Button } from '@/components/ui/button';
+import { Separator } from '@/components/ui/separator';
 import { getProject } from '@/lib/data/projects';
 import { BANNERS } from '@/lib/routes';
 
@@ -22,29 +23,29 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const [{ id }, t] = await Promise.all([params, getTranslations()]);
   const project = getProject(id);
 
-  if (!project) {
-    return (
-      <PageShell title={t('navigation.projects')} {...BANNERS.projects} fullHeight>
-        <Section>{t('common.unexpectedErrorOccured')}</Section>
-      </PageShell>
-    );
-  }
-
   return (
-    <PageShell
-      title={t('navigation.projects')}
-      {...BANNERS.projects}
-      cardClassName="overflow-hidden px-5 py-5 lg:px-[60px]"
-      fullHeight
-    >
-      <Section>
-        <CtaLink href="/projects" text={t('projects.allProjects')} secondary back />
-      </Section>
-      <ProjectOverview t={t} project={project} />
-      <Divider />
-      <ProjectExperiment t={t} project={project} />
-      <Divider />
-      <ProjectTeam t={t} project={project} />
+    <PageShell title={t('navigation.projects')} {...BANNERS.projects}>
+      <div className="flex flex-col gap-6">
+        <Button asChild variant="ghost" className="-ml-2.5 self-start">
+          <Link href="/projects">
+            <ArrowLeft />
+            {t('projects.allProjects')}
+          </Link>
+        </Button>
+        {project ? (
+          <ProjectOverview t={t} project={project} />
+        ) : (
+          <p role="alert">{t('common.unexpectedErrorOccured')}</p>
+        )}
+      </div>
+      {project && (
+        <>
+          <Separator />
+          <ProjectExperiment t={t} project={project} />
+          <Separator />
+          <ProjectTeam t={t} project={project} />
+        </>
+      )}
     </PageShell>
   );
 }

@@ -1,14 +1,13 @@
 'use client';
 
+import { Maximize2 } from 'lucide-react';
 import Image from 'next/image';
 import type { TouchEvent } from 'react';
-import { Button } from '@/components/ui/button';
 import { SHIMMER_PLACEHOLDER } from '@/lib/shimmer';
 import type { SlideImage } from '@/lib/types';
-import { Icon } from '../Icon';
 
-const trackClasses =
-  'flex h-full w-full transition-transform duration-300 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] will-change-transform motion-reduce:transition-none';
+export const trackClasses =
+  'flex h-full w-full transition-transform duration-300 ease-out will-change-transform motion-reduce:transition-none';
 
 interface SlideTrackProps {
   images: SlideImage[];
@@ -27,11 +26,10 @@ export function SlideTrack({ images, index, onOpen, swipeHandlers }: SlideTrackP
     <div className="h-full w-full" {...swipeHandlers}>
       <div className={trackClasses} style={{ transform: `translateX(-${index * 100}%)` }}>
         {images.map((image, i) => (
-          <Button
-            key={image.src}
-            variant="bare"
-            size="none"
-            className="relative flex h-full w-full flex-[0_0_100%] items-center justify-center rounded-none border-0 active:not-aria-[haspopup]:translate-y-0"
+          <button
+            key={`${image.src}-${i}`}
+            type="button"
+            className="relative h-full w-full flex-[0_0_100%] outline-none focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:ring-inset"
             onClick={onOpen}
             aria-label={`${image.alt} (fullscreen)`}
             tabIndex={i === index ? 0 : -1}
@@ -41,25 +39,23 @@ export function SlideTrack({ images, index, onOpen, swipeHandlers }: SlideTrackP
               alt={image.alt}
               width={image.width}
               height={image.height}
-              sizes="(max-width: 1280px) 100vw, 45vw"
+              sizes="(max-width: 1024px) 100vw, 50vw"
               draggable={false}
-              priority={i === 0}
+              loading={i === 0 ? 'eager' : 'lazy'}
               placeholder={SHIMMER_PLACEHOLDER}
-              className="pointer-events-none block h-full w-full object-cover"
+              className="pointer-events-none h-full w-full object-cover"
             />
             {image.caption && (
-              <span className="absolute inset-x-0 bottom-0 bg-linear-to-b from-transparent to-black/70 px-[15px] pt-5 pb-[30px] text-center text-base text-white">
+              <span className="absolute inset-x-0 bottom-0 bg-linear-to-b from-transparent to-black/70 px-4 pt-6 pb-8 text-center text-sm text-white">
                 {image.caption}
               </span>
             )}
-            <span className="pointer-events-none absolute top-2.5 right-2.5 flex size-8 items-center justify-center rounded-full bg-black/60 text-white opacity-0 transition-opacity duration-200 group-hover:opacity-100 md:size-10">
-              <Icon name="fullscreen" size={20} />
+            <span className="pointer-events-none absolute top-3 right-3 flex size-8 items-center justify-center rounded-full bg-black/60 text-white opacity-0 transition-opacity group-hover:opacity-100">
+              <Maximize2 className="size-4" />
             </span>
-          </Button>
+          </button>
         ))}
       </div>
     </div>
   );
 }
-
-export { trackClasses };

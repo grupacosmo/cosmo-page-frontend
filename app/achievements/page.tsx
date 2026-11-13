@@ -11,11 +11,7 @@ export default async function AchievementsPage() {
   const t = await getTranslations();
 
   return (
-    <PageShell
-      title={t("navigation.achievements")}
-      {...BANNERS.achievements}
-      cardClassName="p-0"
-    >
+    <PageShell title={t("navigation.achievements")} {...BANNERS.achievements}>
       <AchievementGrid achievements={achievements} />
     </PageShell>
   );

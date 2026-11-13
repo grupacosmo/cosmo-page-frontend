@@ -1,19 +1,11 @@
-import { Icon } from '@/components/common/Icon';
-import { cn } from '@/lib/utils';
+import { Rocket } from 'lucide-react';
 
 /** Shown when a list has nothing to display, e.g. no events translated into the current language. */
-export function EmptyState({ text, compact, className }: { text: string; compact?: boolean; className?: string }) {
+export function EmptyState({ text }: { text: string }) {
   return (
-    <div
-      role="status"
-      className={cn(
-        'flex flex-col items-center justify-center gap-4 text-center text-black/55',
-        compact ? 'py-8' : 'py-16',
-        className,
-      )}
-    >
-      <Icon name="rocket" size={compact ? 40 : 56} className="text-cosmo-magenta-light" />
-      <p className={compact ? 'text-cosmo-m' : 'text-cosmo-l'}>{text}</p>
+    <div role="status" className="flex flex-col items-center gap-3 rounded-xl border border-dashed px-6 py-12 text-center text-muted-foreground">
+      <Rocket className="size-10 text-cosmo-magenta-light" aria-hidden="true" />
+      <p>{text}</p>
     </div>
   );
 }

@@ -1,4 +1,7 @@
-import { IconButton } from '@/components/common/IconButton';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import Link from 'next/link';
+import type { ReactNode } from 'react';
+import { Button } from '@/components/ui/button';
 import { Pagination as PaginationRoot, PaginationContent, PaginationItem } from '@/components/ui/pagination';
 
 interface PaginationProps {
@@ -12,38 +15,41 @@ interface PaginationProps {
   labels: { of: string; previous: string; next: string; pagination: string };
 }
 
-const arrow = 'disabled:opacity-100 disabled:text-black/25';
+/** Previous/next control: a link when there is a page to go to, a disabled button otherwise. */
+function PageArrow({ href, label, children }: { href?: string; label: string; children: ReactNode }) {
+  return href === undefined ? (
+    <Button variant="outline" size="icon" aria-label={label} disabled>
+      {children}
+    </Button>
+  ) : (
+    <Button asChild variant="outline" size="icon">
+      <Link href={href} aria-label={label}>
+        {children}
+      </Link>
+    </Button>
+  );
+}
 
-/** Range label with previous/next controls (Material paginator look) on shadcn `Pagination`. */
+/** Range label ("1 – 6 of 14") with previous/next controls, on shadcn `Pagination`. */
 export function Pagination({ page, pageSize, totalItems, totalPages, hrefFor, labels }: PaginationProps) {
   const start = totalItems === 0 ? 0 : page * pageSize + 1;
   const end = Math.min((page + 1) * pageSize, totalItems);
-  const hasPrevious = page > 0;
-  const hasNext = page < totalPages - 1;
 
   return (
-    <PaginationRoot aria-label={labels.pagination} className="mx-0 w-auto items-center gap-2 text-cosmo-m text-black/55">
-      <span className="mr-4">
+    <PaginationRoot aria-label={labels.pagination} className="mx-0 w-auto items-center gap-4 text-sm text-muted-foreground">
+      <span>
         {start} – {end} {labels.of} {totalItems}
       </span>
       <PaginationContent className="gap-2">
         <PaginationItem>
-          <IconButton
-            icon="chevronLeftSmall"
-            label={labels.previous}
-            href={hasPrevious ? hrefFor(page - 1) : undefined}
-            disabled={!hasPrevious}
-            className={arrow}
-          />
+          <PageArrow href={page > 0 ? hrefFor(page - 1) : undefined} label={labels.previous}>
+            <ChevronLeft />
+          </PageArrow>
         </PaginationItem>
         <PaginationItem>
-          <IconButton
-            icon="chevronRightSmall"
-            label={labels.next}
-            href={hasNext ? hrefFor(page + 1) : undefined}
-            disabled={!hasNext}
-            className={arrow}
-          />
+          <PageArrow href={page < totalPages - 1 ? hrefFor(page + 1) : undefined} label={labels.next}>
+            <ChevronRight />
+          </PageArrow>
         </PaginationItem>
       </PaginationContent>
     </PaginationRoot>

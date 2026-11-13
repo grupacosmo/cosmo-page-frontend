@@ -1,28 +1,20 @@
+import { ArrowLeft, CalendarDays, ExternalLink, MapPin } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { getFormatter, getTranslations } from 'next-intl/server';
 import type { ReactNode } from 'react';
-import { CtaLink } from '@/components/common/CtaButton';
-import { Icon } from '@/components/common/Icon';
+import { Button } from '@/components/ui/button';
 import { SHIMMER_PLACEHOLDER } from '@/lib/shimmer';
 import type { LocalizedEvent } from '@/lib/types';
 
-/** Long descriptions are split into two columns on wide screens. */
-const TWO_COLUMN_THRESHOLD = 1000;
-
 function MetaItem({ icon, label, children }: { icon: ReactNode; label: string; children: ReactNode }) {
   return (
-    <span className="flex items-center gap-2.5">
+    <li className="flex items-center gap-2 [&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:text-cosmo-magenta">
       {icon}
       <span className="sr-only">{label}: </span>
       {children}
-    </span>
+    </li>
   );
-}
-
-function splitDescription(description: string): string[] {
-  if (description.length <= TWO_COLUMN_THRESHOLD) return [description];
-  const half = Math.floor(description.length / 2);
-  return [description.slice(0, half), description.slice(half)];
 }
 
 /** Full event: back link, title, date/place/link, photo and description. */
@@ -35,43 +27,46 @@ export async function EventArticle({ event }: { event: LocalizedEvent }) {
     : format.dateTime(start, { dateStyle: 'long', timeStyle: 'short' });
 
   return (
-    <article className="flex flex-col justify-center gap-[1em] py-5 lg:px-10">
-      <div>
-        <CtaLink href="/news" text={t('news.goBack')} secondary back />
-      </div>
-      <h1 className="my-2.5 text-cosmo-xl">{event.title}</h1>
-      <div className="flex flex-col gap-2.5 text-cosmo-m md:flex-row md:gap-[3em]">
-        <MetaItem label={t('events.date')} icon={<Image src="/images/icons/date.svg" alt="" width={24} height={24} />}>
-          {when}
-        </MetaItem>
-        <MetaItem label={t('events.location')} icon={<Icon name="place" className="text-cosmo-magenta" />}>
-          {event.location}
-        </MetaItem>
-        {event.url && (
-          <a href={event.url} target="_blank" rel="noopener noreferrer" className="hover:underline">
-            <MetaItem label={t('events.eventPage')} icon={<Image src="/images/icons/site.svg" alt="" width={24} height={24} />}>
-              {t('events.eventPage')}
-              <Icon name="openInNew" size={16} />
+    <article className="flex flex-col gap-6">
+      <Button asChild variant="ghost" className="-ml-2.5 self-start">
+        <Link href="/news">
+          <ArrowLeft />
+          {t('news.goBack')}
+        </Link>
+      </Button>
+      <header className="flex flex-col gap-4">
+        <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">{event.title}</h2>
+        <ul className="flex flex-col gap-2 text-sm text-muted-foreground sm:flex-row sm:flex-wrap sm:gap-x-6">
+          <MetaItem label={t('events.date')} icon={<CalendarDays aria-hidden="true" />}>
+            {when}
+          </MetaItem>
+          <MetaItem label={t('events.location')} icon={<MapPin aria-hidden="true" />}>
+            {event.location}
+          </MetaItem>
+          {event.url && (
+            <MetaItem label={t('events.eventPage')} icon={<ExternalLink aria-hidden="true" />}>
+              <a
+                href={event.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-foreground underline-offset-4 hover:underline"
+              >
+                {t('events.eventPage')}
+              </a>
             </MetaItem>
-          </a>
-        )}
-      </div>
+          )}
+        </ul>
+      </header>
       <Image
         src={event.image}
         alt={event.title}
         width={1500}
         height={500}
-        sizes="(max-width: 1600px) 100vw, 1500px"
+        sizes="(max-width: 1280px) 100vw, 1200px"
         placeholder={SHIMMER_PLACEHOLDER}
-        className="my-5 max-h-[500px] w-full max-w-full rounded-[15px] object-cover select-none"
+        className="aspect-video w-full rounded-xl object-cover md:aspect-[21/9]"
       />
-      <div className="flex flex-col xl:flex-row xl:gap-5">
-        {splitDescription(event.description).map((text, index) => (
-          <p key={index} className="text-left text-cosmo-m xl:flex-1">
-            {text}
-          </p>
-        ))}
-      </div>
+      <p className="max-w-3xl leading-relaxed">{event.description}</p>
     </article>
   );
 }

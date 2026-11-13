@@ -1,15 +1,18 @@
 'use client';
 
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { IconButton } from '../IconButton';
 
-const ARROWS = ['prev', 'next'] as const;
+const ARROWS = [
+  { step: -1, label: 'Previous image', Icon: ChevronLeft },
+  { step: 1, label: 'Next image', Icon: ChevronRight },
+] as const;
 
 interface SliderArrowsProps {
   onStep: (direction: 1 | -1) => void;
   disabled?: boolean;
-  /** `inline` over the slider, `lightbox` in fullscreen. */
+  /** `inline` over the slider (shown on hover/focus), `lightbox` in fullscreen. */
   variant: 'inline' | 'lightbox';
 }
 
@@ -19,22 +22,22 @@ export function SliderArrows({ onStep, disabled, variant }: SliderArrowsProps) {
   return (
     <div
       className={cn(
-        'pointer-events-none absolute inset-0 flex items-center justify-between',
-        lightbox ? 'z-[10000] px-2.5 md:px-5' : 'px-[5px] opacity-0 group-hover:opacity-100 md:px-2.5',
+        'pointer-events-none absolute inset-0 z-10 flex items-center justify-between px-2 sm:px-4',
+        !lightbox && 'opacity-0 transition-opacity group-focus-within:opacity-100 group-hover:opacity-100',
       )}
     >
-      {ARROWS.map((direction) => (
-        <IconButton
-          key={direction}
-          tone={lightbox ? 'glass' : 'light'}
-          size={lightbox ? 'xl' : 'lg'}
-          icon={direction === 'prev' ? 'chevronLeft' : 'chevronRight'}
-          iconSize={lightbox ? 28 : 20}
-          label={direction === 'prev' ? 'Previous image' : 'Next image'}
+      {ARROWS.map(({ step, label, Icon }) => (
+        <Button
+          key={step}
+          variant={lightbox ? 'ghost-inverse' : 'secondary'}
+          size="icon-lg"
+          aria-label={label}
           disabled={disabled}
-          onClick={() => onStep(direction === 'prev' ? -1 : 1)}
-          className={cn('pointer-events-auto', lightbox ? 'hover:scale-110 active:scale-95' : 'z-10')}
-        />
+          onClick={() => onStep(step)}
+          className={cn('pointer-events-auto rounded-full', lightbox && 'bg-white/10')}
+        >
+          <Icon />
+        </Button>
       ))}
     </div>
   );
@@ -45,33 +48,23 @@ interface SliderDotsProps {
   index: number;
   disabled?: boolean;
   onSelect: (index: number) => void;
-  className?: string;
-  dotClassName?: string;
-  inactiveClassName?: string;
 }
 
 /** One dot per slide; the current one is filled. */
-export function SliderDots({ count, index, disabled, onSelect, className, dotClassName, inactiveClassName }: SliderDotsProps) {
+export function SliderDots({ count, index, disabled, onSelect }: SliderDotsProps) {
   return (
-    <div
-      className={cn(
-        'absolute bottom-[7.5px] left-1/2 z-10 flex -translate-x-1/2 gap-[3.75px] md:bottom-2.5 md:gap-[5px]',
-        className,
-      )}
-    >
+    <div className="absolute bottom-3 left-1/2 z-10 flex -translate-x-1/2 gap-1.5">
       {Array.from({ length: count }, (_, i) => (
-        <Button
+        <button
           key={i}
-          variant="bare"
-          size="none"
+          type="button"
           disabled={disabled}
           onClick={() => onSelect(i)}
           aria-label={`Go to slide ${i + 1}`}
           aria-current={i === index}
           className={cn(
-            'size-2.5 rounded-full border-2 bg-clip-border transition-all duration-200 hover:not-disabled:scale-110 hover:not-disabled:border-white active:not-aria-[haspopup]:translate-y-0 disabled:cursor-not-allowed md:size-3 md:hover:not-disabled:scale-120',
-            dotClassName,
-            i === index ? 'border-white bg-white/90' : cn('border-white/80 bg-transparent', inactiveClassName),
+            'size-2.5 rounded-full border border-white transition-colors outline-none focus-visible:ring-3 focus-visible:ring-ring/50',
+            i === index ? 'bg-white' : 'bg-white/20 hover:bg-white/60',
           )}
         />
       ))}

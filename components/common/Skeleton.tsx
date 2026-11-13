@@ -1,88 +1,66 @@
-import { cva, type VariantProps } from 'class-variance-authority';
 import { useTranslations } from 'next-intl';
 import type { ComponentProps } from 'react';
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from '@/lib/utils';
 
 /**
- * Shimmer placeholders. Every loading state in the app (route `loading.tsx`, Suspense fallbacks,
- * language switching) is composed from these, so they all share one look. Server-safe: no hooks
- * beyond `useTranslations`, which works in both server and client components.
+ * Loading placeholders composed from the shadcn `Skeleton`. Every loading state in the app (route
+ * `loading.tsx`, Suspense fallbacks, language switching) is built from these, so they share one look.
  */
-const skeletonVariants = cva('block shrink-0', {
-  variants: {
-    /** `light` on the white page sheet, `dark` on banners, the header and the footer. */
-    tone: { light: 'shimmer', dark: 'shimmer-dark' },
-    shape: {
-      block: 'rounded-[10px]',
-      line: 'h-[1em] rounded-md',
-      pill: 'rounded-full',
-      circle: 'rounded-full',
-      none: '',
-    },
-  },
-  defaultVariants: { tone: 'light', shape: 'block' },
-});
 
-type SkeletonProps = ComponentProps<'div'> & VariantProps<typeof skeletonVariants>;
-
-export function Skeleton({ tone, shape, className, ...props }: SkeletonProps) {
-  return <div aria-hidden="true" className={cn(skeletonVariants({ tone, shape }), className)} {...props} />;
-}
+/** Skeleton colour on dark surfaces (banners, header, footer). */
+export const SKELETON_ON_DARK = 'bg-white/15';
 
 const LINE_WIDTHS = ['w-full', 'w-[96%]', 'w-[92%]', 'w-[98%]', 'w-[88%]'];
 
-/** A paragraph of shimmer lines; the last line is shorter, like real text. */
-export function SkeletonText({
-  lines = 3,
-  tone,
-  className,
-  lineClassName,
-}: {
-  lines?: number;
-  tone?: 'light' | 'dark';
-  className?: string;
-  lineClassName?: string;
-}) {
+/** A paragraph of placeholder lines; the last line is shorter, like real text. */
+export function SkeletonText({ lines = 3, className }: { lines?: number; className?: string }) {
   return (
-    <div className={cn('flex w-full flex-col gap-[0.6em]', className)}>
+    <div className={cn('flex w-full flex-col gap-2', className)}>
       {Array.from({ length: lines }, (_, i) => (
         <Skeleton
           key={i}
-          tone={tone}
-          shape="line"
-          className={cn(i === lines - 1 && lines > 1 ? 'w-[60%]' : LINE_WIDTHS[i % LINE_WIDTHS.length], lineClassName)}
+          className={cn('h-4', i === lines - 1 && lines > 1 ? 'w-3/5' : LINE_WIDTHS[i % LINE_WIDTHS.length])}
         />
       ))}
     </div>
   );
 }
 
-/** Placeholder for a `CtaLink` pill. */
-export function SkeletonCta({ className }: { className?: string }) {
-  return <Skeleton shape="pill" className={cn('h-10 w-[150px] xl:h-12', className)} />;
-}
-
-/** Placeholder for the trapezoid tab bar (`CosmoTabs` / `CosmoTabLinks`). */
-export function SkeletonTabBar({ tabs = 2 }: { tabs?: number }) {
+/** Placeholder for a section header: title and, optionally, its action button. */
+export function SectionHeaderSkeleton({ action }: { action?: boolean }) {
   return (
-    <div className="flex min-h-20 w-full rounded-t-[15px] bg-cosmo-magenta">
-      {Array.from({ length: tabs }, (_, i) => (
-        <div key={i} className="flex flex-1 items-center justify-center">
-          <Skeleton tone="dark" shape="line" className="h-5 w-[40%] max-w-[180px]" />
-        </div>
-      ))}
+    <div className="flex items-center justify-between gap-4">
+      <Skeleton className="h-8 w-48" />
+      {action && <Skeleton className="h-8 w-28 rounded-lg" />}
     </div>
   );
 }
 
+/** Mirrors the image-topped cards (`EventCard`, `ProjectCard`). */
+export function CardSkeleton() {
+  return (
+    <Card className="pt-0">
+      <Skeleton className="aspect-video rounded-none" />
+      <CardHeader>
+        <Skeleton className="h-5 w-2/3" />
+        <Skeleton className="h-4 w-1/3" />
+      </CardHeader>
+      <CardContent>
+        <SkeletonText lines={2} />
+      </CardContent>
+    </Card>
+  );
+}
+
 /**
- * Wraps a loading layout: announces "Loading…" to screen readers once and marks the region busy,
- * while the shimmer blocks themselves stay hidden from assistive tech.
+ * Wraps a loading layout: announces "Loading…" to screen readers once and marks the region busy.
  */
-export function LoadingRegion({ className, children, ...props }: ComponentProps<'div'>) {
+export function LoadingRegion({ children, ...props }: ComponentProps<'div'>) {
   const t = useTranslations('common');
   return (
-    <div aria-busy="true" className={className} {...props}>
+    <div aria-busy="true" {...props}>
       <span role="status" className="sr-only">
         {t('loading')}
       </span>

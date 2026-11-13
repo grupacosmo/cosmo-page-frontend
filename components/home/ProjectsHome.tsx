@@ -1,47 +1,33 @@
+import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
-import { SectionHeader } from '@/components/common/Container';
-import { CtaLink } from '@/components/common/CtaButton';
-import { cssUrl } from '@/lib/format';
+import { CardGrid, Section, SectionHeader } from '@/components/common/Container';
+import { ProjectCard } from '@/components/projects/ProjectCard';
+import { Button } from '@/components/ui/button';
 import type { Translate } from '@/lib/i18n/server';
 import type { Project } from '@/lib/types';
 
-interface ProjectsHomeProps {
-  t: Translate;
-  projects: Project[];
-}
+const FEATURED_COUNT = 3;
 
-// Slanted "torn" tiles: the first and last are cut on one side, the middle one on both.
-const TILE_SHAPES = [
-  { clip: 'xs:[clip-path:polygon(0_0,75%_0,100%_100%,0%_100%)]', offset: '', title: '' },
-  { clip: 'xs:[clip-path:polygon(0_0,75%_0,100%_100%,25%_100%)]', offset: 'xs:-ml-[8%]', title: 'xs:ml-[20%]' },
-  { clip: 'xs:[clip-path:polygon(0_0,100%_0,100%_100%,25%_100%)]', offset: 'xs:-ml-[8%]', title: 'xs:ml-[20%]' },
-] as const;
-
-export function ProjectsHome({ t, projects }: ProjectsHomeProps) {
-  const featured = projects.slice(0, TILE_SHAPES.length);
-
+/** Teaser of the first few projects with a link to the full list. */
+export function ProjectsHome({ t, projects }: { t: Translate; projects: Project[] }) {
   return (
-    <div className="flex flex-col justify-center">
+    <Section>
       <SectionHeader
         title={t('navigation.projects')}
-        action={<CtaLink href="/projects" text={t('projects.allProjects')} secondary />}
-        className="gap-[4em]"
-      />
-      <section className="flex flex-col items-center justify-center gap-[0.5em] xs:flex-row xs:gap-0">
-        {featured.map((project, index) => {
-          const { clip, offset, title } = TILE_SHAPES[index]!;
-          return (
-            <Link
-              key={project.id}
-              href={`/projects/${project.id}`}
-              style={{ backgroundImage: cssUrl(project.mainPhoto.src) }}
-              className={`relative flex h-[200px] min-h-[200px] w-full flex-1 cursor-pointer items-end justify-center bg-cover bg-center text-cosmo-s font-bold text-white transition duration-500 select-none [text-shadow:3px_4px_10px_black] before:absolute before:inset-0 before:-z-[1] before:[background:inherit] before:transition-[filter] before:duration-400 hover:scale-105 hover:shadow-elevation-3 md:text-cosmo-m md:before:blur-[2px] md:hover:before:blur-none xl:text-cosmo-xl ${clip} ${offset}`}
-            >
-              <h3 className={`text-center ${title}`}>{t(project.shortTitle)}</h3>
+        action={
+          <Button asChild variant="ghost">
+            <Link href="/projects">
+              {t('projects.allProjects')}
+              <ArrowRight />
             </Link>
-          );
-        })}
-      </section>
-    </div>
+          </Button>
+        }
+      />
+      <CardGrid>
+        {projects.slice(0, FEATURED_COUNT).map((project) => (
+          <ProjectCard key={project.id} t={t} project={project} />
+        ))}
+      </CardGrid>
+    </Section>
   );
 }
